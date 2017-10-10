@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+class Level {
+    
+    var star: Int
+    var level: String
+    var xp: Int
+    
+    init (star: Int, level: String, xp: Int) {
+        self.star = star
+        self.level = level
+        self.xp = xp
+    }
+}

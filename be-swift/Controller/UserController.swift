@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+class UserController {
+    
+    
+    func login () -> Void {
+        
+    }
+    
+    func logout () -> Void {
+        
+    }
+    
+    func register () -> Void {
+        
+    }
+    
+}

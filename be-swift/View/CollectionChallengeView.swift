@@ -8,4 +8,6 @@
 
 import Foundation
 
-
+class CollectionChallengeView: View {
+    
+}

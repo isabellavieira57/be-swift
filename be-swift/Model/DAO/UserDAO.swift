@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+class UserDAO {
+    
+    init() {
+        
+    }
+    
+    func insertUserChallengeInfo () -> Void {
+        
+    }
+    
+    
+}

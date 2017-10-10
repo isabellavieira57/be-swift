@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+class ChallengeTopic {
+    
+    var topic: String
+    var resourceLink: String
+    
+    init (topic: String, resourceLink: String) {
+        self.topic = topic
+        self.resourceLink = resourceLink
+    }
+}

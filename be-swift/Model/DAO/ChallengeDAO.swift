@@ -7,3 +7,24 @@
 //
 
 import Foundation
+
+class ChallengeDAO {
+    
+    init() {
+        
+    }
+    
+    func getUser () -> Void {
+        
+    }
+    
+    func updateUser () -> Void {
+        
+    }
+    
+    func insertUser () -> Void {
+        
+    }
+    
+    
+}

@@ -7,3 +7,17 @@
 //
 
 import Foundation
+
+class UserChallengeInfo {
+    
+    var xpChallenge: Int
+    var starChallenge: Int
+    var timeToAnswerChallenge: String
+    
+    init (xpChallenge: Int, starChallenge: Int, timeToAnswerChallenge: String) {
+        self.xpChallenge = xpChallenge
+        self.starChallenge = starChallenge
+        self.timeToAnswerChallenge = timeToAnswerChallenge
+    }
+    
+}

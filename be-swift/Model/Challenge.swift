@@ -7,3 +7,25 @@
 //
 
 import Foundation
+
+class Challenge {
+    
+    var question: String
+    var estimatedTime: String
+    var mechanics: String
+    var challengeId: Int
+    var options: String // list
+    var correctAnswer: String // list
+    var feedbackAnswer: String
+    
+    init (question: String, estimatedTime: String, mechanics: String, challengeId: Int , options: String, correctAnswer: String, feedbackAnswer: String) {
+        self.question = question
+        self.estimatedTime = estimatedTime
+        self.mechanics = mechanics
+        self.challengeId = challengeId
+        self.options = options
+        self.correctAnswer = correctAnswer
+        self.feedbackAnswer = feedbackAnswer
+    }
+    
+}
