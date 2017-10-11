@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		497703561F8EAA9E00102F08 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497703551F8EAA9E00102F08 /* Label.swift */; };
 		497703581F8EABDC00102F08 /* DeviceScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497703571F8EABDC00102F08 /* DeviceScale.swift */; };
+		49C4B4041F8EBD5100A84C69 /* DeviceTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B4031F8EBD5100A84C69 /* DeviceTypes.swift */; };
+		49C4B4061F8EC57100A84C69 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B4051F8EC57100A84C69 /* Button.swift */; };
 		4F75F8521F8AB491007BABC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8511F8AB491007BABC9 /* AppDelegate.swift */; };
 		4F75F8541F8AB491007BABC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8531F8AB491007BABC9 /* ViewController.swift */; };
 		4F75F8571F8AB491007BABC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F75F8551F8AB491007BABC9 /* Main.storyboard */; };
@@ -59,6 +61,8 @@
 /* Begin PBXFileReference section */
 		497703551F8EAA9E00102F08 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		497703571F8EABDC00102F08 /* DeviceScale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScale.swift; sourceTree = "<group>"; };
+		49C4B4031F8EBD5100A84C69 /* DeviceTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTypes.swift; sourceTree = "<group>"; };
+		49C4B4051F8EC57100A84C69 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		4F75F84E1F8AB491007BABC9 /* be-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "be-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F75F8511F8AB491007BABC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F75F8531F8AB491007BABC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,7 +128,9 @@
 			isa = PBXGroup;
 			children = (
 				497703551F8EAA9E00102F08 /* Label.swift */,
+				49C4B4051F8EC57100A84C69 /* Button.swift */,
 				497703571F8EABDC00102F08 /* DeviceScale.swift */,
+				49C4B4031F8EBD5100A84C69 /* DeviceTypes.swift */,
 			);
 			name = Setup;
 			sourceTree = "<group>";
@@ -384,6 +390,7 @@
 				4F75F88F1F8AB55C007BABC9 /* UserChallengeInfo.swift in Sources */,
 				4F75F8911F8AB58B007BABC9 /* Challenge.swift in Sources */,
 				497703561F8EAA9E00102F08 /* Label.swift in Sources */,
+				49C4B4061F8EC57100A84C69 /* Button.swift in Sources */,
 				4F75F8971F8AB5BA007BABC9 /* Notification.swift in Sources */,
 				4F75F8891F8AB51A007BABC9 /* UserDAO.swift in Sources */,
 				4F75F8521F8AB491007BABC9 /* AppDelegate.swift in Sources */,
@@ -393,6 +400,7 @@
 				4F75F89B1F8AB5E3007BABC9 /* ChallengeController.swift in Sources */,
 				4F75F8A91F8AB66C007BABC9 /* LoginView.swift in Sources */,
 				4F75F8A71F8AB660007BABC9 /* SortView.swift in Sources */,
+				49C4B4041F8EBD5100A84C69 /* DeviceTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

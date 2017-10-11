@@ -25,8 +25,8 @@ public extension UIScreen{
         let yScale = screenSize.height/heightiPhoneSE
         
         //Transformar o vetor do Input
-        let newVector = CGRect(x)
+        let newVector = CGRect(x: vector.origin.x*xScale, y: vector.origin.y*yScale, width: vector.width*xScale, height: vector.height*yScale)
         
-        
+        return newVector
     }
 }

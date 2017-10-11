@@ -10,9 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var inicialView: View!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        inicialView = View(frame: CGRect.zero)
+        self.view.addSubview(inicialView)
     }
 
     override func didReceiveMemoryWarning() {
