@@ -11,11 +11,16 @@ import UIKit
 class ViewController: UIViewController {
 
     var inicialView: View!
+    var blankField: BlankFieldView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
      
         inicialView = View(frame: CGRect.zero, titleText: "Constants", dismissButtonAction: #selector(ViewController.dismissButton(_:)), helpButtonAction: #selector(ViewController.helpButton(_:)))
+        
+        blankField = BlankFieldView(frame: CGRect.zero, questionText: "Once this code is executed, how \nmany items will numbers contain?")
+        
+        self.view.addSubview(blankField)
         self.view.addSubview(inicialView)
         }
     
