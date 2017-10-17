@@ -16,11 +16,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
-        inicialView = View(frame: CGRect.zero, titleText: "Constants", dismissButtonAction: #selector(ViewController.dismissButton(_:)), helpButtonAction: #selector(ViewController.helpButton(_:)))
+        inicialView = View(frame: CGRect.zero, titleText: "Constants", dismissButtonAction: #selector(ViewController.dismissButton(_:)), helpButtonAction: #selector(ViewController.helpButton(_:)), questionText: "Once this code is executed, how \nmany items will numbers contain? \nmany items will numbers contain? \nmany items will numbers contain? \nmany items will numbers contain?", haveExampleCode: true, exampleCodeText: "func calculateDiscount (age: Int, \nprice: Double, discount: Double) \n->  Double { \nvar value = 0.0 \nif (age>60 || age<10) { \nvalue = price - (price * \ndiscount) \n} else { \nvalue = price \n} \nreturn value \n} \nvar age = 5")
         
-        blankField = BlankFieldView(frame: CGRect.zero, questionText: "Once this code is executed, how \nmany items will numbers contain?")
+//        blankField = BlankFieldView(frame: CGRect.zero, questionText: "Once this code is executed, how \nmany items will numbers contain?")
         
-        self.view.addSubview(blankField)
+//        self.view.addSubview(blankField)
         self.view.addSubview(inicialView)
         }
     
