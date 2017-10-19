@@ -20,6 +20,8 @@ class SortView: View {
 //        var screenHeight = screenSize.height
 //        var screenWidth = screenSize.width
         
+        //teste
+        
         self.backgroundColor = UIColor.lightGray
         
         sortTableView = UITableView(frame: CGRect(x: 0, y: 0, width: 321, height: 400))
