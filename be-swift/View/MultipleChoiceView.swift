@@ -19,57 +19,60 @@ class MultipleChoiceView: View {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    }
-    
-    convenience init(frame: CGRect, options: Array<String>){
-        self.init(frame: frame)
+//    }
+//
+//    convenience init(frame: CGRect, options: Array<String>){
+//        self.init(frame: frame)
         
-        var options = options
+        var options = ["A", "B", "C", "D"]
 
         self.backgroundColor = UIColor.lightGray
         
         var screenWidth = UIScreen.main.bounds.width
         var screenHeight = UIScreen.main.bounds.height
-
-        // Set button frame
-        var button1Frame = CGRect(x: screenWidth*0.1, y: 10, width: screenWidth*0.8, height: screenHeight*0.08)
+        
         
 //        optionButton1 = UIButton(frame: button1Frame)
 //        optionButton1.backgroundColor = UIColor.white
 //        optionButton1.setTitle(options[0], for: .normal)
 //        optionButton1.titleLabel?.textColor = UIColor.black
-        
-        //NÃO TA FUNCIONANDO:
-//        var secondButtonOrigin = self.optionButton1.frame.origin.y + self.optionButton1.frame.height + 10
-//
-//        var button2Frame = CGRect(x: screenWidth*0.1, y: secondButtonOrigin, width: screenWidth*0.8, height: screenHeight*0.1)
-//
-//        var thirdButtonOrigin = self.optionButton2.frame.origin.y + self.optionButton2.frame.height + 10
-//
-//        var button3Frame = CGRect(x: screenWidth*0.1, y: thirdButtonOrigin, width: screenWidth*0.8, height: screenHeight*0.1)
-//
-//        var fourthButtonOrigin = self.optionButton3.frame.origin.y + self.optionButton3.frame.height + 10
-//
-//        var button4Frame = CGRect(x: screenWidth*0.1, y: fourthButtonOrigin, width: screenWidth*0.8, height: screenHeight*0.1)
-        
-        // Create buttons
-        optionButton1 = UIButton(image: "optionMultChoice", frame: button1Frame, target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
-        optionButton1.setTitle(options[0], for: .normal)
-//
-//        optionButton2 = UIButton(image: "optionMultChoice", frame: button2Frame, target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
-//        optionButton2.setTitle(options[1], for: .normal)
-//
-//        optionButton3 = UIButton(image: "optionMultChoice", frame: button3Frame, target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
-//        optionButton3.setTitle(options[2], for: .normal)
-//
-//        optionButton4 = UIButton(image: "optionMultChoice", frame: button4Frame, target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
-//        optionButton4.setTitle(options[3], for: .normal)
 
         
+        // Create buttons (originY + frame + set button)
+        
+        var spaceBetweenButtons: CGFloat = 8
+        
+        var button1Frame = CGRect(x: 16.5, y: 10, width: 288, height: screenHeight*0.09)
+        
+        optionButton1 = UIButton(image: "optionMultChoice", frame: button1Frame, target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
+        optionButton1.setTitle(options[0], for: .normal)
+
+        var secondButtonOrigin = self.optionButton1.frame.origin.y + self.optionButton1.frame.height + spaceBetweenButtons
+        
+        var button2Frame = CGRect(x: optionButton1.frame.origin.x, y: secondButtonOrigin, width: optionButton1.frame.width, height: optionButton1.frame.height)
+        
+        optionButton2 = UIButton(image: "optionMultChoice", frame: button2Frame, target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
+        optionButton2.setTitle(options[1], for: .normal)
+        
+        var thirdButtonOrigin = self.optionButton2.frame.origin.y + self.optionButton2.frame.height + spaceBetweenButtons
+        
+        var button3Frame = CGRect(x: optionButton1.frame.origin.x, y: thirdButtonOrigin, width: optionButton1.frame.width, height: optionButton1.frame.height)
+
+        optionButton3 = UIButton(image: "optionMultChoice", frame: button3Frame, target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
+        optionButton3.setTitle(options[2], for: .normal)
+
+        var fourthButtonOrigin = self.optionButton3.frame.origin.y + self.optionButton3.frame.height + spaceBetweenButtons
+        
+        var button4Frame = CGRect(x: optionButton1.frame.origin.x, y: fourthButtonOrigin, width: optionButton1.frame.width, height: optionButton1.frame.height)
+        
+        optionButton4 = UIButton(image: "optionMultChoice", frame: button4Frame, target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
+        optionButton4.setTitle(options[3], for: .normal)
+        
+        
         self.addSubview(optionButton1)
-//        self.addSubview(optionButton2)
-//        self.addSubview(optionButton3)
-//        self.addSubview(optionButton4)
+        self.addSubview(optionButton2)
+        self.addSubview(optionButton3)
+        self.addSubview(optionButton4)
     }
     
     @objc func selectButton(_ sender: Any) {
