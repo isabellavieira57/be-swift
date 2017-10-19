@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     var inicialView: View!
     var blankField: BlankFieldView!
+    var sortView: SortView!
+    var sortController: SortViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +22,21 @@ class ViewController: UIViewController {
         
 //        blankField = BlankFieldView(frame: CGRect.zero, questionText: "Once this code is executed, how \nmany items will numbers contain?")
         
+        var screenHeight = UIScreen.main.bounds.height
+        
+        sortView = SortView(frame: CGRect(x: 0, y: 64, width: 321, height: screenHeight - 64 ))
+        
 //        self.view.addSubview(blankField)
-        self.view.addSubview(inicialView)
+//        self.view.addSubview(inicialView)
+        self.view.addSubview(sortView)
+
         }
     
+    override func viewDidAppear(_ animated: Bool) {
+        let controller = SortViewController()
+        present(controller, animated: false, completion: nil)
+    }
+
     @objc func dismissButton(_ sender: Any){
         //mandar para a home
     }

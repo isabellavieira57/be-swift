@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03D9FCDB1F98FC61000512F5 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9FCDA1F98FC61000512F5 /* SortViewController.swift */; };
 		492E75C51F91296000A4AD4F /* SanFranciscoText-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 492E75BD1F91271700A4AD4F /* SanFranciscoText-Bold.otf */; };
 		492E75C61F91296400A4AD4F /* SanFranciscoText-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 492E75C31F91271800A4AD4F /* SanFranciscoText-BoldItalic.otf */; };
 		492E75C71F91296800A4AD4F /* SanFranciscoText-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 492E75BC1F91271700A4AD4F /* SanFranciscoText-Heavy.otf */; };
@@ -72,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03D9FCDA1F98FC61000512F5 /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		492E75B81F91271600A4AD4F /* SanFranciscoText-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-MediumItalic.otf"; sourceTree = "<group>"; };
 		492E75B91F91271600A4AD4F /* SanFranciscoText-HeavyItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-HeavyItalic.otf"; sourceTree = "<group>"; };
 		492E75BA1F91271600A4AD4F /* SanFranciscoText-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-LightItalic.otf"; sourceTree = "<group>"; };
@@ -213,10 +215,10 @@
 		4F75F8501F8AB491007BABC9 /* be-swift */ = {
 			isa = PBXGroup;
 			children = (
+				4F75F8511F8AB491007BABC9 /* AppDelegate.swift */,
 				4F75F8821F8AB4AA007BABC9 /* Model */,
 				4F75F8851F8AB4BC007BABC9 /* Controller */,
 				4F75F8841F8AB4B4007BABC9 /* View */,
-				4F75F8511F8AB491007BABC9 /* AppDelegate.swift */,
 				4F75F85D1F8AB492007BABC9 /* LaunchScreen.storyboard */,
 				4F75F8601F8AB492007BABC9 /* Info.plist */,
 				4F75F8581F8AB492007BABC9 /* be_swift.xcdatamodeld */,
@@ -291,6 +293,7 @@
 				4F75F8531F8AB491007BABC9 /* ViewController.swift */,
 				4F75F8981F8AB5D6007BABC9 /* UserController.swift */,
 				4F75F89A1F8AB5E3007BABC9 /* ChallengeController.swift */,
+				03D9FCDA1F98FC61000512F5 /* SortViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				497703561F8EAA9E00102F08 /* Label.swift in Sources */,
 				49C4B4061F8EC57100A84C69 /* Button.swift in Sources */,
 				49C3807E1F96645500DC5293 /* TextView.swift in Sources */,
+				03D9FCDB1F98FC61000512F5 /* SortViewController.swift in Sources */,
 				4F75F8971F8AB5BA007BABC9 /* Notification.swift in Sources */,
 				4F75F8891F8AB51A007BABC9 /* UserDAO.swift in Sources */,
 				4F75F8521F8AB491007BABC9 /* AppDelegate.swift in Sources */,
