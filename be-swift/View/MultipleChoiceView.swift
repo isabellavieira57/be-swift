@@ -15,6 +15,10 @@ class MultipleChoiceView: View {
     var optionButton2: UIButton!
     var optionButton3: UIButton!
     var optionButton4: UIButton!
+    var optionCircle1: UIImageView!
+    var optionCircle2: UIImageView!
+    var optionCircle3: UIImageView!
+    var optionCircle4: UIImageView!
     var userAnswer: String?
     
     override init(frame: CGRect) {
@@ -24,55 +28,86 @@ class MultipleChoiceView: View {
 //    convenience init(frame: CGRect, options: Array<String>){
 //        self.init(frame: frame)
         
-        var options = ["A", "B", "C", "D"]
+        self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0) //UIColor.lightGray
 
-        self.backgroundColor = UIColor.lightGray
+        var options = ["Option 1", "7: operator '>' can't be applied to operrands of type '()' and 'Int'", "7: '>' can't be used on types '()' and 'Int'", "Option 4"]
         
+        // Variables to create buttons
+
         var screenWidth = UIScreen.main.bounds.width
         var screenHeight = UIScreen.main.bounds.height
         
+        var optionButtonX: CGFloat = screenWidth*0.05
+        var optionButtonWidth: CGFloat  = screenWidth*0.9
+        var optionButtonHeight: CGFloat  = screenHeight*0.09
+        var spaceBetweenButtons: CGFloat  = 8.0
+        var marginToTitle: CGFloat = screenWidth*0.12
+        var circleX: CGFloat = screenWidth*0.04 + optionButtonX
+        var circleDiameter: CGFloat = screenWidth*0.05
         
-//        optionButton1 = UIButton(frame: button1Frame)
-//        optionButton1.backgroundColor = UIColor.white
-//        optionButton1.setTitle(options[0], for: .normal)
-//        optionButton1.titleLabel?.textColor = UIColor.black
-
+        // Create 1st button
         
-        // Create buttons (originY + frame + set button)
-        
-        var spaceBetweenButtons: CGFloat = 8
-        
-        var button1Frame = CGRect(x: 16.5, y: 10, width: 288, height: screenHeight*0.09)
-        
-        optionButton1 = UIButton(image: "optionMultChoice", frame: button1Frame, target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
+        optionButton1 = UIButton(image: "optionMultChoice", frame: CGRect(x: optionButtonX, y: screenWidth*0.02, width: optionButtonWidth, height: optionButtonHeight), target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
         optionButton1.setTitle(options[0], for: .normal)
+        optionButton1.contentHorizontalAlignment = .left
+        optionButton1.contentEdgeInsets.left = marginToTitle
+        optionButton1.titleLabel?.font = UIFont(name: "SanFranciscoText-Medium", size: 16)
+        optionButton1.setTitleColor(UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), for: .normal)
 
-        var secondButtonOrigin = self.optionButton1.frame.origin.y + self.optionButton1.frame.height + spaceBetweenButtons
+        optionCircle1 = UIImageView(frame: CGRect(x: circleX, y: optionButton1.frame.origin.y + optionButtonHeight/3, width: circleDiameter, height: circleDiameter))
+        optionCircle1.image = UIImage(named: "deselectedCircle")
         
-        var button2Frame = CGRect(x: optionButton1.frame.origin.x, y: secondButtonOrigin, width: optionButton1.frame.width, height: optionButton1.frame.height)
+        // Create 2nd button
         
-        optionButton2 = UIButton(image: "optionMultChoice", frame: button2Frame, target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
+        var optionButton2Y = self.optionButton1.frame.origin.y + self.optionButton1.frame.height + spaceBetweenButtons
+        
+        optionButton2 = UIButton(image: "optionMultChoice", frame: CGRect(x: optionButtonX, y: optionButton2Y, width: optionButtonWidth, height: optionButtonHeight), target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
         optionButton2.setTitle(options[1], for: .normal)
+        optionButton2.titleLabel?.font = UIFont(name: "SanFranciscoText-Medium", size: 16)
+        optionButton2.setTitleColor(UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), for: .normal)
+        optionButton2.contentHorizontalAlignment = .left
+        optionButton2.contentEdgeInsets.left = marginToTitle
         
-        var thirdButtonOrigin = self.optionButton2.frame.origin.y + self.optionButton2.frame.height + spaceBetweenButtons
-        
-        var button3Frame = CGRect(x: optionButton1.frame.origin.x, y: thirdButtonOrigin, width: optionButton1.frame.width, height: optionButton1.frame.height)
+        optionCircle2 = UIImageView(frame: CGRect(x: circleX, y: optionButton2Y + optionButtonHeight/3, width: circleDiameter, height: circleDiameter))
+        optionCircle2.image = UIImage(named: "deselectedCircle")
 
-        optionButton3 = UIButton(image: "optionMultChoice", frame: button3Frame, target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
+        // Create 3rd button
+        
+        var optionButton3Y = self.optionButton2.frame.origin.y + self.optionButton2.frame.height + spaceBetweenButtons
+        
+        optionButton3 = UIButton(image: "optionMultChoice", frame: CGRect(x: optionButtonX, y: optionButton3Y, width: optionButtonWidth, height: optionButtonHeight), target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
         optionButton3.setTitle(options[2], for: .normal)
+        optionButton3.titleLabel?.font = UIFont(name: "SanFranciscoText-Medium", size: 16)
+        optionButton3.setTitleColor(UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), for: .normal)
+        optionButton3.contentHorizontalAlignment = .left
+        optionButton3.contentEdgeInsets.left = marginToTitle
+        
+        optionCircle3 = UIImageView(frame: CGRect(x: circleX, y: optionButton3Y + optionButtonHeight/3, width: circleDiameter, height: circleDiameter))
+        optionCircle3.image = UIImage(named: "deselectedCircle")
 
-        var fourthButtonOrigin = self.optionButton3.frame.origin.y + self.optionButton3.frame.height + spaceBetweenButtons
+        // Create 4th button
         
-        var button4Frame = CGRect(x: optionButton1.frame.origin.x, y: fourthButtonOrigin, width: optionButton1.frame.width, height: optionButton1.frame.height)
+        var optionButton4Y = self.optionButton3.frame.origin.y + self.optionButton3.frame.height + spaceBetweenButtons
         
-        optionButton4 = UIButton(image: "optionMultChoice", frame: button4Frame, target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
+        optionButton4 = UIButton(image: "optionMultChoice", frame: CGRect(x: optionButtonX, y: optionButton4Y, width: optionButtonWidth, height: optionButtonHeight), target: self.optionButton1, action: #selector(MultipleChoiceView.selectButton(_: )))
         optionButton4.setTitle(options[3], for: .normal)
+        optionButton4.titleLabel?.font = UIFont(name: "SanFranciscoText-Medium", size: 16)
+        optionButton4.setTitleColor(UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), for: .normal)
+        optionButton4.contentHorizontalAlignment = .left
+        optionButton4.contentEdgeInsets.left = marginToTitle
         
-        
+        optionCircle4 = UIImageView(frame: CGRect(x: circleX, y: optionButton4Y + optionButtonHeight/3, width: circleDiameter, height: circleDiameter))
+        optionCircle4.image = UIImage(named: "deselectedCircle")
+
         self.addSubview(optionButton1)
         self.addSubview(optionButton2)
         self.addSubview(optionButton3)
         self.addSubview(optionButton4)
+        self.addSubview(optionCircle1)
+        self.addSubview(optionCircle2)
+        self.addSubview(optionCircle3)
+        self.addSubview(optionCircle4)
+
     }
     
     @objc func selectButton(_ sender: Any) {

@@ -81,7 +81,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let attrStr = NSMutableAttributedString(string: label.text!)
         let inputLength = attrStr.string.characters.count
         
-        let searchString : NSArray = NSArray.init(objects: "func","var", "let", "if", "else", "return", "init", "true", "false", "class")
+        let searchString : NSArray = NSArray.init(objects: "func","var", "let", "if", "else", "return", "init", "true", "false", "class", "struct")
         for i in 0...searchString.count-1 {
             let string : String = searchString.object(at: i) as! String
             let searchLength = string.characters.count
@@ -112,20 +112,20 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
         
-//        let searchInts : NSArray = NSArray.init(objects: "0","1", "2", "3", "4", "5", "6", "7", "8", "9")
-//        for i in 0...searchInts.count-1 {
-//            let string : String = searchInts.object(at: i) as! String
-//            let searchLength = string.characters.count
-//            var range = NSRange(location: 0, length: attrStr.length)
-//            while (range.location != NSNotFound) {
-//                range = (attrStr.string as NSString).range(of: string, options: [], range: range)
-//                if (range.location != NSNotFound) {
-//                    attrStr.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor(red:0.55, green:0.51, blue:0.81, alpha:1.0), range: NSRange(location: range.location, length: searchLength))
-//                    range = NSRange(location: range.location + range.length, length: inputLength - (range.location + range.length))
-//                    label.attributedText = attrStr
-//                }
-//            }
-//        }
+        let searchInts : NSArray = NSArray.init(objects: "0","1", "2", "3", "4", "5", "6", "7", "8", "9")
+        for i in 0...searchInts.count-1 {
+            let string : String = searchInts.object(at: i) as! String
+            let searchLength = string.characters.count
+            var range = NSRange(location: 0, length: attrStr.length)
+            while (range.location != NSNotFound) {
+                range = (attrStr.string as NSString).range(of: string, options: [], range: range)
+                if (range.location != NSNotFound) {
+                    attrStr.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor(red:0.55, green:0.51, blue:0.81, alpha:1.0), range: NSRange(location: range.location, length: searchLength))
+                    range = NSRange(location: range.location + range.length, length: inputLength - (range.location + range.length))
+                    label.attributedText = attrStr
+                }
+            }
+        }
     }
     
 }
