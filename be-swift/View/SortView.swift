@@ -18,8 +18,8 @@ class SortView: View {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.lightGray
-        
+        self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+
         var numberOfLines = sortViewController.arrayOptions.count
         
         var screenHeight = UIScreen.main.bounds.height
