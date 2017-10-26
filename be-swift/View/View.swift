@@ -11,66 +11,71 @@ import UIKit
 
 class View: UIView{
     
-    private var question = UILabel()
-    private var exampleCode = UILabel()
-    private let rectangleCode = CAShapeLayer()
+    var question: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    convenience init(frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, haveExampleCode: Bool, exampleCodeText: String?){
-        self.init(frame: frame)
-
-        //Topo azul
+    //Topo azul
+    func setTopBar() -> CAShapeLayer{
         let rectangle = CAShapeLayer()
         rectangle.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 321, height: 64))).cgPath
         rectangle.fillColor = UIColor(red:0.31, green:0.49, blue:0.95, alpha:1.0).cgColor
         
-        //Titulo da pagina
-        let title = UILabel(text: titleText, font: "SanFranciscoText-Semibold", fontSize: 17, aligment: .center, textColor: UIColor.white, frame: CGRect(x: 0, y: 31, width: 320, height: 20))
-        
-        //Botão de sair
+        return rectangle
+    }
+    
+    //Titulo da pagina
+    func setTitle(title: String) -> UILabel{
+        return UILabel(text: title, font: "SanFranciscoText-Semibold", fontSize: 17, aligment: .center, textColor: UIColor.white, frame: CGRect(x: 0, y: 31, width: 320, height: 20))
+    }
+    
+    //Botão de sair
+    func setdismissButton(dismissButtonAction: Selector) -> UIButton{
         let dismissButton = UIButton(image: "exit", frame: CGRect(x: 0, y: 14, width: 50, height: 50), target: self, action: dismissButtonAction)
+        dismissButton.addTarget(target, action: dismissButtonAction, for: UIControlEvents.touchUpInside)
         
-        //Botão para documentação da Apple
-        let helpButton = UIButton(image: "help", frame: CGRect(x: 266, y: 14, width: 50, height: 50), target: self, action: helpButtonAction)
+        return dismissButton
+    }
+    
+    //Botão para documentação da Apple
+    func setHelpButton(helpButtonAction: Selector) -> UIButton{
+        return UIButton(image: "help", frame: CGRect(x: 266, y: 14, width: 50, height: 50), target: self, action: helpButtonAction)
+    }
+    
+    //Pergunta da pagina
+    func setQuestion(questionText: String) -> UILabel{
+        question = UILabel(text: questionText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        updateFrame(label: question, yPosition: 78, plus: 0)
         
-        //Pergunta da pagina
-        question = UILabel(text: questionText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24, y: 84, width: 273, height: 300))
+        return question
+    }
+    
+    //Codigo de exemplo da questão
+    func setExempleCode(exampleCodeText: String, view: UIView) -> UILabel{
+        let exampleCode = UILabel(text: exampleCodeText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor.white, frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        labelDidChange(exampleCode)
+        let height = question.frame.height
+        updateFrame(label: exampleCode, yPosition: height, plus: 90)
         
-        //Codigo de exemplo da questão
-        if haveExampleCode == true{
-            exampleCode = UILabel(text: exampleCodeText!, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor.white, frame: CGRect(x: 16, y: 273, width: 288, height: 300))
-            labelDidChange(exampleCode)
-            self.addSubview(exampleCode)
-            
-            rectangleCode.path = UIBezierPath(roundedRect: UIScreen.changeScale(vector: CGRect(x: 16, y: 135, width: 288, height: 57)), cornerRadius: 10).cgPath
-            rectangleCode.fillColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1.0).cgColor
-            rectangleCode.zPosition = -1
-            self.layer.addSublayer(rectangleCode)
-            
-        }
+        let yPosition = exampleCode.frame.origin.y
+        let rectangleCode = CAShapeLayer()
+        rectangleCode.path = UIBezierPath(roundedRect: UIScreen.changeScale(vector: CGRect(x: 13, y: yPosition - 5, width: 290, height: exampleCode.frame.height + 15)), cornerRadius: 10).cgPath
+        rectangleCode.fillColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1.0).cgColor
+        rectangleCode.zPosition = -1
+        view.layer.addSublayer(rectangleCode)
+        
+        return exampleCode
+    }
+ 
+    //Função para atualizar altura da label
+    func updateFrame(label: UILabel, yPosition: CGFloat, plus: CGFloat){
+        let maxSize = UIScreen.changeScaleSize(vector: CGSize(width: 273, height: 300))
+        let size = label.sizeThatFits(maxSize)
+        label.frame = UIScreen.changeScale(vector: CGRect(origin: CGPoint(x: 24, y: yPosition + plus), size: size))
+    }
 
-        self.layer.addSublayer(rectangle)
-        self.addSubview(title)
-        self.addSubview(dismissButton)
-        self.addSubview(helpButton)
-        self.addSubview(question)
-        
-        updateFrame()
-    }
-    
-    //Função para atualizar altura da label e posição do shape cinza
-    private func updateFrame() {
-        let maxSize = CGSize(width: 273, height: 300)
-        let size = question.sizeThatFits(maxSize)
-        let size2 = exampleCode.sizeThatFits(maxSize)
-        question.frame = CGRect(origin: CGPoint(x: 24, y: 84), size: size)
-        exampleCode.frame = CGRect(origin: CGPoint(x: 24, y: question.frame.height + 100), size: size2)
-        rectangleCode.path = UIBezierPath(roundedRect: UIScreen.changeScale(vector: CGRect(x: 16, y: exampleCode.frame.minY - 5, width: 288, height: exampleCode.frame.height + 15)), cornerRadius: 10).cgPath
-    }
-    
     //Função para colorir caracteres
     func labelDidChange(_ label: UILabel) {
         let attrStr = NSMutableAttributedString(string: label.text!)

@@ -28,6 +28,8 @@
 		49C3807E1F96645500DC5293 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3807D1F96645500DC5293 /* TextView.swift */; };
 		49C4B4041F8EBD5100A84C69 /* DeviceTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B4031F8EBD5100A84C69 /* DeviceTypes.swift */; };
 		49C4B4061F8EC57100A84C69 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B4051F8EC57100A84C69 /* Button.swift */; };
+		49F8D6F81FA1267900E7CF9F /* BlankFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */; };
+		49F8D6FA1FA1278D00E7CF9F /* WebDocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */; };
 		4F75F8521F8AB491007BABC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8511F8AB491007BABC9 /* AppDelegate.swift */; };
 		4F75F8541F8AB491007BABC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8531F8AB491007BABC9 /* ViewController.swift */; };
 		4F75F8571F8AB491007BABC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F75F8551F8AB491007BABC9 /* Main.storyboard */; };
@@ -102,6 +104,8 @@
 		49C3807D1F96645500DC5293 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		49C4B4031F8EBD5100A84C69 /* DeviceTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTypes.swift; sourceTree = "<group>"; };
 		49C4B4051F8EC57100A84C69 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankFieldViewController.swift; sourceTree = "<group>"; };
+		49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebDocumentationViewController.swift; sourceTree = "<group>"; };
 		4F75F84E1F8AB491007BABC9 /* be-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "be-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F75F8511F8AB491007BABC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F75F8531F8AB491007BABC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -316,9 +320,11 @@
 			children = (
 				4F75F8531F8AB491007BABC9 /* ViewController.swift */,
 				4F75F8981F8AB5D6007BABC9 /* UserController.swift */,
+				49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */,
 				4F75F89A1F8AB5E3007BABC9 /* ChallengeController.swift */,
 				03D9FCDA1F98FC61000512F5 /* SortViewController.swift */,
 				03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */,
+				49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */,
 				03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */,
 			);
 			path = Controller;
@@ -654,6 +660,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49F8D6FA1FA1278D00E7CF9F /* WebDocumentationViewController.swift in Sources */,
 				4F75F85A1F8AB492007BABC9 /* be_swift.xcdatamodeld in Sources */,
 				4F75F8A11F8AB631007BABC9 /* DragAndDropView.swift in Sources */,
 				4F75F8A51F8AB652007BABC9 /* FillTheGapView.swift in Sources */,
@@ -678,6 +685,7 @@
 				03D9FCDB1F98FC61000512F5 /* SortViewController.swift in Sources */,
 				4F75F8971F8AB5BA007BABC9 /* Notification.swift in Sources */,
 				4F75F8891F8AB51A007BABC9 /* UserDAO.swift in Sources */,
+				49F8D6F81FA1267900E7CF9F /* BlankFieldViewController.swift in Sources */,
 				4F75F8521F8AB491007BABC9 /* AppDelegate.swift in Sources */,
 				4F75F8A31F8AB643007BABC9 /* BlankFieldView.swift in Sources */,
 				4F75F8AF1F8AB695007BABC9 /* CollectionChallengeView.swift in Sources */,
