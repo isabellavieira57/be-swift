@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var inicialView: View!
     var blankField: BlankFieldView!
     var multipleChoice: MultipleChoiceView!
+    var multipleChoiceController: MultipleChoiceController!
     var sortView: SortView!
     var sortController: SortViewController!
     
@@ -29,19 +30,19 @@ class ViewController: UIViewController {
         //TODO: AJUSTAR FRAMES
         sortView = SortView(frame: CGRect(x: 0, y: 64, width: 321, height: screenHeight - 64 ))
         
-        multipleChoice = MultipleChoiceView(frame: CGRect(x: 0, y: 315, width: 321, height: 300 ))
+//        multipleChoice = MultipleChoiceView(frame: CGRect(x: 0, y: 315, width: 321, height: 300 ))
         
 //        self.view.addSubview(blankField)
-        self.view.addSubview(inicialView)
+//        self.view.addSubview(inicialView)
 //        self.view.addSubview(sortView)
-        self.view.addSubview(multipleChoice)
+//        self.view.addSubview(multipleChoice)
 
         }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        let controller = SortViewController()
-//        present(controller, animated: false, completion: nil)
-//    }
+    override func viewDidAppear(_ animated: Bool) {
+        let controller = MultipleChoiceController()
+        present(controller, animated: false, completion: nil)
+    }
 
     @objc func dismissButton(_ sender: Any){
         //mandar para a home

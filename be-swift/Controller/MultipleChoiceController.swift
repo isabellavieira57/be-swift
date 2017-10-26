@@ -6,13 +6,13 @@
 //  Copyright © 2017 Isabella Vieira. All rights reserved.
 //
 
+
 import UIKit
 
-class MultipleChoiceController: UIViewController {//, SSRadioButtonControllerDelegate {
+class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegate {
     
     var multipleChoiceView: MultipleChoiceView!
-    
-//    var radioButtonController: SSRadioButtonsController?
+    var radioButtonController: SSRadioButtonsController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,22 +22,19 @@ class MultipleChoiceController: UIViewController {//, SSRadioButtonControllerDel
         self.view.addSubview(multipleChoiceView)
         self.view = self.multipleChoiceView
         
-//        radioButtonController = SSRadioButtonsController(buttons: multipleChoiceView.optionButton1, multipleChoiceView.optionButton2, multipleChoiceView.optionButton3, multipleChoiceView.optionButton4)
-//
-//        radioButtonController!.delegate = self
-//        radioButtonController!.shouldLetDeSelect = true
+        radioButtonController = SSRadioButtonsController(buttons: multipleChoiceView.optionButton1, multipleChoiceView.optionButton2, multipleChoiceView.optionButton3, multipleChoiceView.optionButton4)
+        radioButtonController!.delegate = self
+        radioButtonController!.shouldLetDeSelect = true
         
+        // Do any additional setup after loading the view, typically from a nib.
     }
     
-//    func didSelectButton(selectedButton: UIButton?)
-//    {
-//        NSLog(" \(selectedButton)" )
-//        selectedButton?.setImage(UIImage(named: "selectedOption2"), for: .selected)
-//    }
+    func didSelectButton(selectedButton: UIButton?)
+    {
+        NSLog(" \(selectedButton)" )
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
 }
