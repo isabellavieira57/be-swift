@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var inicialView: View!
     var blankField: BlankFieldView!
     var multipleChoice: MultipleChoiceView!
     var multipleChoiceController: MultipleChoiceController!
@@ -19,16 +18,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        inicialView = View(frame: CGRect.zero, titleText: "Constants", dismissButtonAction: #selector(ViewController.dismissButton(_:)), helpButtonAction: #selector(ViewController.helpButton(_:)), questionText: "Once this code is executed, how \nmany items will numbers contain? \nmany items will numbers contain?", haveExampleCode: true, exampleCodeText: "if (age>60 || age<10) { \nvalue = price - (price * \ndiscount) \n} else { \nvalue = price \n} \nreturn value")
         
-//        blankField = BlankFieldView(frame: CGRect.zero, questionText: "Once this code is executed, how \nmany items will numbers contain?")
+        blankField = BlankFieldView(frame: self.view.bounds, titleText: "Constants", dismissButtonAction: #selector(ViewController.dismissButton(_:)), helpButtonAction: #selector(ViewController.helpButton(_:)), questionText: "Once this code is executed, how \nmany items will numbers contain? \nmany items will numbers contain? \nmany items will numbers contain? \nmany items will numbers contain? \nmany items will numbers contain? \nmany items will numbers contain?", exampleCodeText: "func calculateDiscount (age: Int, \nprice: Double, discount: Double) \n->  Double { \nvar value = 0.0 \nif (age>60 || age<10) { ")
         
-        var screenHeight = UIScreen.main.bounds.height
-        
+//        var screenHeight = UIScreen.main.bounds.height
         
         //TODO: AJUSTAR FRAMES
-        sortView = SortView(frame: CGRect(x: 0, y: 64, width: 321, height: screenHeight - 64 ))
+//        sortView = SortView(frame: CGRect(x: 0, y: 64, width: 321, height: screenHeight - 64 ))
         
 //        multipleChoice = MultipleChoiceView(frame: CGRect(x: 0, y: 315, width: 321, height: 300 ))
         
@@ -50,6 +46,8 @@ class ViewController: UIViewController {
     
     @objc func helpButton(_ sender: Any){
         //mandar para doc apple
+        let webView = WebDocumentationViewController()
+        present(webView, animated: false, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
