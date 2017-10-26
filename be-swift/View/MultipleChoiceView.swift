@@ -18,30 +18,37 @@ class MultipleChoiceView: View {
     var optionButton3: SSRadioButton!
     var optionButton4: SSRadioButton!
     var userAnswer: String?
+//    var optionsArray: Array<String>
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //    }
-        //
-        //    convenience init(frame: CGRect, options: Array<String>){
-        //        self.init(frame: frame)
         
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
         
-        var options = ["Option 1", "7: operator '>' can't be applied to operrands of type '()' and 'Int'", "7: '>' can't be used on types '()' and 'Int'", "Option 4"]
+        var options = ["Option 1", "Option 2", "Option 3", "Option 4"]
         
-        // Variables to create buttons
+        createButtons(options: options)
         
+        self.addSubview(optionButton1)
+        self.addSubview(optionButton2)
+        self.addSubview(optionButton3)
+        self.addSubview(optionButton4)
+    }
+    
+    convenience init(frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, haveExampleCode: Bool, exampleCodeText: String?) {
+            self.init(frame: frame)
+
+    }
+    
+    func createButtons(options: Array<String>)
+    {
         var screenWidth = UIScreen.main.bounds.width
         var screenHeight = UIScreen.main.bounds.height
-        
         var optionButtonX: CGFloat = screenWidth*0.02
         var optionButtonWidth: CGFloat  = screenWidth*0.95
         var optionButtonHeight: CGFloat  = screenHeight*0.1
         var spaceBetweenButtons: CGFloat  = -6.5
-        
-        // Create 1st button
         
         optionButton1 = SSRadioButton(frame: CGRect(x: optionButtonX, y: 0, width: optionButtonWidth, height: optionButtonHeight))
         optionButton1.optionLabel.text = options[0]
@@ -60,12 +67,6 @@ class MultipleChoiceView: View {
         
         optionButton4 = SSRadioButton(frame: CGRect(x: optionButtonX, y: optionButton4Y, width: optionButtonWidth, height: optionButtonHeight))
         optionButton4.optionLabel.text = options[3]
-        
-        self.addSubview(optionButton1)
-        self.addSubview(optionButton2)
-        self.addSubview(optionButton3)
-        self.addSubview(optionButton4)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
