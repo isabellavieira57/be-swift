@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     var blankField: BlankFieldView!
     var multipleChoice: MultipleChoiceView!
+    var multipleChoiceController: MultipleChoiceController!
     var sortView: SortView!
     var sortController: SortViewController!
     
@@ -27,16 +28,16 @@ class ViewController: UIViewController {
         
 //        multipleChoice = MultipleChoiceView(frame: CGRect(x: 0, y: 315, width: 321, height: 300 ))
         
-        self.view.addSubview(blankField)
+//        self.view.addSubview(blankField)
 //        self.view.addSubview(sortView)
 //        self.view.addSubview(multipleChoice)
 
         }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        let controller = SortViewController()
-//        present(controller, animated: false, completion: nil)
-//    }
+    override func viewDidAppear(_ animated: Bool) {
+        let controller = SortViewController()
+        present(controller, animated: false, completion: nil)
+    }
 
     @objc func dismissButton(_ sender: Any){
         //mandar para a home

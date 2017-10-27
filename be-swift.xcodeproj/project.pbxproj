@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03BDF37A1F9FB933001D89D6 /* MultipleChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BDF3791F9FB933001D89D6 /* MultipleChoiceButton.swift */; };
+		03A343231FA2433A007827D8 /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A343221FA2433A007827D8 /* SSRadioButton.swift */; };
 		03D9FCDB1F98FC61000512F5 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9FCDA1F98FC61000512F5 /* SortViewController.swift */; };
 		03ECA9251F9EBD2D00EF8E4B /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */; };
 		03ECA9271F9EBD8F00EF8E4B /* MultipleChoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */; };
@@ -81,7 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03BDF3791F9FB933001D89D6 /* MultipleChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceButton.swift; sourceTree = "<group>"; };
+		03A343221FA2433A007827D8 /* SSRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
 		03D9FCDA1F98FC61000512F5 /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
 		03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceController.swift; sourceTree = "<group>"; };
@@ -301,8 +301,8 @@
 				497703541F8EAA8300102F08 /* Setup */,
 				4F75F8551F8AB491007BABC9 /* Main.storyboard */,
 				4F75F89C1F8AB5FF007BABC9 /* View.swift */,
-				03BDF3791F9FB933001D89D6 /* MultipleChoiceButton.swift */,
 				4F75F89E1F8AB612007BABC9 /* MultipleChoiceView.swift */,
+				03A343221FA2433A007827D8 /* SSRadioButton.swift */,
 				4F75F8A01F8AB631007BABC9 /* DragAndDropView.swift */,
 				4F75F8A21F8AB643007BABC9 /* BlankFieldView.swift */,
 				4F75F8A41F8AB652007BABC9 /* FillTheGapView.swift */,
@@ -512,11 +512,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-be-swift/Pods-be-swift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -669,7 +671,6 @@
 				4F75F88B1F8AB52D007BABC9 /* ChallengeDAO.swift in Sources */,
 				4F75F88D1F8AB547007BABC9 /* User.swift in Sources */,
 				4F75F8931F8AB595007BABC9 /* Level.swift in Sources */,
-				03BDF37A1F9FB933001D89D6 /* MultipleChoiceButton.swift in Sources */,
 				497703581F8EABDC00102F08 /* DeviceScale.swift in Sources */,
 				4F75F89F1F8AB612007BABC9 /* MultipleChoiceView.swift in Sources */,
 				4F75F8AD1F8AB687007BABC9 /* FeedbackView.swift in Sources */,
@@ -694,6 +695,7 @@
 				4F75F8A91F8AB66C007BABC9 /* LoginView.swift in Sources */,
 				4F75F8A71F8AB660007BABC9 /* SortView.swift in Sources */,
 				49C4B4041F8EBD5100A84C69 /* DeviceTypes.swift in Sources */,
+				03A343231FA2433A007827D8 /* SSRadioButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
