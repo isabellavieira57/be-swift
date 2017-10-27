@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class ViewController: UIViewController {
 
@@ -15,6 +17,8 @@ class ViewController: UIViewController {
     var multipleChoiceController: MultipleChoiceController!
     var sortView: SortView!
     var sortController: SortViewController!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +35,12 @@ class ViewController: UIViewController {
 //        self.view.addSubview(blankField)
 //        self.view.addSubview(sortView)
 //        self.view.addSubview(multipleChoice)
+        
+            //let challenges: ChallengeDAO
+            //challenges = ChallengeDAO()
+            //challenges.getChallenges()
+        
+            self.getChallenges()
 
         }
     
@@ -54,6 +64,27 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func getChallenges () {
+        /*if (!AppDelegate.isAlreadyLaunchedOnce) {
+         FirebaseApp.configure()
+         AppDelegate.isAlreadyLaunchedOnce = true
+         }*/
+        
+        var ref = Database.database().reference().child("be-swift")
+        var refHandle: UInt!
+        
+        print ("GET CHALLENGES")
+        
+        refHandle = ref.child("be-swift").observe(DataEventType.value, with: { (snapshot) in
+            print ("SNAPSHOT")
+            let dataDict = snapshot.value as? [String : AnyObject] ?? [:]
+            print (">>> DATADICT: \(dataDict)")
+            for item in dataDict {
+                print (">>> ITEM: \(item)")
+            }
+        })
+        
+    }
 
 }
 

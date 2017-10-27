@@ -58,6 +58,7 @@
 		4F75F8AB1F8AB67A007BABC9 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8AA1F8AB67A007BABC9 /* RegisterView.swift */; };
 		4F75F8AD1F8AB687007BABC9 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */; };
 		4F75F8AF1F8AB695007BABC9 /* CollectionChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */; };
+		4F819A701FA3A49200BD69E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */; };
 		8E2EE68437321722F169148A /* Pods_be_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBED5E348C425736CE31AA6C /* Pods_be_swift.framework */; };
 		A057F119DB6D9FCF7F11DC0B /* Pods_be_swiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBA381E169B5259BD02161 /* Pods_be_swiftUITests.framework */; };
 		F429907BB41081C042E3001C /* Pods_be_swiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B23C295BD2706916CA21BC /* Pods_be_swiftTests.framework */; };
@@ -140,6 +141,8 @@
 		4F75F8AA1F8AB67A007BABC9 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionChallengeView.swift; sourceTree = "<group>"; };
+		4F819A6E1FA3A3CF00BD69E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		504562A9323845B0A40511F6 /* Pods-be-swiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-be-swiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-be-swiftTests/Pods-be-swiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		6DB238070BF262761E759C4C /* Pods-be-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-be-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-be-swift/Pods-be-swift.debug.xcconfig"; sourceTree = "<group>"; };
 		8FFBA381E169B5259BD02161 /* Pods_be_swiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_be_swiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +223,7 @@
 		4F75F8451F8AB491007BABC9 = {
 			isa = PBXGroup;
 			children = (
+				4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */,
 				4F75F8501F8AB491007BABC9 /* be-swift */,
 				4F75F8681F8AB492007BABC9 /* be-swiftTests */,
 				4F75F8731F8AB492007BABC9 /* be-swiftUITests */,
@@ -297,6 +301,7 @@
 		4F75F8841F8AB4B4007BABC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4F819A6E1FA3A3CF00BD69E0 /* GoogleService-Info.plist */,
 				492E75B71F9125EB00A4AD4F /* Resources */,
 				497703541F8EAA8300102F08 /* Setup */,
 				4F75F8551F8AB491007BABC9 /* Main.storyboard */,
@@ -478,6 +483,7 @@
 				492E75CD1F91296800A4AD4F /* SanFranciscoText-Regular.otf in Resources */,
 				492E75C51F91296000A4AD4F /* SanFranciscoText-Bold.otf in Resources */,
 				492E75C61F91296400A4AD4F /* SanFranciscoText-BoldItalic.otf in Resources */,
+				4F819A701FA3A49200BD69E0 /* GoogleService-Info.plist in Resources */,
 				492E75C91F91296800A4AD4F /* SanFranciscoText-Light.otf in Resources */,
 				492E75CF1F91296800A4AD4F /* SanFranciscoText-Semibold.otf in Resources */,
 				4F75F85C1F8AB492007BABC9 /* Assets.xcassets in Resources */,
@@ -863,7 +869,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GQU3QL4RG3;
+				DEVELOPMENT_TEAM = NRFQJ4SFMZ;
 				INFOPLIST_FILE = "be-swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "isabella-vieira.be-swift";
@@ -879,7 +885,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GQU3QL4RG3;
+				DEVELOPMENT_TEAM = NRFQJ4SFMZ;
 				INFOPLIST_FILE = "be-swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "isabella-vieira.be-swift";
