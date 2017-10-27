@@ -77,6 +77,7 @@ class MultipleChoiceView: View {
         optionButton4 = SSRadioButton(frame: CGRect(x: optionButtonX, y: optionButton4Y, width: optionButtonWidth, height: optionButtonHeight))
         optionButton4.optionLabel.text = options[3]
         
+        
         self.addSubview(optionButton1)
         self.addSubview(optionButton2)
         self.addSubview(optionButton3)
