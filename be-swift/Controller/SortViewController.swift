@@ -14,6 +14,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var sortView: SortView!
     
     var arrayOptions = ["let mySize = Size()", "print(mySize.height)", "struct Size {", "    var height = 10 }"]
+    var correctAnswer = ["struct Size {", "    var height = 10 }", "let mySize = Size()", "print(mySize.height)"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,8 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.sortView.sortTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         self.sortView.sortTableView.isEditing = true
+        
+//        sortView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
         
     }
     
@@ -74,6 +77,19 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
+    }
+    
+    @objc func checkAnswer()
+    {
+        self.sortView.sortTableView.isEditing = false
+            
+        if arrayOptions == correctAnswer
+        {
+            //feedbackView with message "You answered correctly..."
+        } else
+        {
+            //remove 'Check' button and add 'Try Again' button
+        }
     }
     
     //Função para colorir caracteres

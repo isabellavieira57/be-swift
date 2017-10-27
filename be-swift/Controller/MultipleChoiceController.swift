@@ -15,8 +15,8 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var multipleChoiceView: MultipleChoiceView!
     var radioButtonController: SSRadioButtonsController?
     var userAnswer = ""
-    var correctAnswer = ""
-    var selectedButton: UIButton?
+    var correctAnswer = "Option 2"
+    var selectedButton: SSRadioButton?
 
     override func viewDidLoad()
     {
@@ -31,38 +31,42 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         radioButtonController!.delegate = self
         radioButtonController!.shouldLetDeSelect = true
         
-//        multipleChoiceView.buttonCheck.addTarget(self, action: #selector(self.checkAnswer(_: (Any).self, button: selectedButton!, userAnswer: userAnswer, correctAnswer: correctAnswer)), for: .touchUpInside)
-
+//        multipleChoiceView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
     }
     
-    func didSelectButton(selectedButton: UIButton?)
+    func didSelectButton(selectedButton: SSRadioButton?)
     {
         NSLog(" \(selectedButton)" )
+        self.selectedButton = selectedButton
     }
     
-    func findUserAnswer() {
-        for button in [multipleChoiceView.optionButton1, multipleChoiceView.optionButton2, multipleChoiceView.optionButton3, multipleChoiceView.optionButton4]
-        {
-            if button?.isSelected == true
-            {
-                userAnswer = (button?.optionLabel.text)!
-            }
-        }
+    func findUserAnswer(button: SSRadioButton) {
+        userAnswer = (button.optionLabel.text)!
+        print(userAnswer)
     }
     
-    func checkAnswer(_ sender: Any, button: UIButton, correctAnswer: String)
+    @objc func checkAnswer()
     {
-        radioButtonController!.shouldLetDeSelect = false
-
-        findUserAnswer()
-        
-        if userAnswer == correctAnswer
+        if selectedButton == nil
         {
-            //feedbackView with message "You answered correctly..."
+            //message: please select an option
         } else
         {
-            //remove 'Check' button and add 'Try Again'
-            button.setBackgroundImage(UIImage(named: "wrongOption"), for: .selected)
+            multipleChoiceView.optionButton1.isUserInteractionEnabled = false
+            multipleChoiceView.optionButton2.isUserInteractionEnabled = false
+            multipleChoiceView.optionButton3.isUserInteractionEnabled = false
+            multipleChoiceView.optionButton4.isUserInteractionEnabled = false
+            
+            findUserAnswer(button: self.selectedButton!)
+            
+            if userAnswer == correctAnswer
+            {
+                //feedbackView with message "You answered correctly..."
+            } else
+            {
+                //remove 'Check' button and add 'Try Again' button
+                self.selectedButton?.setBackgroundImage(UIImage(named: "wrongOption"), for: .selected)
+            }
         }
     }
 

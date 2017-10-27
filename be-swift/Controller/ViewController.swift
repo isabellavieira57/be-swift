@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     var blankField: BlankFieldView!
     var multipleChoice: MultipleChoiceView!
-    var multipleChoiceController: MultipleChoiceController!
+//    var multipleChoiceController: MultipleChoiceController!
     var sortView: SortView!
     var sortController: SortViewController!
     
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         }
     
     override func viewDidAppear(_ animated: Bool) {
-        let controller = SortViewController()
+        let controller = MultipleChoiceController()
         present(controller, animated: false, completion: nil)
     }
 

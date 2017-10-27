@@ -16,12 +16,12 @@ import UIKit
      is called with a nil.
      
      */
-    @objc func didSelectButton(selectedButton: UIButton?)
+    @objc func didSelectButton(selectedButton: SSRadioButton?)
 }
 
 class SSRadioButtonsController : NSObject
 {
-    fileprivate var buttonsArray = [UIButton]()
+    fileprivate var buttonsArray = [SSRadioButton]()
     weak var delegate : SSRadioButtonControllerDelegate? = nil
     /**
      Set whether a selected radio button can be deselected or not. Default value is false.
@@ -32,7 +32,7 @@ class SSRadioButtonsController : NSObject
      
      - parameter buttons: Buttons that should behave as Radio Buttons
      */
-    init(buttons: UIButton...) {
+    init(buttons: SSRadioButton...) {
         super.init()
         for aButton in buttons {
             aButton.addTarget(self, action: #selector(SSRadioButtonsController.pressed(_:)), for: UIControlEvents.touchUpInside)
@@ -44,7 +44,7 @@ class SSRadioButtonsController : NSObject
      
      - parameter button: Add the button to controller.
      */
-    func addButton(_ aButton: UIButton) {
+    func addButton(_ aButton: SSRadioButton) {
         buttonsArray.append(aButton)
         aButton.addTarget(self, action: #selector(SSRadioButtonsController.pressed(_:)), for: UIControlEvents.touchUpInside)
     }
@@ -53,8 +53,8 @@ class SSRadioButtonsController : NSObject
      
      - parameter button: Button to be removed from controller.
      */
-    func removeButton(_ aButton: UIButton) {
-        var iteratingButton: UIButton? = nil
+    func removeButton(_ aButton: SSRadioButton) {
+        var iteratingButton: SSRadioButton? = nil
         if(buttonsArray.contains(aButton))
         {
             iteratingButton = aButton
@@ -70,15 +70,15 @@ class SSRadioButtonsController : NSObject
      
      - parameter buttonArray: Array of buttons
      */
-    func setButtonsArray(_ aButtonsArray: [UIButton]) {
+    func setButtonsArray(_ aButtonsArray: [SSRadioButton]) {
         for aButton in aButtonsArray {
             aButton.addTarget(self, action: #selector(SSRadioButtonsController.pressed(_:)), for: UIControlEvents.touchUpInside)
         }
         buttonsArray = aButtonsArray
     }
     
-    @objc func pressed(_ sender: UIButton) {
-        var currentSelectedButton: UIButton? = nil
+    @objc func pressed(_ sender: SSRadioButton) {
+        var currentSelectedButton: SSRadioButton? = nil
         if(sender.isSelected) {
             if shouldLetDeSelect {
                 sender.isSelected = false
@@ -98,7 +98,7 @@ class SSRadioButtonsController : NSObject
      
      - returns: Currenlty selected button.
      */
-    func selectedButton() -> UIButton? {
+    func selectedButton() -> SSRadioButton? {
         guard let index = buttonsArray.index(where: { button in button.isSelected }) else { return nil }
         
         return buttonsArray[index]
