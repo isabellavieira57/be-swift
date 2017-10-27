@@ -7,6 +7,7 @@ target 'be-swift' do
 
   # Pods for be-swift
 	pod 'Firebase'
+	pod 'FirebaseDatabase'
 
   target 'be-swiftTests' do
     inherit! :search_paths

@@ -11,32 +11,52 @@ import UIKit
 
 class SortView: View {
     
+    var view = View(frame: CGRect.zero)
+    
     var sortTableView: UITableView!
     var background: UIImageView!
     var sortViewController = SortViewController()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
 
+        self.setTableView()
+    }
+    
+    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?)
+    {
+        self.init(frame: frame)
+        
+        let rectangle = view.setTopBar()
+        let title = view.setTitle(title: titleText)
+        let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
+        let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
+        let question = view.setQuestion(questionText: questionText)
+        let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
+        
+        self.layer.addSublayer(rectangle)
+        self.addSubview(title)
+        self.addSubview(dismissButton)
+        self.addSubview(helpButton)
+        self.addSubview(question)
+        self.addSubview(code)
+    }
+    
+    func setTableView()
+    {
         var numberOfLines = sortViewController.arrayOptions.count
         
-        var screenHeight = UIScreen.main.bounds.height
-        var screenWidth = UIScreen.main.bounds.width
-        
-        self.sortTableView = UITableView(frame: CGRect(x: 5, y: 50, width: screenWidth - 10, height: 44 * CGFloat(numberOfLines)))
+        self.sortTableView = UITableView(frame: CGRect(x: 5, y: 50, width: 310, height: 44 * CGFloat(numberOfLines)))
         self.sortTableView.separatorStyle = .none
-        self.sortTableView.backgroundColor = UIColor.lightGray
+        self.sortTableView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
         
-        self.background = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight))
-        self.background.backgroundColor = UIColor.lightGray
-        
-        self.addSubview(background)
         self.addSubview(sortTableView)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder)
+    {
         fatalError("init(coder:) has not been implemented")
     }
     

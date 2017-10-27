@@ -11,7 +11,8 @@ import UIKit
 
 class MultipleChoiceView: View {
     
-    var view = View()
+    var view = View(frame: CGRect.zero)
+    
     var multipleChoiceController: MultipleChoiceController!
     var optionButton1: SSRadioButton!
     var optionButton2: SSRadioButton!
@@ -19,7 +20,6 @@ class MultipleChoiceView: View {
     var optionButton4: SSRadioButton!
     var userAnswer: String?
 //    var optionsArray: Array<String>
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,15 +30,24 @@ class MultipleChoiceView: View {
         
         createButtons(options: options)
         
-        self.addSubview(optionButton1)
-        self.addSubview(optionButton2)
-        self.addSubview(optionButton3)
-        self.addSubview(optionButton4)
     }
-    
-    convenience init(frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, haveExampleCode: Bool, exampleCodeText: String?) {
-            self.init(frame: frame)
 
+    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?){
+        self.init(frame: frame)
+        
+        let rectangle = view.setTopBar()
+        let title = view.setTitle(title: titleText)
+        let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
+        let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
+        let question = view.setQuestion(questionText: questionText)
+        let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
+        
+        self.layer.addSublayer(rectangle)
+        self.addSubview(title)
+        self.addSubview(dismissButton)
+        self.addSubview(helpButton)
+        self.addSubview(question)
+        self.addSubview(code)
     }
     
     func createButtons(options: Array<String>)
@@ -67,6 +76,11 @@ class MultipleChoiceView: View {
         
         optionButton4 = SSRadioButton(frame: CGRect(x: optionButtonX, y: optionButton4Y, width: optionButtonWidth, height: optionButtonHeight))
         optionButton4.optionLabel.text = options[3]
+        
+        self.addSubview(optionButton1)
+        self.addSubview(optionButton2)
+        self.addSubview(optionButton3)
+        self.addSubview(optionButton4)
     }
     
     required init?(coder aDecoder: NSCoder) {

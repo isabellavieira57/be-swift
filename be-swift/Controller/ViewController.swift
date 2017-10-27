@@ -29,14 +29,13 @@ class ViewController: UIViewController {
 //        multipleChoice = MultipleChoiceView(frame: CGRect(x: 0, y: 315, width: 321, height: 300 ))
         
 //        self.view.addSubview(blankField)
-//        self.view.addSubview(inicialView)
 //        self.view.addSubview(sortView)
 //        self.view.addSubview(multipleChoice)
 
         }
     
     override func viewDidAppear(_ animated: Bool) {
-        let controller = MultipleChoiceController()
+        let controller = SortViewController()
         present(controller, animated: false, completion: nil)
     }
 
