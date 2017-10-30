@@ -12,11 +12,14 @@ import FirebaseDatabase
 
 class ChallengeDAO {
     
-    var ref = Database.database().reference().child("be-swift")
+    var ref = Database.database().reference()
     var refHandle: UInt!
     
     
-    init() {}
+    // The level should be level-1, level-2... (as it is in the database)
+    init(level: String) {
+         self.ref = ref.child(level)
+    }
     
     
     func getChallenges () {
@@ -27,12 +30,19 @@ class ChallengeDAO {
         
         print ("GET CHALLENGES")
         
-        refHandle = ref.child("be-swift").observe(DataEventType.value, with: { (snapshot) in
+        //refHandle = ref.child("be-swift").observe(DataEventType.value, with: { (snapshot) in
+        refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
             print ("SNAPSHOT")
-            let dataDict = snapshot.value as? [String : AnyObject] ?? [:]
+            //let dataDict = snapshot.value as? [String : AnyObject] ?? [:]
+             let dataDict = snapshot.value as! [String: AnyObject]
             print (">>> DATADICT: \(dataDict)")
             for item in dataDict {
-                print (">>> ITEM: \(item)")
+                print (">>> key: \(item.key)")
+                let correct_answer = item.value["correct_answer"] as! String
+                print (">>> VALUE: \(correct_answer)")
+                
+                
+                
             }
         })
         
