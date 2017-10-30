@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0306D0D11FA560080021C4B9 /* CollectionChallengesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0306D0D01FA560080021C4B9 /* CollectionChallengesCell.swift */; };
 		03A343231FA2433A007827D8 /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A343221FA2433A007827D8 /* SSRadioButton.swift */; };
 		03D9FCDB1F98FC61000512F5 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9FCDA1F98FC61000512F5 /* SortViewController.swift */; };
 		03ECA9251F9EBD2D00EF8E4B /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */; };
@@ -81,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0306D0D01FA560080021C4B9 /* CollectionChallengesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionChallengesCell.swift; sourceTree = "<group>"; };
 		03A343221FA2433A007827D8 /* SSRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
 		03D9FCDA1F98FC61000512F5 /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				4F75F8AA1F8AB67A007BABC9 /* RegisterView.swift */,
 				4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */,
 				4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */,
+				0306D0D01FA560080021C4B9 /* CollectionChallengesCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				4F75F8541F8AB491007BABC9 /* ViewController.swift in Sources */,
 				4F75F8991F8AB5D6007BABC9 /* UserController.swift in Sources */,
 				4F75F88F1F8AB55C007BABC9 /* UserChallengeInfo.swift in Sources */,
+				0306D0D11FA560080021C4B9 /* CollectionChallengesCell.swift in Sources */,
 				4F75F8911F8AB58B007BABC9 /* Challenge.swift in Sources */,
 				497703561F8EAA9E00102F08 /* Label.swift in Sources */,
 				03ECA9271F9EBD8F00EF8E4B /* MultipleChoiceController.swift in Sources */,

@@ -18,7 +18,6 @@ class MultipleChoiceView: View {
     var optionButton2: SSRadioButton!
     var optionButton3: SSRadioButton!
     var optionButton4: SSRadioButton!
-    var userAnswer: String?
 //    var optionsArray: Array<String>
     
     override init(frame: CGRect) {
