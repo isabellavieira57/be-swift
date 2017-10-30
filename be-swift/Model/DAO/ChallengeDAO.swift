@@ -15,37 +15,53 @@ class ChallengeDAO {
     var ref = Database.database().reference()
     var refHandle: UInt!
     
+    // MARK: Singleton
+    static let sharedInstance = ChallengeDAO()
+    
+    // MARK: Initializer
+    init (){}
     
     // The level should be level-1, level-2... (as it is in the database)
-    init(level: String) {
-         self.ref = ref.child(level)
-    }
+    //init(level: String) {
+    //     self.ref = ref.child(level)
+    //}
     
-    
-    func getChallenges () {
-        /*if (!AppDelegate.isAlreadyLaunchedOnce) {
+    // MARK: Methods
+    func getChallenges (handler: ChallengeHandler, level: String){
+        if (!AppDelegate.isAlreadyLaunchedOnce) {
             FirebaseApp.configure()
             AppDelegate.isAlreadyLaunchedOnce = true
-        }*/
+        }
         
-        print ("GET CHALLENGES")
-        
-        //refHandle = ref.child("be-swift").observe(DataEventType.value, with: { (snapshot) in
+        self.ref = ref.child(level)
         refHandle = ref.observe(DataEventType.value, with: { (snapshot) in
-            print ("SNAPSHOT")
-            //let dataDict = snapshot.value as? [String : AnyObject] ?? [:]
-             let dataDict = snapshot.value as! [String: AnyObject]
-            print (">>> DATADICT: \(dataDict)")
+         let dataDict = snapshot.value as! [String: AnyObject]
             for item in dataDict {
-                print (">>> key: \(item.key)")
                 let correct_answer = item.value["correct_answer"] as! String
-                print (">>> VALUE: \(correct_answer)")
+                let estimated_time = item.value["estimated_time"] as! Int
+                let feedback_answer = item.value["feedback_answer"] as! String
+                let mechanics = item.value["mechanics"] as! String
+                let options = item.value["options"] as! NSArray
+                let tags = item.value["tags"] as! NSArray
+                let question =  item.value["question"] as! String
                 
+                print (correct_answer)
+                print (estimated_time)
+                print (feedback_answer)
+                print (mechanics)
+                print (options)
+                print (tags)
+                print (question)
+
                 
-                
+                //let challenge = Challenge(question: question, estimatedTime: estimated_time, mechanics: mechanics, options: options, correctAnswer: correct_answer, feedbackAnswer: feedback_answer, tags: tags)
+                //handler.addChallenge(challenge: challenge)
+               // print (">>> key: \(item.key)")
+               // let correct_answer = item.value["correct_answer"] as! String
+               // print (">>> VALUE: \(correct_answer)")
+
             }
         })
-        
     }
 }
 

@@ -10,13 +10,23 @@ import Foundation
 
 class Level {
     
-    var star: Int
-    var level: String
-    var xp: Int
+    //var star: Int
+    //var level: String
+    //var xp: Int
     
-    init (star: Int, level: String, xp: Int) {
+    
+    var challengeDAO = ChallengeDAO.sharedInstance
+    // MARK: Singleton
+    static let sharedInstance = Level()
+    
+    init () {}
+    /*init (star: Int, level: String, xp: Int) {
         self.star = star
         self.level = level
         self.xp = xp
+    }*/
+    
+    func loadChallenges (handler: ChallengeHandler, level: String) {
+        challengeDAO.getChallenges(handler: handler, level: level)
     }
 }

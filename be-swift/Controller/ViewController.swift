@@ -18,6 +18,9 @@ class ViewController: UIViewController {
     var sortView: SortView!
     var sortController: SortViewController!
     
+    //let challenge = Challenge.sharedInstance
+    let level = Level.sharedInstance
+    
     
     
     override func viewDidLoad() {
@@ -36,10 +39,8 @@ class ViewController: UIViewController {
 //        self.view.addSubview(sortView)
 //        self.view.addSubview(multipleChoice)
         
-            let challenges: ChallengeDAO
-            challenges = ChallengeDAO(level: "level-1")
-            challenges.getChallenges()
-    
+            // var challengeDAO = ChallengeDAO.sharedInstance
+        level.loadChallenges (handler: self as! ChallengeHandler, level: "level-1")
         }
     
     override func viewDidAppear(_ animated: Bool) {
