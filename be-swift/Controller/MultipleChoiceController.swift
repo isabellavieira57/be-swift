@@ -15,14 +15,14 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var multipleChoiceView: MultipleChoiceView!
     var radioButtonController: SSRadioButtonsController?
     var userAnswer = ""
-    var correctAnswer = "Option 2"
+    var correctAnswer: String!
     var selectedButton: SSRadioButton?
 
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        multipleChoiceView = MultipleChoiceView()
+        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "Exemplo", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: "Pergunta?", exampleCodeText: "ola", options: ["Option 1", "Option 2", "Option 3", "Option 4"], correctAnswer: ["Option2"])
         
         self.view.addSubview(multipleChoiceView)
         self.view = self.multipleChoiceView
@@ -30,6 +30,8 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         radioButtonController = SSRadioButtonsController(buttons: multipleChoiceView.optionButton1, multipleChoiceView.optionButton2, multipleChoiceView.optionButton3, multipleChoiceView.optionButton4)
         radioButtonController!.delegate = self
         radioButtonController!.shouldLetDeSelect = true
+        
+        self.correctAnswer = multipleChoiceView.correctAnswer
         
 //        multipleChoiceView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
     }
@@ -69,7 +71,17 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
             }
         }
     }
+    
+    @objc func dismissButton()
+    {
+        
+    }
 
+    @objc func helpButton()
+    {
+        
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()

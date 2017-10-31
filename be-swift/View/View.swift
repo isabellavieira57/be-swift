@@ -12,6 +12,8 @@ import UIKit
 class View: UIView{
     
     var question: UILabel!
+    var rectangleCode: CAShapeLayer!
+    var exampleCodeLabel:UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,7 +62,7 @@ class View: UIView{
         updateFrame(label: exampleCode, yPosition: height, plus: 90)
         
         let yPosition = exampleCode.frame.origin.y
-        let rectangleCode = CAShapeLayer()
+        self.rectangleCode = CAShapeLayer()
         rectangleCode.path = UIBezierPath(roundedRect: UIScreen.changeScale(vector: CGRect(x: 13, y: yPosition - 5, width: 290, height: exampleCode.frame.height + 15)), cornerRadius: 10).cgPath
         rectangleCode.fillColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1.0).cgColor
         rectangleCode.zPosition = -1
