@@ -24,18 +24,24 @@ class LevelDAO {
     }
     
     // MARK: Methods
-    func getChallenges (handler: LevelHandler, level: String) {
+    func getChallengesByLevel (handler: LevelHandler, level: String) {
         
         var challenges: [Challenge] = []
         
+        // If AppDelegate doesn't lauch firebase configuration
         if (!AppDelegate.isAlreadyLaunchedOnce) {
             FirebaseApp.configure()
             AppDelegate.isAlreadyLaunchedOnce = true
         }
     
+        // Initialize in the level node in firebase database
         self.ref = self.ref.child(level)
+        
+        // Observe database and retrieve data
         refHandle = self.ref.observe(DataEventType.value, with: { (snapshot) in
             let dataDict = snapshot.value as! [String: AnyObject]
+            
+            // Parse json data from database
             for item in dataDict {
                 let correct_answer = item.value["correct_answer"] as! String
                 let estimated_time = item.value["estimated_time"] as! Int
@@ -44,22 +50,21 @@ class LevelDAO {
                 let options = item.value["options"] as! NSArray
                 let tags = item.value["tags"] as! NSArray
                 let question =  item.value["question"] as! String
-    
-                /*print ("correct answer: \(correct_answer)")
-                print ("estimated time: \(estimated_time)")
-                print ("feedback answer: \(feedback_answer)")
-                print ("mechanisms: \(mechanics)")
-                print ("options: \(options)")
-                print ("tags: \(tags)")
-                print ("question: \(question)")*/
-                
+
+                // Create a challenge object
                 let challenge = Challenge(question: question, estimatedTime: estimated_time, mechanics: mechanics, options: options, correctAnswer: correct_answer, feedbackAnswer: feedback_answer, tags: tags)
+                
+                // List of all challenges from a specific level
                 challenges.append(challenge)
             }
             
+            // Create a level object with all challenges from a level
             let level = Level (star: 3, level: "Basico", xp: 10, challenge: challenges)
-            handler.addLevel(level: level)
+            
+            // Handler for asynchronous call in LevelController
+            handler.getLevelData(level: level)
             
         })
+        
     }
 }
