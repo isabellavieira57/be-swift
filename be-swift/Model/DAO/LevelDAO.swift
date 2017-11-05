@@ -1,5 +1,5 @@
 //
-//  ChallengeDAO.swift
+//  LevelDAO.swift
 //  be-swift
 //
 //  Created by Isabella Vieira on 08/10/17.
@@ -10,44 +10,33 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-
-// LevelDAO
 class LevelDAO {
     
     var ref: DatabaseReference!
     var refHandle: UInt!
     
     // MARK: Singleton
-    static var sharedInstance = ChallengeDAO()
+    static var sharedInstance = LevelDAO()
     
     // MARK: Initializer
     init (){
-        //self.ref = Database.database().reference()
+        self.ref = Database.database().reference()
     }
     
-    // The level should be level-1, level-2... (as it is in the database)
-    //init(level: String) {
-    //     self.ref = ref.child(level)
-    //}
-    
     // MARK: Methods
-    //func getLevel (handler: ChallengeHandler, level: String) --> Level {
-    func getLevel (handler: ChallengeHandler, level: String) {
+    func getChallenges (handler: LevelHandler, level: String) {
         
-        print (">>> ENTREI NO GET CHALLENGE- CHALLENGES DAO")
+        var challenges: [Challenge] = []
         
         if (!AppDelegate.isAlreadyLaunchedOnce) {
             FirebaseApp.configure()
             AppDelegate.isAlreadyLaunchedOnce = true
-         }
-        
+        }
+    
         self.ref = self.ref.child(level)
         refHandle = self.ref.observe(DataEventType.value, with: { (snapshot) in
-         let dataDict = snapshot.value as! [String: AnyObject]
+            let dataDict = snapshot.value as! [String: AnyObject]
             for item in dataDict {
-                
-                print (">>> SNAPSHOT")
-                
                 let correct_answer = item.value["correct_answer"] as! String
                 let estimated_time = item.value["estimated_time"] as! Int
                 let feedback_answer = item.value["feedback_answer"] as! String
@@ -55,28 +44,22 @@ class LevelDAO {
                 let options = item.value["options"] as! NSArray
                 let tags = item.value["tags"] as! NSArray
                 let question =  item.value["question"] as! String
+    
+                /*print ("correct answer: \(correct_answer)")
+                print ("estimated time: \(estimated_time)")
+                print ("feedback answer: \(feedback_answer)")
+                print ("mechanisms: \(mechanics)")
+                print ("options: \(options)")
+                print ("tags: \(tags)")
+                print ("question: \(question)")*/
                 
-                print (correct_answer)
-                print (estimated_time)
-                print (feedback_answer)
-                print (mechanics)
-                print (options)
-                print (tags)
-                print (question)
-
-                // TODO: Criar convenient init que recebe json do challenge e devolve  o challenge
                 let challenge = Challenge(question: question, estimatedTime: estimated_time, mechanics: mechanics, options: options, correctAnswer: correct_answer, feedbackAnswer: feedback_answer, tags: tags)
-                
-                
-                handler.addChallenge(challenge: challenge)
-                
-                
-               // print (">>> key: \(item.key)")
-               // let correct_answer = item.value["correct_answer"] as! String
-               // print (">>> VALUE: \(correct_answer)")
-
+                challenges.append(challenge)
             }
+            
+            let level = Level (star: 3, level: "Basico", xp: 10, challenge: challenges)
+            handler.addLevel(level: level)
+            
         })
     }
 }
-
