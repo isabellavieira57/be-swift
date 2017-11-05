@@ -39,7 +39,6 @@
 		4F75F86A1F8AB492007BABC9 /* be_swiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8691F8AB492007BABC9 /* be_swiftTests.swift */; };
 		4F75F8751F8AB492007BABC9 /* be_swiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8741F8AB492007BABC9 /* be_swiftUITests.swift */; };
 		4F75F8891F8AB51A007BABC9 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8881F8AB51A007BABC9 /* UserDAO.swift */; };
-		4F75F88B1F8AB52D007BABC9 /* ChallengeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F88A1F8AB52D007BABC9 /* ChallengeDAO.swift */; };
 		4F75F88D1F8AB547007BABC9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F88C1F8AB547007BABC9 /* User.swift */; };
 		4F75F88F1F8AB55C007BABC9 /* UserChallengeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F88E1F8AB55C007BABC9 /* UserChallengeInfo.swift */; };
 		4F75F8911F8AB58B007BABC9 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8901F8AB58B007BABC9 /* Challenge.swift */; };
@@ -59,6 +58,7 @@
 		4F75F8AD1F8AB687007BABC9 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */; };
 		4F75F8AF1F8AB695007BABC9 /* CollectionChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */; };
 		4F819A701FA3A49200BD69E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */; };
+		4FB236EB1FAE8CC700196346 /* LevelDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB236EA1FAE8CC700196346 /* LevelDAO.swift */; };
 		8E2EE68437321722F169148A /* Pods_be_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBED5E348C425736CE31AA6C /* Pods_be_swift.framework */; };
 		A057F119DB6D9FCF7F11DC0B /* Pods_be_swiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBA381E169B5259BD02161 /* Pods_be_swiftUITests.framework */; };
 		F429907BB41081C042E3001C /* Pods_be_swiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B23C295BD2706916CA21BC /* Pods_be_swiftTests.framework */; };
@@ -122,7 +122,6 @@
 		4F75F8741F8AB492007BABC9 /* be_swiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = be_swiftUITests.swift; sourceTree = "<group>"; };
 		4F75F8761F8AB492007BABC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F75F8881F8AB51A007BABC9 /* UserDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
-		4F75F88A1F8AB52D007BABC9 /* ChallengeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDAO.swift; sourceTree = "<group>"; };
 		4F75F88C1F8AB547007BABC9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4F75F88E1F8AB55C007BABC9 /* UserChallengeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChallengeInfo.swift; sourceTree = "<group>"; };
 		4F75F8901F8AB58B007BABC9 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
@@ -142,7 +141,8 @@
 		4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionChallengeView.swift; sourceTree = "<group>"; };
 		4F819A6E1FA3A3CF00BD69E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4FB236EA1FAE8CC700196346 /* LevelDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDAO.swift; sourceTree = "<group>"; };
 		504562A9323845B0A40511F6 /* Pods-be-swiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-be-swiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-be-swiftTests/Pods-be-swiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		6DB238070BF262761E759C4C /* Pods-be-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-be-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-be-swift/Pods-be-swift.debug.xcconfig"; sourceTree = "<group>"; };
 		8FFBA381E169B5259BD02161 /* Pods_be_swiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_be_swiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,7 +223,6 @@
 		4F75F8451F8AB491007BABC9 = {
 			isa = PBXGroup;
 			children = (
-				4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */,
 				4F75F8501F8AB491007BABC9 /* be-swift */,
 				4F75F8681F8AB492007BABC9 /* be-swiftTests */,
 				4F75F8731F8AB492007BABC9 /* be-swiftUITests */,
@@ -253,6 +252,7 @@
 				4F75F85D1F8AB492007BABC9 /* LaunchScreen.storyboard */,
 				4F75F8601F8AB492007BABC9 /* Info.plist */,
 				4F75F8581F8AB492007BABC9 /* be_swift.xcdatamodeld */,
+				4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */,
 			);
 			path = "be-swift";
 			sourceTree = "<group>";
@@ -292,8 +292,8 @@
 		4F75F8831F8AB4AF007BABC9 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				4FB236EA1FAE8CC700196346 /* LevelDAO.swift */,
 				4F75F8881F8AB51A007BABC9 /* UserDAO.swift */,
-				4F75F88A1F8AB52D007BABC9 /* ChallengeDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -671,10 +671,10 @@
 				49F8D6FA1FA1278D00E7CF9F /* WebDocumentationViewController.swift in Sources */,
 				4F75F85A1F8AB492007BABC9 /* be_swift.xcdatamodeld in Sources */,
 				4F75F8A11F8AB631007BABC9 /* DragAndDropView.swift in Sources */,
+				4FB236EB1FAE8CC700196346 /* LevelDAO.swift in Sources */,
 				4F75F8A51F8AB652007BABC9 /* FillTheGapView.swift in Sources */,
 				4F75F8AB1F8AB67A007BABC9 /* RegisterView.swift in Sources */,
 				4F75F8951F8AB5AE007BABC9 /* ChallengeTopic.swift in Sources */,
-				4F75F88B1F8AB52D007BABC9 /* ChallengeDAO.swift in Sources */,
 				4F75F88D1F8AB547007BABC9 /* User.swift in Sources */,
 				4F75F8931F8AB595007BABC9 /* Level.swift in Sources */,
 				497703581F8EABDC00102F08 /* DeviceScale.swift in Sources */,

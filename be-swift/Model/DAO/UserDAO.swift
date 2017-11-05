@@ -10,13 +10,9 @@ import Foundation
 
 class UserDAO {
     
-    init() {
-        
-    }
+    init() {}
     
-    func insertUserChallengeInfo () -> Void {
-        
-    }
+    func insertUserChallengeInfo () -> Void {}
     
     
 }

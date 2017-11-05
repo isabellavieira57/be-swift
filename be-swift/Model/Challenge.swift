@@ -8,22 +8,16 @@
 
 import Foundation
 
-protocol ChallengeHandler {
-    func addChallenge (challenge: Challenge)
-}
-
 class Challenge {
     
     var question: String
     var estimatedTime: Int
     var mechanics: String
-    var options: NSArray // list
-    var correctAnswer: String // list
+    var options: NSArray
+    var correctAnswer: String
     var feedbackAnswer: String
-    var tags: NSArray // list
+    var tags: NSArray
     
-    
-
     init (question: String, estimatedTime: Int, mechanics: String, options: NSArray, correctAnswer: String, feedbackAnswer: String, tags: NSArray) {
         self.question = question
         self.estimatedTime = estimatedTime

@@ -10,8 +10,6 @@ import Foundation
 
 class Notification {
     
-    init() {
-        
-    }
+    init() {}
     
 }
