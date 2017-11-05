@@ -31,6 +31,7 @@
 		49C4B4061F8EC57100A84C69 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B4051F8EC57100A84C69 /* Button.swift */; };
 		49F8D6F81FA1267900E7CF9F /* BlankFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */; };
 		49F8D6FA1FA1278D00E7CF9F /* WebDocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */; };
+		4F2051FA1FAFACD200B11A38 /* LevelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2051F91FAFACD200B11A38 /* LevelController.swift */; };
 		4F75F8521F8AB491007BABC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8511F8AB491007BABC9 /* AppDelegate.swift */; };
 		4F75F8541F8AB491007BABC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8531F8AB491007BABC9 /* ViewController.swift */; };
 		4F75F8571F8AB491007BABC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F75F8551F8AB491007BABC9 /* Main.storyboard */; };
@@ -47,7 +48,6 @@
 		4F75F8951F8AB5AE007BABC9 /* ChallengeTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8941F8AB5AE007BABC9 /* ChallengeTopic.swift */; };
 		4F75F8971F8AB5BA007BABC9 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8961F8AB5BA007BABC9 /* Notification.swift */; };
 		4F75F8991F8AB5D6007BABC9 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8981F8AB5D6007BABC9 /* UserController.swift */; };
-		4F75F89B1F8AB5E3007BABC9 /* ChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F89A1F8AB5E3007BABC9 /* ChallengeController.swift */; };
 		4F75F89D1F8AB5FF007BABC9 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F89C1F8AB5FF007BABC9 /* View.swift */; };
 		4F75F89F1F8AB612007BABC9 /* MultipleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F89E1F8AB612007BABC9 /* MultipleChoiceView.swift */; };
 		4F75F8A11F8AB631007BABC9 /* DragAndDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8A01F8AB631007BABC9 /* DragAndDropView.swift */; };
@@ -109,6 +109,7 @@
 		49C4B4051F8EC57100A84C69 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankFieldViewController.swift; sourceTree = "<group>"; };
 		49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebDocumentationViewController.swift; sourceTree = "<group>"; };
+		4F2051F91FAFACD200B11A38 /* LevelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelController.swift; sourceTree = "<group>"; };
 		4F75F84E1F8AB491007BABC9 /* be-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "be-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F75F8511F8AB491007BABC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F75F8531F8AB491007BABC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +132,6 @@
 		4F75F8941F8AB5AE007BABC9 /* ChallengeTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTopic.swift; sourceTree = "<group>"; };
 		4F75F8961F8AB5BA007BABC9 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		4F75F8981F8AB5D6007BABC9 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
-		4F75F89A1F8AB5E3007BABC9 /* ChallengeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeController.swift; sourceTree = "<group>"; };
 		4F75F89C1F8AB5FF007BABC9 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		4F75F89E1F8AB612007BABC9 /* MultipleChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceView.swift; sourceTree = "<group>"; };
 		4F75F8A01F8AB631007BABC9 /* DragAndDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropView.swift; sourceTree = "<group>"; };
@@ -329,11 +329,11 @@
 				4F75F8531F8AB491007BABC9 /* ViewController.swift */,
 				4F75F8981F8AB5D6007BABC9 /* UserController.swift */,
 				49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */,
-				4F75F89A1F8AB5E3007BABC9 /* ChallengeController.swift */,
 				03D9FCDA1F98FC61000512F5 /* SortViewController.swift */,
 				03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */,
 				49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */,
 				03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */,
+				4F2051F91FAFACD200B11A38 /* LevelController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -701,8 +701,8 @@
 				4F75F8A31F8AB643007BABC9 /* BlankFieldView.swift in Sources */,
 				4F75F8AF1F8AB695007BABC9 /* CollectionChallengeView.swift in Sources */,
 				4F75F89D1F8AB5FF007BABC9 /* View.swift in Sources */,
-				4F75F89B1F8AB5E3007BABC9 /* ChallengeController.swift in Sources */,
 				4F75F8A91F8AB66C007BABC9 /* LoginView.swift in Sources */,
+				4F2051FA1FAFACD200B11A38 /* LevelController.swift in Sources */,
 				4F75F8A71F8AB660007BABC9 /* SortView.swift in Sources */,
 				49C4B4041F8EBD5100A84C69 /* DeviceTypes.swift in Sources */,
 				03A343231FA2433A007827D8 /* SSRadioButton.swift in Sources */,
