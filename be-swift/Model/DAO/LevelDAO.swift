@@ -45,21 +45,35 @@ class LevelDAO {
             for item in dataDict {
                 let correct_answer = item.value["correct_answer"] as! String
                 let estimated_time = item.value["estimated_time"] as! Int
-                let feedback_answer = item.value["feedback_answer"] as! String
+                let feedback_answer = item.value["feedback"] as! String
                 let mechanics = item.value["mechanics"] as! String
                 let options = item.value["options"] as! NSArray
                 let tags = item.value["tags"] as! NSArray
                 let question =  item.value["question"] as! String
-
+                let id = item.value["id"] as! Int
+                let resource_link = item.value["resource_link"] as! String
+            
+//                print (">>>> CHALLENGE")
+//                print ("ID:  \(id)")
+//                print (correct_answer)
+//                print (estimated_time)
+//                print (feedback_answer)
+//                print (mechanics)
+//                print (options)
+//                print (tags)
+//                print (question)
+//                print (resource_link)
+//                print ("\n")
+                
                 // Create a challenge object
-                let challenge = Challenge(question: question, estimatedTime: estimated_time, mechanics: mechanics, options: options, correctAnswer: correct_answer, feedbackAnswer: feedback_answer, tags: tags)
+                let challenge = Challenge(question: question, estimatedTime: estimated_time, mechanics: mechanics, options:options, correctAnswer: correct_answer, feedbackAnswer:feedback_answer, tags: tags, id:id, resource_link:resource_link)
                 
                 // List of all challenges from a specific level
                 challenges.append(challenge)
             }
             
             // Create a level object with all challenges from a level
-            let level = Level (star: 3, level: "Basico", xp: 10, challenge: challenges)
+            let level = Level (star: 3, level: "Level1", xp: 10, challenge: challenges)
             
             // Handler for asynchronous call in LevelController
             handler.getLevelData(level: level)
