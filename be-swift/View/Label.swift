@@ -20,7 +20,7 @@ public extension UILabel {
         
         //fonte para diferentes devices
         let modelName = UIDevice.current.modelName
-        
+
         if modelName == "iPhone 5" || modelName == "iPhone 5c" || modelName == "iPhone 5s" || modelName == "iPhone SE" {
             self.font = UIFont(name: font, size: fontSize)
         }
@@ -28,5 +28,7 @@ public extension UILabel {
             self.font = UIFont(name: font, size: fontSize + 2.5)
         } else {
             self.font = UIFont(name: font, size: fontSize + 5)
-        }    }
+        }
+        
+    }
 }
