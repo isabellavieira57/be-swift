@@ -25,7 +25,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.sortView.sortTableView.dataSource = self
         self.sortView.sortTableView.delegate = self
-    
+        
         self.sortView.sortTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         self.sortView.sortTableView.isEditing = true
@@ -33,7 +33,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.codeToSort = self.sortView.codeToSort
         self.correctAnswer = self.sortView.correctAnswer
         
-//        sortView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
+        //        sortView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
         
     }
     
@@ -51,7 +51,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.textLabel?.text = self.codeToSort[indexPath.row]
         cell.textLabel?.textColor = UIColor.white
         self.sortView.view.labelDidChange(cell.textLabel!)
-//        labelDidChange(cell.textLabel!)
+        //        labelDidChange(cell.textLabel!)
         
         return cell
     }
@@ -84,7 +84,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func checkAnswer()
     {
         self.sortView.sortTableView.isEditing = false
-            
+        
         if codeToSort == correctAnswer
         {
             //feedbackView with message "You answered correctly..."
@@ -96,12 +96,15 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @objc func dismissButton()
     {
-        
+        //        let controller = ViewController()
+        //        present(controller, animated: true, completion: nil)
     }
     
     @objc func helpButton()
     {
-        
+        //        let webView = WebDocumentationViewController()
+        //        present(webView, animated: false, completion: nil)
     }
     
 }
+

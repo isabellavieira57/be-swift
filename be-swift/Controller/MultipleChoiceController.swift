@@ -17,7 +17,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var userAnswer = ""
     var correctAnswer: String!
     var selectedButton: SSRadioButton?
-
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -26,14 +26,14 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         
         self.view.addSubview(multipleChoiceView)
         self.view = self.multipleChoiceView
-
+        
         radioButtonController = SSRadioButtonsController(buttons: multipleChoiceView.optionButton1, multipleChoiceView.optionButton2, multipleChoiceView.optionButton3, multipleChoiceView.optionButton4)
         radioButtonController!.delegate = self
         radioButtonController!.shouldLetDeSelect = true
         
         self.correctAnswer = multipleChoiceView.correctAnswer
         
-//        multipleChoiceView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
+        //        multipleChoiceView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
     }
     
     func didSelectButton(selectedButton: SSRadioButton?)
@@ -74,12 +74,15 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     
     @objc func dismissButton()
     {
-        
+        //        dismiss(animated: true, completion: nil)
+        //        let controller = SortViewController()
+        //        present(controller, animated: true, completion: nil)
     }
-
+    
     @objc func helpButton()
     {
-        
+        //        let webView = WebDocumentationViewController()
+        //        present(webView, animated: false, completion: nil)
     }
     
     override func didReceiveMemoryWarning()
@@ -87,3 +90,4 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         super.didReceiveMemoryWarning()
     }
 }
+

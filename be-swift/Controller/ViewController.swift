@@ -8,52 +8,93 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    var blankField: BlankFieldView!
-    var multipleChoice: MultipleChoiceView!
-//    var multipleChoiceController: MultipleChoiceController!
-    var sortView: SortView!
-    var sortController: SortViewController!
+class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    override func viewDidLoad() {
+    var challengesView: CollectionChallengeView!
+    var arrayChallengeInfo = [UserChallengeInfo]()
+    var arrayChallenges = [Challenge]()
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
-        blankField = BlankFieldView(frame: self.view.bounds, titleText: "Constants", dismissButtonAction: #selector(ViewController.dismissButton(_:)), helpButtonAction: #selector(ViewController.helpButton(_:)), questionText: "Once this code is executed, how \nmany items will numbers contain? \nmany items will numbers contain? \nmany items will numbers contain? \nmany items will numbers contain? \nmany items will numbers contain? \nmany items will numbers contain?", exampleCodeText: "func calculateDiscount (age: Int, \nprice: Double, discount: Double) \n->  Double { \nvar value = 0.0 \nif (age>60 || age<10) { ")
+        self.challengesView = CollectionChallengeView()
+        self.view.addSubview(challengesView)
+        self.view = self.challengesView
         
-//        var screenHeight = UIScreen.main.bounds.height
+        self.challengesView.collectionChallenges.dataSource = self
+        self.challengesView.collectionChallenges.delegate = self
+        self.challengesView.collectionChallenges.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell = challengesView.collectionChallenges.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CollectionChallengesCell
         
-        //TODO: AJUSTAR FRAMES
-//        sortView = SortView(frame: CGRect(x: 0, y: 64, width: 321, height: screenHeight - 64 ))
+        let stars = 2
+        let isLocked = false
+        let number = indexPath.count
+        //        let stars = self.arrayChallengeInfo[indexPath.item].starChallenge
+        //        let isLocked = self.arrayChallengeInfo[indexPath.item].isLocked
         
-//        multipleChoice = MultipleChoiceView(frame: CGRect(x: 0, y: 315, width: 321, height: 300 ))
+        cell.configureCell(numberOfStars: stars, isLocked: isLocked, iconNumber: number)
         
-//        self.view.addSubview(blankField)
-//        self.view.addSubview(sortView)
-//        self.view.addSubview(multipleChoice)
-
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        //        var mechanics = self.arrayChallenges[indexPath.item].mechanics
+        var mechanics = "Sort"
+        var nextController: UIViewController!
+        //        if self.arrayChallenge[indexPath.item].isLocked == false {
+        //            if arrayChallengeInfo id = self.arrayChallenges[indexPath.item].challengeID {
+        
+        switch mechanics {
+            //        case "BlankField":
+            //            nextController = BlankFieldController()
+            //        case "DragAndDrop":
+        //            nextController = DragAndDropController()
+        case "MultipleChoice":
+            nextController = MultipleChoiceController()
+        case "Sort":
+            nextController = SortViewController()
+            //        case "FillTheGap":
+        //            nextController = FillTheGapController()
+        default:
+            nextController = self
         }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        let controller = MultipleChoiceController()
-        present(controller, animated: false, completion: nil)
-    }
-
-    @objc func dismissButton(_ sender: Any){
-        //mandar para a home
+        
+        present(nextController, animated: true, completion: nil)
+        //            }
+        //        }
     }
     
-    @objc func helpButton(_ sender: Any){
-        //mandar para doc apple
-        let webView = WebDocumentationViewController()
-        present(webView, animated: false, completion: nil)
-    }
-
+    //    override func viewDidAppear(_ animated: Bool) {
+    //        let controller = MultipleChoiceController()
+    //        present(controller, animated: false, completion: nil)
+    //    }
+    
+    //    @objc func dismissButton(_ sender: Any){
+    //
+    //    }
+    //
+    //    @objc func helpButton(_ sender: Any){
+    //        //mandar para doc apple
+    //        let webView = WebDocumentationViewController()
+    //        present(webView, animated: false, completion: nil)
+    //    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 

@@ -7,7 +7,74 @@
 //
 
 import Foundation
+import UIKit
 
 class CollectionChallengeView: View {
     
+    var collectionChallenges: UICollectionView!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+        
+        setTopBarChallenges()
+        setLevelLabel()
+        setCollectionView()
+        
+    }
+    
+    func setTopBarChallenges()
+    {
+        
+        let topBar = CAShapeLayer()
+        topBar.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 321, height: 64))).cgPath
+        topBar.fillColor = UIColor(red:0.40, green:0.43, blue:0.53, alpha:1.0).cgColor
+        
+        let starImage = UIImageView(frame: UIScreen.changeScale(vector: CGRect(x: 119, y: 28, width: 27, height: 26.03)))
+        starImage.image = UIImage(named:"star")
+        
+        var starLabel = UILabel(text: "000", font: "SanFranciscoText-Regular", fontSize: 19, aligment: .center, textColor: UIColor(red:2.55, green:2.34, blue:0.37, alpha:1.0), frame: CGRect(x: 153, y: 33, width: 37, height: 20))
+        
+        let xpImage = UIImageView(frame: UIScreen.changeScale(vector: CGRect(x: 230.29, y: 33, width: 27.62, height: 16)))
+        xpImage.image = UIImage(named:"xp")
+        
+        var xpLabel = UILabel(text: "000", font: "SanFranciscoText-Regular", fontSize: 19, aligment: .center, textColor: UIColor(red:0.0, green:2.15, blue:2.23, alpha:1.0), frame: CGRect(x: 264, y: 33, width: 37, height: 20))
+        
+        self.layer.addSublayer(topBar)
+        self.addSubview(starImage)
+        self.addSubview(starLabel)
+        self.addSubview(xpImage)
+        self.addSubview(xpLabel)
+    }
+    
+    func setCollectionView()
+    {
+        
+        let layoutCollection: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layoutCollection.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layoutCollection.itemSize = CGSize(width: 94, height: 110)
+        layoutCollection.minimumInteritemSpacing = 0
+        layoutCollection.minimumLineSpacing = 0
+        
+        collectionChallenges = UICollectionView(frame: CGRect(x: 18, y: 131, width: 284, height: 475), collectionViewLayout: layoutCollection)
+        collectionChallenges.backgroundColor = UIColor.white
+        collectionChallenges.showsHorizontalScrollIndicator = false
+        
+        self.addSubview(collectionChallenges)
+    }
+    
+    func setLevelLabel()
+    {
+        let levelLabel = UIImageView(frame: CGRect(x: 18, y: 93, width: 284, height: 38))
+        levelLabel.image = UIImage(named: "Level1Label")
+        
+        self.addSubview(levelLabel)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
+
