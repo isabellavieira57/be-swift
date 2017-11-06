@@ -12,6 +12,8 @@ import UIKit
 class View: UIView{
     
     var question: UILabel!
+    var rectangleCode: CAShapeLayer!
+    var exampleCodeLabel:UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,9 +68,15 @@ class View: UIView{
         exampleCode.frame.origin = CGPoint(x: 24*xScale, y: heightQuestion + 93*yScale)
         labelDidChange(exampleCode)
         
+
         let yPosition = exampleCode.frame.minY
         let rectangleCode = CAShapeLayer()
         rectangleCode.path = UIBezierPath(roundedRect: CGRect(x: 13*xScale, y: yPosition - 2*yScale, width: 290*xScale, height: (height + 8)*yScale), cornerRadius: 10).cgPath
+
+        let yPosition = exampleCode.frame.origin.y
+        self.rectangleCode = CAShapeLayer()
+        rectangleCode.path = UIBezierPath(roundedRect: UIScreen.changeScale(vector: CGRect(x: 13, y: yPosition - 5, width: 290, height: exampleCode.frame.height + 15)), cornerRadius: 10).cgPath
+
         rectangleCode.fillColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1.0).cgColor
         rectangleCode.zPosition = -1
         view.layer.addSublayer(rectangleCode)
@@ -81,7 +89,7 @@ class View: UIView{
         let attrStr = NSMutableAttributedString(string: label.text!)
         let inputLength = attrStr.string.characters.count
         
-        let searchString : NSArray = NSArray.init(objects: "func","var", "let", "if", "else", "return")
+        let searchString : NSArray = NSArray.init(objects: "func","var", "let", "if", "else", "return", "init", "true", "false", "class", "struct")
         for i in 0...searchString.count-1 {
             let string : String = searchString.object(at: i) as! String
             let searchLength = string.characters.count

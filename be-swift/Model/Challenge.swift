@@ -10,22 +10,28 @@ import Foundation
 
 class Challenge {
     
+    var id: Int
+    var resource_link: String
     var question: String
-    var estimatedTime: String
+    var estimatedTime: Int
     var mechanics: String
-    var challengeId: Int
-    var options: String // list
-    var correctAnswer: String // list
+    var options: NSArray
+    var correctAnswer: String
     var feedbackAnswer: String
+    var tags: NSArray
     
-    init (question: String, estimatedTime: String, mechanics: String, challengeId: Int , options: String, correctAnswer: String, feedbackAnswer: String) {
+    init (question: String, estimatedTime: Int, mechanics: String, options: NSArray, correctAnswer: String, feedbackAnswer: String, tags: NSArray, id: Int, resource_link: String) {
         self.question = question
         self.estimatedTime = estimatedTime
         self.mechanics = mechanics
-        self.challengeId = challengeId
         self.options = options
         self.correctAnswer = correctAnswer
         self.feedbackAnswer = feedbackAnswer
+        self.tags = tags
+        self.id = id
+        self.resource_link = resource_link
     }
+    
+   
     
 }

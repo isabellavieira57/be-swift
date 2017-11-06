@@ -1,0 +1,158 @@
+id,question,options,estimated_time,mechanics,level,correct_answer,feedback,topic,resource_link
+1,"When this code is executed, what is the value of myString?\n\n
+let myString: String\n
+myString = ""awesome""",""""", nil, awesome, This code will not compile",20,MultipleChoice,Level-1,awesome,,"Constants, Variables",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
+2,"Once this code is executed, how many items will numbers contain?\n\n
+let numbers = [1, 2, 3]\n
+numbers += [4]",,20,BlankField,Level-1,3,,"Constats, Variables",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
+3,"Order the following code so that it makes sense and is compiled successfully.\n\n
+
+let mySize = Size()\n
+print(mySize.height)\n
+struct Size {\n
+    \t var height = 10}
+",,20,Sort,Level-1,"[""struct Size {"",""    var height = 10 }
+"", ""let mySize = Size()"", ""print(mySize.height)
+""]",,Structs,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82
+4,"What output will be produced by the code below?
+let userLoggedIn: Bool? = false\n
+
+if !userLoggedIn! {\n
+   \t print(""Message one"") \n
+} else { \n
+    \t print(""Message two"") \n
+} \n
+
+","Message one, Message two, Nothing will be output, This code will not compile
+",20,MultipleChoice,Level-1,Message one,,Basic Operators,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID60
+5,"Your goal is to make the expression number == numberFromList true. What is yourAnswer value?\n
+var list = [1,3,5,7,9,11]\n
+var number = 9\n
+list.remove(at: 3)\n
+var numberFromList = list[yourAnswer]\n
+",,20,BlankField,Level-1,3,"In this challenge you had to figure out which would be number 9’s index after the original array was modified. In Swift, the index of an array’s first element is 0, not 1. At first, as the number 9 was in the fifth position, its index was 4. However, on the third line, we removed the element whose index was 3 (which means we removed the item located in the forth position: the number 7). That way, our new array list is [1,3,5,9,11]. Now, the number 9 is in the forth position and its new index is 3.",Collection types,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105
+6,"The code below contains an error. Which line will Xcode highlight and what message will appear?
+
+1 func countCharacters(sentence: String) {\n
+2     \tvar size = sentence.characters.count\n
+3 }\n\n
+4
+5 func categorizeSentece (sentence: String) {\n
+6     \t var size = countCharacters(sentence: sentence)\n 
+7     if size > 10 {\n
+8         \t print (""Long sentence"") \n
+9     }\n
+10 }
+","7: binary operator '>' cannot be applied to operrands of type '()' and 'Int',  6: use of unresolved identifier 7: incomplete expression, 10: extraneous ‘}’ at top level
+",20,MultipleChoice,Level-1,7: binary operator '>' cannot be applied to operrands of type '()' and 'Int',,"functions, return, control flow - Conditional Statements (If)",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158
+7,"Below we have 3 functions. Find out whether any of them contains an error and drag each function tag into the proper field. \n
+
+func printEvenNumbers(_ n: Int) {\n
+    \t var n = n \n
+    \t for number in 0...n { \n
+        \t\t if number % 2 == 0 { \n
+            \t\t\t print(number) \n
+        \t\t } \n
+    \t }\n
+}\n\n
+
+func sevenTimesTable(n: Double) -> String {\n
+
+    \t var number = n \n
+    \t let multiplier = 7 \n
+    \t var result = number * multiplier \n
+
+    \t return ""\(number) * 7 = \(result)"" \n
+} \n\n
+
+
+func partsOfDay(time: Int) -> String { \n
+    \t var time = 0 \n
+    \t var periodName = """" \n
+
+    \t switch time { \n
+    \t\t case 5..<17: \n
+        \t\t\t periodName = ""morning or afternoon"" \n
+     \t\t case 17..<5: \n
+        \t\t\t periodName = ""evening or night"" \n
+    \t}\n
+    \treturn periodName \n
+}
+","checkCountry, sevenTimesTable, partsOfDay
+",20,DragAndDrop,Level-1,", sevenTimesTable: error, partsOfDay: error",,,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158
+8,"Sort the code below so it will build. Please organize variables in alphabetic order.
+
+    func sayName() {
+        self.age = ag
+    init(nm: String, ag: Int) {
+    } //end of Function sayName
+    
+class Person {
+        print(name)
+    var age = 0
+    var name = """"
+        self.name = nm
+    } //end of Initializer
+} //end of Class Person
+
+
+var liz = Person(nm: ""Liz"", ag: 27)
+var ben = Person(nm: ""Ben"", ag: 8)
+",,20,Sort,Level-1,"class Person {
+    var age = 0
+    var name = """"
+    
+    func sayName() {
+        print(name)
+    } //end of Function sayName
+    
+    init(nm: String, ag: Int) {
+        self.age = ag
+        self.name = nm
+    } //end of Initializer
+} //end of Class Person
+
+
+var liz = Person(nm: ""Liz"", ag: 27)
+var ben = Person(nm: ""Ben"", ag: 8)
+",,"class, property, method, self property, initialization",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82
+9,"Choose a name to the function below according to what it is doing:
+func chooseName() {
+
+    var currentLevel = 0
+    var finalLevel = 5
+    
+    var levelPassed: Bool = GameLevel.didPassLevel
+    //GameLevel is a class not shown in this code. It has a member didPassLevel that indicates whether the user has succeeded in the current level
+    
+    while (currentLevel <= finalLevel) {
+        if levelPassed == false {
+            print(""Oh no! Try again!"")
+        } else if currentLevel == 5 {
+            print(""You won the game!"")
+        } else {
+            print(""Play next level!"")
+            currentLevel += 1
+        }
+    }
+}
+","checkCurrentLevel, sendLevelMessage, finalLevelMessage, checkIfGameIsOver
+",20,MultipleChoice,Level-1,sendLevelMessage,,"function, control flow (while loops), control flow (conditional statements)",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158
+10,"In this challenge, we will give movement instructions to Manny, the robot. You will have to figure out where it is located after the commands have been executed.
+
+Below we have the image of part of a grid. Each square can be referred to through a tuple (x,y).
+Manny is placed at the grid. Right now, var robotPosition = (x: 3, y: 1)
+
+The robot responds to only 3 commands:
+R: turn right
+L: turn left
+A: advance
+Notice: The robot only changes its current square with the command A!
+
+We will give the following instructions to Manny: RALAALAAR
+
+Which option is correct regarding the robot's final position?
+
+","robotPosition.y = 2, robotPosition.x = 3, robotPosition.x = 2, robotPosition.y = 3
+",20,MultipleChoice,Level-1,"robotPosition.y = 3
+",,tuple,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105

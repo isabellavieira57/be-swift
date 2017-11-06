@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03BDF37A1F9FB933001D89D6 /* MultipleChoiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BDF3791F9FB933001D89D6 /* MultipleChoiceButton.swift */; };
+		0306D0D11FA560080021C4B9 /* CollectionChallengesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0306D0D01FA560080021C4B9 /* CollectionChallengesCell.swift */; };
+		03A343231FA2433A007827D8 /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A343221FA2433A007827D8 /* SSRadioButton.swift */; };
 		03D9FCDB1F98FC61000512F5 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9FCDA1F98FC61000512F5 /* SortViewController.swift */; };
 		03ECA9251F9EBD2D00EF8E4B /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */; };
 		03ECA9271F9EBD8F00EF8E4B /* MultipleChoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */; };
@@ -31,6 +32,7 @@
 		49C4B4061F8EC57100A84C69 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B4051F8EC57100A84C69 /* Button.swift */; };
 		49F8D6F81FA1267900E7CF9F /* BlankFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */; };
 		49F8D6FA1FA1278D00E7CF9F /* WebDocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */; };
+		4F2051FA1FAFACD200B11A38 /* LevelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2051F91FAFACD200B11A38 /* LevelController.swift */; };
 		4F75F8521F8AB491007BABC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8511F8AB491007BABC9 /* AppDelegate.swift */; };
 		4F75F8541F8AB491007BABC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8531F8AB491007BABC9 /* ViewController.swift */; };
 		4F75F8571F8AB491007BABC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F75F8551F8AB491007BABC9 /* Main.storyboard */; };
@@ -40,7 +42,6 @@
 		4F75F86A1F8AB492007BABC9 /* be_swiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8691F8AB492007BABC9 /* be_swiftTests.swift */; };
 		4F75F8751F8AB492007BABC9 /* be_swiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8741F8AB492007BABC9 /* be_swiftUITests.swift */; };
 		4F75F8891F8AB51A007BABC9 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8881F8AB51A007BABC9 /* UserDAO.swift */; };
-		4F75F88B1F8AB52D007BABC9 /* ChallengeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F88A1F8AB52D007BABC9 /* ChallengeDAO.swift */; };
 		4F75F88D1F8AB547007BABC9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F88C1F8AB547007BABC9 /* User.swift */; };
 		4F75F88F1F8AB55C007BABC9 /* UserChallengeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F88E1F8AB55C007BABC9 /* UserChallengeInfo.swift */; };
 		4F75F8911F8AB58B007BABC9 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8901F8AB58B007BABC9 /* Challenge.swift */; };
@@ -48,7 +49,6 @@
 		4F75F8951F8AB5AE007BABC9 /* ChallengeTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8941F8AB5AE007BABC9 /* ChallengeTopic.swift */; };
 		4F75F8971F8AB5BA007BABC9 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8961F8AB5BA007BABC9 /* Notification.swift */; };
 		4F75F8991F8AB5D6007BABC9 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8981F8AB5D6007BABC9 /* UserController.swift */; };
-		4F75F89B1F8AB5E3007BABC9 /* ChallengeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F89A1F8AB5E3007BABC9 /* ChallengeController.swift */; };
 		4F75F89D1F8AB5FF007BABC9 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F89C1F8AB5FF007BABC9 /* View.swift */; };
 		4F75F89F1F8AB612007BABC9 /* MultipleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F89E1F8AB612007BABC9 /* MultipleChoiceView.swift */; };
 		4F75F8A11F8AB631007BABC9 /* DragAndDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8A01F8AB631007BABC9 /* DragAndDropView.swift */; };
@@ -59,6 +59,8 @@
 		4F75F8AB1F8AB67A007BABC9 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8AA1F8AB67A007BABC9 /* RegisterView.swift */; };
 		4F75F8AD1F8AB687007BABC9 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */; };
 		4F75F8AF1F8AB695007BABC9 /* CollectionChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */; };
+		4F819A701FA3A49200BD69E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */; };
+		4FB236EB1FAE8CC700196346 /* LevelDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB236EA1FAE8CC700196346 /* LevelDAO.swift */; };
 		8E2EE68437321722F169148A /* Pods_be_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBED5E348C425736CE31AA6C /* Pods_be_swift.framework */; };
 		A057F119DB6D9FCF7F11DC0B /* Pods_be_swiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBA381E169B5259BD02161 /* Pods_be_swiftUITests.framework */; };
 		F429907BB41081C042E3001C /* Pods_be_swiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B23C295BD2706916CA21BC /* Pods_be_swiftTests.framework */; };
@@ -82,7 +84,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03BDF3791F9FB933001D89D6 /* MultipleChoiceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceButton.swift; sourceTree = "<group>"; };
+		0306D0D01FA560080021C4B9 /* CollectionChallengesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionChallengesCell.swift; sourceTree = "<group>"; };
+		03A343221FA2433A007827D8 /* SSRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
 		03D9FCDA1F98FC61000512F5 /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
 		03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceController.swift; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 		49C4B4051F8EC57100A84C69 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankFieldViewController.swift; sourceTree = "<group>"; };
 		49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebDocumentationViewController.swift; sourceTree = "<group>"; };
+		4F2051F91FAFACD200B11A38 /* LevelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelController.swift; sourceTree = "<group>"; };
 		4F75F84E1F8AB491007BABC9 /* be-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "be-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F75F8511F8AB491007BABC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F75F8531F8AB491007BABC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -123,7 +127,6 @@
 		4F75F8741F8AB492007BABC9 /* be_swiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = be_swiftUITests.swift; sourceTree = "<group>"; };
 		4F75F8761F8AB492007BABC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F75F8881F8AB51A007BABC9 /* UserDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
-		4F75F88A1F8AB52D007BABC9 /* ChallengeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDAO.swift; sourceTree = "<group>"; };
 		4F75F88C1F8AB547007BABC9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4F75F88E1F8AB55C007BABC9 /* UserChallengeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChallengeInfo.swift; sourceTree = "<group>"; };
 		4F75F8901F8AB58B007BABC9 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
@@ -131,7 +134,6 @@
 		4F75F8941F8AB5AE007BABC9 /* ChallengeTopic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeTopic.swift; sourceTree = "<group>"; };
 		4F75F8961F8AB5BA007BABC9 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		4F75F8981F8AB5D6007BABC9 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
-		4F75F89A1F8AB5E3007BABC9 /* ChallengeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeController.swift; sourceTree = "<group>"; };
 		4F75F89C1F8AB5FF007BABC9 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		4F75F89E1F8AB612007BABC9 /* MultipleChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceView.swift; sourceTree = "<group>"; };
 		4F75F8A01F8AB631007BABC9 /* DragAndDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,9 @@
 		4F75F8AA1F8AB67A007BABC9 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionChallengeView.swift; sourceTree = "<group>"; };
+		4F819A6E1FA3A3CF00BD69E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4FB236EA1FAE8CC700196346 /* LevelDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDAO.swift; sourceTree = "<group>"; };
 		504562A9323845B0A40511F6 /* Pods-be-swiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-be-swiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-be-swiftTests/Pods-be-swiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		6DB238070BF262761E759C4C /* Pods-be-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-be-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-be-swift/Pods-be-swift.debug.xcconfig"; sourceTree = "<group>"; };
 		8FFBA381E169B5259BD02161 /* Pods_be_swiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_be_swiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -252,6 +257,7 @@
 				4F75F85D1F8AB492007BABC9 /* LaunchScreen.storyboard */,
 				4F75F8601F8AB492007BABC9 /* Info.plist */,
 				4F75F8581F8AB492007BABC9 /* be_swift.xcdatamodeld */,
+				4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */,
 			);
 			path = "be-swift";
 			sourceTree = "<group>";
@@ -291,8 +297,8 @@
 		4F75F8831F8AB4AF007BABC9 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				4FB236EA1FAE8CC700196346 /* LevelDAO.swift */,
 				4F75F8881F8AB51A007BABC9 /* UserDAO.swift */,
-				4F75F88A1F8AB52D007BABC9 /* ChallengeDAO.swift */,
 			);
 			path = DAO;
 			sourceTree = "<group>";
@@ -300,12 +306,13 @@
 		4F75F8841F8AB4B4007BABC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4F819A6E1FA3A3CF00BD69E0 /* GoogleService-Info.plist */,
 				492E75B71F9125EB00A4AD4F /* Resources */,
 				497703541F8EAA8300102F08 /* Setup */,
 				4F75F8551F8AB491007BABC9 /* Main.storyboard */,
 				4F75F89C1F8AB5FF007BABC9 /* View.swift */,
-				03BDF3791F9FB933001D89D6 /* MultipleChoiceButton.swift */,
 				4F75F89E1F8AB612007BABC9 /* MultipleChoiceView.swift */,
+				03A343221FA2433A007827D8 /* SSRadioButton.swift */,
 				4F75F8A01F8AB631007BABC9 /* DragAndDropView.swift */,
 				4F75F8A21F8AB643007BABC9 /* BlankFieldView.swift */,
 				4F75F8A41F8AB652007BABC9 /* FillTheGapView.swift */,
@@ -314,6 +321,7 @@
 				4F75F8AA1F8AB67A007BABC9 /* RegisterView.swift */,
 				4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */,
 				4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */,
+				0306D0D01FA560080021C4B9 /* CollectionChallengesCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,11 +332,11 @@
 				4F75F8531F8AB491007BABC9 /* ViewController.swift */,
 				4F75F8981F8AB5D6007BABC9 /* UserController.swift */,
 				49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */,
-				4F75F89A1F8AB5E3007BABC9 /* ChallengeController.swift */,
 				03D9FCDA1F98FC61000512F5 /* SortViewController.swift */,
 				03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */,
 				49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */,
 				03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */,
+				4F2051F91FAFACD200B11A38 /* LevelController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -481,6 +489,7 @@
 				492E75CD1F91296800A4AD4F /* SanFranciscoText-Regular.otf in Resources */,
 				492E75C51F91296000A4AD4F /* SanFranciscoText-Bold.otf in Resources */,
 				492E75C61F91296400A4AD4F /* SanFranciscoText-BoldItalic.otf in Resources */,
+				4F819A701FA3A49200BD69E0 /* GoogleService-Info.plist in Resources */,
 				492E75C91F91296800A4AD4F /* SanFranciscoText-Light.otf in Resources */,
 				492E75CF1F91296800A4AD4F /* SanFranciscoText-Semibold.otf in Resources */,
 				4F75F85C1F8AB492007BABC9 /* Assets.xcassets in Resources */,
@@ -515,11 +524,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-be-swift/Pods-be-swift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -666,13 +677,12 @@
 				49F8D6FA1FA1278D00E7CF9F /* WebDocumentationViewController.swift in Sources */,
 				4F75F85A1F8AB492007BABC9 /* be_swift.xcdatamodeld in Sources */,
 				4F75F8A11F8AB631007BABC9 /* DragAndDropView.swift in Sources */,
+				4FB236EB1FAE8CC700196346 /* LevelDAO.swift in Sources */,
 				4F75F8A51F8AB652007BABC9 /* FillTheGapView.swift in Sources */,
 				4F75F8AB1F8AB67A007BABC9 /* RegisterView.swift in Sources */,
 				4F75F8951F8AB5AE007BABC9 /* ChallengeTopic.swift in Sources */,
-				4F75F88B1F8AB52D007BABC9 /* ChallengeDAO.swift in Sources */,
 				4F75F88D1F8AB547007BABC9 /* User.swift in Sources */,
 				4F75F8931F8AB595007BABC9 /* Level.swift in Sources */,
-				03BDF37A1F9FB933001D89D6 /* MultipleChoiceButton.swift in Sources */,
 				497703581F8EABDC00102F08 /* DeviceScale.swift in Sources */,
 				4F75F89F1F8AB612007BABC9 /* MultipleChoiceView.swift in Sources */,
 				4F75F8AD1F8AB687007BABC9 /* FeedbackView.swift in Sources */,
@@ -680,6 +690,7 @@
 				4F75F8541F8AB491007BABC9 /* ViewController.swift in Sources */,
 				4F75F8991F8AB5D6007BABC9 /* UserController.swift in Sources */,
 				4F75F88F1F8AB55C007BABC9 /* UserChallengeInfo.swift in Sources */,
+				0306D0D11FA560080021C4B9 /* CollectionChallengesCell.swift in Sources */,
 				4F75F8911F8AB58B007BABC9 /* Challenge.swift in Sources */,
 				497703561F8EAA9E00102F08 /* Label.swift in Sources */,
 				03ECA9271F9EBD8F00EF8E4B /* MultipleChoiceController.swift in Sources */,
@@ -693,11 +704,13 @@
 				4F75F8A31F8AB643007BABC9 /* BlankFieldView.swift in Sources */,
 				4F75F8AF1F8AB695007BABC9 /* CollectionChallengeView.swift in Sources */,
 				4F75F89D1F8AB5FF007BABC9 /* View.swift in Sources */,
-				4F75F89B1F8AB5E3007BABC9 /* ChallengeController.swift in Sources */,
 				4F75F8A91F8AB66C007BABC9 /* LoginView.swift in Sources */,
 				4949DAEE1FB0975A0002E651 /* String.swift in Sources */,
+				4F2051FA1FAFACD200B11A38 /* LevelController.swift in Sources */,
+        
 				4F75F8A71F8AB660007BABC9 /* SortView.swift in Sources */,
 				49C4B4041F8EBD5100A84C69 /* DeviceTypes.swift in Sources */,
+				03A343231FA2433A007827D8 /* SSRadioButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,7 +878,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GQU3QL4RG3;
+				DEVELOPMENT_TEAM = NRFQJ4SFMZ;
 				INFOPLIST_FILE = "be-swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "isabella-vieira.be-swift";
@@ -881,7 +894,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GQU3QL4RG3;
+				DEVELOPMENT_TEAM = NRFQJ4SFMZ;
 				INFOPLIST_FILE = "be-swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "isabella-vieira.be-swift";
