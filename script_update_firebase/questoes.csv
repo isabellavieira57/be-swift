@@ -1,0 +1,16 @@
+id,question,options,estimated_time,mechanics,level,correct_answer,feedback,topic,resource_link
+1,"When this code is executed, what is the value of myString?\n\n
+let myString: String\n
+myString = ""awesome""",""""", nil, awesome, This code will not compile",20,MultipleChoice,Level-1,awesome,TESTE,"Constants, Variables",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
+2,"Once this code is executed, how many items will numbers contain?\n\n
+let numbers = [1, 2, 3]\n
+numbers += [4]",TESTE,20,BlankField,Level-1,3,TESTE,"Constats, Variables",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
+3,"Order the following code so that it makes sense and is compiled successfully.\n\n
+
+let mySize = Size()\n
+print(mySize.height)\n
+struct Size {\n
+    \t var height = 10}
+",TESTE,20,Sort,Level-1,"[""struct Size {"",""    var height = 10 }
+"", ""let mySize = Size()"", ""print(mySize.height)
+""]",TESTE,Structs,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82
