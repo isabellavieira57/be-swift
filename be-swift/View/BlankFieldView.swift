@@ -44,4 +44,5 @@ class BlankFieldView: View {
     func setalgo(){
         
     }
+
 }

@@ -17,6 +17,7 @@ class View: UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
     }
     
     //Topo azul
@@ -35,7 +36,7 @@ class View: UIView{
     
     //Botão de sair
     func setdismissButton(dismissButtonAction: Selector) -> UIButton{
-        let dismissButton = UIButton(image: "exit", frame: CGRect(x: 0, y: 14, width: 50, height: 50), target: self, action: dismissButtonAction)
+        let dismissButton = UIButton(image: "exit", frame: CGRect(x: 0, y: 14, width: 50, height: 50), target: self)
         dismissButton.addTarget(target, action: dismissButtonAction, for: UIControlEvents.touchUpInside)
         
         return dismissButton
@@ -43,7 +44,10 @@ class View: UIView{
     
     //Botão para documentação da Apple
     func setHelpButton(helpButtonAction: Selector) -> UIButton{
-        return UIButton(image: "help", frame: CGRect(x: 266, y: 14, width: 50, height: 50), target: self, action: helpButtonAction)
+        let helpButton =  UIButton(image: "help", frame: CGRect(x: 266, y: 14, width: 50, height: 50), target: self)
+        helpButton.addTarget(target, action: helpButtonAction, for: UIControlEvents.touchUpInside)
+        
+        return helpButton
     }
     
     //Pergunta da pagina
@@ -68,14 +72,9 @@ class View: UIView{
         exampleCode.frame.origin = CGPoint(x: 24*xScale, y: heightQuestion + 93*yScale)
         labelDidChange(exampleCode)
         
-
         let yPosition = exampleCode.frame.minY
         let rectangleCode = CAShapeLayer()
         rectangleCode.path = UIBezierPath(roundedRect: CGRect(x: 13*xScale, y: yPosition - 2*yScale, width: 290*xScale, height: (height + 8)*yScale), cornerRadius: 10).cgPath
-
-        let yPosition = exampleCode.frame.origin.y
-        self.rectangleCode = CAShapeLayer()
-        rectangleCode.path = UIBezierPath(roundedRect: UIScreen.changeScale(vector: CGRect(x: 13, y: yPosition - 5, width: 290, height: exampleCode.frame.height + 15)), cornerRadius: 10).cgPath
 
         rectangleCode.fillColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1.0).cgColor
         rectangleCode.zPosition = -1
@@ -140,8 +139,3 @@ class View: UIView{
         fatalError("init(coder:) has not been implemented")
     }
 }
-    
-//        view.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
-
-
-
