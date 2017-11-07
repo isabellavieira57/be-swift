@@ -143,6 +143,7 @@
 		4F819A6E1FA3A3CF00BD69E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FB236EA1FAE8CC700196346 /* LevelDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDAO.swift; sourceTree = "<group>"; };
+		4FDC55FC1FB151F200E3259E /* be-swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "be-swift.entitlements"; sourceTree = "<group>"; };
 		504562A9323845B0A40511F6 /* Pods-be-swiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-be-swiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-be-swiftTests/Pods-be-swiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		6DB238070BF262761E759C4C /* Pods-be-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-be-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-be-swift/Pods-be-swift.debug.xcconfig"; sourceTree = "<group>"; };
 		8FFBA381E169B5259BD02161 /* Pods_be_swiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_be_swiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -245,6 +246,7 @@
 		4F75F8501F8AB491007BABC9 /* be-swift */ = {
 			isa = PBXGroup;
 			children = (
+				4FDC55FC1FB151F200E3259E /* be-swift.entitlements */,
 				4F75F8511F8AB491007BABC9 /* AppDelegate.swift */,
 				4F75F8821F8AB4AA007BABC9 /* Model */,
 				4F75F8851F8AB4BC007BABC9 /* Controller */,
@@ -436,6 +438,11 @@
 					4F75F84D1F8AB491007BABC9 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					4F75F8641F8AB492007BABC9 = {
 						CreatedOnToolsVersion = 9.0;
@@ -868,6 +875,7 @@
 			baseConfigurationReference = 6DB238070BF262761E759C4C /* Pods-be-swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "be-swift/be-swift.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NRFQJ4SFMZ;
 				INFOPLIST_FILE = "be-swift/Info.plist";
@@ -884,6 +892,7 @@
 			baseConfigurationReference = EF969BB9545B386FE2EE2139 /* Pods-be-swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "be-swift/be-swift.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NRFQJ4SFMZ;
 				INFOPLIST_FILE = "be-swift/Info.plist";

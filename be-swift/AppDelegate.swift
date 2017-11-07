@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,8 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AppDelegate.isAlreadyLaunchedOnce = true
             print ("APP DELEGATE LAUNCHED")
         }
+        
+        registerForPushNotifications()
 
         return true
+    }
+    
+    func registerForPushNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            print("Permission granted: \(granted)")
+        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
