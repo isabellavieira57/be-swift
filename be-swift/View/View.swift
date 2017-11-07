@@ -23,7 +23,7 @@ class View: UIView{
     //Topo azul
     func setTopBar() -> CAShapeLayer{
         let rectangle = CAShapeLayer()
-        rectangle.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 321, height: 64))).cgPath
+        rectangle.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 320, height: 64))).cgPath
         rectangle.fillColor = UIColor(red:0.31, green:0.49, blue:0.95, alpha:1.0).cgColor
         
         return rectangle
