@@ -20,6 +20,8 @@ class MultipleChoiceView: View {
     var optionButton4: SSRadioButton!
     var correctAnswer: String!
     
+    var code: UILabel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -37,7 +39,8 @@ class MultipleChoiceView: View {
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
-        let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
+        //let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
+        code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
         
         self.layer.addSublayer(rectangle)
         self.addSubview(title)
@@ -52,29 +55,36 @@ class MultipleChoiceView: View {
     
     func createButtons(options: Array<String>)
     {
-        var screenWidth = UIScreen.main.bounds.width
-        var screenHeight = UIScreen.main.bounds.height
-        var optionButtonX: CGFloat = screenWidth*0.02
-        var optionButtonWidth: CGFloat  = screenWidth*0.95
-        var optionButtonHeight: CGFloat  = screenHeight*0.1
-        let spaceBetweenButtons: CGFloat  = -6.5
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
         
-//        let endOfMainView = self.view.rectangleCode.frame.origin.y + self.view.rectangleCode.frame.height + 10
+        let widhtiPhoneSE: CGFloat = 320
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
         
-        optionButton1 = SSRadioButton(frame: CGRect(x: optionButtonX, y: 300, width: optionButtonWidth, height: optionButtonHeight))
+        let optionButtonX: CGFloat = 8*xScale
+        let optionButtonWidth: CGFloat  = 300*xScale
+        let optionButtonHeight: CGFloat  = 57*yScale
+        let spaceBetweenButtons: CGFloat  = -6.3*yScale
+        
+        let endOfMainView = code.frame.height + code.frame.origin.y + 20*yScale
+        
+        optionButton1 = SSRadioButton(frame: CGRect(x: optionButtonX, y: endOfMainView, width: optionButtonWidth, height: optionButtonHeight))
         optionButton1.optionLabel.text = options[0]
         
-        var optionButton2Y = self.optionButton1.frame.origin.y + self.optionButton1.frame.height + spaceBetweenButtons
+        let optionButton2Y = self.optionButton1.frame.origin.y + self.optionButton1.frame.height + spaceBetweenButtons
         
         optionButton2 = SSRadioButton(frame: CGRect(x: optionButtonX, y: optionButton2Y, width: optionButtonWidth, height: optionButtonHeight))
         optionButton2.optionLabel.text = options[1]
         
-        var optionButton3Y = self.optionButton2.frame.origin.y + self.optionButton2.frame.height + spaceBetweenButtons
+        let optionButton3Y = self.optionButton2.frame.origin.y + self.optionButton2.frame.height + spaceBetweenButtons
         
         optionButton3 = SSRadioButton(frame: CGRect(x: optionButtonX, y: optionButton3Y, width: optionButtonWidth, height: optionButtonHeight))
         optionButton3.optionLabel.text = options[2]
         
-        var optionButton4Y = self.optionButton3.frame.origin.y + self.optionButton3.frame.height + spaceBetweenButtons
+        let optionButton4Y = self.optionButton3.frame.origin.y + self.optionButton3.frame.height + spaceBetweenButtons
         
         optionButton4 = SSRadioButton(frame: CGRect(x: optionButtonX, y: optionButton4Y, width: optionButtonWidth, height: optionButtonHeight))
         optionButton4.optionLabel.text = options[3]

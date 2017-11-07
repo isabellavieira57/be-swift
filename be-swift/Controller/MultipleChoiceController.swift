@@ -17,23 +17,25 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var userAnswer = ""
     var correctAnswer: String!
     var selectedButton: SSRadioButton?
-
+    var challenge: Challenge!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "Exemplo", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: "Pergunta?", exampleCodeText: "ola", options: ["Option 1", "Option 2", "Option 3", "Option 4"], correctAnswer: ["Option2"])
+        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "Exemplo", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: "Pergunta? \n hehe", exampleCodeText: "let mySize = Size()\n print(mySize.height)\n struct Size {\n \t var height = 10}", options: ["Option 1", "Option 2", "Option 3", "Option 4"], correctAnswer: ["Option2"])
+//        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: challenge.question, exampleCodeText: "", options: challenge.options, correctAnswer: challenge.correctAnswer)
         
         self.view.addSubview(multipleChoiceView)
         self.view = self.multipleChoiceView
-
+        
         radioButtonController = SSRadioButtonsController(buttons: multipleChoiceView.optionButton1, multipleChoiceView.optionButton2, multipleChoiceView.optionButton3, multipleChoiceView.optionButton4)
         radioButtonController!.delegate = self
         radioButtonController!.shouldLetDeSelect = true
         
         self.correctAnswer = multipleChoiceView.correctAnswer
         
-//        multipleChoiceView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
+        //        multipleChoiceView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
     }
     
     func didSelectButton(selectedButton: SSRadioButton?)
@@ -74,12 +76,15 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     
     @objc func dismissButton()
     {
-        
+        //        dismiss(animated: true, completion: nil)
+        //        let controller = SortViewController()
+        //        present(controller, animated: true, completion: nil)
     }
-
+    
     @objc func helpButton()
     {
-        
+        //        let webView = WebDocumentationViewController()
+        //        present(webView, animated: false, completion: nil)
     }
     
     override func didReceiveMemoryWarning()
@@ -87,3 +92,4 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         super.didReceiveMemoryWarning()
     }
 }
+
