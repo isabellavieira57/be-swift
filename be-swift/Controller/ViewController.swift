@@ -37,9 +37,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.challengesView.collectionChallenges1.dataSource = self
         self.challengesView.collectionChallenges1.delegate = self
         self.challengesView.collectionChallenges1.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
+        //self.challengesView.collectionChallenges1.atualizameubregueti(recebido)
         
-//        self.challengesView.starLabel.text = user.starTotal
-//        self.challengesView.xpLabel.text = user.xpTotal
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -49,9 +48,11 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = challengesView.collectionChallenges1.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CollectionChallengesCell
         
-        let stars = 2
+        let arrayNumbers = [1,2,3,4,5,6,7,8,9,10,11,12]
+        
+        let stars = 0
         let isLocked = false
-        let number = indexPath.count
+        let number = arrayNumbers[indexPath.item]
         //        let stars = self.arrayChallengeInfo[indexPath.item].starChallenge
         
         cell.configureCell(numberOfStars: stars, isLocked: isLocked, iconNumber: number)

@@ -17,6 +17,11 @@ class SortView: View {
     let sortViewController = SortViewController()
     var codeToSort: Array<String>!
     var correctAnswer: Array<String>!
+    var checkButton: UIButton!
+    
+    let widhtiPhoneSE: CGFloat = 320
+    let heightiPhoneSE: CGFloat = 568
+    let screenSize = UIScreen.main.bounds
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,27 +52,36 @@ class SortView: View {
         self.addSubview(code)
         
         setTableView()
-
+        setCheckButton()
     }
     
     func setTableView()
     {
-        
-        let widhtiPhoneSE: CGFloat = 320
-        let heightiPhoneSE: CGFloat = 568
-        let screenSize = UIScreen.main.bounds
+
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
         var numberOfLines = self.codeToSort.count
         
-        let endOfMainView = self.view.question.frame.origin.y + self.view.frame.height + 25*yScale
+        let endOfMainView = self.view.question.frame.origin.y + self.view.frame.height + 30*yScale
         
         self.sortTableView = UITableView(frame: CGRect(x: 5*xScale, y: endOfMainView, width: 310*xScale, height: 44 * CGFloat(numberOfLines) * yScale))
         self.sortTableView.separatorStyle = .none
         self.sortTableView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
         
         self.addSubview(sortTableView)
+    }
+    
+    func setCheckButton()
+    {
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+        
+//        let endOfMechanicView = self.sortTableView.frame.origin.y + self.sortTableView.frame.height + 50
+        self.checkButton = UIButton(frame: CGRect(x: 16*xScale, y: 506*yScale, width: 288*xScale, height: 46*yScale))
+        self.checkButton.setBackgroundImage(UIImage(named: "check"), for: .normal)
+        
+        self.addSubview(checkButton)
     }
     
     required init?(coder aDecoder: NSCoder)
