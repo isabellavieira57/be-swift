@@ -13,6 +13,7 @@ class Challenge {
     var id: Int
     var resource_link: String
     var question: String
+    var exampleCode: String
     var estimatedTime: Int
     var mechanics: String
     var options: NSArray
@@ -20,7 +21,7 @@ class Challenge {
     var feedbackAnswer: String
     var tags: NSArray
     
-    init (question: String, estimatedTime: Int, mechanics: String, options: NSArray, correctAnswer: String, feedbackAnswer: String, tags: NSArray, id: Int, resource_link: String) {
+    init (question: String, estimatedTime: Int, mechanics: String, options: NSArray, correctAnswer: String, feedbackAnswer: String, tags: NSArray, id: Int, resource_link: String, exampleCode: String) {
         self.question = question
         self.estimatedTime = estimatedTime
         self.mechanics = mechanics
@@ -30,6 +31,7 @@ class Challenge {
         self.tags = tags
         self.id = id
         self.resource_link = resource_link
+        self.exampleCode = exampleCode
     }
     
    
