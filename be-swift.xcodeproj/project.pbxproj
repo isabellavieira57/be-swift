@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03A343231FA2433A007827D8 /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A343221FA2433A007827D8 /* SSRadioButton.swift */; };
+		03C0AD091FB2011800AF0A36 /* CollectionChallengesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C0AD081FB2011800AF0A36 /* CollectionChallengesCell.swift */; };
 		03D9FCDB1F98FC61000512F5 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9FCDA1F98FC61000512F5 /* SortViewController.swift */; };
 		03ECA9251F9EBD2D00EF8E4B /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */; };
 		03ECA9271F9EBD8F00EF8E4B /* MultipleChoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */; };
@@ -23,6 +24,7 @@
 		492E75CE1F91296800A4AD4F /* SanFranciscoText-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 492E75BB1F91271700A4AD4F /* SanFranciscoText-RegularItalic.otf */; };
 		492E75CF1F91296800A4AD4F /* SanFranciscoText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 492E75C11F91271800A4AD4F /* SanFranciscoText-Semibold.otf */; };
 		492E75D01F91296800A4AD4F /* SanFranciscoText-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 492E75C21F91271800A4AD4F /* SanFranciscoText-SemiboldItalic.otf */; };
+		4949DAEE1FB0975A0002E651 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949DAED1FB0975A0002E651 /* String.swift */; };
 		497703561F8EAA9E00102F08 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497703551F8EAA9E00102F08 /* Label.swift */; };
 		497703581F8EABDC00102F08 /* DeviceScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497703571F8EABDC00102F08 /* DeviceScale.swift */; };
 		49C3807E1F96645500DC5293 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3807D1F96645500DC5293 /* TextView.swift */; };
@@ -83,6 +85,7 @@
 
 /* Begin PBXFileReference section */
 		03A343221FA2433A007827D8 /* SSRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
+		03C0AD081FB2011800AF0A36 /* CollectionChallengesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionChallengesCell.swift; sourceTree = "<group>"; };
 		03D9FCDA1F98FC61000512F5 /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
 		03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceController.swift; sourceTree = "<group>"; };
@@ -100,6 +103,7 @@
 		492E75C11F91271800A4AD4F /* SanFranciscoText-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-Semibold.otf"; sourceTree = "<group>"; };
 		492E75C21F91271800A4AD4F /* SanFranciscoText-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-SemiboldItalic.otf"; sourceTree = "<group>"; };
 		492E75C31F91271800A4AD4F /* SanFranciscoText-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-BoldItalic.otf"; sourceTree = "<group>"; };
+		4949DAED1FB0975A0002E651 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		497703551F8EAA9E00102F08 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		497703571F8EABDC00102F08 /* DeviceScale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScale.swift; sourceTree = "<group>"; };
 		49C3807D1F96645500DC5293 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				497703551F8EAA9E00102F08 /* Label.swift */,
+				4949DAED1FB0975A0002E651 /* String.swift */,
 				49C4B4051F8EC57100A84C69 /* Button.swift */,
 				497703571F8EABDC00102F08 /* DeviceScale.swift */,
 				49C3807D1F96645500DC5293 /* TextView.swift */,
@@ -318,6 +323,7 @@
 				4F75F8AA1F8AB67A007BABC9 /* RegisterView.swift */,
 				4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */,
 				4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */,
+				03C0AD081FB2011800AF0A36 /* CollectionChallengesCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -678,6 +684,7 @@
 				49F8D6FA1FA1278D00E7CF9F /* WebDocumentationViewController.swift in Sources */,
 				4F75F85A1F8AB492007BABC9 /* be_swift.xcdatamodeld in Sources */,
 				4F75F8A11F8AB631007BABC9 /* DragAndDropView.swift in Sources */,
+				03C0AD091FB2011800AF0A36 /* CollectionChallengesCell.swift in Sources */,
 				4FB236EB1FAE8CC700196346 /* LevelDAO.swift in Sources */,
 				4F75F8A51F8AB652007BABC9 /* FillTheGapView.swift in Sources */,
 				4F75F8AB1F8AB67A007BABC9 /* RegisterView.swift in Sources */,
@@ -705,6 +712,7 @@
 				4F75F8AF1F8AB695007BABC9 /* CollectionChallengeView.swift in Sources */,
 				4F75F89D1F8AB5FF007BABC9 /* View.swift in Sources */,
 				4F75F8A91F8AB66C007BABC9 /* LoginView.swift in Sources */,
+				4949DAEE1FB0975A0002E651 /* String.swift in Sources */,
 				4F2051FA1FAFACD200B11A38 /* LevelController.swift in Sources */,
 				4F75F8A71F8AB660007BABC9 /* SortView.swift in Sources */,
 				49C4B4041F8EBD5100A84C69 /* DeviceTypes.swift in Sources */,
@@ -877,7 +885,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "be-swift/be-swift.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NRFQJ4SFMZ;
+				DEVELOPMENT_TEAM = GQU3QL4RG3;
 				INFOPLIST_FILE = "be-swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "isabella-vieira.be-swift";
@@ -894,7 +902,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "be-swift/be-swift.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NRFQJ4SFMZ;
+				DEVELOPMENT_TEAM = GQU3QL4RG3;
 				INFOPLIST_FILE = "be-swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "isabella-vieira.be-swift";

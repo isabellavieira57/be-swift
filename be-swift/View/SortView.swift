@@ -11,23 +11,26 @@ import UIKit
 
 class SortView: View {
     
-    var view = View(frame: CGRect.zero)
+    let view = View(frame: CGRect.zero)
     
     var sortTableView: UITableView!
-    var background: UIImageView!
-    var sortViewController = SortViewController()
+    let sortViewController = SortViewController()
+    var codeToSort: Array<String>!
+    var correctAnswer: Array<String>!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
 
-        self.setTableView()
     }
     
-    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?)
+    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
     {
         self.init(frame: frame)
+        
+        self.codeToSort = options
+        self.correctAnswer = correctAnswer
         
         let rectangle = view.setTopBar()
         let title = view.setTitle(title: titleText)
@@ -42,13 +45,25 @@ class SortView: View {
         self.addSubview(helpButton)
         self.addSubview(question)
         self.addSubview(code)
+        
+        setTableView()
+
     }
     
     func setTableView()
     {
-        var numberOfLines = sortViewController.arrayOptions.count
         
-        self.sortTableView = UITableView(frame: CGRect(x: 5, y: 50, width: 310, height: 44 * CGFloat(numberOfLines)))
+        let widhtiPhoneSE: CGFloat = 320
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+        
+        var numberOfLines = self.codeToSort.count
+        
+        let endOfMainView = self.view.question.frame.origin.y + self.view.frame.height + 25*yScale
+        
+        self.sortTableView = UITableView(frame: CGRect(x: 5*xScale, y: endOfMainView, width: 310*xScale, height: 44 * CGFloat(numberOfLines) * yScale))
         self.sortTableView.separatorStyle = .none
         self.sortTableView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
         

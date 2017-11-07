@@ -26,6 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print ("APP DELEGATE LAUNCHED")
         }
         registerForPushNotifications()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window!.rootViewController = ViewController()
+        window!.makeKeyAndVisible()
+      
         return true
     }
     

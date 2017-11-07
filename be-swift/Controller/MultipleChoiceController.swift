@@ -15,59 +15,81 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var multipleChoiceView: MultipleChoiceView!
     var radioButtonController: SSRadioButtonsController?
     var userAnswer = ""
-    var correctAnswer = ""
-    var selectedButton: UIButton?
-
+    var correctAnswer: String!
+    var selectedButton: SSRadioButton?
+    var challenge: Challenge!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        multipleChoiceView = MultipleChoiceView()
+        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "Exemplo", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: "Pergunta? \n hehe", exampleCodeText: "let mySize = Size()\n print(mySize.height)\n struct Size {\n \t var height = 10}", options: ["Option 1", "Option 2", "Option 3", "Option 4"], correctAnswer: ["Option2"])
+//        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: challenge.question, exampleCodeText: "", options: challenge.options, correctAnswer: challenge.correctAnswer)
         
         self.view.addSubview(multipleChoiceView)
         self.view = self.multipleChoiceView
-
+        
         radioButtonController = SSRadioButtonsController(buttons: multipleChoiceView.optionButton1, multipleChoiceView.optionButton2, multipleChoiceView.optionButton3, multipleChoiceView.optionButton4)
         radioButtonController!.delegate = self
         radioButtonController!.shouldLetDeSelect = true
         
-//        multipleChoiceView.buttonCheck.addTarget(self, action: #selector(self.checkAnswer(_: (Any).self, button: selectedButton!, userAnswer: userAnswer, correctAnswer: correctAnswer)), for: .touchUpInside)
-
+        self.correctAnswer = multipleChoiceView.correctAnswer
+        
+        //        multipleChoiceView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
     }
     
-    func didSelectButton(selectedButton: UIButton?)
+    func didSelectButton(selectedButton: SSRadioButton?)
     {
         NSLog(" \(selectedButton)" )
+        self.selectedButton = selectedButton
     }
     
-    func findUserAnswer() {
-        for button in [multipleChoiceView.optionButton1, multipleChoiceView.optionButton2, multipleChoiceView.optionButton3, multipleChoiceView.optionButton4]
+    func findUserAnswer(button: SSRadioButton) {
+        userAnswer = (button.optionLabel.text)!
+        print(userAnswer)
+    }
+    
+    @objc func checkAnswer()
+    {
+        if selectedButton == nil
         {
-            if button?.isSelected == true
+            //message: please select an option
+        } else
+        {
+            multipleChoiceView.optionButton1.isUserInteractionEnabled = false
+            multipleChoiceView.optionButton2.isUserInteractionEnabled = false
+            multipleChoiceView.optionButton3.isUserInteractionEnabled = false
+            multipleChoiceView.optionButton4.isUserInteractionEnabled = false
+            
+            findUserAnswer(button: self.selectedButton!)
+            
+            if userAnswer == correctAnswer
             {
-                userAnswer = (button?.optionLabel.text)!
+                //feedbackView with message "You answered correctly..."
+            } else
+            {
+                //remove 'Check' button and add 'Try Again' button
+                self.selectedButton?.setBackgroundImage(UIImage(named: "wrongOption"), for: .selected)
             }
         }
     }
     
-    func checkAnswer(_ sender: Any, button: UIButton, correctAnswer: String)
+    @objc func dismissButton()
     {
-        radioButtonController!.shouldLetDeSelect = false
-
-        findUserAnswer()
-        
-        if userAnswer == correctAnswer
-        {
-            //feedbackView with message "You answered correctly..."
-        } else
-        {
-            //remove 'Check' button and add 'Try Again'
-            button.setBackgroundImage(UIImage(named: "wrongOption"), for: .selected)
-        }
+        //        dismiss(animated: true, completion: nil)
+        //        let controller = SortViewController()
+        //        present(controller, animated: true, completion: nil)
     }
-
+    
+    @objc func helpButton()
+    {
+        //        let webView = WebDocumentationViewController()
+        //        present(webView, animated: false, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
 }
+

@@ -12,31 +12,37 @@ import UIKit
 class SortViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var sortView: SortView!
-    
-    var arrayOptions = ["let mySize = Size()", "print(mySize.height)", "struct Size {", "    var height = 10 }"]
+    var codeToSort = [""]
+    var correctAnswer = [""]
+    var challenge: Challenge!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sortView = SortView()
+        sortView = SortView(frame: CGRect.zero, titleText: "Exemplo Sort View", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: "Pergunta?", exampleCodeText: "", options: ["let mySize = Size()", "print(mySize.height)", "struct Size {", "    var height = 10 }"], correctAnswer: ["struct Size {", "    var height = 10 }", "let mySize = Size()", "print(mySize.height)"])
+//        sortView = SortView(frame: CGRect.zero, titleText: "", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: challenge.question, exampleCodeText: "", options: challenge.options, correctAnswer: challenge.correctAnswer)
         
         self.view.addSubview(sortView)
         self.view = self.sortView
         
         self.sortView.sortTableView.dataSource = self
         self.sortView.sortTableView.delegate = self
-    
+        
         self.sortView.sortTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         self.sortView.sortTableView.isEditing = true
+        
+        self.codeToSort = self.sortView.codeToSort
+        self.correctAnswer = self.sortView.correctAnswer
+        
+        //        sortView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
         
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return arrayOptions.count
-        
+        return codeToSort.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,9 +50,10 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         cell.backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1.0)
-        cell.textLabel?.text = self.arrayOptions[indexPath.row]
+        cell.textLabel?.text = self.codeToSort[indexPath.row]
         cell.textLabel?.textColor = UIColor.white
-        labelDidChange(cell.textLabel!)
+        self.sortView.view.labelDidChange(cell.textLabel!)
+        //        labelDidChange(cell.textLabel!)
         
         return cell
     }
@@ -59,11 +66,11 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //Rearrenges lines
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
-        let rearrangedLine = arrayOptions[sourceIndexPath.row]
-        arrayOptions.remove(at: sourceIndexPath.row)
-        arrayOptions.insert(rearrangedLine, at: destinationIndexPath.row)
+        let rearrangedLine = codeToSort[sourceIndexPath.row]
+        codeToSort.remove(at: sourceIndexPath.row)
+        codeToSort.insert(rearrangedLine, at: destinationIndexPath.row)
         
-        NSLog("%@", "\(sourceIndexPath.row) => \(destinationIndexPath.row) \(arrayOptions)")
+        NSLog("%@", "\(sourceIndexPath.row) => \(destinationIndexPath.row) \(codeToSort)")
         self.sortView.sortTableView.reloadData()
     }
     
@@ -76,56 +83,31 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return false
     }
     
-    //Função para colorir caracteres
-    func labelDidChange(_ label: UILabel) {
-        let attrStr = NSMutableAttributedString(string: label.text!)
-        let inputLength = attrStr.string.characters.count
+    @objc func checkAnswer()
+    {
+        self.sortView.sortTableView.isEditing = false
         
-        let searchString : NSArray = NSArray.init(objects: "func","var", "let", "if", "else", "return", "init", "true", "false", "class", "struct")
-        for i in 0...searchString.count-1 {
-            let string : String = searchString.object(at: i) as! String
-            let searchLength = string.characters.count
-            var range = NSRange(location: 0, length: attrStr.length)
-            
-            while (range.location != NSNotFound) {
-                range = (attrStr.string as NSString).range(of: string, options: [], range: range)
-                if (range.location != NSNotFound) {
-                    attrStr.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor(red:0.76, green:0.20, blue:0.60, alpha:1.0), range: NSRange(location: range.location, length: searchLength))
-                    range = NSRange(location: range.location + range.length, length: inputLength - (range.location + range.length))
-                    label.attributedText = attrStr
-                }
-            }
-        }
-        
-        let searchStringTypes : NSArray = NSArray.init(objects: "Int","Double", "String", "print")
-        for i in 0...searchStringTypes.count-1 {
-            let string : String = searchStringTypes.object(at: i) as! String
-            let searchLength = string.characters.count
-            var range = NSRange(location: 0, length: attrStr.length)
-            while (range.location != NSNotFound) {
-                range = (attrStr.string as NSString).range(of: string, options: [], range: range)
-                if (range.location != NSNotFound) {
-                    attrStr.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor(red:0.00, green:0.69, blue:0.79, alpha:1.0), range: NSRange(location: range.location, length: searchLength))
-                    range = NSRange(location: range.location + range.length, length: inputLength - (range.location + range.length))
-                    label.attributedText = attrStr
-                }
-            }
-        }
-        
-        let searchInts : NSArray = NSArray.init(objects: "0","1", "2", "3", "4", "5", "6", "7", "8", "9")
-        for i in 0...searchInts.count-1 {
-            let string : String = searchInts.object(at: i) as! String
-            let searchLength = string.characters.count
-            var range = NSRange(location: 0, length: attrStr.length)
-            while (range.location != NSNotFound) {
-                range = (attrStr.string as NSString).range(of: string, options: [], range: range)
-                if (range.location != NSNotFound) {
-                    attrStr.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor(red:0.55, green:0.51, blue:0.81, alpha:1.0), range: NSRange(location: range.location, length: searchLength))
-                    range = NSRange(location: range.location + range.length, length: inputLength - (range.location + range.length))
-                    label.attributedText = attrStr
-                }
-            }
+        if codeToSort == correctAnswer
+        {
+            //feedbackView with message "You answered correctly..."
+        } else
+        {
+            //remove 'Check' button and add 'Try Again' button
         }
     }
     
+    @objc func dismissButton()
+    {
+//        self.dismiss(animated: true, completion: nil)
+//            let controller = ViewController()
+//            present(controller, animated: true, completion: nil)
+    }
+    
+    @objc func helpButton()
+    {
+        //        let webView = WebDocumentationViewController()
+        //        present(webView, animated: false, completion: nil)
+    }
+    
 }
+

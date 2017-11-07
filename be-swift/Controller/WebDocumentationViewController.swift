@@ -9,33 +9,52 @@
 import UIKit
 import WebKit
 
-class WebDocumentationViewController: UIViewController, WKUIDelegate {
+class WebDocumentationViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
     var webView: WKWebView!
+    var url: URL!
     
     override func loadView() {
-        let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        super.loadView()
+
+        setupLabel()
+
+        let webViewConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webViewConfiguration)
+        webView.translatesAutoresizingMaskIntoConstraints = false
         webView.uiDelegate = self
-        view = webView
+        webView.navigationDelegate = self
+        let request = URLRequest(url: url)
+        webView.load(request)
+
+        view.addSubview(webView)
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    func setupLabel() {
+        let rectangle = CAShapeLayer()
+        rectangle.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 321, height: 64))).cgPath
+        rectangle.fillColor = UIColor(red:0.31, green:0.49, blue:0.95, alpha:1.0).cgColor
+        view.layer.addSublayer(rectangle)
         
-        let myURL = URL(string: "https://www.apple.com")
-        let myRequest = URLRequest(url: myURL!)
-        webView.load(myRequest)
+        let dismissButton = UIButton(image: "exit", frame: CGRect(x: 0, y: 14, width: 50, height: 50), target: self)
+        dismissButton.addTarget(target, action: #selector(WebDocumentationViewController.backButton(sender:)), for: UIControlEvents.touchUpInside)
+        view.addSubview(dismissButton)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(WebDocumentationViewController.backButton(sender:)))
-        
+        let widhtiPhoneSE: CGFloat = 320
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+
+        webView.frame = CGRect(x: 0, y: 64*yScale, width: 320*xScale, height: 568*yScale)
     }
     
     @objc func backButton(sender: UIButton) {
-        if(webView.canGoBack){
-            webView.goBack()
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
