@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03A343231FA2433A007827D8 /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A343221FA2433A007827D8 /* SSRadioButton.swift */; };
+		03C0AD091FB2011800AF0A36 /* CollectionChallengesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C0AD081FB2011800AF0A36 /* CollectionChallengesCell.swift */; };
 		03D9FCDB1F98FC61000512F5 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9FCDA1F98FC61000512F5 /* SortViewController.swift */; };
 		03ECA9251F9EBD2D00EF8E4B /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */; };
 		03ECA9271F9EBD8F00EF8E4B /* MultipleChoiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */; };
@@ -84,6 +85,7 @@
 
 /* Begin PBXFileReference section */
 		03A343221FA2433A007827D8 /* SSRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
+		03C0AD081FB2011800AF0A36 /* CollectionChallengesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionChallengesCell.swift; sourceTree = "<group>"; };
 		03D9FCDA1F98FC61000512F5 /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
 		03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceController.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				4F75F8AA1F8AB67A007BABC9 /* RegisterView.swift */,
 				4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */,
 				4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */,
+				03C0AD081FB2011800AF0A36 /* CollectionChallengesCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				49F8D6FA1FA1278D00E7CF9F /* WebDocumentationViewController.swift in Sources */,
 				4F75F85A1F8AB492007BABC9 /* be_swift.xcdatamodeld in Sources */,
 				4F75F8A11F8AB631007BABC9 /* DragAndDropView.swift in Sources */,
+				03C0AD091FB2011800AF0A36 /* CollectionChallengesCell.swift in Sources */,
 				4FB236EB1FAE8CC700196346 /* LevelDAO.swift in Sources */,
 				4F75F8A51F8AB652007BABC9 /* FillTheGapView.swift in Sources */,
 				4F75F8AB1F8AB67A007BABC9 /* RegisterView.swift in Sources */,

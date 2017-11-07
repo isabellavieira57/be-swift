@@ -1,4 +1,3 @@
-//
 //  CollectionChallengesCell.swift
 //  be-swift
 //
@@ -8,6 +7,7 @@
 
 import Foundation
 import UIKit
+
 
 class CollectionChallengesCell: UICollectionViewCell
 {
@@ -81,4 +81,5 @@ class CollectionChallengesCell: UICollectionViewCell
     }
     
 }
+
 
