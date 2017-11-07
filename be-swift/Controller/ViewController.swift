@@ -22,9 +22,9 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.view.addSubview(challengesView)
         self.view = self.challengesView
         
-        self.challengesView.collectionChallenges.dataSource = self
-        self.challengesView.collectionChallenges.delegate = self
-        self.challengesView.collectionChallenges.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
+        self.challengesView.collectionChallenges1.dataSource = self
+        self.challengesView.collectionChallenges1.delegate = self
+        self.challengesView.collectionChallenges1.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -34,13 +34,12 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = challengesView.collectionChallenges.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CollectionChallengesCell
+        let cell = challengesView.collectionChallenges1.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CollectionChallengesCell
         
         let stars = 2
         let isLocked = false
         let number = indexPath.count
         //        let stars = self.arrayChallengeInfo[indexPath.item].starChallenge
-        //        let isLocked = self.arrayChallengeInfo[indexPath.item].isLocked
         
         cell.configureCell(numberOfStars: stars, isLocked: isLocked, iconNumber: number)
         
@@ -49,11 +48,11 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        //        var mechanics = self.arrayChallenges[indexPath.item].mechanics
         var mechanics = "Sort"
+//        var mechanics = self.arrayChallenges[indexPath.item].mechanics
         var nextController: UIViewController!
-        //        if self.arrayChallenge[indexPath.item].isLocked == false {
-        //            if arrayChallengeInfo id = self.arrayChallenges[indexPath.item].challengeID {
+        
+//        if arrayChallengeInfo id = self.arrayChallenges[indexPath.item].challengeID {
         
         switch mechanics {
             //        case "BlankField":
@@ -71,8 +70,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         }
         
         present(nextController, animated: true, completion: nil)
-        //            }
-        //        }
+//        }
     }
     
     //    override func viewDidAppear(_ animated: Bool) {

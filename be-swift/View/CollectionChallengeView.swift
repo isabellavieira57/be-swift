@@ -11,7 +11,8 @@ import UIKit
 
 class CollectionChallengeView: View {
     
-    var collectionChallenges: UICollectionView!
+    var collectionChallenges1: UICollectionView!
+    var collectionChallenges2: UICollectionView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,11 +58,11 @@ class CollectionChallengeView: View {
         layoutCollection.minimumInteritemSpacing = 0
         layoutCollection.minimumLineSpacing = 0
         
-        collectionChallenges = UICollectionView(frame: CGRect(x: 18, y: 131, width: 284, height: 475), collectionViewLayout: layoutCollection)
-        collectionChallenges.backgroundColor = UIColor.white
-        collectionChallenges.showsHorizontalScrollIndicator = false
+        collectionChallenges1 = UICollectionView(frame: CGRect(x: 18, y: 131, width: 284, height: 475), collectionViewLayout: layoutCollection)
+        collectionChallenges1.backgroundColor = UIColor.white
+        collectionChallenges1.showsHorizontalScrollIndicator = false
         
-        self.addSubview(collectionChallenges)
+        self.addSubview(collectionChallenges1)
     }
     
     func setLevelLabel()

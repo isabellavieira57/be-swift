@@ -14,11 +14,13 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var sortView: SortView!
     var codeToSort = [""]
     var correctAnswer = [""]
+    var challenge: Challenge!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sortView = SortView(frame: CGRect.zero, titleText: "Exemplo Sort View", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: "Pergunta?", exampleCodeText: "", options: ["let mySize = Size()", "print(mySize.height)", "struct Size {", "    var height = 10 }"], correctAnswer: ["struct Size {", "    var height = 10 }", "let mySize = Size()", "print(mySize.height)"])
+//        sortView = SortView(frame: CGRect.zero, titleText: "", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: challenge.question, exampleCodeText: "", options: challenge.options, correctAnswer: challenge.correctAnswer)
         
         self.view.addSubview(sortView)
         self.view = self.sortView
@@ -96,8 +98,9 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @objc func dismissButton()
     {
-        //        let controller = ViewController()
-        //        present(controller, animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
+//            let controller = ViewController()
+//            present(controller, animated: true, completion: nil)
     }
     
     @objc func helpButton()
