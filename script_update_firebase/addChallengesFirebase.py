@@ -24,6 +24,7 @@ def saveToFirebase (firebase):
 			challenge = {
 					'id': int(row["id"]),	
 					'question': row["question"],
+					'example_code': row["example_code"],
 					'options': options,
 					'estimated_time': int(row["estimated_time"]),
 					'mechanics': row["mechanics"],
