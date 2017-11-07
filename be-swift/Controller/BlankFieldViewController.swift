@@ -45,27 +45,14 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("BEGIN")
-        
-        //let widhtiPhoneSE: CGFloat = 320
         let heightiPhoneSE: CGFloat = 568
         let screenSize = UIScreen.main.bounds
-        //let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
-        
         scrollView.setContentOffset(CGPoint(x: 0, y: textField.frame.minY - 250*yScale), animated: true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        //let widhtiPhoneSE: CGFloat = 320
-        let heightiPhoneSE: CGFloat = 568
-        let screenSize = UIScreen.main.bounds
-        //let xScale = screenSize.width/widhtiPhoneSE
-        let yScale = screenSize.height/heightiPhoneSE
-        
-        scrollView.setContentOffset(CGPoint(x: 0, y: textField.frame.minY + 250*yScale), animated: true)
-        print("END")
+        scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentSize.height - self.view.frame.height), animated: true)
     }
     
 }
