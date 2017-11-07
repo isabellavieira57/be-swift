@@ -63,7 +63,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         switch mechanics 
       {
        case "BlankField":
-             nextController = BlankFieldController()
+             nextController = BlankFieldViewController()
         //        case "DragAndDrop":
         //            nextController = DragAndDropController()
         case "MultipleChoice":
