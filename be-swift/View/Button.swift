@@ -11,11 +11,11 @@ import UIKit
 
 extension UIButton{
     
-    convenience init(image: String, frame: CGRect, target: Any?, action: Selector) {
+    convenience init(image: String, frame: CGRect, target: Any?){ //action: Selector) {
         self.init(type: .system)
         self.frame = UIScreen.changeScale(vector: frame)
         let image = UIImage(named: image) as UIImage?
         self.setBackgroundImage(image, for: .normal)
-        self.addTarget(target, action: action, for: UIControlEvents.touchUpInside)
+        //self.addTarget(target, action: action, for: UIControlEvents.touchUpInside)
     }
 }

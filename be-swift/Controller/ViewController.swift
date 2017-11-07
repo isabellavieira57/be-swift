@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
@@ -29,7 +31,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
 //        self.challengesView.starLabel.text = user.starTotal
 //        self.challengesView.xpLabel.text = user.xpTotal
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -59,16 +60,17 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
 //        if arrayChallengeInfo id = self.arrayChallenges[indexPath.item].challengeID {
         
-        switch mechanics {
-            //        case "BlankField":
-            //            nextController = BlankFieldController()
-            //        case "DragAndDrop":
+        switch mechanics 
+      {
+       case "BlankField":
+             nextController = BlankFieldController()
+        //        case "DragAndDrop":
         //            nextController = DragAndDropController()
         case "MultipleChoice":
             nextController = MultipleChoiceController()
         case "Sort":
             nextController = SortViewController()
-            //        case "FillTheGap":
+        //        case "FillTheGap":
         //            nextController = FillTheGapController()
         default:
             nextController = self
@@ -77,12 +79,15 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         present(nextController, animated: true, completion: nil)
 //        }
     }
-    
-    //    override func viewDidAppear(_ animated: Bool) {
-    //        let controller = MultipleChoiceController()
-    //        present(controller, animated: false, completion: nil)
-    //    }
-    
+        
+//    override func viewDidAppear(_ animated: Bool) {
+//        let controller = BlankFieldViewController()
+//        present(controller, animated: false, completion: nil)
+//        
+//        let levelController = LevelController()
+//        levelController.viewDidLoad()
+//    }
+
     //    @objc func dismissButton(_ sender: Any){
     //
     //    }
@@ -97,7 +102,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
+
 }
 
