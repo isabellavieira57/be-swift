@@ -100,8 +100,14 @@ class MultipleChoiceView: View {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        self.checkButton = UIButton(frame: CGRect(x: 0, y: 0, width: 288*xScale, height: 46*yScale))
-        self.checkButton.setBackgroundImage(UIImage(named: "check"), for: .normal)
+        self.checkButton = UIButton(image: "check", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
+        let yPostionOptionButton4 = optionButton4.frame.minY
+        
+        if yPostionOptionButton4 < 568*yScale{
+            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 80*yScale)
+        } else {
+            checkButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionOptionButton4 + 70*yScale)
+        }
         
         self.addSubview(checkButton)
     }
