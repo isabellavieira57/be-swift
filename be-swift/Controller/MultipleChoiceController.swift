@@ -16,14 +16,11 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var radioButtonController: SSRadioButtonsController?
     var userAnswer = ""
     var selectedButton: SSRadioButton?
-    var challenge: Challenge!
-    
-    var id: Int = 0
+
     var resource_link: String = ""
     var question: String = ""
     var exampleCode: String = ""
     var estimatedTime: Int = 0
-    var mechanics: String = ""
     var options: NSArray = []
     var correctAnswer: String = ""
     var feedbackAnswer: String = ""
@@ -33,8 +30,8 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     {
         super.viewDidLoad()
         
-        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "Exemplo", dismissButtonAction: #selector(MultipleChoiceController.dismissButton(_:)), helpButtonAction: #selector(MultipleChoiceController.helpButton(_:)), questionText: "Pergunta? \n hehe", exampleCodeText: "let mySize = Size()\n print(mySize.height)\n struct Size {\n \t var height = 10}", options: ["Option 1", "Option 2", "Option 3", "Option 4"], correctAnswer: "Option 2")
-//        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: self.challenge.tags, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options, correctAnswer: self.challenge.correctAnswer)
+//        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "Exemplo", dismissButtonAction: #selector(MultipleChoiceController.dismissButton(_:)), helpButtonAction: #selector(MultipleChoiceController.helpButton(_:)), questionText: "Pergunta? \n hehe", exampleCodeText: "let mySize = Size()\n print(mySize.height)\n struct Size {\n \t var height = 10}", options: ["Option 1", "Option 2", "Option 3", "Option 4"], correctAnswer: "Option 2")
+        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: self.tag, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.question, exampleCodeText: self.exampleCode, options: self.options as! Array<String>, correctAnswer: self.correctAnswer)
         
         self.view.addSubview(multipleChoiceView)
         self.view = self.multipleChoiceView
@@ -91,7 +88,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     
     @objc func helpButton(_ sender: Any){
         let webView = WebDocumentationViewController()
-        webView.url = URL(string: "https://stackoverflow.com/")!
+        webView.url = URL(string: self.resource_link)!
         present(webView, animated: false, completion: nil)
     }
     
