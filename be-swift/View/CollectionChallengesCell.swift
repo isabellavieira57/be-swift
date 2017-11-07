@@ -26,12 +26,18 @@ class CollectionChallengesCell: UICollectionViewCell
     func configureCell(numberOfStars: Int, isLocked: Bool, iconNumber: Int)
     {
         
-        var cellWidth = self.bounds.width
-        var cellHeight = self.bounds.height
+        let widhtiPhoneSE: CGFloat = 320
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
         
-        var challengeIcon = UIImageView(frame: CGRect(x: cellWidth/2 - 24, y: cellHeight/5, width: 48, height: 47))
-        var starsIconY = challengeIcon.frame.origin.y + challengeIcon.frame.height + 5
-        var starsIcon = UIImageView(frame: CGRect(x: cellWidth/2 - 28, y: starsIconY, width: 56, height: 17))
+        let cellWidth = self.bounds.width
+        let cellHeight = self.bounds.height
+        
+        var challengeIcon = UIImageView(frame: CGRect(x: cellWidth/2 - 24*xScale, y: cellHeight/5, width: 48*xScale, height: 47*yScale))
+        let starsIconY = challengeIcon.frame.origin.y + challengeIcon.frame.height + 5*yScale
+        var starsIcon = UIImageView(frame: CGRect(x: cellWidth/2 - 28*xScale, y: starsIconY, width: 56*xScale, height: 17*yScale))
         
         switch numberOfStars
         {

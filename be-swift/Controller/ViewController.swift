@@ -13,6 +13,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     var challengesView: CollectionChallengeView!
     var arrayChallengeInfo = [UserChallengeInfo]()
     var arrayChallenges = [Challenge]()
+    var user: User!
     
     override func viewDidLoad()
     {
@@ -25,6 +26,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.challengesView.collectionChallenges1.dataSource = self
         self.challengesView.collectionChallenges1.delegate = self
         self.challengesView.collectionChallenges1.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
+        
+//        self.challengesView.starLabel.text = user.starTotal
+//        self.challengesView.xpLabel.text = user.xpTotal
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -48,7 +53,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        var mechanics = "Sort"
+        var mechanics = "MultipleChoice"
 //        var mechanics = self.arrayChallenges[indexPath.item].mechanics
         var nextController: UIViewController!
         

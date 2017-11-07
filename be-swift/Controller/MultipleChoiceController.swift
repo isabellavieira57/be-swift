@@ -23,7 +23,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     {
         super.viewDidLoad()
         
-        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "Exemplo", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: "Pergunta?", exampleCodeText: "ola", options: ["Option 1", "Option 2", "Option 3", "Option 4"], correctAnswer: ["Option2"])
+        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "Exemplo", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: "Pergunta? \n hehe", exampleCodeText: "let mySize = Size()\n print(mySize.height)\n struct Size {\n \t var height = 10}", options: ["Option 1", "Option 2", "Option 3", "Option 4"], correctAnswer: ["Option2"])
 //        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: challenge.question, exampleCodeText: "", options: challenge.options, correctAnswer: challenge.correctAnswer)
         
         self.view.addSubview(multipleChoiceView)
