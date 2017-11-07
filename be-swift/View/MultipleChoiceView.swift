@@ -11,16 +11,20 @@ import UIKit
 
 class MultipleChoiceView: View {
     
-    var view = View(frame: CGRect.zero)
+    let view = View(frame: CGRect.zero)
     
-    var multipleChoiceController: MultipleChoiceController!
+//    let multipleChoiceController: MultipleChoiceController!
     var optionButton1: SSRadioButton!
     var optionButton2: SSRadioButton!
     var optionButton3: SSRadioButton!
     var optionButton4: SSRadioButton!
     var correctAnswer: String!
-    
+    var checkButton: UIButton!
     var code: UILabel!
+    
+    let widhtiPhoneSE: CGFloat = 320
+    let heightiPhoneSE: CGFloat = 568
+    let screenSize = UIScreen.main.bounds
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,10 +33,10 @@ class MultipleChoiceView: View {
         
     }
 
-    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>){
+    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: String){
         self.init(frame: frame)
         
-        self.correctAnswer = correctAnswer[0]
+        self.correctAnswer = correctAnswer
         
         let rectangle = view.setTopBar()
         let title = view.setTitle(title: titleText)
@@ -49,18 +53,13 @@ class MultipleChoiceView: View {
         self.addSubview(question)
         self.addSubview(code)
         
-        let optionButtons = self.createButtons(options: options)
+        createButtons(options: options)
+        setCheckButton()
 
     }
     
     func createButtons(options: Array<String>)
     {
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
-        
-        let widhtiPhoneSE: CGFloat = 320
-        let heightiPhoneSE: CGFloat = 568
-        let screenSize = UIScreen.main.bounds
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
@@ -94,6 +93,19 @@ class MultipleChoiceView: View {
         self.addSubview(optionButton2)
         self.addSubview(optionButton3)
         self.addSubview(optionButton4)
+    }
+    
+    func setCheckButton()
+    {
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+        
+//        let endOfMechanicView = self.optionButton4.frame.origin.y + self.optionButton4.frame.height + 50
+        
+        self.checkButton = UIButton(frame: CGRect(x: 16*xScale, y: 506*yScale, width: 288*xScale, height: 46*yScale))
+        self.checkButton.setBackgroundImage(UIImage(named: "check"), for: .normal)
+        
+        self.addSubview(checkButton)
     }
     
     required init?(coder aDecoder: NSCoder) {

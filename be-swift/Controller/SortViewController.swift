@@ -12,15 +12,24 @@ import UIKit
 class SortViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var sortView: SortView!
-    var codeToSort = [""]
-    var correctAnswer = [""]
-    var challenge: Challenge!
+    var codeToSort: Array<String> = []
+    
+    var id: Int = 0
+    var resource_link: String = ""
+    var question: String = ""
+    var exampleCode: String = ""
+    var estimatedTime: Int = 0
+    var mechanics: String = ""
+    var options: NSArray = []
+    var correctAnswer: NSArray = []
+    var feedbackAnswer: String = ""
+    var tag: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sortView = SortView(frame: CGRect.zero, titleText: "Exemplo Sort View", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: "Pergunta?", exampleCodeText: "", options: ["let mySize = Size()", "print(mySize.height)", "struct Size {", "    var height = 10 }"], correctAnswer: ["struct Size {", "    var height = 10 }", "let mySize = Size()", "print(mySize.height)"])
-//        sortView = SortView(frame: CGRect.zero, titleText: "", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: challenge.question, exampleCodeText: "", options: challenge.options, correctAnswer: challenge.correctAnswer)
+        sortView = SortView(frame: CGRect.zero, titleText: "Exemplo Sort View", dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction: #selector(SortViewController.helpButton(_:)), questionText: "Pergunta?", exampleCodeText: "", options: ["let mySize = Size()", "print(mySize.height)", "struct Size {", "    var height = 10 }"], correctAnswer: ["struct Size {", "    var height = 10 }", "let mySize = Size()", "print(mySize.height)"])
+//        sortView = SortView(frame: CGRect.zero, titleText: "", dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction: #selector(SortViewController.helpButton(_:)), questionText: challenge.question, exampleCodeText: "", options: challenge.options, correctAnswer: challenge.correctAnswer)
         
         self.view.addSubview(sortView)
         self.view = self.sortView
@@ -33,9 +42,9 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.sortView.sortTableView.isEditing = true
         
         self.codeToSort = self.sortView.codeToSort
-        self.correctAnswer = self.sortView.correctAnswer
+        self.correctAnswer = self.sortView.correctAnswer! as NSArray
         
-        //        sortView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
+        self.sortView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
         
     }
     
@@ -87,26 +96,25 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         self.sortView.sortTableView.isEditing = false
         
-        if codeToSort == correctAnswer
+        if codeToSort == correctAnswer as! Array<String>
         {
+            print("CORRECT ANSWER")
             //feedbackView with message "You answered correctly..."
         } else
         {
+            print("WRONG ANSWER")
             //remove 'Check' button and add 'Try Again' button
         }
     }
     
-    @objc func dismissButton()
-    {
-//        self.dismiss(animated: true, completion: nil)
-//            let controller = ViewController()
-//            present(controller, animated: true, completion: nil)
+    @objc func dismissButton(_ sender: Any){
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func helpButton()
-    {
-        //        let webView = WebDocumentationViewController()
-        //        present(webView, animated: false, completion: nil)
+    @objc func helpButton(_ sender: Any){
+        let webView = WebDocumentationViewController()
+        webView.url = URL(string: "https://stackoverflow.com/")!
+        present(webView, animated: false, completion: nil)
     }
     
 }
