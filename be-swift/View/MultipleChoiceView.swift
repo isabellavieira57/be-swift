@@ -31,11 +31,9 @@ class MultipleChoiceView: View {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
-        
     }
     
-    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: String){
-        //self.init(frame: frame)
+    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: String){
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
         self.correctAnswer = correctAnswer
@@ -45,7 +43,6 @@ class MultipleChoiceView: View {
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
-        //let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
         code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
         
         createButtons(options: options)
