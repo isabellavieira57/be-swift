@@ -26,16 +26,23 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       
+        
         self.challengesView = CollectionChallengeView()
         self.view.addSubview(challengesView)
         self.view = self.challengesView
        
+        print ("GET CHALLENGE")
         let levelDAO = LevelDAO()
+        
+        //getChallengesByLevel results are in the handler getLevelData
         levelDAO.getChallengesByLevel(handler: self, level: "level-1", challengesView: challengesView)
+        
         
         self.challengesView.collectionChallenges1.dataSource = self
         self.challengesView.collectionChallenges1.delegate = self
         self.challengesView.collectionChallenges1.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
+   
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -85,6 +92,19 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             print("No mechanics found!")
         }
     }
+//
+//    override func viewDidAppear(_ animated: Bool) {
+//    }
+
+    //    @objc func dismissButton(_ sender: Any){
+    //
+    //    }
+    //
+    //    @objc func helpButton(_ sender: Any){
+    //        //mandar para doc apple
+    //        let webView = WebDocumentationViewController()
+    //        present(webView, animated: false, completion: nil)
+    //    }
     
     // This function gets the return of the Firebase asynchronous call and call the respective view
     func getLevelData(level: Level,  challengesView: CollectionChallengeView) {

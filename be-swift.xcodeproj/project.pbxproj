@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		03A343231FA2433A007827D8 /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A343221FA2433A007827D8 /* SSRadioButton.swift */; };
 		03AD2B9C1FB255B600F58DEA /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD2B9B1FB255B600F58DEA /* FeedbackViewController.swift */; };
+		03AD2B9E1FB32D1300F58DEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD2B9D1FB32D1300F58DEA /* ViewController.swift */; };
 		03C0AD091FB2011800AF0A36 /* CollectionChallengesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C0AD081FB2011800AF0A36 /* CollectionChallengesCell.swift */; };
 		03D9FCDB1F98FC61000512F5 /* SortViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D9FCDA1F98FC61000512F5 /* SortViewController.swift */; };
 		03ECA9251F9EBD2D00EF8E4B /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */; };
@@ -35,7 +36,6 @@
 		49F8D6F81FA1267900E7CF9F /* BlankFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */; };
 		49F8D6FA1FA1278D00E7CF9F /* WebDocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */; };
 		4F75F8521F8AB491007BABC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8511F8AB491007BABC9 /* AppDelegate.swift */; };
-		4F75F8541F8AB491007BABC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8531F8AB491007BABC9 /* ViewController.swift */; };
 		4F75F8571F8AB491007BABC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F75F8551F8AB491007BABC9 /* Main.storyboard */; };
 		4F75F85A1F8AB492007BABC9 /* be_swift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8581F8AB492007BABC9 /* be_swift.xcdatamodeld */; };
 		4F75F85C1F8AB492007BABC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F75F85B1F8AB492007BABC9 /* Assets.xcassets */; };
@@ -87,6 +87,7 @@
 /* Begin PBXFileReference section */
 		03A343221FA2433A007827D8 /* SSRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
 		03AD2B9B1FB255B600F58DEA /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		03AD2B9D1FB32D1300F58DEA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		03C0AD081FB2011800AF0A36 /* CollectionChallengesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionChallengesCell.swift; sourceTree = "<group>"; };
 		03D9FCDA1F98FC61000512F5 /* SortViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortViewController.swift; sourceTree = "<group>"; };
 		03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebDocumentationViewController.swift; sourceTree = "<group>"; };
 		4F75F84E1F8AB491007BABC9 /* be-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "be-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F75F8511F8AB491007BABC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4F75F8531F8AB491007BABC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4F75F8561F8AB491007BABC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F75F8591F8AB492007BABC9 /* be_swift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = be_swift.xcdatamodel; sourceTree = "<group>"; };
 		4F75F85B1F8AB492007BABC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 		4F75F8851F8AB4BC007BABC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4F75F8531F8AB491007BABC9 /* ViewController.swift */,
+				03AD2B9D1FB32D1300F58DEA /* ViewController.swift */,
 				4F75F8981F8AB5D6007BABC9 /* UserController.swift */,
 				49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */,
 				03D9FCDA1F98FC61000512F5 /* SortViewController.swift */,
@@ -534,12 +534,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-be-swift/Pods-be-swift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -699,12 +701,12 @@
 				4F75F89F1F8AB612007BABC9 /* MultipleChoiceView.swift in Sources */,
 				4F75F8AD1F8AB687007BABC9 /* FeedbackView.swift in Sources */,
 				03ECA9251F9EBD2D00EF8E4B /* SSRadioButtonsController.swift in Sources */,
-				4F75F8541F8AB491007BABC9 /* ViewController.swift in Sources */,
 				4F75F8991F8AB5D6007BABC9 /* UserController.swift in Sources */,
 				4F75F88F1F8AB55C007BABC9 /* UserChallengeInfo.swift in Sources */,
 				4F75F8911F8AB58B007BABC9 /* Challenge.swift in Sources */,
 				497703561F8EAA9E00102F08 /* Label.swift in Sources */,
 				03ECA9271F9EBD8F00EF8E4B /* MultipleChoiceController.swift in Sources */,
+				03AD2B9E1FB32D1300F58DEA /* ViewController.swift in Sources */,
 				49C4B4061F8EC57100A84C69 /* Button.swift in Sources */,
 				49C3807E1F96645500DC5293 /* TextView.swift in Sources */,
 				03D9FCDB1F98FC61000512F5 /* SortViewController.swift in Sources */,
