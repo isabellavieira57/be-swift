@@ -66,33 +66,24 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath, controller: UIViewController) {
-        
-        
-//        var mechanics = "MultipleChoice"
-////        var mechanics = self.arrayChallenges[indexPath.item].mechanics
-//        var nextController: UIViewController!
-//
-////        if arrayChallengeInfo id = self.arrayChallenges[indexPath.item].challengeID {
-//
-//        switch mechanics
-//      {
-//       case "BlankField":
-//             nextController = BlankFieldViewController()
-//        //        case "DragAndDrop":
-//        //            nextController = DragAndDropController()
-//        case "MultipleChoice":
-//            nextController = MultipleChoiceController()
-//        case "Sort":
-//            nextController = SortViewController()
-//        //        case "FillTheGap":
-//        //            nextController = FillTheGapController()
-//        default:
-//            nextController = self
-//        }
-//
-       //present(controller, animated: true, completion: nil)
-////        }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedChallenge = self.challengeData[indexPath.row]
+        switch selectedChallenge.mechanics{
+        case "MultipleChoice":
+            let multipleChoiceVC = MultipleChoiceController()
+            multipleChoiceVC.challenge = selectedChallenge
+            present(multipleChoiceVC, animated: true, completion: nil)
+        case "Sort":
+            let sortVC = SortViewController()
+            sortVC.challenge = selectedChallenge
+            present(sortVC, animated: true, completion: nil)
+        case "BlankField":
+            let blankFieldVC = BlankFieldViewController()
+            blankFieldVC.challenge = selectedChallenge
+            present(blankFieldVC, animated: true, completion: nil)
+        default:
+            print("No mechanics found!")
+        }
     }
 //
 //    override func viewDidAppear(_ animated: Bool) {
@@ -110,58 +101,9 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     // This function gets the return of the Firebase asynchronous call and call the respective view
     func getLevelData(level: Level,  challengesView: CollectionChallengeView) {
-        print ("HANDLER LEVEL ASSINCRONO")
-        
-        for challenge in level.challenge {
-            //print (">>>>> question: \(challenge.question)")
-            
-            if (challenge.mechanics == "MultipleChoice") {
-                let multipleChoiceVC = MultipleChoiceController()
-                multipleChoiceVC.resource_link = challenge.resource_link
-                multipleChoiceVC.question = challenge.question
-                multipleChoiceVC.exampleCode = challenge.exampleCode
-                multipleChoiceVC.estimatedTime = challenge.estimatedTime
-                multipleChoiceVC.options = challenge.options
-                multipleChoiceVC.correctAnswer = challenge.correctAnswer[0] as! String
-                multipleChoiceVC.feedbackAnswer = challenge.feedbackAnswer
-                multipleChoiceVC.tag = challenge.tags[0] as! String
-                //present(multipleChoiceVC, animated: true, completion: nil)
-                //challengesView.collectionChallenges1.selectItem(at: IndexPath(index: challenge.id), animated: true, scrollPosition: UICollectionViewScrollPosition(rawValue: 0))
-                collectionView(challengesView.collectionChallenges1, didSelectItemAt: IndexPath(index: 1), controller: multipleChoiceVC)
-                present(multipleChoiceVC, animated: true, completion: nil)
-
-                
-                
-            } else if (challenge.mechanics == "DragAndDrop") {
-                // TODO: Build view for drag and drop
-            } else if (challenge.mechanics == "BlankField") {
-                let blankFieldVC = BlankFieldViewController()
-                blankFieldVC.resource_link = challenge.resource_link
-                blankFieldVC.question = challenge.question
-                blankFieldVC.exampleCode = challenge.exampleCode
-                blankFieldVC.estimatedTime = challenge.estimatedTime
-                blankFieldVC.options = challenge.options
-                blankFieldVC.correctAnswer = challenge.correctAnswer
-                blankFieldVC.feedbackAnswer = challenge.feedbackAnswer
-                blankFieldVC.tag = challenge.tags[0] as! String
-                //present(blankFieldVC, animated: true, completion: nil)
-            } else if (challenge.mechanics == "FillTheGap") {
-                // TODO: Build view for fill the gap
-            } else if (challenge.mechanics == "Sort") {
-                let sortVC = SortViewController()
-                sortVC.resource_link = challenge.resource_link
-                sortVC.question = challenge.question
-                sortVC.exampleCode = challenge.exampleCode
-                sortVC.estimatedTime = challenge.estimatedTime
-                sortVC.options = challenge.options
-                sortVC.correctAnswer = challenge.correctAnswer
-                sortVC.feedbackAnswer = challenge.feedbackAnswer
-                sortVC.tag = challenge.tags[0] as! String
-                //present(sortVC, animated: true, completion: nil)
-            } else {
-                print ("ERROR: Mechanics not found!")
-            }
-            
+        self.challengeData = level.challenge.sorted(by: { $0.id < $1.id})
+        DispatchQueue.main.async {
+            challengesView.collectionChallenges1.reloadData()
         }
     }
     

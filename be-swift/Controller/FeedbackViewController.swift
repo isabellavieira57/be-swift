@@ -7,3 +7,20 @@
 //
 
 import Foundation
+import UIKit
+
+class FeedbackViewController: UIViewController
+{
+    var feedbackView: FeedbackView!
+    var challenge: Challenge!
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+//        self.feedbackView = FeedbackView(frame: <#T##CGRect#>, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.challenge.correctAnswer[0] as! String, userAnswer: <#T##Array<String>#>, answerIsRight: <#T##Bool#>, feedback: <#T##String#>)
+    }
+    
+    
+}
+
