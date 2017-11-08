@@ -16,7 +16,6 @@ class WebDocumentationViewController: UIViewController, WKUIDelegate, WKNavigati
     
     override func loadView() {
         super.loadView()
-
         setupLabel()
 
         let webViewConfiguration = WKWebViewConfiguration()

@@ -23,7 +23,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     var cellMenu: [UICollectionViewCell] = []
     var challengeData: [Challenge] = []
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,7 +52,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = challengesView.collectionChallenges1.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CollectionChallengesCell
         
-        
         if !self.challengeData.isEmpty {
             let challenge = self.challengeData[indexPath.row]
             let stars = 0
@@ -65,7 +63,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         } else {
             print ("IS EMPTY")
         }
-        
         return cell
     }
     
