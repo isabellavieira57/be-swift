@@ -24,7 +24,7 @@ class LevelDAO {
     }
     
     // MARK: Methods
-    func getChallengesByLevel (handler: LevelHandler, level: String) {
+    func getChallengesByLevel (handler: LevelHandler, level: String,  challengesView: CollectionChallengeView) {
         
         var challenges: [Challenge] = []
         
@@ -33,7 +33,7 @@ class LevelDAO {
             FirebaseApp.configure()
             AppDelegate.isAlreadyLaunchedOnce = true
         }
-    
+        
         // Initialize in the level node in firebase database
         self.ref = self.ref.child(level)
         
@@ -43,7 +43,7 @@ class LevelDAO {
             
             // Parse json data from database
             for item in dataDict {
-                let correct_answer = item.value["correct_answer"] as! String
+                let correct_answer = item.value["correct_answer"] as! NSArray
                 let estimated_time = item.value["estimated_time"] as! Int
                 let feedback_answer = item.value["feedback"] as! String
                 let mechanics = item.value["mechanics"] as! String
@@ -53,18 +53,10 @@ class LevelDAO {
                 let id = item.value["id"] as! Int
                 let resource_link = item.value["resource_link"] as! String
                 let example_code = item.value["example_code"] as! String
-            
-                print (">>>> CHALLENGE")
-                print ("ID:  \(id)")
-//                print (correct_answer)
-//                print (estimated_time)
-//                print (feedback_answer)
-//                print (mechanics)
-//                print (options)
-//                print (tags)
-//                print (question)
-//                print (resource_link)
-                print ("\n")
+                
+                //                print (">>>> CHALLENGE")
+                //                print ("ID:  \(id)")
+                //                print ("\n")
                 
                 // Create a challenge object
                 let challenge = Challenge(question: question, estimatedTime: estimated_time, mechanics: mechanics, options:options, correctAnswer: correct_answer, feedbackAnswer:feedback_answer, tags: tags, id:id, resource_link:resource_link, exampleCode: example_code)
@@ -77,9 +69,10 @@ class LevelDAO {
             let level = Level (star: 3, level: "Level1", xp: 10, challenge: challenges)
             
             // Handler for asynchronous call in LevelController
-            handler.getLevelData(level: level)
+            handler.getLevelData(level: level,  challengesView: challengesView)
             
         })
         
     }
 }
+
