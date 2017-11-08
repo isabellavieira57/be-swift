@@ -20,6 +20,9 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     var arrayChallengeInfo = [UserChallengeInfo]()
     var arrayChallenges = [Challenge]()
     var user: User!
+    var cellMenu: [UICollectionViewCell] = []
+    var challengeData: [Challenge] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,20 +47,24 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return self.challengeData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = challengesView.collectionChallenges1.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CollectionChallengesCell
         
-        let arrayNumbers = [1,2,3,4,5,6,7,8,9,10,11,12]
         
-        let stars = 0
-        let isLocked = false
-        let number = arrayNumbers[indexPath.item]
-        //        let stars = self.arrayChallengeInfo[indexPath.item].starChallenge
-        
-        cell.configureCell(numberOfStars: stars, isLocked: isLocked, iconNumber: number)
+        if !self.challengeData.isEmpty {
+            let challenge = self.challengeData[indexPath.row]
+            let stars = 0
+            let isLocked = false
+            
+            cell.configureCell(numberOfStars: stars, isLocked: isLocked, iconNumber: challenge.id)
+            self.cellMenu.append(cell)
+            return cell
+        } else {
+            print ("IS EMPTY")
+        }
         
         return cell
     }
