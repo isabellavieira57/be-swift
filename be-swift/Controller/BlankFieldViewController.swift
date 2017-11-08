@@ -14,7 +14,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     var blankField: BlankFieldView!
     var scrollView: UIScrollView!
     var challenge: Challenge!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +32,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     
     @objc func helpButton(_ sender: Any){
         let webView = WebDocumentationViewController()
-        webView.url = URL(string: self.challenge.resource_link)!
+        webView.url = URL(string: "https://stackoverflow.com/")!
         present(webView, animated: false, completion: nil)
     }
     
@@ -56,3 +56,4 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentSize.height - self.view.frame.height), animated: true)
     }
 }
+
