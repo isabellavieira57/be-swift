@@ -93,7 +93,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     // This function gets the return of the Firebase asynchronous call and call the respective view
     func getLevelData(level: Level,  challengesView: CollectionChallengeView) {
-        self.challengeData = level.challenge
+        self.challengeData = level.challenge.sorted(by: { $0.id < $1.id})
+        
         DispatchQueue.main.async {
             challengesView.collectionChallenges1.reloadData()
         }
