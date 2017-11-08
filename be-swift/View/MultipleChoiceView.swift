@@ -13,7 +13,7 @@ class MultipleChoiceView: View {
     
     let view = View(frame: CGRect.zero)
     
-//    let multipleChoiceController: MultipleChoiceController!
+    //    let multipleChoiceController: MultipleChoiceController!
     var optionButton1: SSRadioButton!
     var optionButton2: SSRadioButton!
     var optionButton3: SSRadioButton!
@@ -21,6 +21,7 @@ class MultipleChoiceView: View {
     var correctAnswer: String!
     var checkButton: UIButton!
     var code: UILabel!
+    var sizeView: CGFloat!
     
     let widhtiPhoneSE: CGFloat = 320
     let heightiPhoneSE: CGFloat = 568
@@ -32,9 +33,10 @@ class MultipleChoiceView: View {
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
         
     }
-
+    
     convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: String){
-        self.init(frame: frame)
+        //self.init(frame: frame)
+        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
         self.correctAnswer = correctAnswer
         
@@ -46,16 +48,17 @@ class MultipleChoiceView: View {
         //let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
         code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
         
+        createButtons(options: options)
+        setCheckButton()
+        let height = sizeView!
+        self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
+        
         self.layer.addSublayer(rectangle)
         self.addSubview(title)
         self.addSubview(dismissButton)
         self.addSubview(helpButton)
         self.addSubview(question)
         self.addSubview(code)
-        
-        createButtons(options: options)
-        setCheckButton()
-
     }
     
     func createButtons(options: Array<String>)
@@ -103,10 +106,12 @@ class MultipleChoiceView: View {
         self.checkButton = UIButton(image: "check", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
         let yPostionOptionButton4 = optionButton4.frame.minY
         
-        if yPostionOptionButton4 < 568*yScale{
-            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 80*yScale)
+        if yPostionOptionButton4 < 437*yScale{
+            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 62*yScale)
+            sizeView = screenSize.height
         } else {
             checkButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionOptionButton4 + 70*yScale)
+            sizeView = checkButton.frame.minY + 62*yScale
         }
         
         self.addSubview(checkButton)
@@ -117,3 +122,4 @@ class MultipleChoiceView: View {
     }
     
 }
+

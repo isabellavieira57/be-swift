@@ -23,16 +23,19 @@ class SortView: View {
     let heightiPhoneSE: CGFloat = 568
     let screenSize = UIScreen.main.bounds
     
+    var sizeView: CGFloat!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
-
+        
     }
     
     convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
     {
-        self.init(frame: frame)
+        //self.init(frame: frame)
+        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
         self.codeToSort = options
         self.correctAnswer = correctAnswer
@@ -44,6 +47,11 @@ class SortView: View {
         let question = view.setQuestion(questionText: questionText)
         let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
         
+        setTableView()
+        setCheckButton()
+        let height = sizeView!
+        self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
+        
         self.layer.addSublayer(rectangle)
         self.addSubview(title)
         self.addSubview(dismissButton)
@@ -51,13 +59,13 @@ class SortView: View {
         self.addSubview(question)
         self.addSubview(code)
         
-        setTableView()
-        setCheckButton()
+        
+        
     }
     
     func setTableView()
     {
-
+        
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
@@ -81,9 +89,11 @@ class SortView: View {
         let yPostionTableView = sortTableView.frame.minY
         
         if yPostionTableView < 568*yScale{
-            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 80*yScale)
+            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 62*yScale)
+            sizeView = screenSize.height
         } else {
             checkButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionTableView + 70*yScale)
+            sizeView = checkButton.frame.minY + 62*yScale
         }
         
         self.addSubview(checkButton)
@@ -95,3 +105,4 @@ class SortView: View {
     }
     
 }
+

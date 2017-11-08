@@ -50,7 +50,10 @@ class BlankFieldView: View {
     
     func setBlankField(){
         blankField = UITextField(frame: CGRect(x: 0, y: 0, width: 288, height: 32), font: "SanFranciscoText-Medium", fontSize: 16)
+        
         let heightCode = code.frame.height
+        let yPostionCode = code.frame.minY
+        let distance = heightCode + yPostionCode
         
         let widhtiPhoneSE: CGFloat = 320
         let heightiPhoneSE: CGFloat = 568
@@ -58,8 +61,8 @@ class BlankFieldView: View {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        blankField.frame.origin = CGPoint(x: 16*xScale, y: heightCode + 280*yScale)
-
+        blankField.frame.origin = CGPoint(x: 16*xScale, y: distance + 40*yScale)
+        
         self.addSubview(blankField)
     }
     
@@ -75,14 +78,15 @@ class BlankFieldView: View {
         let yScale = screenSize.height/heightiPhoneSE
         
         if yPostionBlankField < 568*yScale{
-            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 80*yScale)
+            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 62*yScale)
             sizeView = screenSize.height
         } else {
             checkButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionBlankField + 70*yScale)
-            sizeView = checkButton.frame.minY + 80*yScale
+            sizeView = checkButton.frame.minY + 62*yScale
         }
         
         self.addSubview(checkButton)
     }
     
 }
+
