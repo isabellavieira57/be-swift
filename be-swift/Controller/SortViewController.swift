@@ -13,23 +13,24 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var sortView: SortView!
     var codeToSort: Array<String> = []
+    var challenge: Challenge!
     
-    var id: Int = 0
-    var resource_link: String = ""
-    var question: String = ""
-    var exampleCode: String = ""
-    var estimatedTime: Int = 0
-    var mechanics: String = ""
-    var options: NSArray = []
-    var correctAnswer: NSArray = []
-    var feedbackAnswer: String = ""
-    var tag: String = ""
+//    var id: Int = 0
+//    var resource_link: String = ""
+//    var question: String = ""
+//    var exampleCode: String = ""
+//    var estimatedTime: Int = 0
+//    var mechanics: String = ""
+//    var options: NSArray = []
+//    var correctAnswer: NSArray = []
+//    var feedbackAnswer: String = ""
+//    var tag: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        sortView = SortView(frame: CGRect.zero, titleText: "Exemplo Sort View", dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction: #selector(SortViewController.helpButton(_:)), questionText: "Pergunta?", exampleCodeText: "", options: ["let mySize = Size()", "print(mySize.height)", "struct Size {", "    var height = 10 }"], correctAnswer: ["struct Size {", "    var height = 10 }", "let mySize = Size()", "print(mySize.height)"])
-        sortView = SortView(frame: CGRect.zero, titleText: "", dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction: #selector(SortViewController.helpButton(_:)), questionText: self.question, exampleCodeText: self.exampleCode, options: self.options as! Array<String>, correctAnswer: self.correctAnswer as! Array<String>)
+        sortView = SortView(frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction: #selector(SortViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.challenge.correctAnswer as! Array<String>)
         
         self.view.addSubview(sortView)
         self.view = self.sortView
@@ -42,7 +43,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.sortView.sortTableView.isEditing = true
         
         self.codeToSort = self.sortView.codeToSort
-        self.correctAnswer = self.sortView.correctAnswer! as NSArray
+        //self.correctAnswer = self.sortView.correctAnswer! as NSArray
         
         self.sortView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
         
@@ -96,7 +97,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         self.sortView.sortTableView.isEditing = false
         
-        if codeToSort == correctAnswer as! Array<String>
+        if codeToSort == self.challenge.correctAnswer as! Array<String>
         {
             print("CORRECT ANSWER")
             //feedbackView with message "You answered correctly..."
@@ -113,7 +114,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @objc func helpButton(_ sender: Any){
         let webView = WebDocumentationViewController()
-        webView.url = URL(string: self.resource_link)!
+        webView.url = URL(string: self.challenge.resource_link)!
         present(webView, animated: false, completion: nil)
     }
     
