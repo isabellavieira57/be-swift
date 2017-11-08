@@ -16,6 +16,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var radioButtonController: SSRadioButtonsController?
     var userAnswer = ""
     var selectedButton: SSRadioButton?
+    var challenge: Challenge!
 
     var resource_link: String = ""
     var question: String = ""

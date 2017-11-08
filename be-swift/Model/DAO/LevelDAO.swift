@@ -54,9 +54,9 @@ class LevelDAO {
                 let resource_link = item.value["resource_link"] as! String
                 let example_code = item.value["example_code"] as! String
             
-                print (">>>> CHALLENGE")
-                print ("ID:  \(id)")
-                print ("\n")
+//                print (">>>> CHALLENGE")
+//                print ("ID:  \(id)")
+//                print ("\n")
                 
                 // Create a challenge object
                 let challenge = Challenge(question: question, estimatedTime: estimated_time, mechanics: mechanics, options:options, correctAnswer: correct_answer, feedbackAnswer:feedback_answer, tags: tags, id:id, resource_link:resource_link, exampleCode: example_code)
