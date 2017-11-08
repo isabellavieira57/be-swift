@@ -6,7 +6,6 @@
 //  Copyright © 2017 Isabella Vieira. All rights reserved.
 //
 
-
 import UIKit
 
 class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegate
@@ -15,16 +14,23 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var multipleChoiceView: MultipleChoiceView!
     var radioButtonController: SSRadioButtonsController?
     var userAnswer = ""
-    var correctAnswer: String!
     var selectedButton: SSRadioButton?
-    var challenge: Challenge!
+    
+    var resource_link: String = ""
+    var question: String = ""
+    var exampleCode: String = ""
+    var estimatedTime: Int = 0
+    var options: NSArray = []
+    var correctAnswer: String = ""
+    var feedbackAnswer: String = ""
+    var tag: String = ""
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "Exemplo", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: "Pergunta? \n hehe", exampleCodeText: "let mySize = Size()\n print(mySize.height)\n struct Size {\n \t var height = 10}", options: ["Option 1", "Option 2", "Option 3", "Option 4"], correctAnswer: ["Option2"])
-//        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: challenge.question, exampleCodeText: "", options: challenge.options, correctAnswer: challenge.correctAnswer)
+        //        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "Exemplo", dismissButtonAction: #selector(MultipleChoiceController.dismissButton(_:)), helpButtonAction: #selector(MultipleChoiceController.helpButton(_:)), questionText: "Pergunta? \n hehe", exampleCodeText: "let mySize = Size()\n print(mySize.height)\n struct Size {\n \t var height = 10}", options: ["Option 1", "Option 2", "Option 3", "Option 4"], correctAnswer: "Option 2")
+        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: self.tag, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.question, exampleCodeText: self.exampleCode, options: self.options as! Array<String>, correctAnswer: self.correctAnswer)
         
         self.view.addSubview(multipleChoiceView)
         self.view = self.multipleChoiceView
@@ -35,7 +41,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         
         self.correctAnswer = multipleChoiceView.correctAnswer
         
-        //        multipleChoiceView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
+        multipleChoiceView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
     }
     
     func didSelectButton(selectedButton: SSRadioButton?)
@@ -66,6 +72,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
             if userAnswer == correctAnswer
             {
                 //feedbackView with message "You answered correctly..."
+                print("CORRECT ANSWER")
             } else
             {
                 //remove 'Check' button and add 'Try Again' button
@@ -74,17 +81,14 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         }
     }
     
-    @objc func dismissButton()
-    {
-        //        dismiss(animated: true, completion: nil)
-        //        let controller = SortViewController()
-        //        present(controller, animated: true, completion: nil)
+    @objc func dismissButton(_ sender: Any){
+        self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func helpButton()
-    {
-        //        let webView = WebDocumentationViewController()
-        //        present(webView, animated: false, completion: nil)
+    @objc func helpButton(_ sender: Any){
+        let webView = WebDocumentationViewController()
+        webView.url = URL(string: self.resource_link)!
+        present(webView, animated: false, completion: nil)
     }
     
     override func didReceiveMemoryWarning()
