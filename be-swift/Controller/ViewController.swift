@@ -84,11 +84,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             print("No mechanics found!")
             
         }
-//        if (selectedChallenge.mechanics == "MultipleChoice") {
-//            let multipleChoiceVC = MultipleChoiceController()
-//              multipleChoiceVC.challenge = selectedChallenge
-//            present(multipleChoiceVC, animated: true, completion: nil)
-//        }
     }
     
     // This function gets the return of the Firebase asynchronous call and call the respective view
