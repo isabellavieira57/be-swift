@@ -29,12 +29,9 @@ class SortView: View {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
-        
     }
     
-    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
-    {
-        //self.init(frame: frame)
+    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>) {
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
         self.codeToSort = options
@@ -58,20 +55,16 @@ class SortView: View {
         self.addSubview(helpButton)
         self.addSubview(question)
         self.addSubview(code)
-        
-        
-        
     }
     
-    func setTableView()
-    {
+    func setTableView() {
         
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        var numberOfLines = self.codeToSort.count
+        let numberOfLines = self.codeToSort.count
         
-        let endOfMainView = self.view.question.frame.origin.y + self.view.frame.height + 30*yScale
+        let endOfMainView = self.view.question.frame.origin.y + self.view.question.frame.height + 10*yScale
         
         self.sortTableView = UITableView(frame: CGRect(x: 5*xScale, y: endOfMainView, width: 310*xScale, height: 44 * CGFloat(numberOfLines) * yScale))
         self.sortTableView.separatorStyle = .none
@@ -80,8 +73,7 @@ class SortView: View {
         self.addSubview(sortTableView)
     }
     
-    func setCheckButton()
-    {
+    func setCheckButton() {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
@@ -99,8 +91,7 @@ class SortView: View {
         self.addSubview(checkButton)
     }
     
-    required init?(coder aDecoder: NSCoder)
-    {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
