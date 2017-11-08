@@ -78,8 +78,9 @@ class View: UIView{
 
         rectangleCode.fillColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1.0).cgColor
         rectangleCode.zPosition = -1
-        view.layer.addSublayer(rectangleCode)
-        
+        if !exampleCodeText.isEmpty{
+            view.layer.addSublayer(rectangleCode)
+        }
         return exampleCode
     }
 
