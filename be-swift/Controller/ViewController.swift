@@ -61,7 +61,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         } else {
             print ("IS EMPTY")
         }
-        
         return cell
     }
     
@@ -82,7 +81,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             multipleChoiceVC.feedbackAnswer = selectedChallenge.feedbackAnswer
             multipleChoiceVC.tag = selectedChallenge.tags[0] as! String
             present(multipleChoiceVC, animated: true, completion: nil)
-            
         }
         
     }
