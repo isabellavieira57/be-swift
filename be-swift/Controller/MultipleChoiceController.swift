@@ -9,48 +9,29 @@
 
 import UIKit
 
-class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegate
-{
+class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegate {
     
     var multipleChoiceView: MultipleChoiceView!
     var radioButtonController: SSRadioButtonsController?
     var userAnswer = ""
     var selectedButton: SSRadioButton?
     var challenge: Challenge!
-
-//    var resource_link: String = ""
-//    var question: String = ""
-//    var exampleCode: String = ""
-//    var estimatedTime: Int = 0
-//    var options: NSArray = []
-//    var correctAnswer: String = ""
-//    var feedbackAnswer: String = ""
-//    var tag: String = ""
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
-//        multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: "Exemplo", dismissButtonAction: #selector(MultipleChoiceController.dismissButton(_:)), helpButtonAction: #selector(MultipleChoiceController.helpButton(_:)), questionText: "Pergunta? \n hehe", exampleCodeText: "let mySize = Size()\n print(mySize.height)\n struct Size {\n \t var height = 10}", options: ["Option 1", "Option 2", "Option 3", "Option 4"], correctAnswer: "Option 2")
-        
-        //multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: self.tag, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.question, exampleCodeText: self.exampleCode, options: self.options as! Array<String>, correctAnswer: self.correctAnswer)
         multipleChoiceView = MultipleChoiceView(frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.challenge.correctAnswer[0] as! String)
-        
         
         self.view.addSubview(multipleChoiceView)
         self.view = self.multipleChoiceView
-        
         radioButtonController = SSRadioButtonsController(buttons: multipleChoiceView.optionButton1, multipleChoiceView.optionButton2, multipleChoiceView.optionButton3, multipleChoiceView.optionButton4)
         radioButtonController!.delegate = self
         radioButtonController!.shouldLetDeSelect = true
         
-        //self.challenge.correctAnswer = multipleChoiceView.correctAnswer[0]
-        
         multipleChoiceView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
     }
     
-    func didSelectButton(selectedButton: SSRadioButton?)
-    {
+    func didSelectButton(selectedButton: SSRadioButton?) {
         NSLog(" \(selectedButton)" )
         self.selectedButton = selectedButton
     }
@@ -60,13 +41,10 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         print(userAnswer)
     }
     
-    @objc func checkAnswer()
-    {
-        if selectedButton == nil
-        {
+    @objc func checkAnswer() {
+        if selectedButton == nil {
             //message: please select an option
-        } else
-        {
+        } else {
             multipleChoiceView.optionButton1.isUserInteractionEnabled = false
             multipleChoiceView.optionButton2.isUserInteractionEnabled = false
             multipleChoiceView.optionButton3.isUserInteractionEnabled = false
@@ -74,12 +52,10 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
             
             findUserAnswer(button: self.selectedButton!)
             
-            if userAnswer == self.challenge.correctAnswer[0] as! String
-            {
+            if userAnswer == self.challenge.correctAnswer[0] as! String {
                 //feedbackView with message "You answered correctly..."
                 print("CORRECT ANSWER")
-            } else
-            {
+            } else {
                 //remove 'Check' button and add 'Try Again' button
                 self.selectedButton?.setBackgroundImage(UIImage(named: "wrongOption"), for: .selected)
             }
@@ -96,9 +72,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         present(webView, animated: false, completion: nil)
     }
     
-    override func didReceiveMemoryWarning()
-    {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 }
-

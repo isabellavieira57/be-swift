@@ -23,7 +23,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     var cellMenu: [UICollectionViewCell] = []
     var challengeData: [Challenge] = []
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,13 +31,11 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.view = self.challengesView
        
         let levelDAO = LevelDAO()
-        //getChallengesByLevel results are in the handler getLevelData
         levelDAO.getChallengesByLevel(handler: self, level: "level-1", challengesView: challengesView)
         
         self.challengesView.collectionChallenges1.dataSource = self
         self.challengesView.collectionChallenges1.delegate = self
         self.challengesView.collectionChallenges1.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -47,7 +44,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = challengesView.collectionChallenges1.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CollectionChallengesCell
-        
         
         if !self.challengeData.isEmpty {
             let challenge = self.challengeData[indexPath.row]
@@ -60,13 +56,11 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         } else {
             print ("IS EMPTY")
         }
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedChallenge = self.challengeData[indexPath.row]
-       
         switch selectedChallenge.mechanics{
         case "MultipleChoice":
             let multipleChoiceVC = MultipleChoiceController()
@@ -82,14 +76,12 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             present(blankFieldVC, animated: true, completion: nil)
         default:
             print("No mechanics found!")
-            
         }
     }
     
     // This function gets the return of the Firebase asynchronous call and call the respective view
     func getLevelData(level: Level,  challengesView: CollectionChallengeView) {
         self.challengeData = level.challenge.sorted(by: { $0.id < $1.id})
-        
         DispatchQueue.main.async {
             challengesView.collectionChallenges1.reloadData()
         }
