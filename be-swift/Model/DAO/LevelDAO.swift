@@ -24,7 +24,7 @@ class LevelDAO {
     }
     
     // MARK: Methods
-    func getChallengesByLevel (handler: LevelHandler, level: String) {
+    func getChallengesByLevel (handler: LevelHandler, level: String,  challengesView: CollectionChallengeView) {
         
         var challenges: [Challenge] = []
         
@@ -43,7 +43,7 @@ class LevelDAO {
             
             // Parse json data from database
             for item in dataDict {
-                let correct_answer = item.value["correct_answer"] as! String
+                let correct_answer = item.value["correct_answer"] as! NSArray
                 let estimated_time = item.value["estimated_time"] as! Int
                 let feedback_answer = item.value["feedback"] as! String
                 let mechanics = item.value["mechanics"] as! String
@@ -56,14 +56,6 @@ class LevelDAO {
             
                 print (">>>> CHALLENGE")
                 print ("ID:  \(id)")
-//                print (correct_answer)
-//                print (estimated_time)
-//                print (feedback_answer)
-//                print (mechanics)
-//                print (options)
-//                print (tags)
-//                print (question)
-//                print (resource_link)
                 print ("\n")
                 
                 // Create a challenge object
@@ -77,7 +69,7 @@ class LevelDAO {
             let level = Level (star: 3, level: "Level1", xp: 10, challenge: challenges)
             
             // Handler for asynchronous call in LevelController
-            handler.getLevelData(level: level)
+            handler.getLevelData(level: level,  challengesView: challengesView)
             
         })
         

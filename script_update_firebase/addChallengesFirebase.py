@@ -9,6 +9,12 @@ def saveToFirebase (firebase):
 		for row in reader: 
 			print "id: ", row["id"]
 
+			correct_answer = row["correct_answer"].split(",")
+			correct_answers = []
+			for i in correct_answer:
+				correct_answers.append(i)
+			print "correct_answers: ", correct_answers
+
 			multiple_choice = row["options"].split(",")
 			options = []
 			for i in multiple_choice:
@@ -19,7 +25,7 @@ def saveToFirebase (firebase):
 			tags = []
 			for i in topics:
 				tags.append(i)
-			print "options: ", tags
+			print "tags: ", tags
 
 			challenge = {
 					'id': int(row["id"]),	
@@ -29,7 +35,7 @@ def saveToFirebase (firebase):
 					'estimated_time': int(row["estimated_time"]),
 					'mechanics': row["mechanics"],
 					'level': row["level"],			
-					'correct_answer': row["correct_answer"],
+					'correct_answer': correct_answers,
 					'feedback': row["feedback"],
 					'tags': tags,
 					'resource_link': row["resource_link"],

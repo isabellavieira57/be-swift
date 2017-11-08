@@ -11,7 +11,7 @@ import Firebase
 import FirebaseDatabase
 
 protocol LevelHandler {
-    func getLevelData (level: Level)
+    func getLevelData (level: Level, challengesView: CollectionChallengeView)
 }
 
 class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, LevelHandler {
@@ -24,21 +24,23 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print ("GET CHALLENGE")
-        let levelDAO = LevelDAO()
-        
-        //getChallengesByLevel results are in the handler getLevelData
-        levelDAO.getChallengesByLevel(handler: self, level: "level-1")
+       
         
         self.challengesView = CollectionChallengeView()
         self.view.addSubview(challengesView)
         self.view = self.challengesView
+       
+        print ("GET CHALLENGE")
+        let levelDAO = LevelDAO()
+        
+        //getChallengesByLevel results are in the handler getLevelData
+        levelDAO.getChallengesByLevel(handler: self, level: "level-1", challengesView: challengesView)
+        
         
         self.challengesView.collectionChallenges1.dataSource = self
         self.challengesView.collectionChallenges1.delegate = self
         self.challengesView.collectionChallenges1.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
-        //self.challengesView.collectionChallenges1.atualizameubregueti(recebido)
-        
+   
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -61,6 +63,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
 //        var mechanics = "MultipleChoice"
 ////        var mechanics = self.arrayChallenges[indexPath.item].mechanics
 //        var nextController: UIViewController!
@@ -83,16 +87,11 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
 //            nextController = self
 //        }
 //
-//        present(nextController, animated: true, completion: nil)
+       //present(nextController, animated: true, completion: nil)
 ////        }
     }
-        
+//
 //    override func viewDidAppear(_ animated: Bool) {
-//        let controller = BlankFieldViewController()
-//        present(controller, animated: false, completion: nil)
-//        
-//        let levelController = LevelController()
-//        levelController.viewDidLoad()
 //    }
 
     //    @objc func dismissButton(_ sender: Any){
@@ -106,22 +105,50 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     //    }
     
     // This function gets the return of the Firebase asynchronous call and call the respective view
-    func getLevelData(level: Level) {
+    func getLevelData(level: Level,  challengesView: CollectionChallengeView) {
         print ("HANDLER LEVEL ASSINCRONO")
         
         for challenge in level.challenge {
             //print (">>>>> question: \(challenge.question)")
             
             if (challenge.mechanics == "MultipleChoice") {
-                // TODO: Build view for multiple choice
+                let multipleChoiceVC = MultipleChoiceController()
+                multipleChoiceVC.resource_link = challenge.resource_link
+                multipleChoiceVC.question = challenge.question
+                multipleChoiceVC.exampleCode = challenge.exampleCode
+                multipleChoiceVC.estimatedTime = challenge.estimatedTime
+                multipleChoiceVC.options = challenge.options
+                multipleChoiceVC.correctAnswer = challenge.correctAnswer[0] as! String
+                multipleChoiceVC.feedbackAnswer = challenge.feedbackAnswer
+                multipleChoiceVC.tag = challenge.tags[0] as! String
+                //present(multipleChoiceVC, animated: true, completion: nil)
+                //challengesView.collectionChallenges1.selectItem(at: IndexPath(index: challenge.id), animated: true, scrollPosition: UICollectionViewScrollPosition(rawValue: 0))
             } else if (challenge.mechanics == "DragAndDrop") {
                 // TODO: Build view for drag and drop
             } else if (challenge.mechanics == "BlankField") {
-                // TODO: Build view for blank field
+                let blankFieldVC = BlankFieldViewController()
+                blankFieldVC.resource_link = challenge.resource_link
+                blankFieldVC.question = challenge.question
+                blankFieldVC.exampleCode = challenge.exampleCode
+                blankFieldVC.estimatedTime = challenge.estimatedTime
+                blankFieldVC.options = challenge.options
+                blankFieldVC.correctAnswer = challenge.correctAnswer
+                blankFieldVC.feedbackAnswer = challenge.feedbackAnswer
+                blankFieldVC.tag = challenge.tags[0] as! String
+                present(blankFieldVC, animated: true, completion: nil)
             } else if (challenge.mechanics == "FillTheGap") {
                 // TODO: Build view for fill the gap
             } else if (challenge.mechanics == "Sort") {
-                // TODO: Build view for sort
+                let sortVC = SortViewController()
+                sortVC.resource_link = challenge.resource_link
+                sortVC.question = challenge.question
+                sortVC.exampleCode = challenge.exampleCode
+                sortVC.estimatedTime = challenge.estimatedTime
+                sortVC.options = challenge.options
+                sortVC.correctAnswer = challenge.correctAnswer
+                sortVC.feedbackAnswer = challenge.feedbackAnswer
+                sortVC.tag = challenge.tags[0] as! String
+                //present(sortVC, animated: true, completion: nil)
             } else {
                 print ("ERROR: Mechanics not found!")
             }
