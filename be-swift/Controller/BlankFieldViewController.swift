@@ -32,7 +32,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     
     @objc func helpButton(_ sender: Any){
         let webView = WebDocumentationViewController()
-        webView.url = URL(string: "https://stackoverflow.com/")!
+        webView.url = URL(string: self.challenge.resource_link)!
         present(webView, animated: false, completion: nil)
     }
     

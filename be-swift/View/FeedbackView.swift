@@ -11,11 +11,12 @@ import UIKit
 
 class FeedbackView: View {
     
-//    var correctAnswerLabel: UILabel!
-//    var wrongAnswerLabel: UILabel!
     var userAnswerLabel:UILabel!
     var explanationLabel: UILabel!
     var endButton: UIButton!
+    var correctAnswerSortTable: UITableView!
+    var userAnswerSortButton: UIButton!
+    var correctAnswerSortButton: UIButton!
     
     let view = View(frame: CGRect.zero)
     
@@ -30,7 +31,7 @@ class FeedbackView: View {
         
     }
     
-    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>, userAnswer: Array<String>,answerIsRight: Bool, feedback: String)
+    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
     {
         self.init(frame: frame)
     
@@ -48,34 +49,20 @@ class FeedbackView: View {
         self.addSubview(question)
         self.addSubview(code)
         
-        setLabelUserAnswer(correctAnswer: correctAnswer, userAnswer: userAnswer, answerIsRight: answerIsRight)
-        setLabelExplanation(feedback: feedback, correctAnswer: correctAnswer, answerIsRight: answerIsRight)
-        setButton(answerIsRight: answerIsRight)
+        setLabelUserAnswer()
+        setLabelExplanation()
+        setButton()
+//        setTableView()
         
     }
     
-    func setLabelUserAnswer(correctAnswer: Array<String>, userAnswer: Array<String>, answerIsRight: Bool)
+    func setLabelUserAnswer()
     {
         
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
-        let correctAnswerTxt = correctAnswer[0]
-        let userAnswerTxt = userAnswer[0]
-        var labelText: String!
-        var textColor: UIColor!
         
-        if answerIsRight == true
-        {
-            labelText = "You answered correctly: "
-            textColor = UIColor(red:0.82, green:1.9, blue:0.91, alpha:1.0)
-
-        } else
-        {
-            labelText = "Your answer: "
-            textColor = UIColor(red:2.35, green:0.32, blue:0.57, alpha:1.0)
-        }
-        
-        self.userAnswerLabel = UILabel(text: labelText + String(describing: userAnswer), font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: textColor, frame: CGRect(x: 24*xScale,y: 223*yScale, width: 273*xScale, height: 38*yScale))
+        self.userAnswerLabel = UILabel(text: "", font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24*xScale,y: 223*yScale, width: 273*xScale, height: 38*yScale))
         self.userAnswerLabel.lineBreakMode = .byWordWrapping
         self.userAnswerLabel.numberOfLines = 3
         //resizing
@@ -83,25 +70,15 @@ class FeedbackView: View {
         self.addSubview(userAnswerLabel)
     }
     
-    func setLabelExplanation(feedback: String, correctAnswer: Array<String>, answerIsRight: Bool)
+    func setLabelExplanation()
     {
         
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
-        var explanationText: String
-        var correctAnswerText = correctAnswer[0]
-        
-        if answerIsRight == true
-        {
-            explanationText = feedback
-        } else
-        {
-            explanationText = "Correct Answer: \(correctAnswerText) \n \(feedback)"
-        }
         
         let explanationLabelY = self.userAnswerLabel.frame.origin.y + self.userAnswerLabel.frame.height + 10
         
-        self.explanationLabel = UILabel(text: explanationText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24*xScale,y: explanationLabelY, width: 273*xScale, height: 120*yScale))
+        self.explanationLabel = UILabel(text: "", font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24*xScale,y: explanationLabelY, width: 273*xScale, height: 120*yScale))
         self.explanationLabel.lineBreakMode = .byWordWrapping
         self.explanationLabel.numberOfLines = 20
     //resizing
@@ -109,20 +86,12 @@ class FeedbackView: View {
         self.addSubview(explanationLabel)
     }
     
-    func setButton(answerIsRight: Bool) {
+    func setButton() {
         
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        var imageButton: String
-        
-        if answerIsRight == true {
-            imageButton = "continueButton"
-        } else {
-            imageButton = "waitButton"
-        }
-        
-        self.endButton = UIButton(image: imageButton, frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
+        self.endButton = UIButton(image: "continue", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
         let yPostionLastLabel = explanationLabel.frame.minY
         
         if yPostionLastLabel < 568*yScale{
@@ -132,10 +101,47 @@ class FeedbackView: View {
         }
         
         self.addSubview(endButton)
-        
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    func setSortAnswerButtons()
+    {
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+        
+        let sortView = SortView()
+        let tableSortView = sortView.sortTableView
+        
+        let buttonWidth: CGFloat = 137*xScale
+        let buttonHeight: CGFloat = 39*yScale
+        let buttonY: CGFloat = (tableSortView?.frame.origin.y)! + (tableSortView?.frame.height)! + 15*yScale
+        
+        self.userAnswerSortButton = UIButton(frame: CGRect(x: 16*xScale, y: buttonY, width: buttonWidth, height: buttonHeight))
+        self.userAnswerSortButton.setBackgroundImage(UIImage(named: "yourAnswer"), for: .normal)
+        
+        self.correctAnswerSortButton = UIButton(frame: CGRect(x: 167*xScale, y: buttonY, width: buttonWidth, height: buttonHeight))
+        self.correctAnswerSortButton.setBackgroundImage(UIImage(named: "correctAnswer"), for: .normal)
+        
+        self.addSubview(userAnswerSortButton)
+        self.addSubview(correctAnswerSortButton)
+    }
+    
+//    func setTableView()
+//    {
+//        let xScale = screenSize.width/widhtiPhoneSE
+//        let yScale = screenSize.height/heightiPhoneSE
+//
+//        let sortView = SortView()
+//        let tableSortView = sortView.sortTableView
+//
+//        self.correctAnswerSortTable = UITableView(frame: (tableSortView?.frame)!)
+//        self.correctAnswerSortTable.separatorStyle = .none
+//        self.correctAnswerSortTable.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+//
+//        self.addSubview(correctAnswerSortTable)
+//    }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
         fatalError("init(coder:) has not been implemented")
     }
     

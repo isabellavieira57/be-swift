@@ -48,6 +48,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     }
     
     @objc func checkAnswer() {
+        
         if selectedButton == nil {
             //message: please select an option
         } else {
@@ -58,12 +59,25 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
             
             findUserAnswer(button: self.selectedButton!)
             
+            print("USER ANSWER: \(userAnswer)")
+            print("RESPOSTA: \(self.challenge.correctAnswer[0] as! String == "awesome")")
+            
             if userAnswer == self.challenge.correctAnswer[0] as! String {
-                //feedbackView with message "You answered correctly..."
-                print("CORRECT ANSWER")
+                
+                let feedbackController = FeedbackViewController()
+                present(feedbackController, animated: false, completion: nil)
+                
             } else {
                 //remove 'Check' button and add 'Try Again' button
                 self.selectedButton?.setBackgroundImage(UIImage(named: "wrongOption"), for: .selected)
+                
+                if self.multipleChoiceView.checkButton.image(for: .normal) == UIImage(named: "continue")
+                {
+                    self.multipleChoiceView.checkButton.setBackgroundImage(UIImage(named: "tryAgain"), for: .normal)
+                }  else
+                {
+                    //Refresh challenge
+                }
             }
         }
     }

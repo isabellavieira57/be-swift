@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class SortView: View {
+class SortView: View
+{
     
     let view = View(frame: CGRect.zero)
     
@@ -25,13 +26,15 @@ class SortView: View {
     
     var sizeView: CGFloat!
     
-    override init(frame: CGRect) {
+    override init(frame: CGRect)
+    {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
     }
     
-    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>) {
+    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
+    {
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
         self.codeToSort = options
@@ -57,8 +60,8 @@ class SortView: View {
         self.addSubview(code)
     }
     
-    func setTableView() {
-        
+    func setTableView()
+    {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
@@ -73,7 +76,8 @@ class SortView: View {
         self.addSubview(sortTableView)
     }
     
-    func setCheckButton() {
+    func setCheckButton()
+    {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
@@ -91,7 +95,8 @@ class SortView: View {
         self.addSubview(checkButton)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder)
+    {
         fatalError("init(coder:) has not been implemented")
     }
     

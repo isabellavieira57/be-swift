@@ -20,6 +20,7 @@ class MultipleChoiceView: View {
     var optionButton4: SSRadioButton!
     var correctAnswer: String!
     var checkButton: UIButton!
+    var tryAgainButton: UIButton!
     var code: UILabel!
     var sizeView: CGFloat!
     
