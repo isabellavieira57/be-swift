@@ -52,8 +52,15 @@ class View: UIView{
     
     //Pergunta da pagina
     func setQuestion(questionText: String) -> UILabel{
-        let height = questionText.stringHeight
-        question = UILabel(text: questionText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24, y: 78, width: 273, height: height))
+        question = UILabel(text: questionText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24, y: 78, width: 273, height: 300))
+        let widhtiPhoneSE: CGFloat = 320
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+        let height = heightForView(text: questionText, font: question.font, width: question.frame.width)
+        question.frame = CGRect(x: 24*xScale, y: 78*yScale, width: 273*xScale, height: height)
+
         return question
     }
     
@@ -66,21 +73,33 @@ class View: UIView{
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        let height = exampleCodeText.stringHeight
         let heightQuestion = question.frame.height
-        let exampleCode = UILabel(text: exampleCodeText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor.white, frame: CGRect(x: 24, y: heightQuestion, width: 273, height: height))
-        exampleCode.frame.origin = CGPoint(x: 24*xScale, y: heightQuestion + 93*yScale)
+        let exampleCode = UILabel(text: exampleCodeText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor.white, frame: CGRect(x: 24, y: heightQuestion, width: 273, height: 300))
+        let height = heightForView(text: exampleCodeText, font: exampleCode.font, width: exampleCode.frame.width)
+        exampleCode.frame = CGRect(x: 24*xScale, y: heightQuestion + 93*yScale, width: 273*xScale, height: height)
         labelDidChange(exampleCode)
         
         let yPosition = exampleCode.frame.minY
         let rectangleCode = CAShapeLayer()
-        rectangleCode.path = UIBezierPath(roundedRect: CGRect(x: 13*xScale, y: yPosition - 2*yScale, width: 290*xScale, height: (height + 8)*yScale), cornerRadius: 10).cgPath
+        rectangleCode.path = UIBezierPath(roundedRect: CGRect(x: 13*xScale, y: yPosition - 2*yScale, width: 290*xScale, height: height + 8*yScale), cornerRadius: 10).cgPath
 
         rectangleCode.fillColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1.0).cgColor
         rectangleCode.zPosition = -1
-        view.layer.addSublayer(rectangleCode)
-        
+        if !exampleCodeText.isEmpty{
+            view.layer.addSublayer(rectangleCode)
+        }
         return exampleCode
+    }
+    
+    func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = font
+        label.text = text
+        label.sizeToFit()
+        
+        return label.frame.height
     }
 
     //Função para colorir caracteres

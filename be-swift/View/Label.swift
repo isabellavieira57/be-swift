@@ -17,6 +17,8 @@ public extension UILabel {
         self.textColor = textColor
         self.textAlignment = aligment
         self.numberOfLines = 0
+        self.font = UIFont(name: font, size: fontSize)
+
         
         //fonte para diferentes devices
         let modelName = UIDevice.current.modelName

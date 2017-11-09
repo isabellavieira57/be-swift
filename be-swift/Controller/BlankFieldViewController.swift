@@ -14,7 +14,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     var blankField: BlankFieldView!
     var scrollView: UIScrollView!
     var challenge: Challenge!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,3 +56,4 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentSize.height - self.view.frame.height), animated: true)
     }
 }
+

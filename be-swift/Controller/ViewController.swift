@@ -54,7 +54,14 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
         if !self.challengeData.isEmpty {
             let challenge = self.challengeData[indexPath.row]
-            let stars = 0
+            var stars = 0
+            if (challenge.id == 1) {
+                stars = 2
+            } else if (challenge.id == 2) {
+                stars = 3
+            } else if (challenge.id == 3) {
+                stars = 1
+            }
             let isLocked = false
             
             cell.configureCell(numberOfStars: stars, isLocked: isLocked, iconNumber: challenge.id)
