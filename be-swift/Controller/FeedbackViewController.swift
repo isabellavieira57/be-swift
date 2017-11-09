@@ -18,7 +18,7 @@ class FeedbackViewController: UIViewController
     {
         super.viewDidLoad()
         
-//        self.feedbackView = FeedbackView(frame: <#T##CGRect#>, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.challenge.correctAnswer[0] as! String, userAnswer: <#T##Array<String>#>, answerIsRight: <#T##Bool#>, feedback: <#T##String#>)
+//        self.feedbackView = FeedbackView(frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.challenge.correctAnswer, userAnswer: <#T##Array<String>#>, answerIsRight: <#T##Bool#>, feedback: self.challenge.feedbackAnswer)
     }
     
     
