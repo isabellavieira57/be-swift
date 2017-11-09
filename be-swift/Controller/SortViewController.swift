@@ -78,12 +78,24 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @objc func checkAnswer() {
         self.sortView.sortTableView.isEditing = false
+        
+        print("RESPOSTA: \(codeToSort == self.challenge.correctAnswer as! Array<String>)")
+        
         if codeToSort == self.challenge.correctAnswer as! Array<String> {
-            print("CORRECT ANSWER")
-            //feedbackView with message "You answered correctly..."
-        } else {
-            print("WRONG ANSWER")
+            
+            let feedbackController = FeedbackViewController()
+            present(feedbackController, animated: false, completion: nil)
+            
+        } else
+        {
             //remove 'Check' button and add 'Try Again' button
+            if self.sortView.checkButton.image(for: .normal) == UIImage(named: "continue")
+            {
+                self.sortView.checkButton.setBackgroundImage(UIImage(named: "tryAgain"), for: .normal)
+            }  else
+            {
+                //Refresh challenge
+            }
         }
     }
     

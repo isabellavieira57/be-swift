@@ -52,7 +52,6 @@ class FeedbackView: View {
         setLabelUserAnswer()
         setLabelExplanation()
         setButton()
-//        setTableView()
         
     }
     
@@ -125,20 +124,20 @@ class FeedbackView: View {
         self.addSubview(correctAnswerSortButton)
     }
     
-//    func setTableView()
-//    {
-//        let xScale = screenSize.width/widhtiPhoneSE
-//        let yScale = screenSize.height/heightiPhoneSE
-//
-//        let sortView = SortView()
-//        let tableSortView = sortView.sortTableView
-//
-//        self.correctAnswerSortTable = UITableView(frame: (tableSortView?.frame)!)
-//        self.correctAnswerSortTable.separatorStyle = .none
-//        self.correctAnswerSortTable.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
-//
-//        self.addSubview(correctAnswerSortTable)
-//    }
+    func setTableView()
+    {
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+
+        let sortView = SortView()
+        let tableSortView = sortView.sortTableView
+
+        self.correctAnswerSortTable = UITableView(frame: (tableSortView?.frame)!)
+        self.correctAnswerSortTable.separatorStyle = .none
+        self.correctAnswerSortTable.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+
+        self.addSubview(correctAnswerSortTable)
+    }
     
     required init?(coder aDecoder: NSCoder)
     {
