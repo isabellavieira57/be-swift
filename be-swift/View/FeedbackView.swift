@@ -42,6 +42,8 @@ class FeedbackView: View {
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
         let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
+
+        setButton()
         
         let height = sizeView!
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
@@ -52,9 +54,6 @@ class FeedbackView: View {
         self.addSubview(helpButton)
         self.addSubview(question)
         self.addSubview(code)
-        
-        setButton()
-        
     }
     
     func setLabelUserAnswer(labelText: String, textColor: UIColor, yPosition: CGFloat)
@@ -96,6 +95,7 @@ class FeedbackView: View {
         let yScale = screenSize.height/heightiPhoneSE
         
         self.endButton = UIButton(image: "continue", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
+        print("FRAME EXPLANATION: \(explanationLabel.frame)")
         let yPostionLastLabel = explanationLabel.frame.minY
         
         if yPostionLastLabel < 568*yScale{
@@ -108,43 +108,6 @@ class FeedbackView: View {
         }
         
         self.addSubview(endButton)
-    }
-    
-    func setSortAnswerButtons()
-    {
-        let xScale = screenSize.width/widhtiPhoneSE
-        let yScale = screenSize.height/heightiPhoneSE
-        
-        let sortView = SortView()
-        let tableSortView = sortView.sortTableView
-        
-        let buttonWidth: CGFloat = 137*xScale
-        let buttonHeight: CGFloat = 39*yScale
-        let buttonY: CGFloat = (tableSortView?.frame.origin.y)! + (tableSortView?.frame.height)! + 15*yScale
-        
-        self.userAnswerSortButton = UIButton(frame: CGRect(x: 16*xScale, y: buttonY, width: buttonWidth, height: buttonHeight))
-        self.userAnswerSortButton.setBackgroundImage(UIImage(named: "yourAnswer"), for: .normal)
-        
-        self.correctAnswerSortButton = UIButton(frame: CGRect(x: 167*xScale, y: buttonY, width: buttonWidth, height: buttonHeight))
-        self.correctAnswerSortButton.setBackgroundImage(UIImage(named: "correctAnswer"), for: .normal)
-        
-        self.addSubview(userAnswerSortButton)
-        self.addSubview(correctAnswerSortButton)
-    }
-    
-    func setTableView()
-    {
-        let xScale = screenSize.width/widhtiPhoneSE
-        let yScale = screenSize.height/heightiPhoneSE
-
-        let sortView = SortView()
-        let tableSortView = sortView.sortTableView
-
-        self.correctAnswerSortTable = UITableView(frame: (tableSortView?.frame)!)
-        self.correctAnswerSortTable.separatorStyle = .none
-        self.correctAnswerSortTable.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
-
-        self.addSubview(correctAnswerSortTable)
     }
     
     override func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat

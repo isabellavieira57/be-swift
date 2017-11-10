@@ -18,11 +18,15 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var selectedButton: SSRadioButton?
     var challenge: Challenge!
     var scrollView: UIScrollView!
+    var correctAnswer: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        multipleChoiceView = MultipleChoiceView(titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.challenge.correctAnswer[0] as! String)
+        self.correctAnswer = self.challenge.correctAnswer[0] as! String
+        self.correctAnswer.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        multipleChoiceView = MultipleChoiceView(titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.correctAnswer)
         
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: multipleChoiceView.frame.height)
@@ -44,7 +48,8 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     }
     
     func findUserAnswer(button: SSRadioButton) {
-        userAnswer = (button.optionLabel.text)!
+        self.userAnswer = (button.optionLabel.text)! as! String
+        self.userAnswer.trimmingCharacters(in: .whitespacesAndNewlines)
         print(userAnswer)
     }
     
@@ -61,9 +66,13 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
             findUserAnswer(button: self.selectedButton!)
             
             print("USER ANSWER: \(userAnswer)")
-            print("RESPOSTA: \(self.challenge.correctAnswer[0] as! String == "awesome")")
+//            print("RESPOSTA: \(self.correctAnswer == "awesome")")
+            print("RESPOSTA: \(self.userAnswer == self.correctAnswer)")
+            print("CERTO: \(self.correctAnswer)")
+
+            //print("TESTE: \()")
             
-            if userAnswer == self.challenge.correctAnswer[0] as! String {
+            if self.userAnswer == self.correctAnswer {
                 
                 self.answerIsRight = true
                 
