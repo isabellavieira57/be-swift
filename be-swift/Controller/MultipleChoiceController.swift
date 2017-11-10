@@ -14,6 +14,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var multipleChoiceView: MultipleChoiceView!
     var radioButtonController: SSRadioButtonsController?
     var userAnswer = ""
+    var answerIsRight: Bool!
     var selectedButton: SSRadioButton?
     var challenge: Challenge!
     var scrollView: UIScrollView!
@@ -50,7 +51,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     @objc func checkAnswer() {
         
         if selectedButton == nil {
-            //message: please select an option
+            //add message: please select an option
         } else {
             multipleChoiceView.optionButton1.isUserInteractionEnabled = false
             multipleChoiceView.optionButton2.isUserInteractionEnabled = false
@@ -64,10 +65,15 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
             
             if userAnswer == self.challenge.correctAnswer[0] as! String {
                 
+                self.answerIsRight = true
+                
                 let feedbackController = FeedbackViewController()
                 present(feedbackController, animated: false, completion: nil)
                 
             } else {
+
+                self.answerIsRight = false
+
                 //remove 'Check' button and add 'Try Again' button
                 self.selectedButton?.setBackgroundImage(UIImage(named: "wrongOption"), for: .selected)
                 

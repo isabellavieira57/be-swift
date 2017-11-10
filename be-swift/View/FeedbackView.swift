@@ -17,6 +17,7 @@ class FeedbackView: View {
     var correctAnswerSortTable: UITableView!
     var userAnswerSortButton: UIButton!
     var correctAnswerSortButton: UIButton!
+    var sizeView: CGFloat!
     
     let view = View(frame: CGRect.zero)
     
@@ -42,6 +43,9 @@ class FeedbackView: View {
         let question = view.setQuestion(questionText: questionText)
         let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
         
+        let height = sizeView!
+        self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
+        
         self.layer.addSublayer(rectangle)
         self.addSubview(title)
         self.addSubview(dismissButton)
@@ -49,37 +53,38 @@ class FeedbackView: View {
         self.addSubview(question)
         self.addSubview(code)
         
-        setLabelUserAnswer()
-        setLabelExplanation()
         setButton()
         
     }
     
-    func setLabelUserAnswer()
+    func setLabelUserAnswer(labelText: String, textColor: UIColor, yPosition: CGFloat)
     {
         
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        self.userAnswerLabel = UILabel(text: "", font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24*xScale,y: 223*yScale, width: 273*xScale, height: 38*yScale))
-        self.userAnswerLabel.lineBreakMode = .byWordWrapping
-        self.userAnswerLabel.numberOfLines = 3
-        //resizing
+        self.userAnswerLabel = UILabel(text: labelText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: textColor, frame: CGRect(x: 24,y: yPosition, width: 273, height: 38))
+        let height = heightForView(text: labelText, font: userAnswerLabel.font, width: userAnswerLabel.frame.width)
+        userAnswerLabel.frame = CGRect(x: 24*xScale, y: yPosition + 15*yScale, width: 273*xScale, height: height)
+//        self.userAnswerLabel.lineBreakMode = .byWordWrapping
+//        self.userAnswerLabel.numberOfLines = 3
         
         self.addSubview(userAnswerLabel)
     }
     
-    func setLabelExplanation()
+    func setLabelExplanation(labelText: String)
     {
         
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        let explanationLabelY = self.userAnswerLabel.frame.origin.y + self.userAnswerLabel.frame.height + 10
+        let explanationLabelY = self.userAnswerLabel.frame.origin.y + self.userAnswerLabel.frame.height
         
-        self.explanationLabel = UILabel(text: "", font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24*xScale,y: explanationLabelY, width: 273*xScale, height: 120*yScale))
-        self.explanationLabel.lineBreakMode = .byWordWrapping
-        self.explanationLabel.numberOfLines = 20
+        self.explanationLabel = UILabel(text: labelText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24,y: explanationLabelY, width: 273, height: 120))
+        let height = heightForView(text: labelText, font: explanationLabel.font, width: explanationLabel.frame.width)
+        explanationLabel.frame = CGRect(x: 24*xScale, y: explanationLabelY + 10*yScale, width: 273*xScale, height: height)
+//        self.explanationLabel.lineBreakMode = .byWordWrapping
+//        self.explanationLabel.numberOfLines = 20
     //resizing
         
         self.addSubview(explanationLabel)
@@ -95,8 +100,11 @@ class FeedbackView: View {
         
         if yPostionLastLabel < 568*yScale{
             endButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 80*yScale)
+            sizeView = screenSize.height
+
         } else {
-            endButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionLastLabel + 70*yScale)
+            endButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionLastLabel + 62*yScale)
+            sizeView = endButton.frame.minY + 62*yScale
         }
         
         self.addSubview(endButton)
@@ -137,6 +145,18 @@ class FeedbackView: View {
         self.correctAnswerSortTable.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
 
         self.addSubview(correctAnswerSortTable)
+    }
+    
+    override func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat
+    {
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = font
+        label.text = text
+        label.sizeToFit()
+        
+        return label.frame.height
     }
     
     required init?(coder aDecoder: NSCoder)

@@ -46,33 +46,45 @@ class FeedbackViewController: UIViewController
         let correctAnswerTxt = correctAnswer[0]
         let userAnswerTxt = userAnswer[0]
         
+        var labelText: String
+        var textColor: UIColor
+        var yPosition: CGFloat
+        
         if self.challenge.mechanics == "Sort"
         {
-            self.feedbackView.userAnswerLabel.frame.origin.y = self.feedbackView.userAnswerSortButton.frame.origin.y + self.feedbackView.userAnswerSortButton.frame.height + 10
+            yPosition = self.feedbackView.userAnswerSortButton.frame.origin.y + self.feedbackView.userAnswerSortButton.frame.height
+        } else
+        {
+                yPosition = 223
         }
         
         if answerIsRight == true
         {
-            self.feedbackView.userAnswerLabel.text = "You answered correctly: " + correctAnswerTxt
-            self.feedbackView.userAnswerLabel.textColor = UIColor(red:0.28, green:0.64, blue:0.31, alpha:1.0)
+            labelText = "You answered correctly: " + correctAnswerTxt
+            textColor = UIColor(red:0.28, green:0.64, blue:0.31, alpha:1.0)
         } else
         {
-            self.feedbackView.userAnswerLabel.text = "Your answer: " + userAnswerTxt
-            self.feedbackView.userAnswerLabel.textColor = UIColor(red:2.35, green:0.32, blue:0.57, alpha:1.0)
+            labelText = "Your answer: " + userAnswerTxt
+            textColor = UIColor(red:2.35, green:0.32, blue:0.57, alpha:1.0)
         }
+        
+        self.feedbackView.setLabelUserAnswer(labelText: labelText, textColor: textColor, yPosition: yPosition)
     }
     
     func updateLabelExplanation(feedback: String, correctAnswer: Array<String>, answerIsRight: Bool)
     {
         var correctAnswerTxt = correctAnswer[0]
+        var labelText: String
         
         if answerIsRight == true || self.challenge.mechanics == "Sort" || self.challenge.mechanics == "DragAndDrop"
         {
-            self.feedbackView.explanationLabel.text = feedback
+            labelText = feedback
         } else
         {
-            self.feedbackView.explanationLabel.text = "Correct Answer: \(correctAnswerTxt) \n\n \(feedback)"
+            labelText = "Correct Answer: \(correctAnswerTxt) \n\n \(feedback)"
         }
+        
+        self.feedbackView.setLabelExplanation(labelText: labelText)
     }
     
     func updateButton(answerIsRight: Bool)

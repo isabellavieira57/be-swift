@@ -14,6 +14,8 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     var blankField: BlankFieldView!
     var scrollView: UIScrollView!
     var challenge: Challenge!
+    var answerIsRight: Bool!
+    var userAnswer: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,30 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func checkButton(_ sender: Any){
-        print("CHECK")
+        
+        self.blankField.blankField.endEditing(true)
+        
+        let correctAnswer: String = self.challenge.correctAnswer[0] as! String
+        self.userAnswer = self.blankField.blankField.text
+        
+        if userAnswer?.lowercased() == correctAnswer.lowercased()
+        {
+            self.answerIsRight = true
+            
+            let feedbackController = FeedbackViewController()
+            present(feedbackController, animated: false, completion: nil)
+        
+        } else {
+            self.answerIsRight = false
+            //remove 'Check' button and add 'Try Again' button
+            if self.blankField.checkButton.image(for: .normal) == UIImage(named: "continue")
+            {
+                self.blankField.checkButton.setBackgroundImage(UIImage(named: "tryAgain"), for: .normal)
+            }  else
+            {
+                //Refresh challenge
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

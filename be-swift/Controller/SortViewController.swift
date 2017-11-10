@@ -13,10 +13,13 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var sortView: SortView!
     var codeToSort: Array<String> = []
+    var userAnswer: Array<String>!
+    var answerIsRight: Bool!
     var challenge: Challenge!
     var scrollView: UIScrollView!
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         sortView = SortView(frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction: #selector(SortViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.challenge.correctAnswer as! Array<String>)
@@ -39,11 +42,13 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return codeToSort.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.backgroundColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1.0)
         cell.textLabel?.text = self.codeToSort[indexPath.row]
@@ -54,12 +59,14 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     //Enables rearrengement of lines
-    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool
+    {
         return true
     }
     
     //Rearrenges lines
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
+    {
         let rearrangedLine = codeToSort[sourceIndexPath.row]
         codeToSort.remove(at: sourceIndexPath.row)
         codeToSort.insert(rearrangedLine, at: destinationIndexPath.row)
@@ -68,26 +75,34 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     //Disable delete buttons when editing the order of cells
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle
+    {
         return .none
     }
     
-    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool
+    {
         return false
     }
     
-    @objc func checkAnswer() {
+    @objc func checkAnswer()
+    {
         self.sortView.sortTableView.isEditing = false
+        
+        self.userAnswer = codeToSort
         
         print("RESPOSTA: \(codeToSort == self.challenge.correctAnswer as! Array<String>)")
         
-        if codeToSort == self.challenge.correctAnswer as! Array<String> {
+        if userAnswer == self.challenge.correctAnswer as! Array<String>
+        {
+            self.answerIsRight = true
             
             let feedbackController = FeedbackViewController()
             present(feedbackController, animated: false, completion: nil)
             
         } else
         {
+            self.answerIsRight = false
             //remove 'Check' button and add 'Try Again' button
             if self.sortView.checkButton.image(for: .normal) == UIImage(named: "continue")
             {
