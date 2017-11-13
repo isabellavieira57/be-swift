@@ -24,6 +24,9 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: blankField.frame.height)
         self.view.addSubview(scrollView)
         scrollView.addSubview(blankField)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     @objc func dismissButton(_ sender: Any){
@@ -54,6 +57,10 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentSize.height - self.view.frame.height), animated: true)
+    }
+    
+    @objc func dismissKeyboard(){
+        view.endEditing(true)
     }
 }
 
