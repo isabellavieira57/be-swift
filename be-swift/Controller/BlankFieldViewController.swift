@@ -14,6 +14,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     var blankField: BlankFieldView!
     var scrollView: UIScrollView!
     var challenge: Challenge!
+    var textFieldInput: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +36,23 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     
     @objc func helpButton(_ sender: Any){
         let webView = WebDocumentationViewController()
-        webView.url = URL(string: "https://stackoverflow.com/")!
+        webView.url = URL(string: self.challenge.resource_link)!
         present(webView, animated: false, completion: nil)
     }
     
     @objc func checkButton(_ sender: Any){
-        print("CHECK")
+        if textFieldInput == nil{
+            let alert = UIAlertController(title: "Ops!", message: "complete the blank field", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else{
+            if textFieldInput == self.challenge.correctAnswer[0] as! String {
+                print("CORRECT ANSWER")
+            }else{
+                print("WRONG ANSWER")
+                
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -59,6 +71,9 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentSize.height - self.view.frame.height), animated: true)
+        if !(textField.text?.isEmpty)!{
+            textFieldInput = textField.text
+        }
     }
     
     @objc func dismissKeyboard(){

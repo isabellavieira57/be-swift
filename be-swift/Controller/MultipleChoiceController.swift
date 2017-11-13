@@ -49,7 +49,9 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     
     @objc func checkAnswer() {
         if selectedButton == nil {
-            //message: please select an option
+            let alert = UIAlertController(title: "Ops!", message: "Select an option", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         } else {
             multipleChoiceView.optionButton1.isUserInteractionEnabled = false
             multipleChoiceView.optionButton2.isUserInteractionEnabled = false
