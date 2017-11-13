@@ -52,7 +52,9 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         let heightiPhoneSE: CGFloat = 568
         let screenSize = UIScreen.main.bounds
         let yScale = screenSize.height/heightiPhoneSE
-        scrollView.setContentOffset(CGPoint(x: 0, y: textField.frame.minY - 250*yScale), animated: true)
+        if textField.frame.minY + textField.frame.height > self.view.frame.height/2{
+            scrollView.setContentOffset(CGPoint(x: 0, y: textField.frame.minY - 250*yScale), animated: true)
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -62,5 +64,6 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     @objc func dismissKeyboard(){
         view.endEditing(true)
     }
+    
 }
 
