@@ -11,6 +11,8 @@
 		037421731FB61D5B00F686C3 /* BlankFieldFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037421721FB61D5B00F686C3 /* BlankFieldFeedbackViewController.swift */; };
 		037421771FB61D8900F686C3 /* MultipleChoiceFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037421761FB61D8900F686C3 /* MultipleChoiceFeedbackViewController.swift */; };
 		037421791FB6268500F686C3 /* SortFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037421781FB6268500F686C3 /* SortFeedbackView.swift */; };
+		0374217B1FB9E04F00F686C3 /* MultipleChoiceFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374217A1FB9E04F00F686C3 /* MultipleChoiceFeedbackView.swift */; };
+		0374217F1FB9E0DC00F686C3 /* BlankFieldFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0374217E1FB9E0DC00F686C3 /* BlankFieldFeedbackView.swift */; };
 		03A343231FA2433A007827D8 /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A343221FA2433A007827D8 /* SSRadioButton.swift */; };
 		03AD2B9C1FB255B600F58DEA /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD2B9B1FB255B600F58DEA /* FeedbackViewController.swift */; };
 		03AD2B9E1FB32D1300F58DEA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD2B9D1FB32D1300F58DEA /* ViewController.swift */; };
@@ -93,6 +95,8 @@
 		037421721FB61D5B00F686C3 /* BlankFieldFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankFieldFeedbackViewController.swift; sourceTree = "<group>"; };
 		037421761FB61D8900F686C3 /* MultipleChoiceFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceFeedbackViewController.swift; sourceTree = "<group>"; };
 		037421781FB6268500F686C3 /* SortFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFeedbackView.swift; sourceTree = "<group>"; };
+		0374217A1FB9E04F00F686C3 /* MultipleChoiceFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceFeedbackView.swift; sourceTree = "<group>"; };
+		0374217E1FB9E0DC00F686C3 /* BlankFieldFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankFieldFeedbackView.swift; sourceTree = "<group>"; };
 		03A343221FA2433A007827D8 /* SSRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
 		03AD2B9B1FB255B600F58DEA /* FeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		03AD2B9D1FB32D1300F58DEA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +199,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0374217C1FB9E08900F686C3 /* FeedbackViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				03AD2B9B1FB255B600F58DEA /* FeedbackViewController.swift */,
+				037421701FB61D4B00F686C3 /* SortFeedbackViewController.swift */,
+				037421721FB61D5B00F686C3 /* BlankFieldFeedbackViewController.swift */,
+				037421761FB61D8900F686C3 /* MultipleChoiceFeedbackViewController.swift */,
+			);
+			path = FeedbackViewControllers;
+			sourceTree = "<group>";
+		};
+		0374217D1FB9E0AF00F686C3 /* FeedbackViews */ = {
+			isa = PBXGroup;
+			children = (
+				037421781FB6268500F686C3 /* SortFeedbackView.swift */,
+				0374217A1FB9E04F00F686C3 /* MultipleChoiceFeedbackView.swift */,
+				4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */,
+				0374217E1FB9E0DC00F686C3 /* BlankFieldFeedbackView.swift */,
+			);
+			name = FeedbackViews;
+			sourceTree = "<group>";
+		};
 		492E75B71F9125EB00A4AD4F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +345,7 @@
 		4F75F8841F8AB4B4007BABC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0374217D1FB9E0AF00F686C3 /* FeedbackViews */,
 				4F819A6E1FA3A3CF00BD69E0 /* GoogleService-Info.plist */,
 				492E75B71F9125EB00A4AD4F /* Resources */,
 				497703541F8EAA8300102F08 /* Setup */,
@@ -332,10 +359,8 @@
 				4F75F8A61F8AB660007BABC9 /* SortView.swift */,
 				4F75F8A81F8AB66C007BABC9 /* LoginView.swift */,
 				4F75F8AA1F8AB67A007BABC9 /* RegisterView.swift */,
-				4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */,
 				4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */,
 				03C0AD081FB2011800AF0A36 /* CollectionChallengesCell.swift */,
-				037421781FB6268500F686C3 /* SortFeedbackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -343,6 +368,7 @@
 		4F75F8851F8AB4BC007BABC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0374217C1FB9E08900F686C3 /* FeedbackViewControllers */,
 				03AD2B9D1FB32D1300F58DEA /* ViewController.swift */,
 				4F75F8981F8AB5D6007BABC9 /* UserController.swift */,
 				49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */,
@@ -350,10 +376,6 @@
 				03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */,
 				49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */,
 				03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */,
-				03AD2B9B1FB255B600F58DEA /* FeedbackViewController.swift */,
-				037421701FB61D4B00F686C3 /* SortFeedbackViewController.swift */,
-				037421721FB61D5B00F686C3 /* BlankFieldFeedbackViewController.swift */,
-				037421761FB61D8900F686C3 /* MultipleChoiceFeedbackViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -722,10 +744,12 @@
 				03AD2B9E1FB32D1300F58DEA /* ViewController.swift in Sources */,
 				49C4B4061F8EC57100A84C69 /* Button.swift in Sources */,
 				49C3807E1F96645500DC5293 /* TextView.swift in Sources */,
+				0374217B1FB9E04F00F686C3 /* MultipleChoiceFeedbackView.swift in Sources */,
 				037421731FB61D5B00F686C3 /* BlankFieldFeedbackViewController.swift in Sources */,
 				03D9FCDB1F98FC61000512F5 /* SortViewController.swift in Sources */,
 				4F75F8971F8AB5BA007BABC9 /* Notification.swift in Sources */,
 				4F75F8891F8AB51A007BABC9 /* UserDAO.swift in Sources */,
+				0374217F1FB9E0DC00F686C3 /* BlankFieldFeedbackView.swift in Sources */,
 				49F8D6F81FA1267900E7CF9F /* BlankFieldViewController.swift in Sources */,
 				4F75F8521F8AB491007BABC9 /* AppDelegate.swift in Sources */,
 				4F75F8A31F8AB643007BABC9 /* BlankFieldView.swift in Sources */,

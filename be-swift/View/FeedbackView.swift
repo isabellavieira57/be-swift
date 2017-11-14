@@ -11,12 +11,15 @@ import UIKit
 
 class FeedbackView: View {
     
-    var userAnswerLabel:UILabel!
-    var explanationLabel: UILabel!
-    var endButton: UIButton!
-    var correctAnswerSortTable: UITableView!
-    var userAnswerSortButton: UIButton!
-    var correctAnswerSortButton: UIButton!
+    var labelCorrectUserAnswer:UILabel!
+    var labelWrongUserAnswer:UILabel!
+    var labelCorrectAnswer:UILabel!
+    var labelExplanation: UILabel!
+    var buttonEnd: UIButton!
+//    var buttonUserAnswerSort: UIButton!
+//    var buttonCorrectAnswerSort: UIButton!
+//    var sortTableCorrectAnswer: UITableView!
+    
     var sizeView: CGFloat!
     
     let view = View(frame: CGRect.zero)
@@ -24,6 +27,14 @@ class FeedbackView: View {
     let widhtiPhoneSE: CGFloat = 320
     let heightiPhoneSE: CGFloat = 568
     let screenSize = UIScreen.main.bounds
+    let xScale: CGFloat = 0
+    let yScale: CGFloat = 0
+    
+    //variables to set userAnswer labels
+    var userAnswerFrame = CGRect(x: 24,y: 223, width: 273, height: 38)
+    let userAnswerFont = "SanFranciscoText-Medium"
+    let userAnswerFontSize: CGFloat = 16
+    let userAnswerAlignment = NSTextAlignment.left
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,11 +42,14 @@ class FeedbackView: View {
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
         
     }
-    
+
     convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
     {
         self.init(frame: frame)
     
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+        
         let rectangle = view.setTopBar()
         let title = view.setTitle(title: titleText)
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
@@ -56,37 +70,44 @@ class FeedbackView: View {
         self.addSubview(code)
     }
     
-    func setLabelUserAnswer(labelText: String, textColor: UIColor, yPosition: CGFloat)
+    func setLabelUserAnswer(labelText: String)
     {
-        
-        let xScale = screenSize.width/widhtiPhoneSE
-        let yScale = screenSize.height/heightiPhoneSE
-        
-        self.userAnswerLabel = UILabel(text: labelText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: textColor, frame: CGRect(x: 24,y: yPosition, width: 273, height: 38))
-        let height = heightForView(text: labelText, font: userAnswerLabel.font, width: userAnswerLabel.frame.width)
-        userAnswerLabel.frame = CGRect(x: 24*xScale, y: yPosition + 15*yScale, width: 273*xScale, height: height)
+        self.labelCorrectUserAnswer = UILabel(text: "You answered correctly: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:0.28, green:0.64, blue:0.31, alpha:1.0), frame: userAnswerFrame)
+        let heightCorrectAnswer = heightForView(text: self.labelCorrectUserAnswer.text!, font: labelCorrectUserAnswer.font, width: userAnswerFrame.width)
+        self.labelCorrectUserAnswer.frame = CGRect(x: 24*xScale, y: 238*yScale, width: 273*xScale, height: heightCorrectAnswer)
 //        self.userAnswerLabel.lineBreakMode = .byWordWrapping
 //        self.userAnswerLabel.numberOfLines = 3
         
-        self.addSubview(userAnswerLabel)
+        self.labelWrongUserAnswer = UILabel(text: "Your answer: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:2.35, green:0.32, blue:0.57, alpha:1.0), frame: userAnswerFrame)
+        let heightWrongAnswer = heightForView(text: labelWrongUserAnswer.text!, font: labelWrongUserAnswer.font, width: userAnswerFrame.width)
+        self.labelWrongUserAnswer.frame = CGRect(x: 24*xScale, y: 238*yScale, width: 273*xScale, height: heightWrongAnswer)
     }
     
-    func setLabelExplanation(labelText: String)
+    func setCorrectChallengeAnswer(labelText: String)
+    {
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+        
+        let yPosition = self.userAnswerFrame.origin.y + self.userAnswerFrame.height
+        
+        self.labelCorrectAnswer = UILabel(text: "Correct answer: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: userAnswerFrame.origin.x, y: yPosition, width: userAnswerFrame.width, height: userAnswerFrame.height))
+        let height = heightForView(text: labelCorrectAnswer.text!, font: labelCorrectAnswer.font, width: labelCorrectAnswer.frame.width)
+        self.labelCorrectAnswer.frame = CGRect(x: 24*xScale, y: yPosition + 10*yScale, width: 273*xScale, height: height)
+    }
+    
+    func setLabelExplanation(labelText: String, previousLabel: UILabel)
     {
         
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        let explanationLabelY = self.userAnswerLabel.frame.origin.y + self.userAnswerLabel.frame.height
+        let explanationLabelY = previousLabel.frame.origin.y + previousLabel.frame.height
         
-        self.explanationLabel = UILabel(text: labelText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24,y: explanationLabelY, width: 273, height: 120))
-        let height = heightForView(text: labelText, font: explanationLabel.font, width: explanationLabel.frame.width)
-        explanationLabel.frame = CGRect(x: 24*xScale, y: explanationLabelY + 10*yScale, width: 273*xScale, height: height)
+        self.labelExplanation = UILabel(text: "Explanation: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: userAnswerFrame.origin.x,y: explanationLabelY, width: 273, height: 120))
+        let height = heightForView(text: labelText, font: labelExplanation.font, width: labelExplanation.frame.width)
+        self.labelExplanation.frame = CGRect(x: 24*xScale, y: explanationLabelY + 10*yScale, width: 273*xScale, height: height)
 //        self.explanationLabel.lineBreakMode = .byWordWrapping
 //        self.explanationLabel.numberOfLines = 20
-    //resizing
-        
-        self.addSubview(explanationLabel)
     }
     
     func setButton() {
@@ -94,20 +115,18 @@ class FeedbackView: View {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        self.endButton = UIButton(image: "continue", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
-        print("FRAME EXPLANATION: \(explanationLabel.frame)")
-        let yPostionLastLabel = explanationLabel.frame.minY
+        self.buttonEnd = UIButton(image: "continue", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
+        print("FRAME EXPLANATION: \(labelExplanation.frame)")
+        let yPostionLastLabel = labelExplanation.frame.minY
         
         if yPostionLastLabel < 568*yScale{
-            endButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 80*yScale)
+            buttonEnd.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 80*yScale)
             sizeView = screenSize.height
 
         } else {
-            endButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionLastLabel + 62*yScale)
-            sizeView = endButton.frame.minY + 62*yScale
+            buttonEnd.frame.origin = CGPoint(x: 16*xScale, y: yPostionLastLabel + 62*yScale)
+            sizeView = buttonEnd.frame.minY + 62*yScale
         }
-        
-        self.addSubview(endButton)
     }
     
     override func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat

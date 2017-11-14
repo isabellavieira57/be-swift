@@ -66,17 +66,14 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
             findUserAnswer(button: self.selectedButton!)
             
             print("USER ANSWER: \(userAnswer)")
-//            print("RESPOSTA: \(self.correctAnswer == "awesome")")
             print("RESPOSTA: \(self.userAnswer == self.correctAnswer)")
             print("CERTO: \(self.correctAnswer)")
-
-            //print("TESTE: \()")
             
             if self.userAnswer == self.correctAnswer {
                 
                 self.answerIsRight = true
                 
-                let feedbackController = FeedbackViewController()
+                let feedbackController = MultipleChoiceFeedbackViewController()
                 present(feedbackController, animated: false, completion: nil)
                 
             } else {
@@ -95,6 +92,15 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
                 }
             }
         }
+    }
+    
+    func bringVariableValues() -> (challenge: Challenge, correctAnswer: String, userAnswer: String, answerIsRight: Bool)
+    {
+        print("CHALLENGE!! ", self.challenge)
+        print("CORRECT ANSWER!! ", self.correctAnswer)
+        print("BOOL!! ", self.answerIsRight)
+        print("USER ANSWER!! ", self.userAnswer)
+        return (self.challenge, self.correctAnswer, self.userAnswer, self.answerIsRight)
     }
     
     @objc func dismissButton(_ sender: Any){
