@@ -18,6 +18,8 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var challenge: Challenge!
     var scrollView: UIScrollView!
     let progressView = UIProgressView(progressViewStyle: .bar)
+    var time = 0.0
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,8 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         radioButtonController!.shouldLetDeSelect = true
         
         multipleChoiceView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -44,6 +48,10 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         UIView.animate(withDuration: TimeInterval(self.challenge.estimatedTime), animations: { () -> Void in
             self.progressView.setProgress(0.0, animated: true)
         })
+    }
+    
+    @objc func startTime(){
+        time += 0.2
     }
     
     func didSelectButton(selectedButton: SSRadioButton?) {
@@ -71,6 +79,8 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
             
             if userAnswer == self.challenge.correctAnswer[0] as! String {
                 //feedbackView with message "You answered correctly..."
+                timer.invalidate()
+                print(time)
                 print("CORRECT ANSWER")
             } else {
                 //remove 'Check' button and add 'Try Again' button

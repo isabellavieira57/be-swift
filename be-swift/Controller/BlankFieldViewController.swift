@@ -16,6 +16,8 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     var challenge: Challenge!
     var textFieldInput: String!
     let progressView = UIProgressView(progressViewStyle: .bar)
+    var time = 0.0
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,8 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -37,6 +41,10 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         UIView.animate(withDuration: TimeInterval(self.challenge.estimatedTime), animations: { () -> Void in
             self.progressView.setProgress(0.0, animated: true)
         })
+    }
+    
+    @objc func startTime(){
+        time += 0.2
     }
     
     @objc func dismissButton(_ sender: Any){
@@ -56,6 +64,8 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
             self.present(alert, animated: true, completion: nil)
         } else{
             if textFieldInput == self.challenge.correctAnswer[0] as! String {
+                timer.invalidate()
+                print(time)
                 print("CORRECT ANSWER")
             }else{
                 print("WRONG ANSWER")
