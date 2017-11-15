@@ -20,7 +20,8 @@ class FeedbackView: View {
     var sizeView: CGFloat!
     
     let view = View(frame: CGRect.zero)
-    
+
+    //Variables used to automatically update the position and size of elements according to the user's device
     let widhtiPhoneSE: CGFloat = 320
     let heightiPhoneSE: CGFloat = 568
     let screenSize = UIScreen.main.bounds
@@ -47,6 +48,7 @@ class FeedbackView: View {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
 
+        //Set top bar and the challenge's question + code
         let rectangle = view.setTopBar()
         let title = view.setTitle(title: titleText)
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
@@ -54,6 +56,7 @@ class FeedbackView: View {
         let question = view.setQuestion(questionText: questionText)
         let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
         
+        // O sizeView é usado para determinar o tamanho da view e da scrollView
         let height = sizeView!
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
 
@@ -68,10 +71,9 @@ class FeedbackView: View {
     func setLabelUserAnswer(labelText: String)
     {
         self.labelCorrectUserAnswer = UILabel(text: "You answered correctly: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:0.28, green:0.64, blue:0.31, alpha:1.0), frame: userAnswerFrame)
+        // The heightForView function resizes the label
         let heightCorrectAnswer = heightForView(text: self.labelCorrectUserAnswer.text!, font: labelCorrectUserAnswer.font, width: userAnswerFrame.width)
         self.labelCorrectUserAnswer.frame = CGRect(x: 24*xScale, y: 238*yScale, width: 273*xScale, height: heightCorrectAnswer)
-//        self.userAnswerLabel.lineBreakMode = .byWordWrapping
-//        self.userAnswerLabel.numberOfLines = 3
         
         self.labelWrongUserAnswer = UILabel(text: "Your answer: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:2.35, green:0.32, blue:0.57, alpha:1.0), frame: userAnswerFrame)
         let heightWrongAnswer = heightForView(text: labelWrongUserAnswer.text!, font: labelWrongUserAnswer.font, width: userAnswerFrame.width)
@@ -101,8 +103,6 @@ class FeedbackView: View {
         self.labelExplanation = UILabel(text: "Explanation: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: userAnswerFrame.origin.x,y: explanationLabelY, width: 273, height: 120))
         let height = heightForView(text: labelText, font: labelExplanation.font, width: labelExplanation.frame.width)
         self.labelExplanation.frame = CGRect(x: 24*xScale, y: explanationLabelY + 10*yScale, width: 273*xScale, height: height)
-//        self.explanationLabel.lineBreakMode = .byWordWrapping
-//        self.explanationLabel.numberOfLines = 20
     }
     
     func setButton() {
