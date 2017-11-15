@@ -16,6 +16,8 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var challenge: Challenge!
     var scrollView: UIScrollView!
     let progressView = UIProgressView(progressViewStyle: .bar)
+    var time = 0.0
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,8 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.sortView.sortTableView.isEditing = true
         self.codeToSort = self.sortView.codeToSort
         self.sortView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -49,6 +53,10 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         UIView.animate(withDuration: TimeInterval(self.challenge.estimatedTime), animations: { () -> Void in
             self.progressView.setProgress(0.0, animated: true)
         })
+    }
+    
+    @objc func startTime(){
+        time += 0.2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,6 +99,8 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @objc func checkAnswer() {
         self.sortView.sortTableView.isEditing = false
         if codeToSort == self.challenge.correctAnswer as! Array<String> {
+            timer.invalidate()
+            print(time)
             print("CORRECT ANSWER")
             //feedbackView with message "You answered correctly..."
         } else {
