@@ -27,7 +27,7 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
     {
         super.viewDidLoad()
         
-        multChoiceFeedView = FeedbackView(titleText: self.challengeMultChoice.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeMultChoice.question, exampleCodeText: self.challengeMultChoice.exampleCode, endButtonAction: #selector(continueButton))
+        multChoiceFeedView = FeedbackView(titleText: self.challengeMultChoice.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeMultChoice.question, exampleCodeText: self.challengeMultChoice.exampleCode, continueButtonAction: #selector(continueButton))
         
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.multChoiceFeedView.frame.size.width, height: self.multChoiceFeedView.frame.size.height))
         scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
@@ -41,8 +41,8 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         
         self.multChoiceFeedView.addSubview(self.multChoiceFeedView.labelExplanation)
         self.multChoiceFeedView.setButton()
-        updateButtonPosition()
-        self.multChoiceFeedView.addSubview(self.multChoiceFeedView.buttonEnd)
+//        updateButtonPosition()
+        self.multChoiceFeedView.addSubview(self.multChoiceFeedView.buttonContinue)
     }
     
     func setLabels()
@@ -68,23 +68,23 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         }
     }
     
-    func updateButtonPosition()
-    {
-        let widhtiPhoneSE: CGFloat = 320
-        let heightiPhoneSE: CGFloat = 568
-        let screenSize = UIScreen.main.bounds
-        let xScale = screenSize.width/widhtiPhoneSE
-        let yScale = screenSize.height/heightiPhoneSE
-        
-        let yPostionPreviousLabel = self.multChoiceFeedView.labelExplanation.frame.origin.y
-        
-        if yPostionPreviousLabel > 568*yScale
-        {
-            self.multChoiceFeedView.buttonEnd.frame.origin = CGPoint(x: 16*xScale, y: yPostionPreviousLabel + 62*yScale)
-            self.multChoiceFeedView.sizeView = self.multChoiceFeedView.buttonEnd.frame.minY + 62*yScale
-            self.multChoiceFeedView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: self.multChoiceFeedView.sizeView)
-        }
-    }
+//    func updateButtonPosition()
+//    {
+//        let widhtiPhoneSE: CGFloat = 320
+//        let heightiPhoneSE: CGFloat = 568
+//        let screenSize = UIScreen.main.bounds
+//        let xScale = screenSize.width/widhtiPhoneSE
+//        let yScale = screenSize.height/heightiPhoneSE
+//
+//        let yPostionPreviousLabel = self.multChoiceFeedView.labelExplanation.frame.origin.y
+//
+//        if yPostionPreviousLabel > 568*yScale
+//        {
+//            self.multChoiceFeedView.buttonContinue.frame.origin = CGPoint(x: 16*xScale, y: yPostionPreviousLabel + 62*yScale)
+//            self.multChoiceFeedView.sizeView = self.multChoiceFeedView.buttonContinue.frame.minY + 62*yScale
+//            self.multChoiceFeedView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: self.multChoiceFeedView.sizeView)
+//        }
+//    }
     
     func getMultipleChoiceVariables(challenge: Challenge,userAnswer: String, correctAnswer: String, answerIsRight: Bool)
     {

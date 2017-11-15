@@ -15,7 +15,7 @@ class FeedbackView: View {
     var labelWrongUserAnswer:UILabel!
     var labelCorrectAnswer:UILabel!
     var labelExplanation: UILabel!
-    var buttonEnd: UIButton!
+    var buttonContinue: UIButton!
     
     var sizeView: CGFloat!
     
@@ -40,7 +40,7 @@ class FeedbackView: View {
         
     }
 
-    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, endButtonAction: Selector)
+    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, continueButtonAction: Selector)
     {
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
 
@@ -54,9 +54,7 @@ class FeedbackView: View {
         let question = view.setQuestion(questionText: questionText)
         let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
         
-        self.sizeView = screenSize.height
         let height = sizeView!
-
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
 
         self.layer.addSublayer(rectangle)
@@ -112,17 +110,17 @@ class FeedbackView: View {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
                 
-        self.buttonEnd = UIButton(image: "continue", frame: CGRect(x: 16*xScale, y: screenSize.height - 80*yScale, width: 288*xScale, height: 46*yScale), target: self)
-//        let yPostionLastLabel = labelExplanation.frame.origin.y
-//        
-//        if yPostionLastLabel < 568*yScale{
-//            buttonEnd.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 80*yScale)
-//            sizeView = screenSize.height
-//
-//        } else {
-//            buttonEnd.frame.origin = CGPoint(x: 16*xScale, y: yPostionLastLabel + 62*yScale)
-//            sizeView = buttonEnd.frame.minY + 62*yScale
-//        }
+        self.buttonContinue = UIButton(image: "continue", frame: CGRect(x: 16*xScale, y: screenSize.height - 80*yScale, width: 288*xScale, height: 46*yScale), target: self)
+        let yPostionLastLabel = labelExplanation.frame.minY
+        
+        if yPostionLastLabel < 568*yScale{
+            buttonContinue.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 80*yScale)
+            sizeView = screenSize.height
+
+        } else {
+            buttonContinue.frame.origin = CGPoint(x: 16*xScale, y: yPostionLastLabel + 62*yScale)
+            sizeView = buttonContinue.frame.minY + 62*yScale
+        }
     }
     
     override func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat
