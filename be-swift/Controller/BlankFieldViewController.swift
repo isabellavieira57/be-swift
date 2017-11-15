@@ -15,11 +15,12 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     var scrollView: UIScrollView!
     var challenge: Challenge!
     var textFieldInput: String!
+    let progressView = UIProgressView(progressViewStyle: .bar)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        blankField = BlankFieldView(titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(BlankFieldViewController.dismissButton(_:)), helpButtonAction: #selector(BlankFieldViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, checkButtonAction:#selector(BlankFieldViewController.checkButton(_:)), currentView: self)
+        blankField = BlankFieldView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(BlankFieldViewController.dismissButton(_:)), helpButtonAction: #selector(BlankFieldViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, checkButtonAction:#selector(BlankFieldViewController.checkButton(_:)), currentView: self)
         
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: blankField.frame.height)
@@ -28,6 +29,14 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+    }
+    
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated)
+        
+        UIView.animate(withDuration: TimeInterval(self.challenge.estimatedTime), animations: { () -> Void in
+            self.progressView.setProgress(0.0, animated: true)
+        })
     }
     
     @objc func dismissButton(_ sender: Any){

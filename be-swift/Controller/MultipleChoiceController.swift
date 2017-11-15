@@ -17,11 +17,12 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var selectedButton: SSRadioButton?
     var challenge: Challenge!
     var scrollView: UIScrollView!
+    let progressView = UIProgressView(progressViewStyle: .bar)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        multipleChoiceView = MultipleChoiceView(titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.challenge.correctAnswer[0] as! String)
+        multipleChoiceView = MultipleChoiceView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.challenge.correctAnswer[0] as! String)
         
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: multipleChoiceView.frame.height)
@@ -35,6 +36,14 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         radioButtonController!.shouldLetDeSelect = true
         
         multipleChoiceView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
+    }
+    
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated)
+        
+        UIView.animate(withDuration: TimeInterval(self.challenge.estimatedTime), animations: { () -> Void in
+            self.progressView.setProgress(0.0, animated: true)
+        })
     }
     
     func didSelectButton(selectedButton: SSRadioButton?) {
