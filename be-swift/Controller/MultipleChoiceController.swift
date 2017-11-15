@@ -73,9 +73,6 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
                 
                 self.answerIsRight = true
                 
-                let feedbackController = MultipleChoiceFeedbackViewController()
-                present(feedbackController, animated: false, completion: nil)
-                
             } else {
 
                 self.answerIsRight = false
@@ -91,17 +88,21 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
                     //Refresh challenge
                 }
             }
+            
+            let feedbackController = MultipleChoiceFeedbackViewController()
+            feedbackController.getMultipleChoiceVariables(challenge: self.challenge,userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight)
+            present(feedbackController, animated: false, completion: nil)
         }
     }
     
-    func bringVariableValues() -> (challenge: Challenge, correctAnswer: String, userAnswer: String, answerIsRight: Bool)
-    {
-        print("CHALLENGE!! ", self.challenge)
-        print("CORRECT ANSWER!! ", self.correctAnswer)
-        print("BOOL!! ", self.answerIsRight)
-        print("USER ANSWER!! ", self.userAnswer)
-        return (self.challenge, self.correctAnswer, self.userAnswer, self.answerIsRight)
-    }
+//    func bringVariableValues() -> (challenge: Challenge, correctAnswer: String, userAnswer: String, answerIsRight: Bool)
+//    {
+//        print("CHALLENGE!! ", self.challenge)
+//        print("CORRECT ANSWER!! ", self.correctAnswer)
+//        print("BOOL!! ", self.answerIsRight)
+//        print("USER ANSWER!! ", self.userAnswer)
+//        return (self.challenge, self.correctAnswer, self.userAnswer, self.answerIsRight)
+//    }
     
     @objc func dismissButton(_ sender: Any){
         self.dismiss(animated: true, completion: nil)

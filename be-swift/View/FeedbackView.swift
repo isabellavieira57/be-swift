@@ -16,9 +16,6 @@ class FeedbackView: View {
     var labelCorrectAnswer:UILabel!
     var labelExplanation: UILabel!
     var buttonEnd: UIButton!
-//    var buttonUserAnswerSort: UIButton!
-//    var buttonCorrectAnswerSort: UIButton!
-//    var sortTableCorrectAnswer: UITableView!
     
     var sizeView: CGFloat!
     
@@ -43,25 +40,25 @@ class FeedbackView: View {
         
     }
 
-    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
+    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, endButtonAction: Selector)
     {
-        self.init(frame: frame)
-    
+        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
+
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
-        
+
         let rectangle = view.setTopBar()
         let title = view.setTitle(title: titleText)
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
         let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
-
-        setButton()
         
+        self.sizeView = screenSize.height
         let height = sizeView!
+
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
-        
+
         self.layer.addSublayer(rectangle)
         self.addSubview(title)
         self.addSubview(dismissButton)
@@ -114,19 +111,18 @@ class FeedbackView: View {
         
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
-        
-        self.buttonEnd = UIButton(image: "continue", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
-        print("FRAME EXPLANATION: \(labelExplanation.frame)")
-        let yPostionLastLabel = labelExplanation.frame.minY
-        
-        if yPostionLastLabel < 568*yScale{
-            buttonEnd.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 80*yScale)
-            sizeView = screenSize.height
-
-        } else {
-            buttonEnd.frame.origin = CGPoint(x: 16*xScale, y: yPostionLastLabel + 62*yScale)
-            sizeView = buttonEnd.frame.minY + 62*yScale
-        }
+                
+        self.buttonEnd = UIButton(image: "continue", frame: CGRect(x: 16*xScale, y: screenSize.height - 80*yScale, width: 288*xScale, height: 46*yScale), target: self)
+//        let yPostionLastLabel = labelExplanation.frame.origin.y
+//        
+//        if yPostionLastLabel < 568*yScale{
+//            buttonEnd.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 80*yScale)
+//            sizeView = screenSize.height
+//
+//        } else {
+//            buttonEnd.frame.origin = CGPoint(x: 16*xScale, y: yPostionLastLabel + 62*yScale)
+//            sizeView = buttonEnd.frame.minY + 62*yScale
+//        }
     }
     
     override func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat

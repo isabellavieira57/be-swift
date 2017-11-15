@@ -12,7 +12,7 @@ import UIKit
 class FeedbackViewController: UIViewController
 {
     var feedbackView: FeedbackView!
-    var scrollView: UIScrollView!
+//    var scrollView: UIScrollView!
     var challenge: Challenge!
     
     override func viewDidLoad()
@@ -22,8 +22,8 @@ class FeedbackViewController: UIViewController
 //        self.feedbackView = FeedbackView(frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.challenge.correctAnswer as! Array<String>)
 //        self.feedbackView = FeedbackView(frame: CGRect.zero, titleText: "teste", dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: "Perguntaaa?", exampleCodeText: "var teste = 5", options: ["1","2","3","4"], correctAnswer: ["1","2","3","4"])
         
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+//        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+//        scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
         
 //        self.view.addSubview(scrollView)
 //        scrollView.addSubview(feedbackView)
@@ -67,14 +67,14 @@ class FeedbackViewController: UIViewController
 //        }
 //    }
     
-    @objc func dismissButton(_ sender: Any){
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func helpButton(_ sender: Any){
-        let webView = WebDocumentationViewController()
-        webView.url = URL(string: self.challenge.resource_link)!
-        present(webView, animated: false, completion: nil)
-    }
+//    @objc func dismissButton(_ sender: Any){
+//        self.dismiss(animated: true, completion: nil)
+//    }
+//    
+//    @objc func helpButton(_ sender: Any){
+//        let webView = WebDocumentationViewController()
+//        webView.url = URL(string: self.challenge.resource_link)!
+//        present(webView, animated: false, completion: nil)
+//    }
 }
 
