@@ -15,6 +15,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var codeToSort: Array<String> = []
     var challenge: Challenge!
     var scrollView: UIScrollView!
+    let progressView = UIProgressView(progressViewStyle: .bar)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            #selector(SortViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer:
 //            self.challenge.correctAnswer as! Array<String>)
         
-        sortView = SortView(frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction:
+        sortView = SortView(progressView: progressView, frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction:
             #selector(SortViewController.helpButton(_:)), questionText: "Sort the code below so it will build. \nPlease organize variables in alphabetic \norder.", exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer:
             self.challenge.correctAnswer as! Array<String>)
         
@@ -42,6 +43,13 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.sortView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
     }
     
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated)
+        
+        UIView.animate(withDuration: TimeInterval(self.challenge.estimatedTime), animations: { () -> Void in
+            self.progressView.setProgress(0.0, animated: true)
+        })
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return codeToSort.count

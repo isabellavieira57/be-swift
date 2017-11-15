@@ -20,10 +20,11 @@ class BlankFieldView: View {
         super.init(frame: frame)
     }
     
-    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, checkButtonAction: Selector, currentView: UIViewController){
+    convenience init (progressView: UIProgressView, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, checkButtonAction: Selector, currentView: UIViewController){
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
         let rectangle = view.setTopBar()
+        let progressBar = view.timeBar(progressView: progressView)
         let title = view.setTitle(title: titleText)
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
@@ -38,6 +39,7 @@ class BlankFieldView: View {
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
         
         self.layer.addSublayer(rectangle)
+        self.addSubview(progressBar)
         self.addSubview(title)
         self.addSubview(dismissButton)
         self.addSubview(helpButton)
