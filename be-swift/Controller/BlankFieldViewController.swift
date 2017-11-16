@@ -16,9 +16,13 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     var challenge: Challenge!
     var answerIsRight: Bool!
     var userAnswer: String!
+    var correctAnswer: String!
+    var numberOfTries = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.correctAnswer = self.challenge.correctAnswer[0] as! String
         
         blankField = BlankFieldView(titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(BlankFieldViewController.dismissButton(_:)), helpButtonAction: #selector(BlankFieldViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, checkButtonAction:#selector(BlankFieldViewController.checkButton(_:)), currentView: self)
         
@@ -38,31 +42,52 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         present(webView, animated: false, completion: nil)
     }
     
-    @objc func checkButton(_ sender: Any){
+    @objc func checkButton(_ sender: Any)
+    {
         
         self.blankField.blankField.endEditing(true)
         
-        let correctAnswer: String = self.challenge.correctAnswer[0] as! String
         self.userAnswer = self.blankField.blankField.text
         
-        if userAnswer?.lowercased() == correctAnswer.lowercased()
+        if self.userAnswer?.lowercased() == self.correctAnswer.lowercased()
         {
             self.answerIsRight = true
-            
-            let feedbackController = FeedbackViewController()
-            present(feedbackController, animated: false, completion: nil)
+            showFeedback()
         
-        } else {
+        } else
+        {
             self.answerIsRight = false
-            //remove 'Check' button and add 'Try Again' button
-            if self.blankField.checkButton.image(for: .normal) == UIImage(named: "continue")
+            self.numberOfTries += 1
+ 
+            if self.numberOfTries < 2
             {
-                self.blankField.checkButton.setBackgroundImage(UIImage(named: "tryAgain"), for: .normal)
-            }  else
+                self.blankField.setTryAgainButton(tryAgainAction: #selector(setNextTry))
+                
+            } else
             {
-                //Refresh challenge
+                showFeedback()
             }
         }
+    }
+    
+    func showFeedback()
+    {
+        self.numberOfTries = 0
+        
+        let feedbackController = MultipleChoiceFeedbackViewController()
+        feedbackController.getVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight)
+        present(feedbackController, animated: false, completion: nil)
+    }
+    
+    @objc func setNextTry()
+    {
+        //change buttons
+        self.blankField.tryAgainButton.removeFromSuperview()
+        self.blankField.addSubview(self.blankField.checkButton)
+
+        //erase previous answer and let user edit blank field
+        self.blankField.blankField.text = ""
+        self.blankField.blankField.endEditing(false)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

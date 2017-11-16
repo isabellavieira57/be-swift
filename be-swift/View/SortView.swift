@@ -19,6 +19,7 @@ class SortView: View
     var codeToSort: Array<String>!
     var correctAnswer: Array<String>!
     var checkButton: UIButton!
+    var tryAgainButton:UIButton!
     
     let widhtiPhoneSE: CGFloat = 320
     let heightiPhoneSE: CGFloat = 568
@@ -33,7 +34,7 @@ class SortView: View
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
     }
     
-    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
+    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, checkButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
     {
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
@@ -48,7 +49,7 @@ class SortView: View
         let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
         
         setTableView()
-        setCheckButton()
+        setCheckButton(checkButtonAction: checkButtonAction)
         let height = sizeView!
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
         
@@ -76,12 +77,14 @@ class SortView: View
         self.addSubview(sortTableView)
     }
     
-    func setCheckButton()
+    func setCheckButton(checkButtonAction: Selector)
     {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
         self.checkButton = UIButton(image: "check", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
+        self.checkButton.addTarget(target, action: checkButtonAction, for: UIControlEvents.touchUpInside)
+        
         let yPostionTableView = sortTableView.frame.minY
         
         if yPostionTableView < 568*yScale{
@@ -93,6 +96,14 @@ class SortView: View
         }
         
         self.addSubview(checkButton)
+    }
+    
+    func setTryAgainButton(tryAgainAction: Selector)
+    {
+        self.tryAgainButton = UIButton(image: "tryAgain", frame: self.checkButton.frame, target: self)
+        self.checkButton.removeFromSuperview()
+        self.addSubview(tryAgainButton)
+        self.tryAgainButton.addTarget(target, action: tryAgainAction, for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder)

@@ -12,14 +12,14 @@ import UIKit
 class MultipleChoiceFeedbackViewController: FeedbackViewController
 {
     
-    let multChoiceController = MultipleChoiceController()
+//    let multChoiceController = MultipleChoiceController()
     
     var userAnswer: String!
     var correctAnswer: String!
     var answerIsRight: Bool!
     var challengeMultChoice: Challenge!
     var multChoiceFeedView = FeedbackView()
-    var feedbackController = FeedbackViewController()
+//    var feedbackController = FeedbackViewController()
     var scrollView: UIScrollView!
     
     override func viewDidLoad()
@@ -92,7 +92,7 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
 //        }
 //    }
     
-    func getMultipleChoiceVariables(challenge: Challenge,userAnswer: String, correctAnswer: String, answerIsRight: Bool)
+    func getVariables(challenge: Challenge, userAnswer: String, correctAnswer: String, answerIsRight: Bool)
     {
         self.challengeMultChoice = challenge
         self.userAnswer = userAnswer

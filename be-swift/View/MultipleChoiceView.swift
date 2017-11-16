@@ -34,7 +34,8 @@ class MultipleChoiceView: View {
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
     }
     
-    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: String){
+    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, checkButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: String)
+    {
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
         self.correctAnswer = correctAnswer
@@ -47,7 +48,8 @@ class MultipleChoiceView: View {
         code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
         
         createButtons(options: options)
-        setCheckButton()
+        setCheckButton(checkButtonAction: checkButtonAction)
+        
         let height = sizeView!
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
         
@@ -96,12 +98,14 @@ class MultipleChoiceView: View {
         self.addSubview(optionButton4)
     }
     
-    func setCheckButton()
+    func setCheckButton(checkButtonAction: Selector)
     {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
         self.checkButton = UIButton(image: "check", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
+        self.checkButton.addTarget(target, action: checkButtonAction, for: UIControlEvents.touchUpInside)
+        
         let yPostionOptionButton4 = optionButton4.frame.minY
         
         if yPostionOptionButton4 < 437*yScale{
@@ -111,8 +115,15 @@ class MultipleChoiceView: View {
             checkButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionOptionButton4 + 70*yScale)
             sizeView = checkButton.frame.minY + 62*yScale
         }
-        
         self.addSubview(checkButton)
+    }
+    
+    func setTryAgainButton(tryAgainAction: Selector)
+    {
+        self.tryAgainButton = UIButton(image: "tryAgain", frame: self.checkButton.frame, target: self)
+        self.checkButton.removeFromSuperview()
+        self.addSubview(tryAgainButton)
+        self.tryAgainButton.addTarget(target, action: tryAgainAction, for: .touchUpInside)
     }
     
     required init?(coder aDecoder: NSCoder) {

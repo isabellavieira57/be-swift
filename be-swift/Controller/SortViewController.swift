@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GameplayKit
 
 class SortViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -17,30 +18,31 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var answerIsRight: Bool!
     var challenge: Challenge!
     var scrollView: UIScrollView!
+    var numberOfTries = 0
+    var correctAnswer: Array<String>!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        sortView = SortView(frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction: #selector(SortViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.challenge.correctAnswer as! Array<String>)
+        self.correctAnswer = self.challenge.correctAnswer as! Array<String>
         
-//        sortView = SortView(frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction: #selector(SortViewController.helpButton(_:)), questionText: "Sort the code below so it will build. \nPlease organize variables in alphabetic \norder.", exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.challenge.correctAnswer as! Array<String>)
+        sortView = SortView(frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction: #selector(SortViewController.helpButton(_:)), checkButtonAction: #selector(checkAnswer), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.correctAnswer)
         
+        //Set scrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: sortView.frame.height)
-        self.view.addSubview(scrollView)
         
+        self.view.addSubview(scrollView)
         scrollView.addSubview(sortView)
-        //self.view.addSubview(sortView)
-        //self.view = self.sortView
+
+        //Set tableView
         self.sortView.sortTableView.dataSource = self
         self.sortView.sortTableView.delegate = self
         self.sortView.sortTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.sortView.sortTableView.isEditing = true
         self.codeToSort = self.sortView.codeToSort
-        self.sortView.checkButton.addTarget(self, action: #selector(checkAnswer), for: .touchUpInside)
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -54,7 +56,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.textLabel?.text = self.codeToSort[indexPath.row]
         cell.textLabel?.textColor = UIColor.white
         self.sortView.view.labelDidChange(cell.textLabel!)
-        //        labelDidChange(cell.textLabel!)
+
         return cell
     }
     
@@ -91,27 +93,50 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.userAnswer = codeToSort
         
-        print("RESPOSTA: \(codeToSort == self.challenge.correctAnswer as! Array<String>)")
-        
-        if userAnswer == self.challenge.correctAnswer as! Array<String>
+        if userAnswer == self.correctAnswer
         {
             self.answerIsRight = true
-            
-            let feedbackController = FeedbackViewController()
-            present(feedbackController, animated: false, completion: nil)
+            print("CORRECT ANSWER")
+            showFeedback()
             
         } else
         {
             self.answerIsRight = false
-            //remove 'Check' button and add 'Try Again' button
-            if self.sortView.checkButton.image(for: .normal) == UIImage(named: "continue")
+            self.numberOfTries += 1
+            print("WRONG ANSWER")
+            
+            if self.numberOfTries < 2
             {
-                self.sortView.checkButton.setBackgroundImage(UIImage(named: "tryAgain"), for: .normal)
-            }  else
+                self.sortView.setTryAgainButton(tryAgainAction: #selector(setNextTry))
+                
+            } else
             {
-                //Refresh challenge
+                showFeedback()
             }
         }
+    }
+    
+    func showFeedback()
+    {
+        self.numberOfTries = 0
+        
+        let feedbackController = sortFeedbackViewController()
+        feedbackController.getSortVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight)
+        present(feedbackController, animated: false, completion: nil)
+    }
+        
+    @objc func setNextTry()
+    {
+        //change buttons
+        self.sortView.tryAgainButton.removeFromSuperview()
+        self.sortView.addSubview(self.sortView.checkButton)
+        
+        //shuffle the code
+        self.codeToSort = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.codeToSort) as! Array<String>
+        self.sortView.sortTableView.reloadData()
+        
+        //let user sort the code
+        self.sortView.sortTableView.isEditing = true
     }
     
     @objc func dismissButton(_ sender: Any){
