@@ -11,15 +11,11 @@ import UIKit
 
 class MultipleChoiceFeedbackViewController: FeedbackViewController
 {
-    
-//    let multChoiceController = MultipleChoiceController()
-    
     var userAnswer: String!
     var correctAnswer: String!
     var answerIsRight: Bool!
     var challengeMultChoice: Challenge!
     var multChoiceFeedView = FeedbackView()
-//    var feedbackController = FeedbackViewController()
 //    var scrollView: UIScrollView!
     
     override func viewDidLoad()
@@ -31,7 +27,7 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         //Set scrollView
 //        self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.multChoiceFeedView.frame.size.width, height: self.multChoiceFeedView.frame.size.height))
 //        self.scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
-        
+//
 //        self.multChoiceFeedView.addSubview(scrollView)
 //        self.scrollView.addSubview(multChoiceFeedView)
         self.view.addSubview(multChoiceFeedView)
@@ -45,7 +41,9 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         //Set continue button
         self.multChoiceFeedView.setButton(continueButtonAction: #selector(continueButton(_:)))
 //        updateButtonPosition()
-        self.multChoiceFeedView.addSubview(self.multChoiceFeedView.buttonContinue)        
+        self.multChoiceFeedView.addSubview(self.multChoiceFeedView.buttonContinue)
+        
+//        self.multChoiceFeedView.setFrameSize()
     }
     
     func setLabels()
@@ -60,7 +58,6 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
             
             //set the explanation label's parameters
             self.multChoiceFeedView.setLabelExplanation(labelText: self.challengeMultChoice.feedbackAnswer, previousLabel: self.multChoiceFeedView.labelCorrectUserAnswer)
-//            self.feedbackView.setLabelExplanation(labelText: self.challengeMultChoice.feedbackAnswer, previousLabel: self.feedbackView.labelCorrectUserAnswer)
             
         } else {
             // add labels when the user's answer is incorrect
@@ -69,7 +66,6 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
             
             //set the explanation label's parameters
             self.multChoiceFeedView.setLabelExplanation(labelText: self.challengeMultChoice.feedbackAnswer, previousLabel: self.multChoiceFeedView.labelCorrectAnswer)
-//            self.feedbackView.setLabelExplanation(labelText: self.challengeMultChoice.feedbackAnswer, previousLabel: self.feedbackView.labelCorrectAnswer)
         }
     }
 //

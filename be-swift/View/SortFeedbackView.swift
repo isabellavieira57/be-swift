@@ -13,28 +13,15 @@ class SortFeedbackView: FeedbackView
 {
     
 //    var sizeView: CGFloat!
-//
-//    let view = View(frame: CGRect.zero)
+    
     let feedbackView = FeedbackView(frame: CGRect.zero)
 
     var feedbackTableView: UITableView!
     var buttonYourAnswer: UIButton!
     var buttonCorrectAnswer: UIButton!
+    var tableViewFrame: CGRect!
+    var tableViewCode: Array<String>!
 
-    
-//    let widhtiPhoneSE: CGFloat = 320
-//    let heightiPhoneSE: CGFloat = 568
-//    let screenSize = UIScreen.main.bounds
-//    let xScale: CGFloat = 0
-//    let yScale: CGFloat = 0
-//
-//    let userAnswerX: CGFloat = 24
-//    let userAnswerWidth: CGFloat = 273
-//    let userAnswerHeight: CGFloat = 38
-//    let userAnswerFont = "SanFranciscoText-Medium"
-//    let userAnswerFontSize: CGFloat = 16
-//    let userAnswerAlignment = NSTextAlignment.left
-    
     override init(frame: CGRect)
     {
         super.init(frame: frame)
@@ -42,13 +29,11 @@ class SortFeedbackView: FeedbackView
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
     }
 
-    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String)
+    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, options: Array<String>)
     {
-//        self.init(frame: frame)
-        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
+        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         
-        let xScale = screenSize.width/widhtiPhoneSE
-        let yScale = screenSize.height/heightiPhoneSE
+        self.tableViewCode = options
         
         let rectangle = view.setTopBar()
         let title = view.setTitle(title: titleText)
@@ -66,25 +51,36 @@ class SortFeedbackView: FeedbackView
         self.addSubview(question)
     }
     
-    func positionUserLabels()
+    func setSortUserLabels()
     {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        self.labelCorrectUserAnswer.frame.origin.y = self.feedbackTableView.frame.origin.y + self.feedbackTableView.frame.height + 10*yScale
-        self.labelWrongUserAnswer.frame.origin.y = self.buttonYourAnswer.frame.origin.y + self.buttonYourAnswer.frame.height + 10*yScale
+        let labelUserAnswerY = self.feedbackTableView.frame.origin.y + self.feedbackTableView.frame.height + 10*yScale
+        
+        self.labelCorrectUserAnswer = UILabel(text: "You got it! Your answer is correct!", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:0.28, green:0.64, blue:0.31, alpha:1.0), frame: CGRect(x: self.userAnswerX*xScale, y: labelUserAnswerY, width: self.userAnswerWidth*xScale, height: self.userAnswerHeight*yScale))
+        
+        self.labelWrongUserAnswer = UILabel(text: "That's not it! Compare the answers with the buttons above.", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:2.35, green:0.32, blue:0.57, alpha:1.0), frame: CGRect(x: self.userAnswerX*xScale, y: labelUserAnswerY, width: self.userAnswerWidth*xScale, height: self.userAnswerHeight*2*yScale))
+    }
+    
+    func getTableViewFrame(tableViewFrame: CGRect)
+    {
+        self.tableViewFrame = tableViewFrame
     }
 
     func setTableView()
     {
-        let sortView = SortView()
-        let sortTableView = sortView.sortTableView
-
-        self.feedbackTableView = UITableView(frame: (sortTableView?.frame)!)
+        
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+        
+        let numberOfLines = self.tableViewCode.count
+        
+        let endOfMainView = self.view.question.frame.origin.y + self.view.question.frame.height + 10*yScale
+        
+        self.feedbackTableView = UITableView(frame: CGRect(x: 5*xScale, y: endOfMainView, width: 310*xScale, height: 44 * CGFloat(numberOfLines) * yScale))
         self.feedbackTableView.separatorStyle = .none
         self.feedbackTableView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
-
-        self.addSubview(feedbackTableView)
     }
 
     func setCompareAnswersButtons(showYourAnswer: Selector, showCorrectAnswer: Selector)
@@ -97,8 +93,8 @@ class SortFeedbackView: FeedbackView
 
         let buttonWidth: CGFloat = 137*xScale
         let buttonHeight: CGFloat = 39*yScale
-        let buttonY: CGFloat = (tableSortView?.frame.origin.y)! + (tableSortView?.frame.height)! + 15*yScale
-
+        let buttonY: CGFloat = self.feedbackTableView.frame.origin.y + self.feedbackTableView.frame.height + 15*yScale
+        
         self.buttonYourAnswer = UIButton(frame: CGRect(x: 16*xScale, y: buttonY, width: buttonWidth, height: buttonHeight))
         self.buttonYourAnswer.setBackgroundImage(UIImage(named: "yourAnswer"), for: .normal)
         self.buttonYourAnswer.addTarget(target, action: showYourAnswer, for: UIControlEvents.touchUpInside)

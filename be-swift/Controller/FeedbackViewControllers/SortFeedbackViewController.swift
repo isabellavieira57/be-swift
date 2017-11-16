@@ -18,27 +18,33 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     var challengeSort: Challenge!
     var tableViewData: Array<String>!
     var sortFeedView = SortFeedbackView()
-    var scrollView: UIScrollView!
+//    var scrollView: UIScrollView!
     let sortView = SortView()
+    var viewFeedback = FeedbackView()
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
-        self.sortFeedView = SortFeedbackView(titleText: self.challengeSort.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeSort.question)
+        self.sortFeedView = SortFeedbackView(titleText: self.challengeSort.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeSort.question, options: self.userAnswer)
         
         self.tableViewData = self.userAnswer
         
-        //Set scrollView
-        self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.sortFeedView.frame.size.width, height: self.sortFeedView.frame.size.height))
-        self.scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
-        
-        self.sortFeedView.addSubview(scrollView)
-        self.scrollView.addSubview(sortFeedView)
+//        //Set scrollView
+//        self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.sortFeedView.frame.size.width, height: self.sortFeedView.frame.size.height))
+//        self.scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+//        
+//        self.sortFeedView.addSubview(scrollView)
+//        self.scrollView.addSubview(sortFeedView)
+        self.view.addSubview(self.sortFeedView)
         
         //Set tableView
         self.sortFeedView.setTableView()
         self.sortFeedView.addSubview(self.sortFeedView.feedbackTableView)
+        
+        self.sortFeedView.feedbackTableView.dataSource = self
+        self.sortFeedView.feedbackTableView.delegate = self
+        self.sortFeedView.feedbackTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         //Set labels and buttons
         addCompareAnswerButtons()
@@ -51,7 +57,7 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return correctAnswer.count
+        return userAnswer.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -76,20 +82,19 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     
     func addFeedbackLabels()
     {
-        self.feedbackView.setLabelUserAnswer(labelText: "")
-        self.sortFeedView.positionUserLabels()
-        
+        self.sortFeedView.setSortUserLabels()
+
         if self.answerIsRight == true
         {
-            self.sortFeedView.labelCorrectUserAnswer.text = "Congratulations, your answer is correct!"
             self.sortFeedView.addSubview(self.sortFeedView.labelCorrectUserAnswer)
-            
+
             self.sortFeedView.setLabelExplanation(labelText: self.challengeSort.feedbackAnswer, previousLabel: self.sortFeedView.labelCorrectUserAnswer)
         } else
         {
-            self.sortFeedView.labelWrongUserAnswer.text = "That's not it! Compare the answers with the buttons above."
+            self.sortFeedView.labelWrongUserAnswer.frame.origin.y = self.sortFeedView.buttonYourAnswer.frame.origin.y + self.sortFeedView.buttonYourAnswer.frame.height + 10
+
             self.sortFeedView.addSubview(self.sortFeedView.labelWrongUserAnswer)
-            
+
             self.sortFeedView.setLabelExplanation(labelText: self.challengeSort.feedbackAnswer, previousLabel: self.sortFeedView.labelWrongUserAnswer)
         }
         self.sortFeedView.addSubview(self.sortFeedView.labelExplanation)
