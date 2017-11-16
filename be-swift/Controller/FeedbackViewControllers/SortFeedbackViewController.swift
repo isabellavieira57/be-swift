@@ -25,7 +25,7 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     {
         super.viewDidLoad()
 
-        self.sortFeedView = SortFeedbackView(titleText: self.challengeSort.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeSort.question, continueButtonAction: #selector(continueButton))
+        self.sortFeedView = SortFeedbackView(titleText: self.challengeSort.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeSort.question)
         
         self.tableViewData = self.userAnswer
         
@@ -45,7 +45,7 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
         addFeedbackLabels()
         
         //Set continue button
-        self.sortFeedView.setButton()
+        self.sortFeedView.setButton(continueButtonAction: #selector(continueButton(_:)))
         self.sortFeedView.addSubview(self.sortFeedView.buttonContinue)
     }
     
@@ -104,7 +104,7 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     }
     
     @objc func dismissButton(_ sender: Any){
-        self.dismiss(animated: true, completion: nil)
+        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
     }
     
     @objc func helpButton(_ sender: Any){
@@ -115,7 +115,7 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     
     @objc func continueButton(_ sender: Any)
     {
-        self.dismiss(animated: true, completion: nil)
+        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
     }
     
     @objc func showYourAnswer()

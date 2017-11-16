@@ -20,20 +20,22 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
     var challengeMultChoice: Challenge!
     var multChoiceFeedView = FeedbackView()
 //    var feedbackController = FeedbackViewController()
-    var scrollView: UIScrollView!
+//    var scrollView: UIScrollView!
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        multChoiceFeedView = FeedbackView(titleText: self.challengeMultChoice.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeMultChoice.question, exampleCodeText: self.challengeMultChoice.exampleCode, continueButtonAction: #selector(continueButton))
+        multChoiceFeedView = FeedbackView(titleText: self.challengeMultChoice.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeMultChoice.question, exampleCodeText: self.challengeMultChoice.exampleCode)
         
         //Set scrollView
-        self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.multChoiceFeedView.frame.size.width, height: self.multChoiceFeedView.frame.size.height))
-        self.scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+//        self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.multChoiceFeedView.frame.size.width, height: self.multChoiceFeedView.frame.size.height))
+//        self.scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
         
-        self.multChoiceFeedView.addSubview(scrollView)
-        self.scrollView.addSubview(multChoiceFeedView)
+//        self.multChoiceFeedView.addSubview(scrollView)
+//        self.scrollView.addSubview(multChoiceFeedView)
+        self.view.addSubview(multChoiceFeedView)
+        
         
         //Set feedback view labels
         self.multChoiceFeedView.setLabelUserAnswer(labelText: self.userAnswer)
@@ -41,9 +43,9 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         self.multChoiceFeedView.addSubview(self.multChoiceFeedView.labelExplanation)
         
         //Set continue button
-        self.multChoiceFeedView.setButton()
+        self.multChoiceFeedView.setButton(continueButtonAction: #selector(continueButton(_:)))
 //        updateButtonPosition()
-        self.multChoiceFeedView.addSubview(self.multChoiceFeedView.buttonContinue)
+        self.multChoiceFeedView.addSubview(self.multChoiceFeedView.buttonContinue)        
     }
     
     func setLabels()
@@ -57,7 +59,8 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
             self.multChoiceFeedView.addSubview(self.multChoiceFeedView.labelCorrectUserAnswer)
             
             //set the explanation label's parameters
-            self.feedbackView.setLabelExplanation(labelText: self.challengeMultChoice.feedbackAnswer, previousLabel: self.feedbackView.labelCorrectUserAnswer)
+            self.multChoiceFeedView.setLabelExplanation(labelText: self.challengeMultChoice.feedbackAnswer, previousLabel: self.multChoiceFeedView.labelCorrectUserAnswer)
+//            self.feedbackView.setLabelExplanation(labelText: self.challengeMultChoice.feedbackAnswer, previousLabel: self.feedbackView.labelCorrectUserAnswer)
             
         } else {
             // add labels when the user's answer is incorrect
@@ -65,7 +68,8 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
             self.multChoiceFeedView.addSubview(self.multChoiceFeedView.labelCorrectAnswer)
             
             //set the explanation label's parameters
-            self.feedbackView.setLabelExplanation(labelText: self.challengeMultChoice.feedbackAnswer, previousLabel: self.feedbackView.labelCorrectAnswer)
+            self.multChoiceFeedView.setLabelExplanation(labelText: self.challengeMultChoice.feedbackAnswer, previousLabel: self.multChoiceFeedView.labelCorrectAnswer)
+//            self.feedbackView.setLabelExplanation(labelText: self.challengeMultChoice.feedbackAnswer, previousLabel: self.feedbackView.labelCorrectAnswer)
         }
     }
 //
@@ -100,11 +104,13 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         self.answerIsRight = answerIsRight
     }
     
-    @objc func dismissButton(_ sender: Any){
-        self.dismiss(animated: true, completion: nil)
+    @objc func dismissButton(_ sender: Any)
+    {
+        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
     }
     
-    @objc func helpButton(_ sender: Any){
+    @objc func helpButton(_ sender: Any)
+    {
         let webView = WebDocumentationViewController()
         webView.url = URL(string: self.challengeMultChoice.resource_link)!
         present(webView, animated: false, completion: nil)
@@ -112,7 +118,7 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
     
     @objc func continueButton(_ sender: Any)
     {
-        self.dismiss(animated: true, completion: nil)
+        self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
     }
     
 }

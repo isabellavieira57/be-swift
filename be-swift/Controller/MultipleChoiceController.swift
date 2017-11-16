@@ -26,7 +26,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+
         self.correctAnswer = self.challenge.correctAnswer[0] as! String
         self.options = self.challenge.options as! Array<String>
         
@@ -39,7 +39,11 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         self.view.addSubview(scrollView)
         scrollView.addSubview(multipleChoiceView)
 
-        //Set radio buttons (multiple choice buttons)
+        setRadioButtonController()
+    }
+    
+    func setRadioButtonController()
+    {
         radioButtonController = SSRadioButtonsController(buttons: multipleChoiceView.optionButton1, multipleChoiceView.optionButton2, multipleChoiceView.optionButton3, multipleChoiceView.optionButton4)
         radioButtonController!.delegate = self
         radioButtonController!.shouldLetDeSelect = true
@@ -49,6 +53,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     {
         NSLog(" \(selectedButton)" )
         self.selectedButton = selectedButton
+        print("SELECTED BUTTON: ", self.selectedButton?.optionLabel.text)
     }
     
     func findUserAnswer(button: SSRadioButton)
@@ -121,6 +126,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         multipleChoiceView.optionButton3.isUserInteractionEnabled = true
         multipleChoiceView.optionButton4.isUserInteractionEnabled = true
         
+        setRadioButtonController()
     }
     
     @objc func dismissButton(_ sender: Any){

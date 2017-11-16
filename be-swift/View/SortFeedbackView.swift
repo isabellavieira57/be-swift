@@ -42,7 +42,7 @@ class SortFeedbackView: FeedbackView
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
     }
 
-    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, continueButtonAction: Selector)
+    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String)
     {
 //        self.init(frame: frame)
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
@@ -56,8 +56,8 @@ class SortFeedbackView: FeedbackView
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
         
-        let height = sizeView!
-        self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
+//        let height = sizeView!
+//        self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
         
         self.layer.addSublayer(rectangle)
         self.addSubview(title)
@@ -68,8 +68,10 @@ class SortFeedbackView: FeedbackView
     
     func positionUserLabels()
     {
-        self.labelCorrectUserAnswer.frame.origin.y = self.feedbackTableView.frame.origin.y + self.feedbackTableView.frame.height + 10*yScale
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
         
+        self.labelCorrectUserAnswer.frame.origin.y = self.feedbackTableView.frame.origin.y + self.feedbackTableView.frame.height + 10*yScale
         self.labelWrongUserAnswer.frame.origin.y = self.buttonYourAnswer.frame.origin.y + self.buttonYourAnswer.frame.height + 10*yScale
     }
 
@@ -87,6 +89,9 @@ class SortFeedbackView: FeedbackView
 
     func setCompareAnswersButtons(showYourAnswer: Selector, showCorrectAnswer: Selector)
     {
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+        
         let sortView = SortView()
         let tableSortView = sortView.sortTableView
 
