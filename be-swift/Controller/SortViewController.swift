@@ -21,13 +21,17 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var numberOfTries = 0
     var correctAnswer: Array<String>!
     
+    let progressView = UIProgressView(progressViewStyle: .bar)
+    var time = 0.0
+    var timer = Timer()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
         self.correctAnswer = self.challenge.correctAnswer as! Array<String>
         
-        sortView = SortView(frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction: #selector(SortViewController.helpButton(_:)), checkButtonAction: #selector(checkAnswer), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.correctAnswer)
+        sortView = SortView(progressView: progressView, frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction: #selector(SortViewController.helpButton(_:)), checkButtonAction: #selector(checkAnswer), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.correctAnswer)
         
         //Set scrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
@@ -42,6 +46,20 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.sortView.sortTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.sortView.sortTableView.isEditing = true
         self.codeToSort = self.sortView.codeToSort
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated)
+        
+        UIView.animate(withDuration: TimeInterval(self.challenge.estimatedTime), animations: { () -> Void in
+            self.progressView.setProgress(0.0, animated: true)
+        })
+    }
+    
+    @objc func startTime(){
+        time += 0.2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -95,8 +113,11 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         if userAnswer == self.correctAnswer
         {
-            self.answerIsRight = true
+            timer.invalidate()
+            print(time)
             print("CORRECT ANSWER")
+            
+            self.answerIsRight = true
             showFeedback()
             
         } else

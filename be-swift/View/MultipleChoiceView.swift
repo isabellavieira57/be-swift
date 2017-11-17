@@ -34,13 +34,14 @@ class MultipleChoiceView: View {
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
     }
     
-    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, checkButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: String)
+    convenience init (progressView: UIProgressView, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, checkButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: String)
     {
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
         self.correctAnswer = correctAnswer
         
         let rectangle = view.setTopBar()
+        let progressBar = view.timeBar(progressView: progressView)
         let title = view.setTitle(title: titleText)
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
@@ -54,6 +55,7 @@ class MultipleChoiceView: View {
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
         
         self.layer.addSublayer(rectangle)
+        self.addSubview(progressBar)
         self.addSubview(title)
         self.addSubview(dismissButton)
         self.addSubview(helpButton)
@@ -90,7 +92,6 @@ class MultipleChoiceView: View {
         
         optionButton4 = SSRadioButton(frame: CGRect(x: optionButtonX, y: optionButton4Y, width: optionButtonWidth, height: optionButtonHeight))
         optionButton4.optionLabel.text = options[3]
-        
         
         self.addSubview(optionButton1)
         self.addSubview(optionButton2)

@@ -23,6 +23,10 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var options: Array<String>!
     var numberOfTries = 0
     
+    let progressView = UIProgressView(progressViewStyle: .bar)
+    var time = 0.0
+    var timer = Timer()
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -30,7 +34,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         self.correctAnswer = self.challenge.correctAnswer[0] as! String
         self.options = self.challenge.options as! Array<String>
         
-        multipleChoiceView = MultipleChoiceView(titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), checkButtonAction: #selector(checkAnswer), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.options, correctAnswer: self.correctAnswer)
+        multipleChoiceView = MultipleChoiceView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), checkButtonAction: #selector(checkAnswer), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.options, correctAnswer: self.correctAnswer)
         
         //Set scrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
@@ -40,6 +44,20 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         scrollView.addSubview(multipleChoiceView)
 
         setRadioButtonController()
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated)
+        
+        UIView.animate(withDuration: TimeInterval(self.challenge.estimatedTime), animations: { () -> Void in
+            self.progressView.setProgress(0.0, animated: true)
+        })
+    }
+    
+    @objc func startTime(){
+        time += 0.2
     }
     
     func setRadioButtonController()
@@ -66,7 +84,10 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     {
         if selectedButton == nil
         {
-            //add message: please select an option
+            let alert = UIAlertController(title: "Ops!", message: "Select an option", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
         } else
         {
             multipleChoiceView.optionButton1.isUserInteractionEnabled = false
@@ -78,6 +99,10 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
             
             if self.userAnswer.trimmingCharacters(in: .whitespacesAndNewlines) == self.correctAnswer.trimmingCharacters(in: .whitespacesAndNewlines)
             {
+                timer.invalidate()
+                print(time)
+                print("CORRECT ANSWER")
+                
                 self.answerIsRight = true
                 showFeedback()
                 

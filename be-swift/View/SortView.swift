@@ -34,7 +34,7 @@ class SortView: View
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
     }
     
-    convenience init (frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, checkButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
+    convenience init (progressView: UIProgressView, frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, checkButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
 
     {
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
@@ -43,6 +43,7 @@ class SortView: View
         self.correctAnswer = correctAnswer
         
         let rectangle = view.setTopBar()
+        let progressBar = view.timeBar(progressView: progressView)
         let title = view.setTitle(title: titleText)
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
@@ -55,6 +56,7 @@ class SortView: View
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
         
         self.layer.addSublayer(rectangle)
+        self.addSubview(progressBar)
         self.addSubview(title)
         self.addSubview(dismissButton)
         self.addSubview(helpButton)
