@@ -66,14 +66,17 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     
     @objc func checkButton(_ sender: Any)
     {
-        self.blankField.blankField.endEditing(true)
+        self.blankField.blankField.isUserInteractionEnabled = false
         
         if textFieldInput == nil{
             let alert = UIAlertController(title: "Ops!", message: "complete the blank field", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else{
-            if textFieldInput.lowercased() == self.correctAnswer.lowercased() {
+            
+            self.userAnswer = textFieldInput
+            
+            if userAnswer.lowercased() == self.correctAnswer.lowercased() {
                 timer.invalidate()
                 print(time)
                 print("CORRECT ANSWER")
@@ -85,6 +88,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
                 
                 self.answerIsRight = false
                 self.numberOfTries += 1
+                print("TRIES: ", numberOfTries)
                 
                 if self.numberOfTries < 2
                 {
@@ -116,7 +120,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
 
         //erase previous answer and let user edit blank field
         self.blankField.blankField.text = ""
-        self.blankField.blankField.endEditing(false)
+        self.blankField.blankField.isUserInteractionEnabled = true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

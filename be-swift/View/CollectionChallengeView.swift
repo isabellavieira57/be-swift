@@ -53,8 +53,8 @@ class CollectionChallengeView: View {
         self.layer.addSublayer(topBar)
         self.addSubview(starImage)
         self.addSubview(starLabel)
-        self.addSubview(xpImage)
-        self.addSubview(xpLabel)
+//        self.addSubview(xpImage)
+//        self.addSubview(xpLabel)
     }
     
     func setCollectionView()
