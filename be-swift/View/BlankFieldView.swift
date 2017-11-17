@@ -15,6 +15,8 @@ class BlankFieldView: View {
     var code: UILabel!
     var blankField: UITextField!
     var sizeView: CGFloat!
+    var checkButton: UIButton!
+    var tryAgainButton: UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,7 +72,7 @@ class BlankFieldView: View {
     }
     
     func setCheckButton(checkButtonAction: Selector){
-        let checkButton = UIButton(image: "check", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
+        checkButton = UIButton(image: "check", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
         let yPostionBlankField = blankField.frame.minY
         checkButton.addTarget(target, action: checkButtonAction, for: UIControlEvents.touchUpInside)
         
@@ -91,5 +93,12 @@ class BlankFieldView: View {
         self.addSubview(checkButton)
     }
     
+    func setTryAgainButton(tryAgainAction: Selector)
+    {
+        self.tryAgainButton = UIButton(image: "tryAgain", frame: self.checkButton.frame, target: self)
+        self.checkButton.removeFromSuperview()
+        self.addSubview(tryAgainButton)
+        self.tryAgainButton.addTarget(target, action: tryAgainAction, for: .touchUpInside)
+    }
 }
 

@@ -26,8 +26,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
-        
         self.challengesView = CollectionChallengeView()
         self.view.addSubview(challengesView)
         self.view = self.challengesView
