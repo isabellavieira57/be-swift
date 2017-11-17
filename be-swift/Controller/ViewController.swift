@@ -22,6 +22,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     var user: User!
     var cellMenu: [UICollectionViewCell] = []
     var challengeData: [Challenge] = []
+    //var indexPathChallenge: IndexPath = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +91,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             print("No mechanics found!")
         }
     }
+
 //
 //    override func viewDidAppear(_ animated: Bool) {
 //    }
