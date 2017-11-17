@@ -80,7 +80,7 @@ class FeedbackView: View {
         let heightCorrectAnswer = heightForView(text: self.labelCorrectUserAnswer.text!, font: labelCorrectUserAnswer.font, width: labelCorrectUserAnswer.frame.width)
         self.labelCorrectUserAnswer.frame = CGRect(x: userAnswerX*xScale, y: endOfMainView + 20*yScale, width: userAnswerWidth*xScale, height: heightCorrectAnswer)
         
-        self.labelWrongUserAnswer = UILabel(text: "Your answer: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:2.35, green:0.32, blue:0.57, alpha:1.0), frame: CGRect(x: userAnswerX, y: endOfMainView, width: userAnswerWidth, height: userAnswerHeight))
+        self.labelWrongUserAnswer = UILabel(text: "Your answer: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:1.58, green:0.21, blue:0.38, alpha:1.0), frame: CGRect(x: userAnswerX, y: endOfMainView, width: userAnswerWidth, height: userAnswerHeight))
         let heightWrongAnswer = heightForView(text: labelWrongUserAnswer.text!, font: labelWrongUserAnswer.font, width: labelWrongUserAnswer.frame.width)
         self.labelWrongUserAnswer.frame = CGRect(x: userAnswerX*xScale, y: endOfMainView + 20*yScale, width: userAnswerWidth*xScale, height: heightWrongAnswer)
     }

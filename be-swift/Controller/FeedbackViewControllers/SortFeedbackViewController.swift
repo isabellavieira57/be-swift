@@ -125,12 +125,16 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     
     @objc func showYourAnswer()
     {
+        self.sortFeedView.buttonYourAnswer.setBackgroundImage(UIImage(named: "yourAnswerBold"), for: .normal)
+        self.sortFeedView.buttonCorrectAnswer.setBackgroundImage(UIImage(named: "correctAnswer"), for: .normal)
         self.tableViewData = self.userAnswer
         self.sortFeedView.feedbackTableView.reloadData()
     }
     
     @objc func showCorrectAnswer()
     {
+        self.sortFeedView.buttonYourAnswer.setBackgroundImage(UIImage(named: "yourAnswer"), for: .normal)
+        self.sortFeedView.buttonCorrectAnswer.setBackgroundImage(UIImage(named: "correctAnswerBold"), for: .normal)
         self.tableViewData = self.correctAnswer
         self.sortFeedView.feedbackTableView.reloadData()
     }

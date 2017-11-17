@@ -60,7 +60,7 @@ class SortFeedbackView: FeedbackView
         
         self.labelCorrectUserAnswer = UILabel(text: "You got it! Your answer is correct!", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:0.28, green:0.64, blue:0.31, alpha:1.0), frame: CGRect(x: self.userAnswerX*xScale, y: labelUserAnswerY, width: self.userAnswerWidth*xScale, height: self.userAnswerHeight*yScale))
         
-        self.labelWrongUserAnswer = UILabel(text: "That's not it! Compare the answers with the buttons above.", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:2.35, green:0.32, blue:0.57, alpha:1.0), frame: CGRect(x: self.userAnswerX*xScale, y: labelUserAnswerY, width: self.userAnswerWidth*xScale, height: self.userAnswerHeight*2*yScale))
+        self.labelWrongUserAnswer = UILabel(text: "That's not it! Compare the answers with the buttons above.", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:1.58, green:0.21, blue:0.38, alpha:1.0), frame: CGRect(x: self.userAnswerX*xScale, y: labelUserAnswerY, width: self.userAnswerWidth*xScale, height: self.userAnswerHeight*1.4*yScale))
     }
     
     func getTableViewFrame(tableViewFrame: CGRect)
@@ -96,7 +96,7 @@ class SortFeedbackView: FeedbackView
         let buttonY: CGFloat = self.feedbackTableView.frame.origin.y + self.feedbackTableView.frame.height + 15*yScale
         
         self.buttonYourAnswer = UIButton(frame: CGRect(x: 16*xScale, y: buttonY, width: buttonWidth, height: buttonHeight))
-        self.buttonYourAnswer.setBackgroundImage(UIImage(named: "yourAnswer"), for: .normal)
+        self.buttonYourAnswer.setBackgroundImage(UIImage(named: "yourAnswerBold"), for: .normal)
         self.buttonYourAnswer.addTarget(target, action: showYourAnswer, for: UIControlEvents.touchUpInside)
 
         self.buttonCorrectAnswer = UIButton(frame: CGRect(x: 167*xScale, y: buttonY, width: buttonWidth, height: buttonHeight))
