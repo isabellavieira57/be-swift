@@ -893,6 +893,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NRFQJ4SFMZ;
 				INFOPLIST_FILE = "be-swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "isabella-vieira.be-swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -910,6 +911,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NRFQJ4SFMZ;
 				INFOPLIST_FILE = "be-swift/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "isabella-vieira.be-swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
