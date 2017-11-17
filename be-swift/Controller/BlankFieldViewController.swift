@@ -143,10 +143,5 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     @objc func dismissKeyboard(){
         view.endEditing(true)
     }
-    
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
-    }
-    
 }
 
