@@ -50,6 +50,22 @@ class View: UIView{
         return helpButton
     }
     
+    // Barra de tempo
+    func timeBar(progressView: UIProgressView) -> UIProgressView{
+        let widhtiPhoneSE: CGFloat = 320
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+        progressView.frame = CGRect(x: 0, y: 64*yScale, width: 320*xScale, height: 1)
+        progressView.transform = progressView.transform.scaledBy(x: 1, y: 4*yScale)
+        progressView.setProgress(1, animated: false)
+        progressView.trackTintColor = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.0)
+        progressView.tintColor = UIColor(red:0.00, green:0.92, blue:0.55, alpha:1.0)
+        
+        return progressView
+    }
+    
     //Pergunta da pagina
     func setQuestion(questionText: String) -> UILabel{
         question = UILabel(text: questionText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24, y: 78, width: 273, height: 300))
