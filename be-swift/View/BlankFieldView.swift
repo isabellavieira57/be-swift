@@ -17,6 +17,7 @@ class BlankFieldView: View {
     var sizeView: CGFloat!
     var checkButton: UIButton!
     var tryAgainButton: UIButton!
+    var checkButtonFrame: CGRect!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -89,13 +90,13 @@ class BlankFieldView: View {
             checkButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionBlankField + 70*yScale)
             sizeView = checkButton.frame.minY + 62*yScale
         }
-        
+        checkButtonFrame = checkButton.frame
         self.addSubview(checkButton)
     }
     
-    func setTryAgainButton(tryAgainAction: Selector)
-    {
-        self.tryAgainButton = UIButton(image: "tryAgain", frame: self.checkButton.frame, target: self)
+    func setTryAgainButton(tryAgainAction: Selector) {
+        self.tryAgainButton = UIButton(image: "tryAgain", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
+        self.tryAgainButton.frame = checkButtonFrame
         self.checkButton.removeFromSuperview()
         self.addSubview(tryAgainButton)
         self.tryAgainButton.addTarget(target, action: tryAgainAction, for: .touchUpInside)
