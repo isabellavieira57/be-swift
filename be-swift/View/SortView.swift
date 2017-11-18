@@ -91,13 +91,17 @@ class SortView: View
         self.checkButton = UIButton(image: "check", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
         self.checkButton.addTarget(target, action: checkButtonAction, for: UIControlEvents.touchUpInside)
         
-        let yPostionTableView = sortTableView.frame.minY
+        let positionTableView = sortTableView.frame.minY + sortTableView.frame.height
         
-        if yPostionTableView < 568*yScale{
+        print("POSITION TABLEVIEW ",positionTableView)
+        print("MINY TABLEVIEW ",sortTableView.frame.minY)
+        print("HEIGHT TABLEVIEW ",sortTableView.frame.height)
+        
+        if positionTableView < 516*yScale{
             checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 62*yScale)
             sizeView = screenSize.height
         } else {
-            checkButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionTableView + 70*yScale)
+            checkButton.frame.origin = CGPoint(x: 16*xScale, y: positionTableView + 20*yScale)
             sizeView = checkButton.frame.minY + 62*yScale
         }
         
