@@ -111,6 +111,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
 
                 self.answerIsRight = false
                 self.numberOfTries += 1
+//                timer.invalidate()
 
                 if self.numberOfTries < 2
                 {
@@ -152,6 +153,9 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         multipleChoiceView.optionButton4.isUserInteractionEnabled = true
         
         setRadioButtonController()
+        
+//        self.time = 0.0
+//        startTime()
     }
     
     @objc func dismissButton(_ sender: Any){

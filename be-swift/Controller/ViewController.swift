@@ -22,7 +22,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     var user: User!
     var cellMenu: [UICollectionViewCell] = []
     var challengeData: [Challenge] = []
-    //var indexPathChallenge: IndexPath = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,20 +90,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             print("No mechanics found!")
         }
     }
-
-//
-//    override func viewDidAppear(_ animated: Bool) {
-//    }
-
-    //    @objc func dismissButton(_ sender: Any){
-    //
-    //    }
-    //
-    //    @objc func helpButton(_ sender: Any){
-    //        //mandar para doc apple
-    //        let webView = WebDocumentationViewController()
-    //        present(webView, animated: false, completion: nil)
-    //    }
     
     // This function gets the return of the Firebase asynchronous call and call the respective view
     func getLevelData(level: Level,  challengesView: CollectionChallengeView) {
