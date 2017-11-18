@@ -90,12 +90,10 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
                 self.numberOfTries += 1
                 print("TRIES: ", numberOfTries)
                 
-                if self.numberOfTries < 2
-                {
+                if self.numberOfTries < 2 {
                     self.blankField.setTryAgainButton(tryAgainAction: #selector(setNextTry))
                     
-                } else
-                {
+                } else{
                     showFeedback()
                 }
                 
