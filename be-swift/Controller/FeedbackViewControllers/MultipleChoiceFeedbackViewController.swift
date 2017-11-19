@@ -16,7 +16,8 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
     var answerIsRight: Bool!
     var challengeMultChoice: Challenge!
     var multChoiceFeedView = FeedbackView()
-//    var scrollView: UIScrollView!
+    var scrollView: UIScrollView!
+    var sizeView: CGFloat!
     
     override func viewDidLoad()
     {
@@ -24,14 +25,7 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         
         multChoiceFeedView = FeedbackView(titleText: self.challengeMultChoice.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeMultChoice.question, exampleCodeText: self.challengeMultChoice.exampleCode)
         
-        //Set scrollView
-//        self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.multChoiceFeedView.frame.size.width, height: self.multChoiceFeedView.frame.size.height))
-//        self.scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
-//
-//        self.multChoiceFeedView.addSubview(scrollView)
-//        self.scrollView.addSubview(multChoiceFeedView)
-        self.view.addSubview(multChoiceFeedView)
-        
+        //self.view.addSubview(multChoiceFeedView)
         
         //Set feedback view labels
         self.multChoiceFeedView.setLabelUserAnswer(labelText: self.userAnswer)
@@ -40,10 +34,15 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         
         //Set continue button
         self.multChoiceFeedView.setButton(continueButtonAction: #selector(continueButton(_:)))
-//        updateButtonPosition()
         self.multChoiceFeedView.addSubview(self.multChoiceFeedView.buttonContinue)
+        sizeView = multChoiceFeedView.sizeView
         
-//        self.multChoiceFeedView.setFrameSize()
+        //Set scrollView
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: sizeView)
+        self.scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+        self.view.addSubview(scrollView)
+        scrollView.addSubview(self.multChoiceFeedView)
     }
     
     func setLabels()
@@ -114,6 +113,7 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
     
     @objc func continueButton(_ sender: Any)
     {
+        print("DISMMISS")
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
     }
     

@@ -18,9 +18,10 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     var challengeSort: Challenge!
     var tableViewData: Array<String>!
     var sortFeedView = SortFeedbackView()
-//    var scrollView: UIScrollView!
+    var scrollView: UIScrollView!
     let sortView = SortView()
     var viewFeedback = FeedbackView()
+    var sizeView: CGFloat!
     
     override func viewDidLoad()
     {
@@ -30,13 +31,7 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
         
         self.tableViewData = self.userAnswer
         
-//        //Set scrollView
-//        self.scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.sortFeedView.frame.size.width, height: self.sortFeedView.frame.size.height))
-//        self.scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
-//        
-//        self.sortFeedView.addSubview(scrollView)
-//        self.scrollView.addSubview(sortFeedView)
-        self.view.addSubview(self.sortFeedView)
+        //self.view.addSubview(self.sortFeedView)
         
         //Set tableView
         self.sortFeedView.setTableView()
@@ -53,6 +48,14 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
         //Set continue button
         self.sortFeedView.setButton(continueButtonAction: #selector(continueButton(_:)))
         self.sortFeedView.addSubview(self.sortFeedView.buttonContinue)
+        sizeView = sortFeedView.sizeView
+        
+        //Set scrollView
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: sizeView)
+        self.scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+        self.view.addSubview(scrollView)
+        scrollView.addSubview(self.sortFeedView)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -120,6 +123,7 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     
     @objc func continueButton(_ sender: Any)
     {
+        
         self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
     }
     
