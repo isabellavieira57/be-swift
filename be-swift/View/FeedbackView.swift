@@ -121,11 +121,11 @@ class FeedbackView: View {
         let yPostionLastLabel = labelExplanation.frame.minY
         
         if yPostionLastLabel < 568*yScale{
-            buttonContinue.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 80*yScale)
+            buttonContinue.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 62*yScale)
             self.sizeView = screenSize.height
 
         } else {
-            buttonContinue.frame.origin = CGPoint(x: 16*xScale, y: yPostionLastLabel + 62*yScale)
+            buttonContinue.frame.origin = CGPoint(x: 16*xScale, y: yPostionLastLabel + 70*yScale)
             self.sizeView = buttonContinue.frame.minY + 62*yScale
         }
             print("SIZE VIEW: ", sizeView)
