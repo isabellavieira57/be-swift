@@ -1,10 +1,10 @@
-////
-////  RegisterViewController.swift
-////  be-swift
-////
-////  Created by Ana Müller on 11/19/17.
-////  Copyright © 2017 Isabella Vieira. All rights reserved.
-////
+//
+//  RegisterViewController.swift
+//  be-swift
+//
+//  Created by Ana Müller on 11/19/17.
+//  Copyright © 2017 Isabella Vieira. All rights reserved.
+//
 
 import Foundation
 import UIKit
@@ -40,42 +40,45 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
-//        if pickerView == self.registerView.pickerCountry
-//        {
-            return self.countryList.count
-//        }
-//        else if pickerView == self.registerView.pickerCourse
-//        {
-//            return self.courseList.count
-//        }
+        var numberOfRows = 0
+        
+        if pickerView == self.registerView.pickerCountry
+        {
+            numberOfRows = self.countryList.count
+        }
+        else if pickerView == self.registerView.pickerCourse
+        {
+            numberOfRows = self.courseList.count
+        }
+        return numberOfRows
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!
     {
-//        if pickerView == self.registerView.pickerCountry
-//        {
-            return self.countryList[row]
-//        }
-//        else if pickerView == self.registerView.pickerCourse
-//        {
-//            return self.courseList[row]
-//        }
+        var listItem = ""
+        
+        if pickerView == self.registerView.pickerCountry
+        {
+            listItem = self.countryList[row]
+        }
+        else if pickerView == self.registerView.pickerCourse
+        {
+            listItem = self.courseList[row]
+        }
+        return listItem
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-//        if pickerView == self.registerView.pickerCountry
-//        {
+        if pickerView == self.registerView.pickerCountry
+        {
             self.registerView.countryText.text = self.countryList[row]
             self.registerView.countryText.endEditing(true)
-//        }
-//        else if pickerView == self.registerView.pickerCourse
-//        {
-//            self.registerView.courseText.text = self.courseList[row]
-//            self.registerView.courseText.endEditing(true)
-//        }
+        }
+        else if pickerView == self.registerView.pickerCourse
+        {
+            self.registerView.courseText.text = self.courseList[row]
+            self.registerView.courseText.endEditing(true)
+        }
     }
 }
-
-
-
