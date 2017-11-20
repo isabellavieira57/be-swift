@@ -53,7 +53,7 @@ class FeedbackView: View {
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
-        self.code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
+        self.code = view.setExampleCode(exampleCodeText: exampleCodeText!, view: self)
         
         // O sizeView é usado para determinar o tamanho da view e da scrollView
 //        let height = sizeView!
@@ -115,7 +115,7 @@ class FeedbackView: View {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
                 
-        self.buttonContinue = UIButton(image: "continue", frame: CGRect(x: 16*xScale, y: screenSize.height - 80*yScale, width: 288*xScale, height: 46*yScale), target: self)
+        self.buttonContinue = UIButton(image: "continue", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
         self.buttonContinue.addTarget(target, action: continueButtonAction, for: .touchUpInside)
         
         let yPostionLastLabel = labelExplanation.frame.minY

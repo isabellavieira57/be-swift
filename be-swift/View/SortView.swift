@@ -49,7 +49,7 @@ class SortView: View
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
-        let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
+        let code = view.setExampleCode(exampleCodeText: exampleCodeText!, view: self)
         
         setTableView()
         setCheckButton(checkButtonAction: checkButtonAction)

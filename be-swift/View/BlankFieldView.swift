@@ -33,7 +33,7 @@ class BlankFieldView: View {
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
         print("FRAME 3 \(question.frame)")
-        code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
+        code = view.setExampleCode(exampleCodeText: exampleCodeText!, view: self)
         
         self.setBlankField()
         blankField.delegate = currentView as? UITextFieldDelegate

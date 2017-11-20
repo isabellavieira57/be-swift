@@ -9,7 +9,14 @@
 import Foundation
 import UIKit
 
-class blankFieldFeedbackViewController: FeedbackViewController
+class BlankFieldFeedbackViewController: FeedbackViewController
 {
+    var registerView: RegisterView!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        registerView = RegisterView()
+        self.view.addSubview(registerView)
+    }
 }

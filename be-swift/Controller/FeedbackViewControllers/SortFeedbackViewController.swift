@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, UITableViewDataSource
+class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, UITableViewDataSource
 {
     
     var userAnswer: Array<String>!

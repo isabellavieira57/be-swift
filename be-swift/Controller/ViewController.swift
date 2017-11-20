@@ -30,7 +30,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.challengesView = CollectionChallengeView()
         self.view.addSubview(challengesView)
         self.view = self.challengesView
-       
+        
         print ("GET CHALLENGE")
         let levelDAO = LevelDAO()
         

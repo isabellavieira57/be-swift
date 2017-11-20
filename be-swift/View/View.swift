@@ -81,7 +81,7 @@ class View: UIView{
     }
     
     //Codigo de exemplo da questão
-    func setExempleCode(exampleCodeText: String, view: UIView) -> UILabel{
+    func setExampleCode(exampleCodeText: String, view: UIView) -> UILabel{
         
         let widhtiPhoneSE: CGFloat = 320
         let heightiPhoneSE: CGFloat = 568

@@ -141,7 +141,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         self.numberOfTries = 0
         
-        let feedbackController = sortFeedbackViewController()
+        let feedbackController = SortFeedbackViewController()
         feedbackController.getSortVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight)
         present(feedbackController, animated: false, completion: nil)
     }
