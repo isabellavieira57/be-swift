@@ -20,7 +20,7 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
     {
         super.viewDidLoad()
         
-        registerView = RegisterView()
+        registerView = RegisterView(goBack: #selector(goBack), signUp: #selector(checkInfo))
 
         self.registerView.pickerCountry.delegate = self
         self.registerView.pickerCourse.delegate = self
@@ -53,7 +53,7 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         return numberOfRows
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
         var listItem = ""
         
@@ -68,7 +68,7 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         return listItem
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         if pickerView == self.registerView.pickerCountry
         {
@@ -81,4 +81,78 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
             self.registerView.courseText.endEditing(true)
         }
     }
+  
+    @objc func checkInfo()
+    {
+        
+        let nameTxt = self.registerView.nameText.text
+        let emailTxt = self.registerView.emailText.text
+        let passwordTxt = self.registerView.passwordText.text
+        let passwordCheckTxt = self.registerView.passwordConfirmationText.text
+        let countryTxt = self.registerView.countryText.text
+        let courseTxt = self.registerView.courseText.text
+        
+//        self.registerView.dismissKeyboard()
+        
+        if nameTxt == "" || emailTxt == "" || passwordTxt == "" || passwordCheckTxt == "" || countryTxt == "" || courseTxt == ""
+        {
+            showAlert(title: "Ops!", message: "Please complete all text fields.")
+            return
+            
+        } else if (passwordTxt?.count)! < 6
+        {
+            showAlert(title: "Ops!", message: "Your password should be at least 6 characters long.")
+            return
+            
+        } else if passwordTxt != passwordCheckTxt
+        {
+            showAlert(title: "Ops!", message: "The passwords you typed don't match.")
+            return
+            
+        } else if isValidEmail(testStr: emailTxt!) == false
+        {
+            showAlert(title: "Ops!", message: "Please type a valid e-mail address.")
+            return
+            
+        } else
+        {
+            //Firebase - create user
+            showAlert(title: "Welcome!", message: "Your account was successfully created!")
+            openMainController()
+        }
+    }
+    
+    func isValidEmail(testStr:String) -> Bool
+    {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
+    
+    func openMainController()
+    {
+        let controller = ViewController()
+        present(controller, animated: true, completion: nil)
+        
+        //        //change root view controller
+        //        let delegate = UIApplication.shared.delegate as! AppDelegate
+        //        let window = delegate.window
+        //        window?.rootViewController = controller
+    }
+    
+    func showAlert(title: String, message: String)
+    {
+        let alert = UIAlertController(title: "Ops!", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func goBack(_ sender: Any)
+    {
+        self.dismiss(animated: false, completion: nil)
+    }
 }
+
+
+

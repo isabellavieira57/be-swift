@@ -20,11 +20,7 @@ class LogInViewController: UIViewController
     let heightiPhoneSE: CGFloat = 568
     let screenSize = UIScreen.main.bounds
 
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//        self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
-//    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +32,9 @@ class LogInViewController: UIViewController
         
         self.backButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         self.logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
     }
     
     @objc func logIn()
@@ -66,12 +65,16 @@ class LogInViewController: UIViewController
         emailText.placeholder = "  E-mail"
         emailText.borderStyle = .none
         emailText.layer.cornerRadius = 5
+        emailText.keyboardType = .emailAddress
+        emailText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         
         passwordText = UITextField(frame: emailText.frame, font: textFont, fontSize: textSize)
         passwordText.frame.origin.y = emailText.frame.origin.y + emailText.frame.height + 15*yScale
         passwordText.placeholder = "  Password"
         passwordText.borderStyle = .none
         passwordText.layer.cornerRadius = 5
+        passwordText.isSecureTextEntry = true
+        passwordText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         
         self.view.addSubview(emailText)
         self.view.addSubview(passwordText)
@@ -96,13 +99,17 @@ class LogInViewController: UIViewController
         rectangle.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 320, height: 64))).cgPath
         rectangle.fillColor = UIColor(red:0.31, green:0.49, blue:0.95, alpha:1.0).cgColor
         
-        let title = UILabel(text: "Log in", font: "SanFranciscoText-Semibold", fontSize: 17, aligment: .center, textColor: UIColor.white, frame: CGRect(x: 0, y: 31, width: 320, height: 20))
+        let title = UILabel(text: "Log in", font: "SanFranciscoText-Semibold", fontSize: 18, aligment: .center, textColor: UIColor.white, frame: CGRect(x: 0, y: 31, width: 320, height: 20))
         
         self.backButton = UIButton(image: "backButton", frame: CGRect(x: 12, y: 27, width: 14.29, height: 24), target: self)
         
         self.view.layer.addSublayer(rectangle)
         self.view.addSubview(title)
         self.view.addSubview(backButton)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 
 }

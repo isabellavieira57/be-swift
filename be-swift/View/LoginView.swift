@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
-class LoginView: View {
-    
+class LoginView: UIView
+{
+
 }

@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //registerForPushNotifications()
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window!.rootViewController = RegisterViewController()
+        window!.rootViewController = WelcomeViewController()
         window!.makeKeyAndVisible()
         
         return true
