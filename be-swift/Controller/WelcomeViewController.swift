@@ -15,6 +15,10 @@ class WelcomeViewController: UIViewController
     var registerButton: UIButton!
     var logInButton: UIButton!
     var logInLabel: UILabel!
+    
+    let widhtiPhoneSE: CGFloat = 320
+    let heightiPhoneSE: CGFloat = 568
+    let screenSize = UIScreen.main.bounds
 
     override func viewDidLoad()
     {
@@ -26,23 +30,18 @@ class WelcomeViewController: UIViewController
 
     func setElements()
     {
-        let widhtiPhoneSE: CGFloat = 320
-        let heightiPhoneSE: CGFloat = 568
-        let screenSize = UIScreen.main.bounds
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
         logoImage = UIImageView(frame: CGRect(x: 20*xScale, y: 140*yScale, width: 280*xScale, height: 50*yScale))
         logoImage.image = UIImage(named: "mainLogo")
         
-//        let registerButtonY = logoImage.frame.origin.y + logoImage.frame.height
-        
-        registerButton = UIButton(image: "createAccount", frame: CGRect(x: 15*xScale, y: 340*yScale, width: 288, height: 46), target: self)
+        registerButton = UIButton(image: "createAccount", frame: CGRect(x: 15, y: 340, width: 288, height: 46), target: self)
         registerButton.addTarget(self, action: #selector(createAccount), for: .touchUpInside)
         
-        logInLabel = UILabel(text: "Already an user?", font: "SanFranciscoText-Medium", fontSize: 16, aligment: .center, textColor: UIColor.white, frame: CGRect(x: 0, y: 410*yScale, width: 320, height: 20))
+        logInLabel = UILabel(text: "Already an user?", font: "SanFranciscoText-Medium", fontSize: 16, aligment: .center, textColor: UIColor.white, frame: CGRect(x: 0, y: 410, width: 320, height: 20))
         
-        logInButton = UIButton(image: "mainLogIn", frame: CGRect(x: 15*xScale, y: 445*yScale, width: 288, height: 46), target: self)
+        logInButton = UIButton(image: "mainLogIn", frame: CGRect(x: 15, y: 445, width: 288, height: 46), target: self)
         logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
         print("FRAME LOG IN ", logInButton.frame)
         print("FRAME REGISTER ", registerButton.frame)

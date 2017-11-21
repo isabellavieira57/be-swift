@@ -33,22 +33,19 @@ class CollectionChallengeView: View {
     
     func setTopBarChallenges()
     {
-        let xScale = screenSize.width/widhtiPhoneSE
-        let yScale = screenSize.height/heightiPhoneSE
-        
         let topBar = CAShapeLayer()
-        topBar.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 321*xScale, height: 64*yScale))).cgPath
+        topBar.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 321, height: 64))).cgPath
         topBar.fillColor = UIColor(red:0.40, green:0.43, blue:0.53, alpha:1.0).cgColor
         
-        let starImage = UIImageView(frame: UIScreen.changeScale(vector: CGRect(x: 119*xScale, y: 28*yScale, width: 27*xScale, height: 26.03*yScale)))
+        let starImage = UIImageView(frame: UIScreen.changeScale(vector: CGRect(x: 119, y: 28, width: 27, height: 26.03)))
         starImage.image = UIImage(named:"star")
         
-        self.starLabel = UILabel(text: "006", font: "SanFranciscoText-Regular", fontSize: 19, aligment: .center, textColor: UIColor(red:2.55, green:2.34, blue:0.37, alpha:1.0), frame: CGRect(x: 153*xScale, y: 33*yScale, width: 37*xScale, height: 20*yScale))
+        self.starLabel = UILabel(text: "006", font: "SanFranciscoText-Regular", fontSize: 19, aligment: .center, textColor: UIColor(red:2.55, green:2.34, blue:0.37, alpha:1.0), frame: CGRect(x: 153, y: 33, width: 37, height: 20))
         
-        let xpImage = UIImageView(frame: UIScreen.changeScale(vector: CGRect(x: 230.29*xScale, y: 33*yScale, width: 27.62*xScale, height: 16*yScale)))
+        let xpImage = UIImageView(frame: UIScreen.changeScale(vector: CGRect(x: 230.29, y: 33, width: 27.62, height: 16)))
         xpImage.image = UIImage(named:"xp")
         
-        self.xpLabel = UILabel(text: "4%", font: "SanFranciscoText-Regular", fontSize: 19, aligment: .center, textColor: UIColor(red:0.0, green:2.15, blue:2.23, alpha:1.0), frame: CGRect(x: 264*xScale, y: 33*yScale, width: 37*xScale, height: 20*yScale))
+        self.xpLabel = UILabel(text: "4%", font: "SanFranciscoText-Regular", fontSize: 19, aligment: .center, textColor: UIColor(red:0.0, green:2.15, blue:2.23, alpha:1.0), frame: CGRect(x: 264, y: 33, width: 37, height: 20))
         
         self.layer.addSublayer(topBar)
         self.addSubview(starImage)

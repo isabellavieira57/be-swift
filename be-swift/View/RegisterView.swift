@@ -18,10 +18,6 @@ class RegisterView: UIView
     var countryText: UITextField!
     var courseText: UITextField!
     var signUpButton: UIButton!
-
-    let widhtiPhoneSE: CGFloat = 320
-    let heightiPhoneSE: CGFloat = 568
-    let screenSize = UIScreen.main.bounds
     
     let pickerCountry = UIPickerView()
     let pickerCourse = UIPickerView()
@@ -43,10 +39,11 @@ class RegisterView: UIView
     
     func setTextFields()
     {
-        let xScale = screenSize.width/widhtiPhoneSE
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
         let yScale = screenSize.height/heightiPhoneSE
         
-        var textFieldFrame = CGRect(x: 24*xScale, y: 98*yScale, width: 272, height: 39)
+        var textFieldFrame = CGRect(x: 24, y: 98, width: 272, height: 39)
         let textFieldFont = "SanFranciscoText-Medium"
         let textFieldFontSize: CGFloat = 16
         
@@ -109,10 +106,7 @@ class RegisterView: UIView
     
     func setRegisterButton(signUpAction: Selector)
     {
-        let xScale = screenSize.width/widhtiPhoneSE
-        let yScale = screenSize.height/heightiPhoneSE
-        
-        signUpButton = UIButton(image: "signUp", frame: CGRect(x: 16*xScale, y: 506*yScale, width: 288, height: 46), target: self)
+        signUpButton = UIButton(image: "signUp", frame: CGRect(x: 16, y: 506, width: 288, height: 46), target: self)
         signUpButton.addTarget(self, action: signUpAction, for: .touchUpInside)
     
         self.addSubview(signUpButton)
@@ -120,9 +114,6 @@ class RegisterView: UIView
     
     func setTopBar(goBackAction: Selector)
     {
-//        let xScale = screenSize.width/widhtiPhoneSE
-//        let yScale = screenSize.height/heightiPhoneSE
-        
         let rectangle = CAShapeLayer()
         rectangle.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 320, height: 64))).cgPath
         rectangle.fillColor = UIColor(red:0.31, green:0.49, blue:0.95, alpha:1.0).cgColor

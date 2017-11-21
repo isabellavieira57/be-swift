@@ -16,10 +16,6 @@ class LoginView: UIView
     var logInButton: UIButton!
     var backButton: UIButton!
     
-    let widhtiPhoneSE: CGFloat = 320
-    let heightiPhoneSE: CGFloat = 568
-    let screenSize = UIScreen.main.bounds
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white
@@ -36,20 +32,17 @@ class LoginView: UIView
     
     func setTextFields()
     {
-        let xScale = screenSize.width/widhtiPhoneSE
-        let yScale = screenSize.height/heightiPhoneSE
         let textFont = "SanFranciscoText-Medium"
         let textSize: CGFloat = 16
         
-        emailText = UITextField(frame: CGRect(x: 24*xScale, y: 98*yScale, width: 272*xScale, height: 39*yScale), font: textFont, fontSize: textSize)
+        emailText = UITextField(frame: CGRect(x: 24, y: 98, width: 272, height: 39), font: textFont, fontSize: textSize)
         emailText.placeholder = "E-mail"
         emailText.borderStyle = .none
         emailText.layer.cornerRadius = 5
         emailText.keyboardType = .emailAddress
         emailText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         
-        passwordText = UITextField(frame: emailText.frame, font: textFont, fontSize: textSize)
-        passwordText.frame.origin.y = emailText.frame.origin.y + emailText.frame.height + 15*yScale
+        passwordText = UITextField(frame: CGRect(x: 24, y: 152, width: 272, height: 39), font: textFont, fontSize: textSize)
         passwordText.placeholder = "Password"
         passwordText.borderStyle = .none
         passwordText.layer.cornerRadius = 5
@@ -62,10 +55,7 @@ class LoginView: UIView
     
     func setLogInButton(logInAction: Selector)
     {
-        let xScale = screenSize.width/widhtiPhoneSE
-        let yScale = screenSize.height/heightiPhoneSE
-        
-        logInButton = UIButton(image: "logIn", frame: CGRect(x: 16*xScale, y: screenSize.height - 62*yScale, width: 288, height: 46), target: self)
+        logInButton = UIButton(image: "logIn", frame: CGRect(x: 16, y: 506, width: 288, height: 46), target: self)
         logInButton.addTarget(self, action: logInAction, for: .touchUpInside)
         
         self.addSubview(logInButton)
@@ -73,9 +63,6 @@ class LoginView: UIView
     
     func setTopBar(goBackAction: Selector)
     {
-        //        let xScale = screenSize.width/widhtiPhoneSE
-        //        let yScale = screenSize.height/heightiPhoneSE
-        
         let rectangle = CAShapeLayer()
         rectangle.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 320, height: 64))).cgPath
         rectangle.fillColor = UIColor(red:0.31, green:0.49, blue:0.95, alpha:1.0).cgColor
