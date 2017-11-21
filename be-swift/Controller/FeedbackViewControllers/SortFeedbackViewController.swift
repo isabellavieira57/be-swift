@@ -49,7 +49,8 @@ class sortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
         self.sortFeedView.setButton(continueButtonAction: #selector(continueButton(_:)))
         self.sortFeedView.addSubview(self.sortFeedView.buttonContinue)
         sizeView = sortFeedView.sizeView
-        
+        self.sortFeedView.frame = CGRect(x: 0, y: 0, width: self.sortFeedView.frame.width, height: sizeView)
+
         //Set scrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: sizeView)

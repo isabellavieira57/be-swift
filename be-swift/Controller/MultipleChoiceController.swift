@@ -29,7 +29,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     
     override func viewDidLoad(){
         super.viewDidLoad()
-
+        
         self.correctAnswer = self.challenge.correctAnswer[0] as! String
         self.options = self.challenge.options as! Array<String>
         

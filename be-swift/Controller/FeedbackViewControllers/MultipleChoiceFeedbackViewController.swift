@@ -37,6 +37,8 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         self.multChoiceFeedView.addSubview(self.multChoiceFeedView.buttonContinue)
         sizeView = multChoiceFeedView.sizeView
         
+        self.multChoiceFeedView.frame = CGRect(x: 0, y: 0, width: self.multChoiceFeedView.frame.width, height: sizeView)
+        
         //Set scrollView
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: sizeView)
