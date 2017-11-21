@@ -39,9 +39,6 @@ class RegisterView: UIView
         setTopBar(goBackAction: goBack)
         setTextFields()
         setRegisterButton(signUpAction: signUp)
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        self.addGestureRecognizer(tap)
     }
     
     func setTextFields()
@@ -138,10 +135,6 @@ class RegisterView: UIView
         self.layer.addSublayer(rectangle)
         self.addSubview(title)
         self.addSubview(backButton)
-    }
-    
-    @objc func dismissKeyboard() {
-        self.endEditing(true)
     }
 
     required init?(coder aDecoder: NSCoder) {

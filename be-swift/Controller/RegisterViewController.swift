@@ -31,6 +31,10 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         courseList = ["Business Administration","Computer Science", "Design", "Engineering", "Law"]
         
         self.view.addSubview(registerView)
+        
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int
@@ -151,6 +155,10 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
     @objc func goBack(_ sender: Any)
     {
         self.dismiss(animated: false, completion: nil)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
     }
 }
 

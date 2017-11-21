@@ -15,8 +15,6 @@ class WelcomeViewController: UIViewController
     var registerButton: UIButton!
     var logInButton: UIButton!
     var logInLabel: UILabel!
-    
-
 
     override func viewDidLoad()
     {

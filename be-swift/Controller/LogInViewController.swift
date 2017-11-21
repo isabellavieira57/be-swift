@@ -11,27 +11,13 @@ import UIKit
 
 class LogInViewController: UIViewController
 {
-    var emailText: UITextField!
-    var passwordText: UITextField!
-    var logInButton: UIButton!
-    var backButton: UIButton!
-    
-    let widhtiPhoneSE: CGFloat = 320
-    let heightiPhoneSE: CGFloat = 568
-    let screenSize = UIScreen.main.bounds
-
-
+    var loginView: LoginView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
         
-        setTopBar()
-        setTextFields()
-        setLogInButton()
-        
-        self.backButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
-        self.logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
+        loginView = LoginView(goBack: #selector(goBack), logIn: #selector(logIn))
+        self.view.addSubview(loginView)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
@@ -39,7 +25,7 @@ class LogInViewController: UIViewController
     
     @objc func logIn()
     {
-        if emailText.text == "" || passwordText.text == ""
+        if self.loginView.emailText.text == "" || self.loginView.passwordText.text == ""
         {
             let alert = UIAlertController(title: "Ops!", message: "Please type your e-mail and your password", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -52,60 +38,6 @@ class LogInViewController: UIViewController
     @objc func goBack()
     {
         self.dismiss(animated: false, completion: nil)
-    }
-    
-    func setTextFields()
-    {
-        let xScale = screenSize.width/widhtiPhoneSE
-        let yScale = screenSize.height/heightiPhoneSE
-        let textFont = "SanFranciscoText-Medium"
-        let textSize: CGFloat = 16
-        
-        emailText = UITextField(frame: CGRect(x: 24*xScale, y: 98*yScale, width: 272*xScale, height: 39*yScale), font: textFont, fontSize: textSize)
-        emailText.placeholder = "  E-mail"
-        emailText.borderStyle = .none
-        emailText.layer.cornerRadius = 5
-        emailText.keyboardType = .emailAddress
-        emailText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
-        
-        passwordText = UITextField(frame: emailText.frame, font: textFont, fontSize: textSize)
-        passwordText.frame.origin.y = emailText.frame.origin.y + emailText.frame.height + 15*yScale
-        passwordText.placeholder = "  Password"
-        passwordText.borderStyle = .none
-        passwordText.layer.cornerRadius = 5
-        passwordText.isSecureTextEntry = true
-        passwordText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
-        
-        self.view.addSubview(emailText)
-        self.view.addSubview(passwordText)
-    }
-    
-    func setLogInButton()
-    {
-        let xScale = screenSize.width/widhtiPhoneSE
-        let yScale = screenSize.height/heightiPhoneSE
-        
-        logInButton = UIButton(image: "logIn", frame: CGRect(x: 16*xScale, y: screenSize.height - 62*yScale, width: 288, height: 46), target: self)
-        
-        self.view.addSubview(logInButton)
-    }
-    
-    func setTopBar()
-    {
-        //        let xScale = screenSize.width/widhtiPhoneSE
-        //        let yScale = screenSize.height/heightiPhoneSE
-        
-        let rectangle = CAShapeLayer()
-        rectangle.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 320, height: 64))).cgPath
-        rectangle.fillColor = UIColor(red:0.31, green:0.49, blue:0.95, alpha:1.0).cgColor
-        
-        let title = UILabel(text: "Log in", font: "SanFranciscoText-Semibold", fontSize: 18, aligment: .center, textColor: UIColor.white, frame: CGRect(x: 0, y: 31, width: 320, height: 20))
-        
-        self.backButton = UIButton(image: "backButton", frame: CGRect(x: 12, y: 27, width: 14.29, height: 24), target: self)
-        
-        self.view.layer.addSublayer(rectangle)
-        self.view.addSubview(title)
-        self.view.addSubview(backButton)
     }
     
     @objc func dismissKeyboard() {
