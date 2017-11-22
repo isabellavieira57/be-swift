@@ -56,4 +56,17 @@ class UserDAO {
         print("DAO - Logged out")
     }
     
+    
+    // TODO: Passar nome, senha, pais, curso/area
+    func saveRegistration(email: String, password: String) {
+        // If AppDelegate doesn't lauch firebase configuration
+        if (!AppDelegate.isAlreadyLaunchedOnce) {
+            FirebaseApp.configure()
+            AppDelegate.isAlreadyLaunchedOnce = true
+        }
+        // salva nome em um nó separado
+        let ref = Database.database().reference().child("UsersData").child(email)
+        let password = ["password": password]
+        ref.setValue(password)
+    }
 }

@@ -50,6 +50,10 @@ class User {
     func register (email: String, password: String) {
         userDAO.registerUser(email: email, password: password)
     }
+    
+    func saveRegistration (email: String, password: String) {
+        userDAO.saveRegistration(email: email, password: password)
+    }
 
 
 }

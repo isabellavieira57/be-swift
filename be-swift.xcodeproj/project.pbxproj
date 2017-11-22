@@ -69,6 +69,7 @@
 		4F819A701FA3A49200BD69E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */; };
 		4FB236EB1FAE8CC700196346 /* LevelDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB236EA1FAE8CC700196346 /* LevelDAO.swift */; };
 		4FB8E9201FC50C7200B8303E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8E91F1FC50C7200B8303E /* LoginViewController.swift */; };
+		4FB8E9221FC5D84900B8303E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8E9211FC5D84900B8303E /* RegisterViewController.swift */; };
 		8E2EE68437321722F169148A /* Pods_be_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBED5E348C425736CE31AA6C /* Pods_be_swift.framework */; };
 		A057F119DB6D9FCF7F11DC0B /* Pods_be_swiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBA381E169B5259BD02161 /* Pods_be_swiftUITests.framework */; };
 		F429907BB41081C042E3001C /* Pods_be_swiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B23C295BD2706916CA21BC /* Pods_be_swiftTests.framework */; };
@@ -163,6 +164,7 @@
 		4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4FB236EA1FAE8CC700196346 /* LevelDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDAO.swift; sourceTree = "<group>"; };
 		4FB8E91F1FC50C7200B8303E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4FB8E9211FC5D84900B8303E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4FDC55FC1FB151F200E3259E /* be-swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "be-swift.entitlements"; sourceTree = "<group>"; };
 		504562A9323845B0A40511F6 /* Pods-be-swiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-be-swiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-be-swiftTests/Pods-be-swiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		6DB238070BF262761E759C4C /* Pods-be-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-be-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-be-swift/Pods-be-swift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */,
 				03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */,
 				4FB8E91F1FC50C7200B8303E /* LoginViewController.swift */,
+				4FB8E9211FC5D84900B8303E /* RegisterViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -791,6 +794,7 @@
 				4F75F8A31F8AB643007BABC9 /* BlankFieldView.swift in Sources */,
 				4F75F8AF1F8AB695007BABC9 /* CollectionChallengeView.swift in Sources */,
 				037421771FB61D8900F686C3 /* MultipleChoiceFeedbackViewController.swift in Sources */,
+				4FB8E9221FC5D84900B8303E /* RegisterViewController.swift in Sources */,
 				4F75F89D1F8AB5FF007BABC9 /* View.swift in Sources */,
 				4F75F8A91F8AB66C007BABC9 /* LoginView.swift in Sources */,
 				4949DAEE1FB0975A0002E651 /* String.swift in Sources */,
