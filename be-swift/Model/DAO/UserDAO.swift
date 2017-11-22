@@ -57,8 +57,6 @@ class UserDAO {
         print("DAO - Logged out")
     }
     
-    
-    // TODO: Passar nome, senha, pais, curso/area
     func saveRegistration(name: String, email: String, password: String, country: String, major: String) {
         
         // If AppDelegate doesn't lauch firebase configuration
