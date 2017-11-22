@@ -70,6 +70,8 @@
 		4FB236EB1FAE8CC700196346 /* LevelDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB236EA1FAE8CC700196346 /* LevelDAO.swift */; };
 		4FB8E9201FC50C7200B8303E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8E91F1FC50C7200B8303E /* LoginViewController.swift */; };
 		4FB8E9221FC5D84900B8303E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8E9211FC5D84900B8303E /* RegisterViewController.swift */; };
+		4FB8E9241FC5E5F600B8303E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8E9231FC5E5F600B8303E /* WelcomeViewController.swift */; };
+		4FB8E9261FC5EC2600B8303E /* LocalNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8E9251FC5EC2500B8303E /* LocalNotificationCenter.swift */; };
 		8E2EE68437321722F169148A /* Pods_be_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBED5E348C425736CE31AA6C /* Pods_be_swift.framework */; };
 		A057F119DB6D9FCF7F11DC0B /* Pods_be_swiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FFBA381E169B5259BD02161 /* Pods_be_swiftUITests.framework */; };
 		F429907BB41081C042E3001C /* Pods_be_swiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B23C295BD2706916CA21BC /* Pods_be_swiftTests.framework */; };
@@ -165,6 +167,8 @@
 		4FB236EA1FAE8CC700196346 /* LevelDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDAO.swift; sourceTree = "<group>"; };
 		4FB8E91F1FC50C7200B8303E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4FB8E9211FC5D84900B8303E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		4FB8E9231FC5E5F600B8303E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		4FB8E9251FC5EC2500B8303E /* LocalNotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationCenter.swift; sourceTree = "<group>"; };
 		4FDC55FC1FB151F200E3259E /* be-swift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "be-swift.entitlements"; sourceTree = "<group>"; };
 		504562A9323845B0A40511F6 /* Pods-be-swiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-be-swiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-be-swiftTests/Pods-be-swiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		6DB238070BF262761E759C4C /* Pods-be-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-be-swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-be-swift/Pods-be-swift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				4FDC55FC1FB151F200E3259E /* be-swift.entitlements */,
+				4FB8E9251FC5EC2500B8303E /* LocalNotificationCenter.swift */,
 				4F75F8511F8AB491007BABC9 /* AppDelegate.swift */,
 				4F75F8821F8AB4AA007BABC9 /* Model */,
 				4F75F8851F8AB4BC007BABC9 /* Controller */,
@@ -382,6 +387,7 @@
 				03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */,
 				4FB8E91F1FC50C7200B8303E /* LoginViewController.swift */,
 				4FB8E9211FC5D84900B8303E /* RegisterViewController.swift */,
+				4FB8E9231FC5E5F600B8303E /* WelcomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -763,12 +769,14 @@
 				4F75F8A11F8AB631007BABC9 /* DragAndDropView.swift in Sources */,
 				03AD2B9C1FB255B600F58DEA /* FeedbackViewController.swift in Sources */,
 				03C0AD091FB2011800AF0A36 /* CollectionChallengesCell.swift in Sources */,
+				4FB8E9241FC5E5F600B8303E /* WelcomeViewController.swift in Sources */,
 				4FB236EB1FAE8CC700196346 /* LevelDAO.swift in Sources */,
 				4F75F8A51F8AB652007BABC9 /* FillTheGapView.swift in Sources */,
 				4F75F8AB1F8AB67A007BABC9 /* RegisterView.swift in Sources */,
 				4F75F8951F8AB5AE007BABC9 /* ChallengeTopic.swift in Sources */,
 				4F75F88D1F8AB547007BABC9 /* User.swift in Sources */,
 				4F75F8931F8AB595007BABC9 /* Level.swift in Sources */,
+				4FB8E9261FC5EC2600B8303E /* LocalNotificationCenter.swift in Sources */,
 				497703581F8EABDC00102F08 /* DeviceScale.swift in Sources */,
 				4F75F89F1F8AB612007BABC9 /* MultipleChoiceView.swift in Sources */,
 				4F75F8AD1F8AB687007BABC9 /* FeedbackView.swift in Sources */,

@@ -5,7 +5,6 @@
 //  Created by Ana Müller on 10/19/17.
 //  Copyright © 2017 Isabella Vieira. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import GameplayKit
@@ -39,7 +38,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.view.addSubview(scrollView)
         scrollView.addSubview(sortView)
-
+        
         //Set tableView
         self.sortView.sortTableView.dataSource = self
         self.sortView.sortTableView.delegate = self
@@ -74,7 +73,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.textLabel?.text = self.codeToSort[indexPath.row]
         cell.textLabel?.textColor = UIColor.white
         self.sortView.view.labelDidChange(cell.textLabel!)
-
+        
         return cell
     }
     
@@ -141,11 +140,11 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         self.numberOfTries = 0
         
-        let feedbackController = sortFeedbackViewController()
+        let feedbackController = SortFeedbackViewController()
         feedbackController.getSortVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight)
         present(feedbackController, animated: false, completion: nil)
     }
-        
+    
     @objc func setNextTry()
     {
         //change buttons
@@ -170,4 +169,3 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         present(webView, animated: false, completion: nil)
     }
 }
-

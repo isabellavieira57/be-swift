@@ -53,7 +53,7 @@ class FeedbackView: View {
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
-        self.code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
+        self.code = view.setExampleCode(exampleCodeText: exampleCodeText!, view: self)
         
         // O sizeView é usado para determinar o tamanho da view e da scrollView
 //        let height = sizeView!

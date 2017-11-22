@@ -14,16 +14,19 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
-    var emailField:            UITextField!
-    var senhaField:            UITextField!
+    var loginView: LoginView!
+    
     var erroMessageLabel:      UILabel!
     var user = User()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if User.sharedInstance.checkLogedIn() {
-            print ("Login Done")
-        }
+        
+        loginView = LoginView(goBack: #selector(goBack), logIn: #selector(logIn))
+        self.view.addSubview(loginView)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
     }
     
     func isValidEmail(string: String) -> Bool {
@@ -33,36 +36,37 @@ class LoginViewController: UIViewController {
     }
     
     
-    // Botao de login
-    func loginButtonPress() {
-        guard (emailField.text != "") else {
-            erroMessageLabel.text = "email invalido"
-            erroMessageLabel.isHidden = false
-            return
+    @objc func logIn () {
+        
+        if (self.loginView.emailText.text! == "" ) || (self.loginView.passwordText.text! == "") || (!isValidEmail(string: self.loginView.emailText.text!)) {
+            let alert = UIAlertController(title: "Ops!", message: "Please type your e-mail and your password", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            //Firebase login
+            user.login(email: self.loginView.emailText.text!, password: self.loginView.passwordText.text!)
         }
-        guard (isValidEmail(string: emailField.text!)) else {
-            erroMessageLabel.text = "email invalido"
-            erroMessageLabel.isHidden = false
-            return
-        }
-        guard (senhaField.text != "") else {
-            erroMessageLabel.text = "senha invalida"
-            erroMessageLabel.isHidden = false
-            return
-        }
-        user.login(email: emailField.text!, password: senhaField.text!)
+    }
+    
+    @objc func goBack()
+    {
+        self.dismiss(animated: false, completion: nil)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
     }
     
     
     // Botao de esqueceu a senha
     func forgotPassword() {
-        if ((emailField.text!.isEmpty)) {
+        if ((self.loginView.emailText.text!.isEmpty)) {
             let alert = UIAlertController(title: "Please, fill in your email!", message: "", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(defaultAction)
             self.present(alert,animated: true, completion: nil)
         } else {
-            Auth.auth().sendPasswordReset(withEmail: emailField.text!) { error in
+            Auth.auth().sendPasswordReset(withEmail: self.loginView.emailText.text!) { error in
                 if (error == nil) {
                     let alert = UIAlertController(title: "An email was sent to you!", message: "Please, check your inbox.", preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)

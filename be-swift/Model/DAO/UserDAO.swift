@@ -42,6 +42,7 @@ class UserDAO {
     
     
     func registerUser(email: String, password: String) {
+        print ("USER DAO - REGISTER")
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if error == nil {
                 print("DAO - usuario criado")

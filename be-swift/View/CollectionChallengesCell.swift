@@ -4,7 +4,6 @@
 //  Created by Ana Müller on 10/28/17.
 //  Copyright © 2017 Isabella Vieira. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
@@ -12,8 +11,8 @@ import UIKit
 class CollectionChallengesCell: UICollectionViewCell
 {
     
-    var challengeIcon: UIImageView!
-    var starsIcon: UIImageView!
+    //    var challengeIcon: UIImageView!
+    //    var starsIcon: UIImageView!
     
     var starsImageName = ""
     var challengeImageName = ""
@@ -25,7 +24,6 @@ class CollectionChallengesCell: UICollectionViewCell
     
     func configureCell(numberOfStars: Int, isLocked: Bool, iconNumber: Int)
     {
-        
         let widhtiPhoneSE: CGFloat = 320
         let heightiPhoneSE: CGFloat = 568
         let screenSize = UIScreen.main.bounds
@@ -35,9 +33,9 @@ class CollectionChallengesCell: UICollectionViewCell
         let cellWidth = self.bounds.width
         let cellHeight = self.bounds.height
         
-        var challengeIcon = UIImageView(frame: CGRect(x: cellWidth/2 - 24*xScale, y: cellHeight/5, width: 48*xScale, height: 47*yScale))
+        let challengeIcon = UIImageView(frame: CGRect(x: cellWidth/2 - 24*xScale, y: cellHeight/5, width: 48*xScale, height: 47*yScale))
         let starsIconY = challengeIcon.frame.origin.y + challengeIcon.frame.height + 5*yScale
-        var starsIcon = UIImageView(frame: CGRect(x: cellWidth/2 - 28*xScale, y: starsIconY, width: 56*xScale, height: 17*yScale))
+        let starsIcon = UIImageView(frame: CGRect(x: cellWidth/2 - 28*xScale, y: starsIconY, width: 56*xScale, height: 17*yScale))
         
         switch numberOfStars
         {
@@ -65,7 +63,7 @@ class CollectionChallengesCell: UICollectionViewCell
         
         challengeIcon.image = UIImage(named: challengeImageName)
         
-        var challengeNumber = UILabel(frame: challengeIcon.frame)
+        let challengeNumber = UILabel(frame: challengeIcon.frame)
         challengeNumber.text = String(iconNumber)
         challengeNumber.textAlignment = .center
         challengeNumber.textColor = UIColor.white
@@ -81,5 +79,3 @@ class CollectionChallengesCell: UICollectionViewCell
     }
     
 }
-
-

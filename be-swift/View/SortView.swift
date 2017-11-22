@@ -5,7 +5,6 @@
 //  Created by Isabella Vieira on 08/10/17.
 //  Copyright © 2017 Isabella Vieira. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
@@ -36,7 +35,6 @@ class SortView: View
     }
     
     convenience init (progressView: UIProgressView, frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, checkButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
-
     {
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
@@ -49,7 +47,7 @@ class SortView: View
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
-        let code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
+        let code = view.setExampleCode(exampleCodeText: exampleCodeText!, view: self)
         
         setTableView()
         setCheckButton(checkButtonAction: checkButtonAction)
@@ -123,4 +121,3 @@ class SortView: View
     }
     
 }
-

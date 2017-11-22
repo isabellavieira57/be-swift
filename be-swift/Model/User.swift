@@ -48,6 +48,7 @@ class User {
     }
     
     func register (email: String, password: String) {
+        print ("USER - REGISTER")
         userDAO.registerUser(email: email, password: password)
     }
     
