@@ -123,7 +123,7 @@ class View: UIView{
         let attrStr = NSMutableAttributedString(string: label.text!)
         let inputLength = attrStr.string.characters.count
         
-        let searchString : NSArray = NSArray.init(objects: "func","var", "let", "if", "else", "return", "init", "true", "false", "class", "struct", "while", "case", "switch")
+        let searchString : NSArray = NSArray.init(objects: "func","var", "let", "if", "else", "return", "init", "true", "false", "class", "struct", "while", "case", "switch", "self")
         for i in 0...searchString.count-1 {
             let string : String = searchString.object(at: i) as! String
             let searchLength = string.characters.count
@@ -139,7 +139,7 @@ class View: UIView{
             }
         }
         
-        let searchStringTypes : NSArray = NSArray.init(objects: "Int","Double", "String", "print")
+        let searchStringTypes : NSArray = NSArray.init(objects: "Int","Double", "String", "Bool","print", "CGFloat")
         for i in 0...searchStringTypes.count-1 {
             let string : String = searchStringTypes.object(at: i) as! String
             let searchLength = string.characters.count

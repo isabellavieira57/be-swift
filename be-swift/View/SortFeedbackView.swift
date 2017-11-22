@@ -53,11 +53,20 @@ class SortFeedbackView: FeedbackView
     
     func setSortUserLabels()
     {
-        let labelUserAnswerY = self.feedbackTableView.frame.origin.y + self.feedbackTableView.frame.height + 10
+        let yScale = screenSize.height/heightiPhoneSE
+
+        let labelUserAnswerY = self.feedbackTableView.frame.origin.y/yScale + self.feedbackTableView.frame.height/yScale + 10
         
         self.labelCorrectUserAnswer = UILabel(text: "You got it! Your answer is correct!", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:0.28, green:0.64, blue:0.31, alpha:1.0), frame: CGRect(x: self.userAnswerX, y: labelUserAnswerY, width: self.userAnswerWidth, height: self.userAnswerHeight))
         
         self.labelWrongUserAnswer = UILabel(text: "That's not it! Compare the answers with the buttons above.", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:1.58, green:0.21, blue:0.38, alpha:1.0), frame: CGRect(x: self.userAnswerX, y: labelUserAnswerY, width: self.userAnswerWidth, height: self.userAnswerHeight*1.4))
+        
+        print("TESTE!!!")
+        print(self.feedbackTableView.frame.origin.y)
+        print(self.feedbackTableView.frame.height)
+        print(self.feedbackTableView.frame.origin.y + self.feedbackTableView.frame.height)
+        print(labelUserAnswerY*yScale)
+
     }
     
     func getTableViewFrame(tableViewFrame: CGRect)
@@ -67,7 +76,6 @@ class SortFeedbackView: FeedbackView
 
     func setTableView()
     {
-        
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
@@ -82,19 +90,16 @@ class SortFeedbackView: FeedbackView
 
     func setCompareAnswersButtons(showYourAnswer: Selector, showCorrectAnswer: Selector)
     {
-        let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
-
-        let buttonWidth: CGFloat = 137*xScale
-        let buttonHeight: CGFloat = 39*yScale
-        let buttonY: CGFloat = self.feedbackTableView.frame.origin.y + self.feedbackTableView.frame.height + 15*yScale
         
-        self.buttonYourAnswer = UIButton(frame: CGRect(x: 16*xScale, y: buttonY, width: buttonWidth, height: buttonHeight))
-        self.buttonYourAnswer.setBackgroundImage(UIImage(named: "yourAnswerBold"), for: .normal)
+        let buttonWidth: CGFloat = 137
+        let buttonHeight: CGFloat = 39
+        let buttonY: CGFloat = self.feedbackTableView.frame.origin.y/yScale + self.feedbackTableView.frame.height/yScale + 15
+        
+        self.buttonYourAnswer = UIButton(image: "yourAnswerBold", frame: CGRect(x: 16, y: buttonY, width: buttonWidth, height: buttonHeight), target: self)
         self.buttonYourAnswer.addTarget(target, action: showYourAnswer, for: UIControlEvents.touchUpInside)
 
-        self.buttonCorrectAnswer = UIButton(frame: CGRect(x: 167*xScale, y: buttonY, width: buttonWidth, height: buttonHeight))
-        self.buttonCorrectAnswer.setBackgroundImage(UIImage(named: "correctAnswer"), for: .normal)
+        self.buttonCorrectAnswer = UIButton(image: "correctAnswer", frame: CGRect(x: 167, y: buttonY, width: buttonWidth, height: buttonHeight), target: self)
         self.buttonCorrectAnswer.addTarget(target, action: showCorrectAnswer, for: UIControlEvents.touchUpInside)
     }
     
