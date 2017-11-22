@@ -22,6 +22,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     var user: User!
     var cellMenu: [UICollectionViewCell] = []
     var challengeData: [Challenge] = []
+//    var notification: LocalNotificationCenter!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.challengesView.collectionChallenges1.delegate = self
         self.challengesView.collectionChallenges1.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
    
+//        notification.localNotification(title: "Be Swift", body: "It's time to practice!")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

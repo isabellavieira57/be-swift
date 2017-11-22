@@ -25,14 +25,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AppDelegate.isAlreadyLaunchedOnce = true
             print ("APP DELEGATE LAUNCHED")
         }
-//        registerForPushNotifications()
+        registerForPushNotifications()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window!.rootViewController = WelcomeViewController()
         window!.makeKeyAndVisible()
-      
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            
+            LocalNotificationCenter.stopAllLocalNotifications()
+            
+            LocalNotificationCenter.localNotification("Be Swift ⭐️!", body: "It's time to practice! 💁‍♀️✍️")
+            
+        }
+        
+//        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+//        if launchedBefore  {
+//            print("Not first launch.")
+//        } else {
+//
+//            print("First launch, setting UserDefault.")
+//            UserDefaults.standard.set(true, forKey: "launchedBefore")
+//
+//            let center = UNUserNotificationCenter.current()
+//            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+//                LocalNotificationCenter.stopAllLocalNotifications()
+//                LocalNotificationCenter.localNotification("BeSwift", body: "Let's practice!" )
+//
+//                //LocalNotificationCenter.localNotification(title: "Be Swift", body: "It's time to practice!")
+//            }
+//        }
+        
+    
         return true
     }
+    
+    
     
     func getNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
@@ -51,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.getNotificationSettings()
         }
     }
-//
+////
 //    func application(_ application: UIApplication,
 //                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
 //        let tokenParts = deviceToken.map { data -> String in

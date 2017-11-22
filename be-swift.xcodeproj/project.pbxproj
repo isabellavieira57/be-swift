@@ -302,7 +302,6 @@
 			isa = PBXGroup;
 			children = (
 				4FDC55FC1FB151F200E3259E /* be-swift.entitlements */,
-				4FB8E9251FC5EC2500B8303E /* LocalNotificationCenter.swift */,
 				4F75F8511F8AB491007BABC9 /* AppDelegate.swift */,
 				4F75F8821F8AB4AA007BABC9 /* Model */,
 				4F75F8851F8AB4BC007BABC9 /* Controller */,
@@ -343,6 +342,7 @@
 				4F75F8921F8AB595007BABC9 /* Level.swift */,
 				4F75F8941F8AB5AE007BABC9 /* ChallengeTopic.swift */,
 				4F75F8961F8AB5BA007BABC9 /* Notification.swift */,
+				4FB8E9251FC5EC2500B8303E /* LocalNotificationCenter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
