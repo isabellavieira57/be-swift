@@ -97,6 +97,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
                         self.progressView.setProgress(1.0, animated: true)
                     })
                     self.blankField.setTryAgainButton(tryAgainAction: #selector(setNextTry))
+                
                 }else{
                     showFeedback()
                 }

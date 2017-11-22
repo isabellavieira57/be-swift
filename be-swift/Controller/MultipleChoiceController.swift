@@ -104,6 +104,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
 
                 self.answerIsRight = false
                 self.numberOfTries += 1
+//                timer.invalidate()
 
                 if self.numberOfTries < 2{
                 //remove 'Check' button and add 'Try Again' button
@@ -150,6 +151,8 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         setRadioButtonController()
         
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
+//        self.time = 0.0
+//        startTime()
     }
     
     @objc func dismissButton(_ sender: Any){

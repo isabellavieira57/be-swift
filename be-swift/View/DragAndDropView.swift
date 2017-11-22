@@ -35,7 +35,7 @@ class DragAndDropView: View {
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
-        code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
+        code = view.setExampleCode(exampleCodeText: exampleCodeText!, view: self)
         
         self.setDropView()
         self.setDragView(options: options)

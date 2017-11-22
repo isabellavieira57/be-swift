@@ -5,7 +5,6 @@
 //  Created by Isabella Vieira on 08/10/17.
 //  Copyright © 2017 Isabella Vieira. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
@@ -47,7 +46,7 @@ class MultipleChoiceView: View {
         let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
         let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
-        code = view.setExempleCode(exampleCodeText: exampleCodeText!, view: self)
+        code = view.setExampleCode(exampleCodeText: exampleCodeText!, view: self)
         
         createButtons(options: options)
         setCheckButton(checkButtonAction: checkButtonAction)
@@ -134,4 +133,3 @@ class MultipleChoiceView: View {
     }
     
 }
-

@@ -5,7 +5,6 @@
 //  Created by Isabella Vieira on 08/10/17.
 //  Copyright © 2017 Isabella Vieira. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
@@ -76,12 +75,12 @@ class View: UIView{
         let yScale = screenSize.height/heightiPhoneSE
         let height = heightForView(text: questionText, font: question.font, width: question.frame.width)
         question.frame = CGRect(x: 24*xScale, y: 78*yScale, width: 273*xScale, height: height)
-
+        
         return question
     }
     
     //Codigo de exemplo da questão
-    func setExempleCode(exampleCodeText: String, view: UIView) -> UILabel{
+    func setExampleCode(exampleCodeText: String, view: UIView) -> UILabel{
         
         let widhtiPhoneSE: CGFloat = 320
         let heightiPhoneSE: CGFloat = 568
@@ -98,7 +97,7 @@ class View: UIView{
         let yPosition = exampleCode.frame.minY
         let rectangleCode = CAShapeLayer()
         rectangleCode.path = UIBezierPath(roundedRect: CGRect(x: 13*xScale, y: yPosition - 2*yScale, width: 290*xScale, height: height + 8*yScale), cornerRadius: 10).cgPath
-
+        
         rectangleCode.fillColor = UIColor(red:0.16, green:0.17, blue:0.21, alpha:1.0).cgColor
         rectangleCode.zPosition = -1
         if !exampleCodeText.isEmpty{
@@ -117,13 +116,13 @@ class View: UIView{
         
         return label.frame.height
     }
-
+    
     //Função para colorir caracteres
     func labelDidChange(_ label: UILabel) {
         let attrStr = NSMutableAttributedString(string: label.text!)
         let inputLength = attrStr.string.characters.count
         
-        let searchString : NSArray = NSArray.init(objects: "func","var", "let", "if", "else", "return", "init", "true", "false", "class", "struct", "while", "case", "switch")
+        let searchString : NSArray = NSArray.init(objects: "func","var", "let", "if", "else", "return", "init", "true", "false", "class", "struct", "while", "case", "switch", "self")
         for i in 0...searchString.count-1 {
             let string : String = searchString.object(at: i) as! String
             let searchLength = string.characters.count
@@ -139,7 +138,7 @@ class View: UIView{
             }
         }
         
-        let searchStringTypes : NSArray = NSArray.init(objects: "Int","Double", "String", "print")
+        let searchStringTypes : NSArray = NSArray.init(objects: "Int","Double", "String", "Bool","print", "CGFloat")
         for i in 0...searchStringTypes.count-1 {
             let string : String = searchStringTypes.object(at: i) as! String
             let searchLength = string.characters.count

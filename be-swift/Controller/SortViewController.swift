@@ -5,7 +5,6 @@
 //  Created by Ana Müller on 10/19/17.
 //  Copyright © 2017 Isabella Vieira. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import GameplayKit
@@ -38,7 +37,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.view.addSubview(scrollView)
         scrollView.addSubview(sortView)
-
+        
         //Set tableView
         self.sortView.sortTableView.dataSource = self
         self.sortView.sortTableView.delegate = self
@@ -71,7 +70,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.textLabel?.text = self.codeToSort[indexPath.row]
         cell.textLabel?.textColor = UIColor.white
         self.sortView.view.labelDidChange(cell.textLabel!)
-
+        
         return cell
     }
     
@@ -133,17 +132,12 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func showFeedback(){
         self.numberOfTries = 0
         
-        let feedbackController = sortFeedbackViewController()
+        let feedbackController = SortFeedbackViewController()
         feedbackController.getSortVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight)
         present(feedbackController, animated: false, completion: nil)
     }
-        
+    
     @objc func setNextTry(){
-        
-        UIView.animate(withDuration: TimeInterval(self.challenge.estimatedTime), animations: { () -> Void in
-            self.progressView.setProgress(0.0, animated: true)
-        })
-        
         //change buttons
         self.sortView.tryAgainButton.removeFromSuperview()
         self.sortView.addSubview(self.sortView.checkButton)
@@ -168,4 +162,3 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         present(webView, animated: false, completion: nil)
     }
 }
-

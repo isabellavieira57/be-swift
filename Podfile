@@ -10,6 +10,9 @@ target 'be-swift' do
 	pod 'FirebaseDatabase'
 	pod 'Firebase/Core'
 	pod 'Firebase/Messaging'
+	pod 'FirebaseUI'
+	pod 'FirebaseUI/Auth'
+	pod 'FirebaseAuth'
 
   target 'be-swiftTests' do
     inherit! :search_paths
