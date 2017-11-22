@@ -51,8 +51,8 @@ class User {
         userDAO.registerUser(email: email, password: password)
     }
     
-    func saveRegistration (email: String, password: String) {
-        userDAO.saveRegistration(email: email, password: password)
+    func saveRegistration (name: String, email: String, password: String, country: String, major: String) {
+        userDAO.saveRegistration(name: name, email: email, password: password, country: country, major: major)
     }
 
 

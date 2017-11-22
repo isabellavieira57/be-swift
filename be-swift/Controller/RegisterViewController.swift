@@ -12,14 +12,15 @@ import Firebase
 
 class RegisterViewController: UIViewController  {
     
-    @IBOutlet weak var emailField:            UITextField!
-    @IBOutlet weak var passwordField:            UITextField!
-    @IBOutlet weak var confirmPasswordField:    UITextField!
-    @IBOutlet weak var nomeField:           UITextField!
+    var emailField:            UITextField!
+    var passwordField:            UITextField!
+    var confirmPasswordField:    UITextField!
+    var nameField:           UITextField!
+    var countryField:           UITextField!
+    var majorField:           UITextField!
     var user = User()
 
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -82,7 +83,7 @@ class RegisterViewController: UIViewController  {
         
       
         // salva no banco os dados do formulario
-        user.saveRegistration(email:emailField.text!, password: passwordField.text!)
         
+        user.saveRegistration(name: nameField.text!, email: emailField.text!, password: passwordField.text!, country: countryField.text!, major: majorField.text!)
     }
 }

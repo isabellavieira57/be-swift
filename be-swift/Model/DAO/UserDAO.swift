@@ -32,7 +32,7 @@ class UserDAO {
         }
     }
     
-     func checkLoadedUser() -> Bool {
+    func checkLoadedUser() -> Bool {
         if let user = Auth.auth().currentUser {
             User.sharedInstance.email = user.email!
             return true
@@ -40,7 +40,8 @@ class UserDAO {
         return false
     }
     
-     func registerUser(email: String, password: String) {
+    
+    func registerUser(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if error == nil {
                 print("DAO - usuario criado")
@@ -58,15 +59,26 @@ class UserDAO {
     
     
     // TODO: Passar nome, senha, pais, curso/area
-    func saveRegistration(email: String, password: String) {
+    func saveRegistration(name: String, email: String, password: String, country: String, major: String) {
+        
         // If AppDelegate doesn't lauch firebase configuration
         if (!AppDelegate.isAlreadyLaunchedOnce) {
             FirebaseApp.configure()
             AppDelegate.isAlreadyLaunchedOnce = true
         }
+        
         // salva nome em um nó separado
         let ref = Database.database().reference().child("UsersData").child(email)
-        let password = ["password": password]
-        ref.setValue(password)
+        
+        var data = ["name": name]
+        ref.setValue(data)
+        
+        data = ["country": country]
+        ref.setValue(data)
+        
+        data = ["major": major]
+        ref.setValue(data)
+        
+        
     }
 }
