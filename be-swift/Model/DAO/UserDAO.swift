@@ -21,7 +21,7 @@ class UserDAO {
     private init(){}
     
     //MARK: Methods
-    public func loadUser(email: String, password: String) {
+    func loadUser(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if (error == nil) {
                 print("You have successfully logged in")
@@ -32,15 +32,15 @@ class UserDAO {
         }
     }
     
-    public func checkLoadedUser() -> Bool {
+     func checkLoadedUser() -> Bool {
         if let user = Auth.auth().currentUser {
-            //User.sharedInstance.email = user.email!
+            User.sharedInstance.email = user.email!
             return true
         }
         return false
     }
     
-    public func registerUser(email: String, password: String) {
+     func registerUser(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if error == nil {
                 print("DAO - usuario criado")
@@ -51,8 +51,9 @@ class UserDAO {
         })
     }
     
-    public func logout() {
+    func logout() {
         try! Auth.auth().signOut()
         print("DAO - Logged out")
     }
+    
 }

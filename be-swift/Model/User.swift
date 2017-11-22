@@ -10,25 +10,46 @@ import Foundation
 
 class User {
     
-    /*public var name: String
-    public var email: String
-    public var password: String
-    public var xpTotal: Int
-    public var starTotal: Int*/
-    private var userDAO: UserDAO = UserDAO.sharedInstance
+    // MARK: Attributes
+    var name: String?
+    var email: String?
+    var password: String?
+    var xpTotal: Int?
+    var starTotal: Int?
+    
+    // MARK: DAO instance
+    var userDAO: UserDAO = UserDAO.sharedInstance
     
     // MARK: Singleton
     static let sharedInstance = User()
     
-    private init(){
-        
+    init(){}
+    
+    //MARK: Methods
+    func login(email: String, password: String) {
+        userDAO.loadUser(email: email, password: password)
     }
     
-    /*init (name: String, email: String, password: String, xpTotal: Int, starTotal: Int) {
-        self.name = name
-        self.email = email
-        self.password = password
-        self.xpTotal = xpTotal
-        self.starTotal = starTotal
-    }*/
+    func checkLogedIn() -> Bool {
+        if UserDAO.sharedInstance.checkLoadedUser() {
+            print("PessoaInterf - usuario ja logado")
+            return true
+        }
+        return false
+    }
+    
+    func logout () {
+        userDAO.logout()
+        self.name = ""
+        self.email = ""
+        self.password = ""
+        self.xpTotal = 0
+        self.starTotal = 0
+    }
+    
+    func register (email: String, password: String) {
+        userDAO.registerUser(email: email, password: password)
+    }
+
+
 }

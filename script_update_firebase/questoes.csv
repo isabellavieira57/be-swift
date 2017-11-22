@@ -1,41 +1,44 @@
 id,question,example_code,options,estimated_time,mechanics,level,correct_answer,feedback,topic,resource_link
 1,"When this code is executed, what is the value of myVariable?","let myVariable: String
-myVariable = ""awesome""",""""", nil, awesome, This code will not compile",20,MultipleChoice,Level-1,awesome,,"Constants, Variables",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
-2,"Once this code is executed, how many items will numbers contain?","let numbers = [1, 2, 3]
-numbers += [4]",,20,BlankField,Level-1,3,,"Constants, Variables",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
-3,"Order the following code so that it
-makes sense and is compiled 
-successfully.",,"let mySize = Size(), print(mySize.height), struct Size {, var height = 10",20,Sort,Level-1,"[""struct Size {"",""   var height = 10 }
-"", ""let mySize = Size()"", ""print(mySize.height)
-""]",,Structs,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82
-4,"What output will be produced 
-by the code below?","let userLoggedIn: Bool? = false
+myVariable = ""awesome""",""""",nil,awesome,This code will not compile",20,MultipleChoice,Level-1,awesome,"Swift constants do not have to be given an initial value, as long as they are given a value only once and before they are used.",Constants and Variables,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
+2,"Once this code is executed, how many items will 'numbers' contain?","let numbers = [1, 2, 3]
+numbers += [4]",,20,BlankField,Level-1,3,"As the array 'numbers' is a constant, it can't be modified after it's been declared. Therefore, the number 4 won't be added to the array, which will remain with its 3 initial elements.","Constants and Variables,Basic Operators,Collection Types,Arrays",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
+3,Order the following code so that it makes sense and is compiled successfully.,,"let mySize = Size(),print(mySize.height),struct Size {,  var height = 10 }",20,Sort,Level-1,"struct Size {,  var height = 10 },let mySize = Size(),print(mySize.height)","The structure Size has a stored property 'height'. To create a new instance of a struct, you have to initialize it outside the struct brackets. 
+
+In this case, as Size has no parameters, the initializer syntax is simply the struct's name followed by empty parentheses. 
+
+Only after the instance has been declared, you can access its properties and use it in functions.",Structs,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82
+4,What output will be produced by the code below?,"let userLoggedIn: Bool? = false
 if !userLoggedIn! {
    print(""Message one"")
 } else { 
     print(""Message two"")
-}","Message one, Message two, Nothing will be output, This code will not compile
-",20,MultipleChoice,Level-1,Message one,,Basic Operators,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID60
-5,"Your goal is to make the expression number == numberFromList 
-true. What is yourAnswer value?","var list = [1,3,5,7,9,11]
+}","Message one,Message two,Nothing will be output,This code will not compile",20,MultipleChoice,Level-1,Message one,"The '!' before the name of a variable is an unary prefix operator, also known as the logical not operator. It inverts the value of a Boolean. 
+
+The '!' after the name of a variable forces its unwrapping. This is only used when you are sure that the variable's value will never be empty (nil).
+
+The code within the if statement can be read as: if the user is not logged in (userLoggedIn = false), print 'Message one'. Otherwise, print 'Message two'.","Basic Operators,Control Flow,Conditional Statements",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/BasicOperators.html#//apple_ref/doc/uid/TP40014097-CH6-ID60
+5,"Your goal is to make the expression 'number == numberFromList' 
+true. What is 'answer' value?","var list = [1,3,5,7,9,11]
 var number = 9
 list.remove(at: 3)
-var numberFromList = 
-           list[yourAnswer]",,20,BlankField,Level-1,3,"In this challenge you had to figure out which would be number 9’s index after the original array was modified. In Swift, the index of an array’s first element is 0, not 1. At first, as the number 9 was in the fifth position, its index was 4. However, on the third line, we removed the element whose index was 3 (which means we removed the item located in the forth position: the number 7). That way, our new array list is [1,3,5,9,11]. Now, the number 9 is in the forth position and its new index is 3.",Collection types,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105
+var numberFromList = list[answer]",,20,BlankField,Level-1,3,"In Swift, the index of an array’s 1st element is 0. When the number 9 was in the 5th position, its index was 4.
+
+On the 3rd line, we removed the index 3 element (therefore, the item at the 4th position). So our new array is [1,3,5,9,11]. Now, the number 9 is in the 4th position and its new index is 3.","Collection Types,Arrays",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105
 6,"The code below contains an error. Which line will Xcode highlight 
-and what message will appear?","1 func count(sentence: String) { 
-2     var size = sentence.characters.count
+and what problem will it indicate?","1 func count(sentence: String) { 
+2     var size = 
+          sentence.characters.count
 3 } 
-4
-5 func categorizeSentece (sentence: String) {
-6     var size = 
+4 func categorizeSentece 
+          (sentence: String) {
+5     var size = 
           count(sentence: sentence)
-7     if size > 10 {
-8         print (""Long sentence"")
-9 }
-10 }","7: binary operator '>' cannot be applied to operrands of type '()' and 'Int',  6: use of unresolved identifier, 7: incomplete expression, 10: extraneous ‘}’ at top level
-",20,MultipleChoice,Level-1,7: binary operator '>' cannot be applied to operrands of type '()' and 'Int',,"Functions, return, control flow - Conditional Statements (If)",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158
-7,Below we have 3 functions. Find out whether any of them contains an error and drag each function tag into the proper field. \n,"func printEvenNumbers(_ n: Int) {
+6     if size > 10 {
+7         print (""Long sentence"")
+8     }
+9 }","6: can't compare types '()' and Int,5: use of unresolved identifier,6: incomplete expression,9: an extra ‘}’ was used",20,MultipleChoice,Level-1,6: can't compare types '()' and Int,"We didn't specify a return to the function countCharacters in the 1st line. So, when we call it on the 6th line, it returns an empty type '()' and the variable 'size' is therefore empty. In addition, Swift only compares variables of the same type.","Functions,Control Flow,Conditional Statements",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158
+7,Below we have 3 functions. Find out whether any of them contains an error and drag each function tag into the proper field.,"func printEvenNumbers(_ n: Int) {
     var n = n
     for number in 0...n {
         if number % 2 == 0 {
@@ -65,71 +68,46 @@ func partsOfDay(time: Int) -> String {
         periodName = ""evening or night""
     }
     return periodName
-}","checkCountry, sevenTimesTable, partsOfDay
-",20,DragAndDrop,Level-1,", sevenTimesTable: error, partsOfDay: error",,,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158
-8,"Sort the code below so it will build. 
-Please organize variables in alphabetic 
-order.",,"func sayName() {
-        self.age = ag
-    init(nm: String, ag: Int) {
-    }, class Person {
-        print(name)
-    var age = 0
-    var name = """"
-        self.name = nm
-    }
-}, var liz = Person(nm: ""Liz"", ag: 27), var ben = Person(nm: ""Ben"", ag: 8)",20,Sort,Level-1,"class Person {
-    var age = 0
-    var name = """"
-    
-    func sayName() {
-        print(name)
-    }
-    
-    init(nm: String, ag: Int) {
-        self.age = ag
-        self.name = nm
-    }
-}
+}","checkCountry,sevenTimesTable,partsOfDay",20,DragAndDrop,Level-1,"sevenTimesTable,partsOfDay",,"Methods,Basic operators,Control flow (for in loops),Control flow (conditional statements)
+",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158
+8,"Sort the code below so it will build.
+ 
+Please organize variables and functions in alphabetic order when applicable.",,"   func birthday(){,class Person {,    var name = """",        self.age = age,    init(name: String age: Int) {,        print(name) },    var age = 0,},        age += 1 },        self.name = name },    func sayName() {",20,Sort,Level-1,"class Person {,    var age = 0,    var name = """",   func birthday(){,        self.age += 1 },    func sayName() {,        print(self.name) },    init(name: String, age: Int) {,        self.age = age,         self.name = name },}","To create an instance of class Person, the initializer requires  a value for two variables (name and age, which are properties of that class).
 
+Initially, we create those variables with any value. When an instance is created, the init resets those values according to the parameters passed. The ‘self' indicates that we are referring to the property variables of the class.
 
-var liz = Person(nm: ""Liz"", ag: 27)
-var ben = Person(nm: ""Ben"", ag: 8)
-",,"Class, property, method, self property, initialization",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82
-9,"Choose a name to the function below according 
-to what it is doing.","func chooseName() {
-
+This class also has two methods: sayName (prints the name) and birthday (adds one year to the current value of the variable age).","Class,Properties,Methods,Initialization",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ClassesAndStructures.html#//apple_ref/doc/uid/TP40014097-CH13-ID82
+9,Choose a name to the function below according to what it is doing.,"func chooseName(didPassLevel: 
+       Bool) {
     var currentLevel = 0
     var finalLevel = 5
     
-    var levelPassed: Bool = GameLevel.didPassLevel
-    //GameLevel is a class not shown in this code. It has a member didPassLevel that indicates whether the user has succeeded in the current level
-    
     while (currentLevel <= finalLevel) {
-        if levelPassed == false {
+        if didPassLevel == false {
             print(""Oh no! Try again!"")
         } else if currentLevel == 5 {
             print(""You won the game!"")
         } else {
             print(""Play next level!"")
-            currentLevel += 1 } } }","checkCurrentLevel, sendLevelMessage, finalLevelMessage, checkIfGameIsOver",20,MultipleChoice,Level-1,sendLevelMessage,,"Function, control flow (while loops), control flow (conditional statements)",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158
-10,"In this challenge, we will give movement instructions to Manny, the robot. You will have to figure out where it is located after the commands have been executed.
-Below we have the image of part of a grid. Each square can be referred to through a tuple (x,y).
-Manny is placed at the grid. Right now, var robotPosition = (x: 3, y: 1)
-The robot responds to only 3 commands:
-R: turn right
-L: turn left
-A: advance
-Notice: The robot only changes its current square with the command A!
-We will give the following instructions to Manny: RALAALAAR
-Which option is correct regarding the robot's final position?
+            currentLevel += 1
+        }
+    }
+}","checkCurrentLevel,sendLevelMessage,finalLevelMessage,checkIfGameIsOver",20,MultipleChoice,Level-1,sendLevelMessage,"The function above prints a message related to the user's situation after playing a level.
 
-",,"robotPosition.y = 2, robotPosition.x = 3, robotPosition.x = 2, robotPosition.y = 3",20,MultipleChoice,Level-1,"robotPosition.y = 3
-",,Collection,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105
+The code inside the while structure checks whether the user has passed the  level and prints a message accordingly.
+
+After checking  the situation in the current level, it states that the user is in the next level.\nThat cycle repeats itself until the user reaches the final level (5).","Control Flow,While Loops,Conditional Statements,Functions",https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ControlFlow.html#//apple_ref/doc/uid/TP40014097-CH9-ID120
+10,xx,,,20,FillTheGap,Level-1,xx,xx,xx,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
 11,"By the end of this code, what names will be contained in the array names?","var names = [""Ana"", ""Jake"", ""Lisa"", ""Bob""]
 let example1 = names.removeLast()
 names.append(""Amy"")
 names += [""Stuart"", ""Lucas"", ""Carrie""]
 let example2 = names.removeLast()
-",,20,DragAndDrop,Level-1,,,Collection,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105
-12,,,,20,DragAndDrop,Level-1,,,,
+","Ana,Jake,Lisa,Bob,Amy,Stuart,Lucas,Carrie",20,DragAndDrop,Level-1,"Ana,Jake,Lisa,Amy,Stuart,Lucas","The removeLast() method removes and returns the last element of the collection, the append() method adds a new element at the end of the array and the operator += in this case add the new array by the end of the previous one.",Collection,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105
+12,"Manny, the robot, is placed at an infinite grid. Each square is represented as a tuple (x,y). Right now, Manny is facing north and robotPosition = (x: 3, y: 1).
+
+Manny can only turn right (R), turn left (L) or advance (A). Notice that the robot only changes its current square with the command A.
+
+These are Manny's instructions: RALAALAAR
+
+Which option correctly indicates the robot's final position?",,"robotPosition.y = 2,robotPosition.x = 3,robotPosition.x = 2,robotPosition.y = 3",50,MultipleChoice,Level-1,robotPosition.y = 3,"Manny's final position is (x: 7, y: 3). You can call elements from a tuple through the chosen label names (in this case, x or y). Therefore, robotPosition.y = 3",Tuple,https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html#//apple_ref/doc/uid/TP40014097-CH5-ID309
