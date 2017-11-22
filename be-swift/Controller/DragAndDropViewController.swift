@@ -1,24 +1,23 @@
 //
-//  BlankFieldViewController.swift
+//  DragAndDropViewController.swift
 //  be-swift
 //
-//  Created by Mariana Meireles on 25/10/17.
+//  Created by Mariana Meireles on 22/11/17.
 //  Copyright © 2017 Isabella Vieira. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class BlankFieldViewController: UIViewController, UITextFieldDelegate {
+class DragAndDropViewController: UIViewController {
     
-    var blankField: BlankFieldView!
+    var dragAndDrop: DragAndDropView!
     var scrollView: UIScrollView!
     var challenge: Challenge!
     var answerIsRight: Bool!
     var userAnswer: String!
     var correctAnswer: String!
     var numberOfTries = 0
-    var textFieldInput: String!
     
     let progressView = UIProgressView(progressViewStyle: .bar)
     var time = 0.0
@@ -29,15 +28,12 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         
         self.correctAnswer = self.challenge.correctAnswer[0] as! String
         
-        blankField = BlankFieldView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(BlankFieldViewController.dismissButton(_:)), helpButtonAction: #selector(BlankFieldViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, checkButtonAction:#selector(BlankFieldViewController.checkButton(_:)), currentView: self)
+        dragAndDrop = DragAndDropView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(DragAndDropViewController.dismissButton(_:)), helpButtonAction: #selector(DragAndDropViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! [String])
         
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: blankField.frame.height)
+        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: dragAndDrop.frame.height)
         self.view.addSubview(scrollView)
-        scrollView.addSubview(blankField)
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        scrollView.addSubview(dragAndDrop)
         
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
     }
@@ -48,6 +44,22 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         UIView.animate(withDuration: TimeInterval(self.challenge.estimatedTime), animations: { () -> Void in
             self.progressView.setProgress(0.0, animated: true)
         })
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in (touches){
+            let location = touch.location(in: self.dragAndDrop)
+            let drag = dragAndDrop.title
+            
+            if dragAndDrop.title.frame.contains(location){
+                scrollView.isUserInteractionEnabled = true
+                print ("TOUCHED")
+            }
+            print ("TOUCHED2")
+
+        }
+        print ("TOUCHED3")
+
     }
     
     @objc func startTime(){
@@ -64,16 +76,17 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         present(webView, animated: false, completion: nil)
     }
     
+    /*
     @objc func checkButton(_ sender: Any){
         self.blankField.blankField.isUserInteractionEnabled = false
-
+        
         if textFieldInput == nil{
             let alert = UIAlertController(title: "Ops!", message: "complete the blank field", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             self.blankField.blankField.isUserInteractionEnabled = true
         }else{
-
+            
             timer.invalidate()
             print("TIME", time)
             time = 0.0
@@ -103,7 +116,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
+ 
     func showFeedback(){
         self.numberOfTries = 0
         
@@ -121,37 +134,17 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         //change buttons
         self.blankField.tryAgainButton.removeFromSuperview()
         self.blankField.addSubview(self.blankField.checkButton)
-
+        
         //erase previous answer and let user edit blank field
         self.blankField.blankField.text = ""
         self.blankField.blankField.isUserInteractionEnabled = true
         
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField){
-        let heightiPhoneSE: CGFloat = 568
-        let screenSize = UIScreen.main.bounds
-        let yScale = screenSize.height/heightiPhoneSE
-        if textField.frame.minY + textField.frame.height > self.view.frame.height/2{
-            scrollView.setContentOffset(CGPoint(x: 0, y: textField.frame.minY - 250*yScale), animated: true)
-        }
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField){
-        scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentSize.height - self.view.frame.height), animated: true)
-        if !(textField.text?.isEmpty)!{
-            textFieldInput = textField.text
-        }
-    }
-    
-    @objc func dismissKeyboard(){
-        view.endEditing(true)
-    }
+ 
+     */
+
+ 
 }
+
 

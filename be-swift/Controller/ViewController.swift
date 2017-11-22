@@ -87,6 +87,10 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             let blankFieldVC = BlankFieldViewController()
             blankFieldVC.challenge = selectedChallenge
             present(blankFieldVC, animated: true, completion: nil)
+        case "DragAndDrop":
+            let dragAndDropVC = DragAndDropViewController()
+            dragAndDropVC.challenge = selectedChallenge
+            present(dragAndDropVC, animated: true, completion: nil)
         default:
             print("No mechanics found!")
         }

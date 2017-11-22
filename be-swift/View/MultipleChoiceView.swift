@@ -23,6 +23,7 @@ class MultipleChoiceView: View {
     var tryAgainButton: UIButton!
     var code: UILabel!
     var sizeView: CGFloat!
+    var checkButtonFrame: CGRect!
     
     let widhtiPhoneSE: CGFloat = 320
     let heightiPhoneSE: CGFloat = 568
@@ -116,12 +117,13 @@ class MultipleChoiceView: View {
             checkButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionOptionButton4 + 70*yScale)
             sizeView = checkButton.frame.minY + 62*yScale
         }
+        checkButtonFrame = checkButton.frame
         self.addSubview(checkButton)
     }
     
-    func setTryAgainButton(tryAgainAction: Selector)
-    {
-        self.tryAgainButton = UIButton(image: "tryAgain", frame: self.checkButton.frame, target: self)
+    func setTryAgainButton(tryAgainAction: Selector) {
+        self.tryAgainButton = UIButton(image: "tryAgain", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
+        self.tryAgainButton.frame = checkButtonFrame
         self.checkButton.removeFromSuperview()
         self.addSubview(tryAgainButton)
         self.tryAgainButton.addTarget(target, action: tryAgainAction, for: .touchUpInside)

@@ -51,16 +51,20 @@ class SortFeedbackView: FeedbackView
         self.addSubview(question)
     }
     
-    func setSortUserLabels()
-    {
+    func setSortUserLabels(){
+        let widhtiPhoneSE: CGFloat = 320
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
         let labelUserAnswerY = self.feedbackTableView.frame.origin.y + self.feedbackTableView.frame.height + 10*yScale
         
         self.labelCorrectUserAnswer = UILabel(text: "You got it! Your answer is correct!", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:0.28, green:0.64, blue:0.31, alpha:1.0), frame: CGRect(x: self.userAnswerX*xScale, y: labelUserAnswerY, width: self.userAnswerWidth*xScale, height: self.userAnswerHeight*yScale))
-        
-        self.labelWrongUserAnswer = UILabel(text: "That's not it! Compare the answers with the buttons above.", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:1.58, green:0.21, blue:0.38, alpha:1.0), frame: CGRect(x: self.userAnswerX*xScale, y: labelUserAnswerY, width: self.userAnswerWidth*xScale, height: self.userAnswerHeight*1.4*yScale))
+
+        self.labelWrongUserAnswer = UILabel(text: "That's not it! Compare the answers with the buttons above.", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:1.58, green:0.21, blue:0.38, alpha:1.0), frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        self.labelWrongUserAnswer.frame = CGRect (x: self.userAnswerX*xScale, y: labelUserAnswerY, width: self.userAnswerWidth*xScale, height: self.userAnswerHeight*1.4*yScale)
+
     }
     
     func getTableViewFrame(tableViewFrame: CGRect)

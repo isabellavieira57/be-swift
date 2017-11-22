@@ -27,10 +27,9 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var time = 0.0
     var timer = Timer()
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad(){
         super.viewDidLoad()
-
+        
         self.correctAnswer = self.challenge.correctAnswer[0] as! String
         self.options = self.challenge.options as! Array<String>
         
@@ -60,36 +59,34 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         time += 0.2
     }
     
-    func setRadioButtonController()
-    {
+    func setRadioButtonController(){
         radioButtonController = SSRadioButtonsController(buttons: multipleChoiceView.optionButton1, multipleChoiceView.optionButton2, multipleChoiceView.optionButton3, multipleChoiceView.optionButton4)
         radioButtonController!.delegate = self
         radioButtonController!.shouldLetDeSelect = true
     }
     
-    func didSelectButton(selectedButton: SSRadioButton?)
-    {
+    func didSelectButton(selectedButton: SSRadioButton?){
         NSLog(" \(selectedButton)" )
         self.selectedButton = selectedButton
         print("SELECTED BUTTON: ", self.selectedButton?.optionLabel.text)
     }
     
-    func findUserAnswer(button: SSRadioButton)
-    {
+    func findUserAnswer(button: SSRadioButton){
         self.userAnswer = (button.optionLabel.text)!
         print(userAnswer)
     }
     
-    @objc func checkAnswer()
-    {
-        if selectedButton == nil
-        {
+    @objc func checkAnswer(){
+        if selectedButton == nil{
             let alert = UIAlertController(title: "Ops!", message: "Select an option", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             
-        } else
-        {
+        }else{
+            timer.invalidate()
+            print("TIME", time)
+            time = 0.0
+            
             multipleChoiceView.optionButton1.isUserInteractionEnabled = false
             multipleChoiceView.optionButton2.isUserInteractionEnabled = false
             multipleChoiceView.optionButton3.isUserInteractionEnabled = false
@@ -97,36 +94,32 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
             
             findUserAnswer(button: self.selectedButton!)
             
-            if self.userAnswer.trimmingCharacters(in: .whitespacesAndNewlines) == self.correctAnswer.trimmingCharacters(in: .whitespacesAndNewlines)
-            {
-                timer.invalidate()
-                print(time)
+            if self.userAnswer.trimmingCharacters(in: .whitespacesAndNewlines) == self.correctAnswer.trimmingCharacters(in: .whitespacesAndNewlines){
                 print("CORRECT ANSWER")
                 
                 self.answerIsRight = true
                 showFeedback()
                 
-            } else
-            {
+            }else{
 
                 self.answerIsRight = false
                 self.numberOfTries += 1
 
-                if self.numberOfTries < 2
-                {
+                if self.numberOfTries < 2{
                 //remove 'Check' button and add 'Try Again' button
                 self.selectedButton?.setBackgroundImage(UIImage(named: "wrongOption"), for: .selected)
+                    UIView.animate(withDuration: TimeInterval(0), animations: { () -> Void in
+                        self.progressView.setProgress(1.0, animated: true)
+                    })
                     self.multipleChoiceView.setTryAgainButton(tryAgainAction: #selector(setNextTry))
-                } else
-                {
+                }else{
                     showFeedback()
                 }
             }
         }
     }
     
-    func showFeedback()
-    {
+    func showFeedback(){
         self.numberOfTries = 0
         
 //        let testeController = ViewController()
@@ -135,8 +128,11 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         present(feedbackController, animated: false, completion: nil)
     }
     
-    @objc func setNextTry()
-    {
+    @objc func setNextTry(){
+        UIView.animate(withDuration: TimeInterval(self.challenge.estimatedTime), animations: { () -> Void in
+            self.progressView.setProgress(0.0, animated: true)
+        })
+        
         //shuffle the options
         self.options = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.options) as! Array<String>
         self.multipleChoiceView.createButtons(options: self.options)
@@ -152,6 +148,8 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         multipleChoiceView.optionButton4.isUserInteractionEnabled = true
         
         setRadioButtonController()
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
     }
     
     @objc func dismissButton(_ sender: Any){

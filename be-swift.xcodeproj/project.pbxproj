@@ -33,6 +33,8 @@
 		492E75CF1F91296800A4AD4F /* SanFranciscoText-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 492E75C11F91271800A4AD4F /* SanFranciscoText-Semibold.otf */; };
 		492E75D01F91296800A4AD4F /* SanFranciscoText-SemiboldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 492E75C21F91271800A4AD4F /* SanFranciscoText-SemiboldItalic.otf */; };
 		4949DAEE1FB0975A0002E651 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4949DAED1FB0975A0002E651 /* String.swift */; };
+		4964A3D51FC4D19200C364C1 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4964A3D41FC4D19200C364C1 /* Image.swift */; };
+		4964A3D71FC5BED000C364C1 /* DragAndDropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4964A3D61FC5BECF00C364C1 /* DragAndDropViewController.swift */; };
 		497703561F8EAA9E00102F08 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497703551F8EAA9E00102F08 /* Label.swift */; };
 		497703581F8EABDC00102F08 /* DeviceScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497703571F8EABDC00102F08 /* DeviceScale.swift */; };
 		49C3807E1F96645500DC5293 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3807D1F96645500DC5293 /* TextView.swift */; };
@@ -119,6 +121,8 @@
 		492E75C21F91271800A4AD4F /* SanFranciscoText-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-SemiboldItalic.otf"; sourceTree = "<group>"; };
 		492E75C31F91271800A4AD4F /* SanFranciscoText-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoText-BoldItalic.otf"; sourceTree = "<group>"; };
 		4949DAED1FB0975A0002E651 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		4964A3D41FC4D19200C364C1 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		4964A3D61FC5BECF00C364C1 /* DragAndDropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragAndDropViewController.swift; sourceTree = "<group>"; };
 		497703551F8EAA9E00102F08 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		497703571F8EABDC00102F08 /* DeviceScale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceScale.swift; sourceTree = "<group>"; };
 		49C3807D1F96645500DC5293 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 				497703551F8EAA9E00102F08 /* Label.swift */,
 				49D8110C1FB1E2FE00E411DC /* TextField.swift */,
 				4949DAED1FB0975A0002E651 /* String.swift */,
+				4964A3D41FC4D19200C364C1 /* Image.swift */,
 				49C4B4051F8EC57100A84C69 /* Button.swift */,
 				497703571F8EABDC00102F08 /* DeviceScale.swift */,
 				49C3807D1F96645500DC5293 /* TextView.swift */,
@@ -372,6 +377,7 @@
 				03AD2B9D1FB32D1300F58DEA /* ViewController.swift */,
 				4F75F8981F8AB5D6007BABC9 /* UserController.swift */,
 				49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */,
+				4964A3D61FC5BECF00C364C1 /* DragAndDropViewController.swift */,
 				03D9FCDA1F98FC61000512F5 /* SortViewController.swift */,
 				03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */,
 				49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */,
@@ -729,6 +735,7 @@
 				4F75F8A51F8AB652007BABC9 /* FillTheGapView.swift in Sources */,
 				4F75F8AB1F8AB67A007BABC9 /* RegisterView.swift in Sources */,
 				4F75F8951F8AB5AE007BABC9 /* ChallengeTopic.swift in Sources */,
+				4964A3D51FC4D19200C364C1 /* Image.swift in Sources */,
 				4F75F88D1F8AB547007BABC9 /* User.swift in Sources */,
 				4F75F8931F8AB595007BABC9 /* Level.swift in Sources */,
 				497703581F8EABDC00102F08 /* DeviceScale.swift in Sources */,
@@ -737,6 +744,7 @@
 				03ECA9251F9EBD2D00EF8E4B /* SSRadioButtonsController.swift in Sources */,
 				4F75F8991F8AB5D6007BABC9 /* UserController.swift in Sources */,
 				037421711FB61D4B00F686C3 /* SortFeedbackViewController.swift in Sources */,
+				4964A3D71FC5BED000C364C1 /* DragAndDropViewController.swift in Sources */,
 				4F75F88F1F8AB55C007BABC9 /* UserChallengeInfo.swift in Sources */,
 				4F75F8911F8AB58B007BABC9 /* Challenge.swift in Sources */,
 				497703561F8EAA9E00102F08 /* Label.swift in Sources */,

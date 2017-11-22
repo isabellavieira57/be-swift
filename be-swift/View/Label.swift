@@ -31,6 +31,5 @@ public extension UILabel {
         } else {
             self.font = UIFont(name: font, size: fontSize + 5)
         }
-        
     }
 }
