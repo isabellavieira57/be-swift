@@ -19,6 +19,7 @@ protocol UserHandler {
 class LoginViewController: UIViewController, UserHandler {
  
     var loginView: LoginView!
+    var indicator = UIActivityIndicatorView()
     
     var erroMessageLabel:      UILabel!
     var userDAO = UserDAO()
@@ -40,6 +41,15 @@ class LoginViewController: UIViewController, UserHandler {
         return emailTest.evaluate(with: string)
     }
     
+    func activityIndicator() {
+        indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        indicator.center = self.view.center
+        DispatchQueue.main.async {
+            self.view.addSubview(self.indicator)
+        }
+    }
+    
     
     @objc func logIn () {
         
@@ -50,6 +60,14 @@ class LoginViewController: UIViewController, UserHandler {
         } else {
             
             //Firebase login
+//            indicator.startAnimating()
+//            indicator.backgroundColor = UIColor.black
+//            DispatchQueue.main.async {
+//                self.loginView.addSubview(self.indicator)
+//            }
+            
+            self.activityIndicator()
+            
             userDAO.loadUser(handler: self, email: self.loginView.emailText.text!, password: self.loginView.passwordText.text!)
             print (">>>>>>>>>sucess loginuser: \(self.success)")
             print ("email: \(self.loginView.emailText.text)")
@@ -75,6 +93,8 @@ class LoginViewController: UIViewController, UserHandler {
     func loginUser(success: Bool) {
         print ("sucess loginuser HANDLER: \(success)")
         self.success = success
+        indicator.stopAnimating()
+        indicator.hidesWhenStopped = true
         print ("sucess loginuser HANDLER CASSE: \(self.success)")
     }
     
