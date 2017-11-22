@@ -125,11 +125,11 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         } else {
             //Firebase - create user
             print ("CONTROLLER - REGISTER")
-            user.register(email: emailTxt!, password: passwordTxt!)
+            //user.register(email: emailTxt!, password: passwordTxt!)
             
             // salva no banco os dados do formulario
             print ("CONTROLLER - SAVE DATABASE")
-            user.saveRegistration(name: nameTxt!, email: emailTxt!, password: passwordTxt!, country: countryTxt!, major: courseTxt!)
+            //user.saveRegistration(name: nameTxt!, email: emailTxt!, password: passwordTxt!, country: countryTxt!, major: courseTxt!)
             
             showAlert(title: "Welcome!", message: "Your account was successfully created!")
             openMainController()

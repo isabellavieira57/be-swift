@@ -40,6 +40,7 @@ class LoginView: UIView
         emailText.layer.cornerRadius = 5
         emailText.keyboardType = .emailAddress
         emailText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
+        emailText.autocapitalizationType = .none
         
         passwordText = UITextField(frame: CGRect(x: 24, y: 152, width: 272, height: 39), font: textFont, fontSize: textSize)
         passwordText.placeholder = "Password"
@@ -55,7 +56,7 @@ class LoginView: UIView
     func setLogInButton(logInAction: Selector)
     {
         logInButton = UIButton(image: "logIn", frame: CGRect(x: 16, y: 506, width: 288, height: 46), target: self)
-        logInButton.addTarget(self, action: logInAction, for: .touchUpInside)
+        logInButton.addTarget(target, action: logInAction, for: .touchUpInside)
         
         self.addSubview(logInButton)
     }
@@ -69,7 +70,7 @@ class LoginView: UIView
         let title = UILabel(text: "Log in", font: "SanFranciscoText-Semibold", fontSize: 18, aligment: .center, textColor: UIColor.white, frame: CGRect(x: 0, y: 31, width: 320, height: 20))
         
         backButton = UIButton(image: "backButton", frame: CGRect(x: 12, y: 27, width: 14.29, height: 24), target: self)
-        backButton.addTarget(self, action: goBackAction, for: .touchUpInside)
+        backButton.addTarget(target, action: goBackAction, for: .touchUpInside)
         
         self.layer.addSublayer(rectangle)
         self.addSubview(title)

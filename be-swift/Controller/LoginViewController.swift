@@ -12,12 +12,17 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
-    
+
+protocol UserHandler {
+    func loginUser (success:Bool)
+}
+class LoginViewController: UIViewController, UserHandler {
+ 
     var loginView: LoginView!
     
     var erroMessageLabel:      UILabel!
-    var user = User()
+    var userDAO = UserDAO()
+    var success: Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +48,34 @@ class LoginViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
+            
             //Firebase login
-            user.login(email: self.loginView.emailText.text!, password: self.loginView.passwordText.text!)
+            userDAO.loadUser(handler: self, email: self.loginView.emailText.text!, password: self.loginView.passwordText.text!)
+            print (">>>>>>>>>sucess loginuser: \(self.success)")
+            print ("email: \(self.loginView.emailText.text)")
+            print ("senha: \(self.loginView.passwordText.text!)")
+            
+            if (self.success == true) {
+                print("You have successfully logged in")
+                let viewController = ViewController()
+                self.present(viewController, animated: true, completion: nil)
+            } else if (success == false) {
+                print("Login falhooou")
+                let alert = UIAlertController(title: "Login Failed!", message: "Please, check your username and password", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(defaultAction)
+                self.present(alert, animated: true, completion: nil)
+
+            }
         }
+    }
+    
+    
+    
+    func loginUser(success: Bool) {
+        print ("sucess loginuser HANDLER: \(success)")
+        self.success = success
+        print ("sucess loginuser HANDLER CASSE: \(self.success)")
     }
     
     @objc func goBack()

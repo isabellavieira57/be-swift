@@ -18,17 +18,33 @@ class UserDAO {
     static let sharedInstance = UserDAO()
     
     // MARK: Init
-    private init(){}
+    init(){}
     
     //MARK: Methods
-    func loadUser(email: String, password: String) {
+    func loadUser(handler: UserHandler, email: String, password: String) {
+        
+        print ("emaaaaiaiiilllll: \(email)")
+        
+        print ("passwoooord: \(password)")
+        
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
+            var success: Bool = true
+            
+            print ("errooor: \(error)")
+
             if (error == nil) {
                 print("You have successfully logged in")
+                success = true
+                print ("suceeeees ok: \(success)")
             }
             else {
                 print("Login falhou")
+                success = false
+                print ("suceeeees falhou: \(success)")
             }
+            print ("suceeeees: \(success)")
+        handler.loginUser(success: success)
         }
     }
     
@@ -40,18 +56,17 @@ class UserDAO {
         return false
     }
     
-    
-    func registerUser(email: String, password: String) {
-        print ("USER DAO - REGISTER")
-        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-            if error == nil {
-                print("DAO - usuario criado")
-                self.loadUser(email: email, password: password)
-            } else {
-                print(error?.localizedDescription ?? "DAO - erro no registro")
-            }
-        })
-    }
+//
+//    func registerUser(email: String, password: String) {
+//        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+//            if error == nil {
+//                print("DAO - usuario criado")
+//                self.loadUser(email: email, password: password)
+//            } else {
+//                print(error?.localizedDescription ?? "DAO - erro no registro")
+//            }
+//        })
+//    }
     
     func logout() {
         try! Auth.auth().signOut()

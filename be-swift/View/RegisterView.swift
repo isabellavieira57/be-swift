@@ -106,7 +106,7 @@ class RegisterView: UIView
     func setRegisterButton(signUpAction: Selector)
     {
         signUpButton = UIButton(image: "signUp", frame: CGRect(x: 16, y: 506, width: 288, height: 46), target: self)
-        signUpButton.addTarget(self, action: signUpAction, for: .touchUpInside)
+        signUpButton.addTarget(target, action: signUpAction, for: .touchUpInside)
         
         self.addSubview(signUpButton)
     }
@@ -120,7 +120,7 @@ class RegisterView: UIView
         let title = UILabel(text: "Sign up", font: "SanFranciscoText-Semibold", fontSize: 18, aligment: .center, textColor: UIColor.white, frame: CGRect(x: 0, y: 31, width: 320, height: 20))
         
         let backButton = UIButton(image: "backButton", frame: CGRect(x: 12, y: 27, width: 14.29, height: 24), target: self)
-        backButton.addTarget(self, action: goBackAction, for: .touchUpInside)
+        backButton.addTarget(target, action: goBackAction, for: .touchUpInside)
         
         self.layer.addSublayer(rectangle)
         self.addSubview(title)
