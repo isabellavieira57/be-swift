@@ -137,9 +137,6 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 alert.addAction(defaultAction)
                 self.present(alert, animated: true, completion: nil)
             }
-            
-            //showAlert(title: "Welcome!", message: "Your account was successfully created!")
-            //openMainController()
         }
 
     }
@@ -148,11 +145,6 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         self.success = success
         indicator.stopAnimating()
         indicator.hidesWhenStopped = true
-    }
-
-    func openMainController() {
-        let controller = ViewController()
-        present(controller, animated: true, completion: nil)
     }
 
     func showAlert(title: String, message: String) {

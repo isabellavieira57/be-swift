@@ -69,6 +69,7 @@ class LoginViewController: UIViewController, UserHandler {
                 print("You have successfully logged in")
                 let viewController = ViewController()
                 self.present(viewController, animated: true, completion: nil)
+                
             } else if (success == false) {
                 print("Login falhooou")
                 let alert = UIAlertController(title: "Login Failed!", message: "Please, check your username and password", preferredStyle: .alert)
