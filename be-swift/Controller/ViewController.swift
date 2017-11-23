@@ -41,7 +41,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.challengesView.collectionChallenges1.dataSource = self
         self.challengesView.collectionChallenges1.delegate = self
         self.challengesView.collectionChallenges1.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
-   
+        
 //        notification.localNotification(title: "Be Swift", body: "It's time to practice!")
     }
     
@@ -96,6 +96,13 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         DispatchQueue.main.async {
             challengesView.collectionChallenges1.reloadData()
         }
+    }
+    
+    @objc func logOut()
+    {
+        User.sharedInstance.logout()
+        let controller = WelcomeViewController()
+        present(controller, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

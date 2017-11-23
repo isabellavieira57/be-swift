@@ -130,11 +130,6 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 let viewController = ViewController()
                 self.present(viewController, animated: true, completion: nil)
                 
-                //Change root view controller
-                let delegate = UIApplication.shared.delegate as! AppDelegate
-                let window = delegate.window
-                window?.rootViewController = ViewController()
-                
             } else if (success == false) {
                 print("registro falhooou")
                 let alert = UIAlertController(title: "Registration Failed!", message: "The email address is already in use by another account", preferredStyle: .alert)
@@ -142,9 +137,6 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 alert.addAction(defaultAction)
                 self.present(alert, animated: true, completion: nil)
             }
-            
-            //showAlert(title: "Welcome!", message: "Your account was successfully created!")
-            //openMainController()
         }
 
     }
@@ -153,11 +145,6 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         self.success = success
         indicator.stopAnimating()
         indicator.hidesWhenStopped = true
-    }
-
-    func openMainController() {
-        let controller = ViewController()
-        present(controller, animated: true, completion: nil)
     }
 
     func showAlert(title: String, message: String) {

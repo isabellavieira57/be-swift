@@ -70,11 +70,6 @@ class LoginViewController: UIViewController, UserHandler {
                 let viewController = ViewController()
                 self.present(viewController, animated: true, completion: nil)
                 
-                //Change root view controller
-                let delegate = UIApplication.shared.delegate as! AppDelegate
-                let window = delegate.window
-                window?.rootViewController = ViewController()
-                
             } else if (success == false) {
                 print("Login falhooou")
                 let alert = UIAlertController(title: "Login Failed!", message: "Please, check your username and password", preferredStyle: .alert)

@@ -28,8 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         registerForPushNotifications()
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        //window!.rootViewController = WelcomeViewController()
-        window!.rootViewController = ViewController()
+        window!.rootViewController = getInitialController()
         window!.makeKeyAndVisible()
         
        /* let center = UNUserNotificationCenter.current()
@@ -141,6 +140,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    func getInitialController() -> UIViewController {
+        
+        var controller: UIViewController!
+        
+        if UserDAO.sharedInstance.checkLoadedUser() {
+            print("usuario ja logado")
+            controller = ViewController()
+        } else {
+            controller = WelcomeViewController()
+        }
+        return controller
     }
     
 }

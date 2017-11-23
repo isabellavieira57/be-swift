@@ -14,6 +14,7 @@ class CollectionChallengeView: View {
     var collectionChallenges2: UICollectionView!
     var starLabel: UILabel!
     var xpLabel: UILabel!
+    var logoutButton: UIButton!
     
     let widhtiPhoneSE: CGFloat = 320
     let heightiPhoneSE: CGFloat = 568
@@ -46,11 +47,15 @@ class CollectionChallengeView: View {
         
         self.xpLabel = UILabel(text: "4%", font: "SanFranciscoText-Regular", fontSize: 19, aligment: .center, textColor: UIColor(red:0.0, green:2.15, blue:2.23, alpha:1.0), frame: CGRect(x: 264, y: 33, width: 37, height: 20))
         
+        self.logoutButton = UIButton(image: "logout", frame: CGRect(x: 12, y: 25, width: 24, height: 32), target: self)
+        self.logoutButton.addTarget(target, action: #selector(ViewController.logOut), for: .touchUpInside)
+        
         self.layer.addSublayer(topBar)
         self.addSubview(starImage)
         self.addSubview(starLabel)
         //        self.addSubview(xpImage)
         //        self.addSubview(xpLabel)
+        self.addSubview(logoutButton)
     }
     
     func setCollectionView()
