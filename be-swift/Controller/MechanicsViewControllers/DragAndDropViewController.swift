@@ -16,8 +16,13 @@ class DragAndDropViewController: UIViewController {
     var challenge: Challenge!
     var answerIsRight: Bool!
     var userAnswer: String!
-    var correctAnswer: String!
+    var correctAnswer: [String]!
     var numberOfTries = 0
+    var labels: [UILabel]!
+    var panGestures : [UIPanGestureRecognizer]!
+    var drop: UIImageView!
+    var positions: [CGPoint]!
+    var labelsInDrop = [String]()
     
     let progressView = UIProgressView(progressViewStyle: .bar)
     var time = 0.0
@@ -26,14 +31,28 @@ class DragAndDropViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.correctAnswer = self.challenge.correctAnswer[0] as! String
+        self.correctAnswer = self.challenge.correctAnswer as! [String]
         
-        dragAndDrop = DragAndDropView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(DragAndDropViewController.dismissButton(_:)), helpButtonAction: #selector(DragAndDropViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! [String])
+        dragAndDrop = DragAndDropView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(DragAndDropViewController.dismissButton(_:)), helpButtonAction: #selector(DragAndDropViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! [String], checkButtonAction: #selector(DragAndDropViewController.checkButton(_:)))
         
+        drop = dragAndDrop.drop
+        labels = dragAndDrop.titles
+
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: dragAndDrop.frame.height)
         self.view.addSubview(scrollView)
         scrollView.addSubview(dragAndDrop)
+        
+        positions = [CGPoint]()
+        panGestures = [UIPanGestureRecognizer]()
+        var gesture : UIPanGestureRecognizer!
+        
+        for label in labels{
+            positions.append(label.frame.origin)
+            gesture = UIPanGestureRecognizer.init(target: self, action: #selector(DragAndDropViewController.viewDidDragged(_:)))
+            panGestures.append(gesture)
+            label.addGestureRecognizer(gesture)
+        }
         
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
     }
@@ -46,20 +65,26 @@ class DragAndDropViewController: UIViewController {
         })
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in (touches){
-            let location = touch.location(in: self.dragAndDrop)
-            let drag = dragAndDrop.title
-            
-            if dragAndDrop.title.frame.contains(location){
-                scrollView.isUserInteractionEnabled = true
-                print ("TOUCHED")
+    @objc func viewDidDragged(_ sender: UIPanGestureRecognizer){
+        
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let yScale = screenSize.height/heightiPhoneSE
+        
+        let view = sender.view!
+        let label = sender.view! as! UILabel
+        let newPoint = sender.location(in: self.dragAndDrop)
+        view.layer.zPosition = 2
+        view.center = newPoint
+        if(sender.state == .ended){
+            if(drop.frame.contains(newPoint)){
+                view.frame.origin = CGPoint(x: positions[view.tag-1].x, y: positions[view.tag-1].y - 114*yScale)
+                labelsInDrop.append(label.text!)
+            } else{
+                view.frame.origin = positions[view.tag-1]
+                labelsInDrop = labelsInDrop.filter{$0 != label.text}
             }
-            print ("TOUCHED2")
-
         }
-        print ("TOUCHED3")
-
     }
     
     @objc func startTime(){
@@ -76,75 +101,77 @@ class DragAndDropViewController: UIViewController {
         present(webView, animated: false, completion: nil)
     }
     
-    /*
     @objc func checkButton(_ sender: Any){
-        self.blankField.blankField.isUserInteractionEnabled = false
         
-        if textFieldInput == nil{
-            let alert = UIAlertController(title: "Ops!", message: "complete the blank field", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            self.blankField.blankField.isUserInteractionEnabled = true
+        timer.invalidate()
+        print("TIME", time)
+        time = 0.0
+        
+        if labelsInDrop.containsSameElements(as: correctAnswer){
+            print("CORRECT ANSWER")
+            self.answerIsRight = true
+            print("LABELS ARRAY", labelsInDrop)
+            showFeedback()
         }else{
+            print("WRONG ANSWER")
+            self.answerIsRight = false
+            self.numberOfTries += 1
             
-            timer.invalidate()
-            print("TIME", time)
-            time = 0.0
-            
-            self.userAnswer = textFieldInput
-            
-            if userAnswer.lowercased() == self.correctAnswer.lowercased() {
-                print("CORRECT ANSWER")
-                
-                self.answerIsRight = true
-                showFeedback()
+            if self.numberOfTries < 2 {
+                UIView.animate(withDuration: TimeInterval(0), animations: { () -> Void in
+                    self.progressView.setProgress(1.0, animated: true)
+                })
+                self.dragAndDrop.setTryAgainButton(tryAgainAction: #selector(setNextTry))
+                print("LABELS ARRAY", labelsInDrop)
             }else{
-                print("WRONG ANSWER")
-                
-                self.answerIsRight = false
-                self.numberOfTries += 1
-                print("TRIES: ", numberOfTries)
-                
-                if self.numberOfTries < 2 {
-                    UIView.animate(withDuration: TimeInterval(0), animations: { () -> Void in
-                        self.progressView.setProgress(1.0, animated: true)
-                    })
-                    self.blankField.setTryAgainButton(tryAgainAction: #selector(setNextTry))
-                }else{
-                    showFeedback()
-                }
+                print("SHOW FEEDBACK")
+                print("LABELS ARRAY", labelsInDrop)
+
+                showFeedback()
             }
+
         }
+
     }
  
     func showFeedback(){
         self.numberOfTries = 0
         
+        let stringUserAnswer = labelsInDrop.joined(separator: ",")
+        let stringCorrectAnswer = correctAnswer.joined(separator: ",")
+        
         let feedbackController = MultipleChoiceFeedbackViewController()
-        feedbackController.getVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight)
+        feedbackController.getVariables(challenge: self.challenge, userAnswer: stringUserAnswer, correctAnswer: stringCorrectAnswer, answerIsRight: self.answerIsRight)
         present(feedbackController, animated: false, completion: nil)
     }
+    
     
     @objc func setNextTry(){
         
         UIView.animate(withDuration: TimeInterval(self.challenge.estimatedTime), animations: { () -> Void in
             self.progressView.setProgress(0.0, animated: true)
         })
-        
+
         //change buttons
-        self.blankField.tryAgainButton.removeFromSuperview()
-        self.blankField.addSubview(self.blankField.checkButton)
-        
-        //erase previous answer and let user edit blank field
-        self.blankField.blankField.text = ""
-        self.blankField.blankField.isUserInteractionEnabled = true
+        labelsInDrop = []
+        self.dragAndDrop.tryAgainButton.removeFromSuperview()
+        self.dragAndDrop.addSubview(self.dragAndDrop.checkButton)
+
+        for i in 0...(labels.count-1){
+            let label = labels[i]
+            label.frame.origin = positions[i]
+        }
         
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
     }
  
-     */
-
  
+}
+
+extension Array where Element: Comparable {
+    func containsSameElements(as other: [Element]) -> Bool {
+        return self.count == other.count && self.sorted() == other.sorted()
+    }
 }
 
 
