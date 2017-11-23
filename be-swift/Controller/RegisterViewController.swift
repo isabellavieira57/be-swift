@@ -126,13 +126,13 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
             userDAO.saveRegistration(name: nameTxt!, email: emailTxt!, password: passwordTxt!, country: countryTxt!, major: courseTxt!)
             if (self.success == true) {
                 print("You have successfully registered")
-                showAlert(title: "Welcome!", message: "Your account was successfully created!")
+               // showAlert(title: "Welcome!", message: "Your account was successfully created!")
                 let viewController = ViewController()
                 self.present(viewController, animated: true, completion: nil)
                 
             } else if (success == false) {
                 print("registro falhooou")
-                let alert = UIAlertController(title: "Registration Failed!", message: "Please, check your username and password", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Registration Failed!", message: "The email address is already in use by another account", preferredStyle: .alert)
                 let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alert.addAction(defaultAction)
                 self.present(alert, animated: true, completion: nil)
@@ -156,8 +156,8 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
 
     func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: title, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 
