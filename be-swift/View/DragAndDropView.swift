@@ -17,9 +17,11 @@ class DragAndDropView: View {
     var drop: UIImageView!
     var title: UILabel!
     var titles = [UILabel]()
-    //var checkButton: UIButton!
-    //var tryAgainButton: UIButton!
-    //var checkButtonFrame: CGRect!
+    var yPostionTitle: CGFloat!
+    var titleHeight: CGFloat!
+    var checkButton: UIButton!
+    var tryAgainButton: UIButton!
+    var checkButtonFrame: CGRect!
     var count = 0
     var cells = 1
     
@@ -27,7 +29,7 @@ class DragAndDropView: View {
         super.init(frame: frame)
     }
     
-    convenience init (progressView: UIProgressView, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: [String]){
+    convenience init (progressView: UIProgressView, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: [String], checkButtonAction: Selector){
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
         let rectangle = view.setTopBar()
@@ -40,10 +42,9 @@ class DragAndDropView: View {
         
         self.setDropView()
         self.setDragView(options: options)
-        //self.setBlankField()
-        //self.setCheckButton(checkButtonAction: checkButtonAction)
-        //let height = sizeView!
-        //self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
+        self.setCheckButton(checkButtonAction: checkButtonAction)
+        let height = sizeView!
+        self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
         
         self.layer.addSublayer(rectangle)
         self.addSubview(progressBar)
@@ -78,7 +79,7 @@ class DragAndDropView: View {
     func setDragView(options: [String]){
         
         let heightDrop = drop.frame.height
-        let yPostionDrop = drop.frame.minY
+        let yPostionDrop = drop.frame.origin.y
         let distance = heightDrop + yPostionDrop
         
         let heightiPhoneSE: CGFloat = 568
@@ -103,12 +104,14 @@ class DragAndDropView: View {
             self.addSubview(title)
             title.isUserInteractionEnabled = true
             titles.append(title)
+            yPostionTitle = title.frame.origin.y
+            titleHeight = title.frame.height
         }
     }
-    /*
+    
     func setCheckButton(checkButtonAction: Selector){
         checkButton = UIButton(image: "check", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
-        let yPostionBlankField = blankField.frame.minY
+        let distance = yPostionTitle + titleHeight
         checkButton.addTarget(target, action: checkButtonAction, for: UIControlEvents.touchUpInside)
         
         let widhtiPhoneSE: CGFloat = 320
@@ -117,17 +120,17 @@ class DragAndDropView: View {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        if yPostionBlankField < 568*yScale{
-            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 62*yScale)
-            sizeView = screenSize.height
-        } else {
-            checkButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionBlankField + 70*yScale)
-            sizeView = checkButton.frame.minY + 62*yScale
-        }
+//        if distance < 568*yScale{
+//            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 62*yScale)
+//            sizeView = screenSize.height
+//        } else {
+            checkButton.frame.origin = CGPoint(x: 16*xScale, y: distance + 50*yScale)
+            sizeView = checkButton.frame.origin.y + 62*yScale
+//        }
         checkButtonFrame = checkButton.frame
         self.addSubview(checkButton)
     }
-    
+
     func setTryAgainButton(tryAgainAction: Selector) {
         self.tryAgainButton = UIButton(image: "tryAgain", frame: CGRect(x: 0, y: 0, width: 288, height: 46), target: self)
         self.tryAgainButton.frame = checkButtonFrame
@@ -135,7 +138,7 @@ class DragAndDropView: View {
         self.addSubview(tryAgainButton)
         self.tryAgainButton.addTarget(target, action: tryAgainAction, for: .touchUpInside)
     }
- */
+
 }
 
 
