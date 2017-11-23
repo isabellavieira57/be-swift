@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-class WelcomeViewController: UIViewController
-{
+class WelcomeViewController: UIViewController {
     var logoImage: UIImageView!
     var registerButton: UIButton!
     var logInButton: UIButton!
@@ -19,16 +18,13 @@ class WelcomeViewController: UIViewController
     let heightiPhoneSE: CGFloat = 568
     let screenSize = UIScreen.main.bounds
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red:0.31, green:0.49, blue:0.95, alpha:1.0)
-        
         setElements()
     }
     
-    func setElements()
-    {
+    func setElements() {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
@@ -42,9 +38,9 @@ class WelcomeViewController: UIViewController
         
         logInButton = UIButton(image: "mainLogIn", frame: CGRect(x: 15, y: 445, width: 288, height: 46), target: self)
         logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
+        
         print("FRAME LOG IN ", logInButton.frame)
         print("FRAME REGISTER ", registerButton.frame)
-        
         
         self.view.addSubview(logoImage)
         self.view.addSubview(registerButton)
@@ -52,14 +48,12 @@ class WelcomeViewController: UIViewController
         self.view.addSubview(logInButton)
     }
     
-    @objc func createAccount()
-    {
+    @objc func createAccount() {
         let controller = RegisterViewController()
         present(controller, animated: true, completion: nil)
     }
     
-    @objc func logIn()
-    {
+    @objc func logIn() {
         let controller = LoginViewController()
         present(controller, animated: true, completion: nil)
     }

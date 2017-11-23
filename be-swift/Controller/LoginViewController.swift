@@ -12,15 +12,14 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-
 protocol UserHandler {
     func loginUser (success:Bool)
 }
+
 class LoginViewController: UIViewController, UserHandler {
  
     var loginView: LoginView!
     var indicator = UIActivityIndicatorView()
-    
     var erroMessageLabel:      UILabel!
     var userDAO = UserDAO()
     var success: Bool?
@@ -57,15 +56,8 @@ class LoginViewController: UIViewController, UserHandler {
             let alert = UIAlertController(title: "Ops!", message: "Please type your e-mail and your password", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+            
         } else {
-            
-            //Firebase login
-//            indicator.startAnimating()
-//            indicator.backgroundColor = UIColor.black
-//            DispatchQueue.main.async {
-//                self.loginView.addSubview(self.indicator)
-//            }
-            
             self.activityIndicator()
             
             userDAO.loadUser(handler: self, email: self.loginView.emailText.text!, password: self.loginView.passwordText.text!)
@@ -83,12 +75,9 @@ class LoginViewController: UIViewController, UserHandler {
                 let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alert.addAction(defaultAction)
                 self.present(alert, animated: true, completion: nil)
-
             }
         }
     }
-    
-    
     
     func loginUser(success: Bool) {
         print ("sucess loginuser HANDLER: \(success)")
@@ -98,15 +87,13 @@ class LoginViewController: UIViewController, UserHandler {
         print ("sucess loginuser HANDLER CASSE: \(self.success)")
     }
     
-    @objc func goBack()
-    {
+    @objc func goBack() {
         self.dismiss(animated: false, completion: nil)
     }
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
-    
     
     // Botao de esqueceu a senha
     func forgotPassword() {
@@ -123,15 +110,12 @@ class LoginViewController: UIViewController, UserHandler {
                     alert.addAction(defaultAction)
                     self.present(alert,animated: true, completion: nil)
                 } else {
-                    let alert = UIAlertController(title: "Error!", message: "Pleasem try again!", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error!", message: "Please try again!", preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alert.addAction(defaultAction)
                     self.present(alert,animated: true, completion: nil)
-                    
                 }
             }
         }
     }
-    
-    
 }

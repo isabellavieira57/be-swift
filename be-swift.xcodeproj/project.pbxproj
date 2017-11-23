@@ -276,6 +276,17 @@
 			name = Setup;
 			sourceTree = "<group>";
 		};
+		4F218DC91FC64A9D004BD658 /* MechanicsViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */,
+				03D9FCDA1F98FC61000512F5 /* SortViewController.swift */,
+				4964A3D61FC5BECF00C364C1 /* DragAndDropViewController.swift */,
+				49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */,
+			);
+			path = MechanicsViewControllers;
+			sourceTree = "<group>";
+		};
 		4F75F8451F8AB491007BABC9 = {
 			isa = PBXGroup;
 			children = (
@@ -302,11 +313,11 @@
 			isa = PBXGroup;
 			children = (
 				4FDC55FC1FB151F200E3259E /* be-swift.entitlements */,
-				4F75F8511F8AB491007BABC9 /* AppDelegate.swift */,
 				4F75F8821F8AB4AA007BABC9 /* Model */,
 				4F75F8851F8AB4BC007BABC9 /* Controller */,
 				4F75F8841F8AB4B4007BABC9 /* View */,
 				4F75F85D1F8AB492007BABC9 /* LaunchScreen.storyboard */,
+				4F75F8511F8AB491007BABC9 /* AppDelegate.swift */,
 				4F75F8601F8AB492007BABC9 /* Info.plist */,
 				4F75F8581F8AB492007BABC9 /* be_swift.xcdatamodeld */,
 				4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */,
@@ -382,15 +393,12 @@
 		4F75F8851F8AB4BC007BABC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4F218DC91FC64A9D004BD658 /* MechanicsViewControllers */,
 				0374217C1FB9E08900F686C3 /* FeedbackViewControllers */,
 				03AD2B9D1FB32D1300F58DEA /* ViewController.swift */,
 				4F75F8981F8AB5D6007BABC9 /* UserController.swift */,
 				49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */,
-				4964A3D61FC5BECF00C364C1 /* DragAndDropViewController.swift */,
-				03D9FCDA1F98FC61000512F5 /* SortViewController.swift */,
 				03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */,
-				49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */,
-				03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */,
 				4FB8E91F1FC50C7200B8303E /* LoginViewController.swift */,
 				4FB8E9211FC5D84900B8303E /* RegisterViewController.swift */,
 				4FB8E9231FC5E5F600B8303E /* WelcomeViewController.swift */,

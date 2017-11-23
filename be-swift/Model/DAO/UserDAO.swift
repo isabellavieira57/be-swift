@@ -22,28 +22,18 @@ class UserDAO {
     
     //MARK: Methods
     func loadUser(handler: UserHandler, email: String, password: String) {
-        
-        print ("emaaaaiaiiilllll: \(email)")
-        
-        print ("passwoooord: \(password)")
-        
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            
             var success: Bool = true
-            
-            print ("errooor: \(error)")
-
             if (error == nil) {
                 print("You have successfully logged in")
                 success = true
-                print ("suceeeees ok: \(success)")
+                print ("::loadUser - UserDAO - Sucesso:: \(success)")
             }
             else {
                 print("Login falhou")
                 success = false
-                print ("suceeeees falhou: \(success)")
+                print ("::loadUser - UserDAO - Falhou:: \(success)")
             }
-            print ("suceeeees: \(success)")
         handler.loginUser(success: success)
         }
     }
@@ -56,7 +46,6 @@ class UserDAO {
         return false
     }
     
-//
 //    func registerUser(email: String, password: String) {
 //        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
 //            if error == nil {
@@ -92,7 +81,6 @@ class UserDAO {
         
         data = ["major": major]
         ref.setValue(data)
-        
         
     }
 }

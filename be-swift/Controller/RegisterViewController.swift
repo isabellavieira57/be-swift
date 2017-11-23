@@ -17,8 +17,7 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
     var registerView: RegisterView!
     var user = User()
 
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         print ("CONTROLLER - selector")
@@ -34,74 +33,56 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
         self.view.addSubview(registerView)
         
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int
-    {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
-    {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         var numberOfRows = 0
         
-        if pickerView == self.registerView.pickerCountry
-        {
+        if pickerView == self.registerView.pickerCountry {
             numberOfRows = self.countryList.count
         }
-        else if pickerView == self.registerView.pickerCourse
-        {
+        else if pickerView == self.registerView.pickerCourse {
             numberOfRows = self.courseList.count
         }
         return numberOfRows
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
-    {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var listItem = ""
         
-        if pickerView == self.registerView.pickerCountry
-        {
+        if pickerView == self.registerView.pickerCountry {
             listItem = self.countryList[row]
-        }
-        else if pickerView == self.registerView.pickerCourse
-        {
+        } else if pickerView == self.registerView.pickerCourse {
             listItem = self.courseList[row]
         }
         return listItem
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-    {
-        if pickerView == self.registerView.pickerCountry
-        {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == self.registerView.pickerCountry {
             self.registerView.countryText.text = self.countryList[row]
             self.registerView.countryText.endEditing(true)
-        }
-        else if pickerView == self.registerView.pickerCourse
-        {
+        } else if pickerView == self.registerView.pickerCourse {
             self.registerView.courseText.text = self.courseList[row]
             self.registerView.courseText.endEditing(true)
         }
     }
     
-    func isValidEmail(testStr:String) -> Bool
-    {
+    func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: testStr)
     }
     
-    
     // Botao de confirmar cadastro
     @objc func checkInfo() {
-        
         print ("ENTROU CHECK INFO")
-        
         let nameTxt = self.registerView.nameText.text
         let emailTxt = self.registerView.emailText.text?.lowercased()
         let passwordTxt = self.registerView.passwordText.text
@@ -151,26 +132,22 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
     }
 
-    func openMainController()
-    {
+    func openMainController() {
         let controller = ViewController()
         present(controller, animated: true, completion: nil)
     }
 
-    func showAlert(title: String, message: String)
-    {
+    func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: "Ops!", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 
-    @objc func goBack(_ sender: Any)
-    {
+    @objc func goBack(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
 
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
-
 }
