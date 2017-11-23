@@ -90,9 +90,9 @@ class View: UIView{
         
         let heightQuestion = question.frame.height
         let exampleCode = UILabel(text: exampleCodeText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor.white, frame: CGRect(x: 24, y: heightQuestion, width: 273, height: 300))
+        labelDidChange(exampleCode)
         let height = heightForView(text: exampleCodeText, font: exampleCode.font, width: exampleCode.frame.width)
         exampleCode.frame = CGRect(x: 24*xScale, y: heightQuestion + 93*yScale, width: 273*xScale, height: height)
-        labelDidChange(exampleCode)
         
         let yPosition = exampleCode.frame.minY
         let rectangleCode = CAShapeLayer()
@@ -103,6 +103,7 @@ class View: UIView{
         if !exampleCodeText.isEmpty{
             view.layer.addSublayer(rectangleCode)
         }
+
         return exampleCode
     }
     
@@ -120,12 +121,18 @@ class View: UIView{
     //Função para colorir caracteres
     func labelDidChange(_ label: UILabel) {
         let attrStr = NSMutableAttributedString(string: label.text!)
-        let inputLength = attrStr.string.characters.count
+        let inputLength = attrStr.string.count
+        
+//        let mutableParagraphStyle = NSMutableParagraphStyle()
+//        mutableParagraphStyle.lineSpacing = 3
+//        if let stringLength = label.text?.count{
+//            attrStr.addAttribute(NSAttributedStringKey.paragraphStyle, value: mutableParagraphStyle, range: NSMakeRange(0, stringLength))
+//        }
         
         let searchString : NSArray = NSArray.init(objects: "func","var", "let", "if", "else", "return", "init", "true", "false", "class", "struct", "while", "case", "switch", "self")
         for i in 0...searchString.count-1 {
             let string : String = searchString.object(at: i) as! String
-            let searchLength = string.characters.count
+            let searchLength = string.count
             var range = NSRange(location: 0, length: attrStr.length)
             
             while (range.location != NSNotFound) {
@@ -141,7 +148,7 @@ class View: UIView{
         let searchStringTypes : NSArray = NSArray.init(objects: "Int","Double", "String", "Bool","print", "CGFloat")
         for i in 0...searchStringTypes.count-1 {
             let string : String = searchStringTypes.object(at: i) as! String
-            let searchLength = string.characters.count
+            let searchLength = string.count
             var range = NSRange(location: 0, length: attrStr.length)
             while (range.location != NSNotFound) {
                 range = (attrStr.string as NSString).range(of: string, options: [], range: range)
@@ -156,7 +163,7 @@ class View: UIView{
         let searchInts : NSArray = NSArray.init(objects: "0","1", "2", "3", "4", "5", "6", "7", "8", "9")
         for i in 0...searchInts.count-1 {
             let string : String = searchInts.object(at: i) as! String
-            let searchLength = string.characters.count
+            let searchLength = string.count
             var range = NSRange(location: 0, length: attrStr.length)
             while (range.location != NSNotFound) {
                 range = (attrStr.string as NSString).range(of: string, options: [], range: range)
