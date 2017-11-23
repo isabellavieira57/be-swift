@@ -134,8 +134,12 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
         if (self.success == true) {
             print("You have successfully registered")
-            // showAlert(title: "Welcome!", message: "Your account was successfully created!")
+            showAlert(title: "Welcome!", message: "Your account was successfully created!")
+            
             let viewController = ViewController()
+            let delegate = UIApplication.shared.delegate as! AppDelegate
+            let window = delegate.window
+            window?.rootViewController = viewController
             self.present(viewController, animated: true, completion: nil)
             
         } else if (success == false) {

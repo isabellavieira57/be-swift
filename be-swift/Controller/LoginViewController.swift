@@ -76,7 +76,11 @@ class LoginViewController: UIViewController, UserHandler {
         
         if (self.success == true) {
             print("LOGIN CONTROLLER - You have successfully logged in")
+            
             let viewController = ViewController()
+            let delegate = UIApplication.shared.delegate as! AppDelegate
+            let window = delegate.window
+            window?.rootViewController = viewController
             self.present(viewController, animated: true, completion: nil)
             
         } else if (success == false) {
