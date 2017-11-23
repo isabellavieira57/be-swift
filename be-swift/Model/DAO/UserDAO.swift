@@ -46,16 +46,20 @@ class UserDAO {
         return false
     }
     
-//    func registerUser(email: String, password: String) {
-//        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-//            if error == nil {
-//                print("DAO - usuario criado")
-//                self.loadUser(email: email, password: password)
-//            } else {
-//                print(error?.localizedDescription ?? "DAO - erro no registro")
-//            }
-//        })
-//    }
+    func registerUser(handler: UserHandler, email: String, password: String) {
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+            var success: Bool = true
+            if error == nil {
+                print("DAO - usuario criado")
+                success = true
+                self.loadUser(handler: handler, email: email, password: password)
+            } else {
+                print(error?.localizedDescription ?? "DAO - erro no registro")
+                success = false
+            }
+            handler.loginUser(success: success)
+        })
+    }
     
     func logout() {
         try! Auth.auth().signOut()
@@ -63,24 +67,17 @@ class UserDAO {
     }
     
     func saveRegistration(name: String, email: String, password: String, country: String, major: String) {
-        
         // If AppDelegate doesn't lauch firebase configuration
         if (!AppDelegate.isAlreadyLaunchedOnce) {
             FirebaseApp.configure()
             AppDelegate.isAlreadyLaunchedOnce = true
         }
         
+        let emailUser = email.replacingOccurrences(of: ".", with: "_")
+        
         // salva nome em um nó separado
-        let ref = Database.database().reference().child("UsersData").child(email)
-        
-        var data = ["name": name]
+        let ref = Database.database().reference().child("UsersData").child(emailUser)
+        let data = ["name": name, "country": country, "major": major]
         ref.setValue(data)
-        
-        data = ["country": country]
-        ref.setValue(data)
-        
-        data = ["major": major]
-        ref.setValue(data)
-        
     }
 }

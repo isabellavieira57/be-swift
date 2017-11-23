@@ -10,12 +10,16 @@ import Foundation
 import UIKit
 import Firebase
 
-class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate  {
+class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UserHandler  {
 
     var countryList: Array<String>!
     var courseList: Array<String>!
+    var indicator = UIActivityIndicatorView()
     var registerView: RegisterView!
     var user = User()
+    var userDAO = UserDAO()
+    var success: Bool?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +39,15 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
+    }
+    
+    func activityIndicator() {
+        indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        indicator.center = self.view.center
+        DispatchQueue.main.async {
+            self.view.addSubview(self.indicator)
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -106,30 +119,35 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         } else {
             //Firebase - create user
             print ("CONTROLLER - REGISTER")
-            //user.register(email: emailTxt!, password: passwordTxt!)
+            userDAO.registerUser(handler: self, email: emailTxt!, password: passwordTxt!)
             
             // salva no banco os dados do formulario
             print ("CONTROLLER - SAVE DATABASE")
-            //user.saveRegistration(name: nameTxt!, email: emailTxt!, password: passwordTxt!, country: countryTxt!, major: courseTxt!)
+            userDAO.saveRegistration(name: nameTxt!, email: emailTxt!, password: passwordTxt!, country: countryTxt!, major: courseTxt!)
+            if (self.success == true) {
+                print("You have successfully registered")
+                showAlert(title: "Welcome!", message: "Your account was successfully created!")
+                let viewController = ViewController()
+                self.present(viewController, animated: true, completion: nil)
+                
+            } else if (success == false) {
+                print("registro falhooou")
+                let alert = UIAlertController(title: "Registration Failed!", message: "Please, check your username and password", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(defaultAction)
+                self.present(alert, animated: true, completion: nil)
+            }
             
-            showAlert(title: "Welcome!", message: "Your account was successfully created!")
-            openMainController()
+            //showAlert(title: "Welcome!", message: "Your account was successfully created!")
+            //openMainController()
         }
-        
-//            Auth.auth()?.createUser(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
-//                if error == nil {
-//                    print("DAO - usuario criado")
-//                    PessoaDAO.sharedInstance.loadUsuario(email: self.emailField.text!, senha: self.senhaField.text!)
-//                    self.performSegue(withIdentifier: "cadastroBack", sender: sender)
-//                } else {
-//                    print(error?.localizedDescription ?? "DAO - erro no registro")
-//                    let alert = UIAlertController(title: "Email Inválido", message: "O email digitado já existe.", preferredStyle:.alert)
-//                    let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//            })
-        
+
+    }
+    
+    func loginUser(success: Bool) {
+        self.success = success
+        indicator.stopAnimating()
+        indicator.hidesWhenStopped = true
     }
 
     func openMainController() {
@@ -138,7 +156,7 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
 
     func showAlert(title: String, message: String) {
-        let alert = UIAlertController(title: "Ops!", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

@@ -47,13 +47,13 @@ class User {
         self.starTotal = 0
     }
     
-//    func register (email: String, password: String) {
-//        userDAO.registerUser(email: email, password: password)
+//    func register (handler: self, email: String, password: String) {
+//        userDAO.registerUser(handler: self, email: email, password: password)
 //    }
-    
-    func saveRegistration (name: String, email: String, password: String, country: String, major: String) {
-        userDAO.saveRegistration(name: name, email: email, password: password, country: country, major: major)
-    }
+//    
+//    func saveRegistration (name: String, email: String, password: String, country: String, major: String) {
+//        userDAO.saveRegistration(name: name, email: email, password: password, country: country, major: major)
+//    }
 
 
 }
