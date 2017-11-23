@@ -16,11 +16,12 @@ class DragAndDropView: View {
     var sizeView: CGFloat!
     var drop: UIImageView!
     var title: UILabel!
+    var titles = [UILabel]()
     //var checkButton: UIButton!
     //var tryAgainButton: UIButton!
     //var checkButtonFrame: CGRect!
     var count = 0
-    var cells = 0
+    var cells = 1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -86,10 +87,10 @@ class DragAndDropView: View {
         
         for option in options{
             title = UILabel(text: option, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .center, textColor: UIColor.black, frame: CGRect(x: 21 + count, y: 20, width: 67, height: 39))
-            if cells < 4{
+            if cells < 5{
                 title.frame.origin = CGPoint(x: title.frame.origin.x, y: title.frame.origin.y + distance)
             }
-            if cells >= 4{
+            if cells >= 5{
                 title.frame.origin = CGPoint(x: title.frame.origin.x, y: title.frame.origin.y + distance + 45*yScale)
             }
             count += 71
@@ -100,6 +101,8 @@ class DragAndDropView: View {
             title.backgroundColor = UIColor.white
             cells += 1
             self.addSubview(title)
+            title.isUserInteractionEnabled = true
+            titles.append(title)
         }
     }
     /*

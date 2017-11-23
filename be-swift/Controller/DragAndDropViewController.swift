@@ -18,6 +18,10 @@ class DragAndDropViewController: UIViewController {
     var userAnswer: String!
     var correctAnswer: String!
     var numberOfTries = 0
+    var labels: [UILabel]!
+    var panGestures : [UIPanGestureRecognizer]!
+    var drop: UIImageView!
+    var positions: [CGPoint]!
     
     let progressView = UIProgressView(progressViewStyle: .bar)
     var time = 0.0
@@ -30,10 +34,24 @@ class DragAndDropViewController: UIViewController {
         
         dragAndDrop = DragAndDropView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(DragAndDropViewController.dismissButton(_:)), helpButtonAction: #selector(DragAndDropViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! [String])
         
+        drop = dragAndDrop.drop
+        labels = dragAndDrop.titles
+
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: dragAndDrop.frame.height)
         self.view.addSubview(scrollView)
         scrollView.addSubview(dragAndDrop)
+        
+        positions = [CGPoint]()
+        panGestures = [UIPanGestureRecognizer]()
+        var gesture : UIPanGestureRecognizer!
+        
+        for label in labels{
+            positions.append(label.frame.origin)
+            gesture = UIPanGestureRecognizer.init(target: self, action: #selector(DragAndDropViewController.viewDidDragged(_:)))
+            panGestures.append(gesture)
+            label.addGestureRecognizer(gesture)
+        }
         
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
     }
@@ -46,20 +64,24 @@ class DragAndDropViewController: UIViewController {
         })
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in (touches){
-            let location = touch.location(in: self.dragAndDrop)
-            let drag = dragAndDrop.title
-            
-            if dragAndDrop.title.frame.contains(location){
-                scrollView.isUserInteractionEnabled = true
-                print ("TOUCHED")
+    @objc func viewDidDragged(_ sender: UIPanGestureRecognizer){
+        
+        let widhtiPhoneSE: CGFloat = 320
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let yScale = screenSize.height/heightiPhoneSE
+        
+        let view = sender.view!
+        let newPoint = sender.location(in: self.dragAndDrop)
+        view.layer.zPosition = 2
+        view.center = newPoint
+        if(sender.state == .ended){
+            if(drop.frame.contains(newPoint)){
+                view.frame.origin = CGPoint(x: positions[view.tag-1].x, y: positions[view.tag-1].y - 114*yScale)
+            } else{
+                view.frame.origin = positions[view.tag-1]
             }
-            print ("TOUCHED2")
-
         }
-        print ("TOUCHED3")
-
     }
     
     @objc func startTime(){
