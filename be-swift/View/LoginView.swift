@@ -11,7 +11,9 @@ import UIKit
 class LoginView: UIView
 {
     var emailText: UITextField!
+    var emailLabel: UILabel!
     var passwordText: UITextField!
+    var passwordLabel: UILabel!
     var logInButton: UIButton!
     var backButton: UIButton!
     

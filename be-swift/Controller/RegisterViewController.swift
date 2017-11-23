@@ -130,6 +130,11 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
                 let viewController = ViewController()
                 self.present(viewController, animated: true, completion: nil)
                 
+                //Change root view controller
+                let delegate = UIApplication.shared.delegate as! AppDelegate
+                let window = delegate.window
+                window?.rootViewController = ViewController()
+                
             } else if (success == false) {
                 print("registro falhooou")
                 let alert = UIAlertController(title: "Registration Failed!", message: "The email address is already in use by another account", preferredStyle: .alert)
