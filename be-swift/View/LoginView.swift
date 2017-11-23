@@ -33,25 +33,43 @@ class LoginView: UIView
     
     func setTextFields()
     {
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let yScale = screenSize.height/heightiPhoneSE
+        
         let textFont = "SanFranciscoText-Medium"
         let textSize: CGFloat = 16
+        let labelTextSize: CGFloat = 14
+        let textFieldFrame = CGRect(x: 24, y: 98, width: 272, height: 39)
+        let labelTextColor = UIColor(red:0.6, green:0.6, blue:0.6, alpha:1.0)
+        let labelFrame  = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.origin.y, width: 272, height: 20)
+        let marginFromDescription: CGFloat = 2*yScale
         
-        emailText = UITextField(frame: CGRect(x: 24, y: 98, width: 272, height: 39), font: textFont, fontSize: textSize)
-        emailText.placeholder = "E-mail"
+        emailLabel = UILabel(text: "E-mail", font: textFont, fontSize: labelTextSize, aligment: .left, textColor: labelTextColor, frame: labelFrame)
+        
+        emailText = UITextField(frame: textFieldFrame, font: textFont, fontSize: textSize)
+        emailText.frame.origin.y = emailLabel.frame.origin.y + emailLabel.frame.height + marginFromDescription
+//        emailText.placeholder = "E-mail"
         emailText.borderStyle = .none
         emailText.layer.cornerRadius = 5
         emailText.keyboardType = .emailAddress
         emailText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         emailText.autocapitalizationType = .none
         
-        passwordText = UITextField(frame: CGRect(x: 24, y: 152, width: 272, height: 39), font: textFont, fontSize: textSize)
-        passwordText.placeholder = "Password"
+        passwordLabel = UILabel(text: "Password", font: textFont, fontSize: labelTextSize, aligment: .left, textColor: labelTextColor, frame: labelFrame)
+        passwordLabel.frame.origin.y = emailText.frame.origin.y + emailText.frame.height + 8*yScale
+        
+        passwordText = UITextField(frame: textFieldFrame, font: textFont, fontSize: textSize)
+        passwordText.frame.origin.y = passwordLabel.frame.origin.y + passwordLabel.frame.height + marginFromDescription
+//        passwordText.placeholder = "Password"
         passwordText.borderStyle = .none
         passwordText.layer.cornerRadius = 5
         passwordText.isSecureTextEntry = true
         passwordText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         
+        self.addSubview(emailLabel)
         self.addSubview(emailText)
+        self.addSubview(passwordLabel)
         self.addSubview(passwordText)
     }
     

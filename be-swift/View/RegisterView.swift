@@ -51,7 +51,8 @@ class RegisterView: UIView
         
         let textFieldFrame = CGRect(x: 24, y: 75, width: 272, height: 39)
         let font = "SanFranciscoText-Medium"
-        let fontSize: CGFloat = 14
+        let textFontSize: CGFloat = 16
+        let labelFontSize: CGFloat = 14
         let labelAlignment = NSTextAlignment.left
 //        let labelTextColor = UIColor(red:0.73, green:0.73, blue:0.73, alpha:1.0)
         let labelTextColor = UIColor(red:0.6, green:0.6, blue:0.6, alpha:1.0)
@@ -59,19 +60,19 @@ class RegisterView: UIView
         let marginFromPreviousField: CGFloat = 8*yScale
         let marginFromDescription: CGFloat = 2*yScale
         
-        nameLabel = UILabel(text: "Name", font: font, fontSize: fontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
+        nameLabel = UILabel(text: "Name", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
         
-        nameText = UITextField(frame: textFieldFrame, font: font, fontSize: fontSize)
+        nameText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
         nameText.frame.origin.y = nameLabel.frame.origin.y + nameLabel.frame.height + marginFromDescription
 //        nameText.placeholder = "Name"
         nameText.borderStyle = .none
         nameText.layer.cornerRadius = 5
         nameText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         
-        emailLabel = UILabel(text: "E-mail", font: font, fontSize: fontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
+        emailLabel = UILabel(text: "E-mail", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
         emailLabel.frame.origin.y = nameText.frame.origin.y + nameText.frame.height + marginFromPreviousField
         
-        emailText = UITextField(frame: textFieldFrame, font: font, fontSize: fontSize)
+        emailText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
         emailText.frame.origin.y = emailLabel.frame.origin.y + emailLabel.frame.height + marginFromDescription
 //        emailText.placeholder = "E-mail"
         emailText.borderStyle = .none
@@ -80,10 +81,10 @@ class RegisterView: UIView
         emailText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         emailText.keyboardType = .emailAddress
         
-        passwordLabel = UILabel(text: "Password", font: font, fontSize: fontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
+        passwordLabel = UILabel(text: "Password", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
         passwordLabel.frame.origin.y = emailText.frame.origin.y + emailText.frame.height + marginFromPreviousField
         
-        passwordText = UITextField(frame: textFieldFrame, font: font, fontSize: fontSize)
+        passwordText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
         passwordText.frame.origin.y = passwordLabel.frame.origin.y + passwordLabel.frame.height + marginFromDescription
 //        passwordText.placeholder = "Password"
         passwordText.borderStyle = .none
@@ -92,10 +93,10 @@ class RegisterView: UIView
         passwordText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         passwordText.isSecureTextEntry = true
         
-        passwordConfirmLabel = UILabel(text: "Confirm your password", font: font, fontSize: fontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
+        passwordConfirmLabel = UILabel(text: "Confirm your password", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
         passwordConfirmLabel.frame.origin.y = passwordText.frame.origin.y + passwordText.frame.height + marginFromPreviousField
         
-        passwordConfirmationText = UITextField(frame: textFieldFrame, font: font, fontSize: fontSize)
+        passwordConfirmationText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
         passwordConfirmationText.frame.origin.y = passwordConfirmLabel.frame.origin.y + passwordConfirmLabel.frame.height + marginFromDescription
 //        passwordConfirmationText.placeholder = "Confirm password"
         passwordConfirmationText.borderStyle = .none
@@ -104,10 +105,10 @@ class RegisterView: UIView
         passwordConfirmationText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         passwordConfirmationText.isSecureTextEntry = true
         
-        countryLabel = UILabel(text: "Country", font: font, fontSize: fontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
+        countryLabel = UILabel(text: "Country", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
         countryLabel.frame.origin.y = passwordConfirmationText.frame.origin.y + passwordConfirmationText.frame.height + marginFromPreviousField
         
-        countryText = UITextField(frame: textFieldFrame, font: font, fontSize: fontSize)
+        countryText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
         countryText.frame.origin.y = countryLabel.frame.origin.y + countryLabel.frame.height + marginFromDescription
 //        countryText.placeholder = "Country"
         countryText.borderStyle = .none
@@ -115,10 +116,10 @@ class RegisterView: UIView
         countryText.inputView = pickerCountry
         countryText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         
-        courseLabel = UILabel(text: "Course", font: font, fontSize: fontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
+        courseLabel = UILabel(text: "Course", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
         courseLabel.frame.origin.y = countryText.frame.origin.y + countryText.frame.height + marginFromPreviousField
         
-        courseText = UITextField(frame: textFieldFrame, font: font, fontSize: fontSize)
+        courseText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
         courseText.frame.origin.y = courseLabel.frame.origin.y + courseLabel.frame.height + marginFromDescription
 //        courseText.placeholder = "Course"
         courseText.borderStyle = .none
