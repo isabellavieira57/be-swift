@@ -25,13 +25,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AppDelegate.isAlreadyLaunchedOnce = true
             print ("APP DELEGATE LAUNCHED")
         }
-//        registerForPushNotifications()
+        registerForPushNotifications()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         //window!.rootViewController = WelcomeViewController()
         window!.rootViewController = ViewController()
         window!.makeKeyAndVisible()
-      
+        
+       /* let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            LocalNotificationCenter.stopAllLocalNotifications()
+            LocalNotificationCenter.localNotification("Be Swift ⭐️!", body: "It's time to practice! 💁‍♀️✍️")
+        } */
+        
+        // Checking if it's the first time the user lauch the app
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore  {
+            print("Not first launch.")
+        } else {
+            print("First launch, setting UserDefault.")
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+                LocalNotificationCenter.stopAllLocalNotifications()
+                LocalNotificationCenter.localNotification("Be Swift ⭐️!", body: "It's time to practice! 💁‍♀️✍️")
+            }
+        }
         return true
     }
     
@@ -47,26 +67,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in
             print("Permission granted: \(granted)")
-
             guard granted else { return }
-            self.getNotificationSettings()
+             DispatchQueue.main.async {
+                self.getNotificationSettings()
+            }
         }
     }
-//
-//    func application(_ application: UIApplication,
-//                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-//        let tokenParts = deviceToken.map { data -> String in
-//            return String(format: "%02.2hhx", data)
-//        }
-//
-//        let token = tokenParts.joined()
-//        print("Device Token: \(token)")
-//    }
-//
-//    func application(_ application: UIApplication,
-//                     didFailToRegisterForRemoteNotificationsWithError error: Error) {
-//        print("Failed to register: \(error)")
-//    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

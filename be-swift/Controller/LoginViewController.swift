@@ -12,12 +12,17 @@ import Firebase
 import FirebaseDatabase
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
-    
+protocol UserHandler {
+    func loginUser (success:Bool)
+}
+
+class LoginViewController: UIViewController, UserHandler {
+ 
     var loginView: LoginView!
-    
+    var indicator = UIActivityIndicatorView()
     var erroMessageLabel:      UILabel!
-    var user = User()
+    var userDAO = UserDAO()
+    var success: Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,15 @@ class LoginViewController: UIViewController {
         return emailTest.evaluate(with: string)
     }
     
+    func activityIndicator() {
+        indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        indicator.center = self.view.center
+        DispatchQueue.main.async {
+            self.view.addSubview(self.indicator)
+        }
+    }
+    
     
     @objc func logIn () {
         
@@ -42,21 +56,44 @@ class LoginViewController: UIViewController {
             let alert = UIAlertController(title: "Ops!", message: "Please type your e-mail and your password", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+            
         } else {
-            //Firebase login
-            user.login(email: self.loginView.emailText.text!, password: self.loginView.passwordText.text!)
+            self.activityIndicator()
+            
+            userDAO.loadUser(handler: self, email: self.loginView.emailText.text!, password: self.loginView.passwordText.text!)
+            print (">>>>>>>>>sucess loginuser: \(self.success)")
+            print ("email: \(self.loginView.emailText.text)")
+            print ("senha: \(self.loginView.passwordText.text!)")
+            
+            if (self.success == true) {
+                print("You have successfully logged in")
+                let viewController = ViewController()
+                self.present(viewController, animated: true, completion: nil)
+            } else if (success == false) {
+                print("Login falhooou")
+                let alert = UIAlertController(title: "Login Failed!", message: "Please, check your username and password", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(defaultAction)
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
     
-    @objc func goBack()
-    {
+    func loginUser(success: Bool) {
+        print ("sucess loginuser HANDLER: \(success)")
+        self.success = success
+        indicator.stopAnimating()
+        indicator.hidesWhenStopped = true
+        print ("sucess loginuser HANDLER CASSE: \(self.success)")
+    }
+    
+    @objc func goBack() {
         self.dismiss(animated: false, completion: nil)
     }
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
-    
     
     // Botao de esqueceu a senha
     func forgotPassword() {
@@ -73,15 +110,12 @@ class LoginViewController: UIViewController {
                     alert.addAction(defaultAction)
                     self.present(alert,animated: true, completion: nil)
                 } else {
-                    let alert = UIAlertController(title: "Error!", message: "Pleasem try again!", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error!", message: "Please try again!", preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alert.addAction(defaultAction)
                     self.present(alert,animated: true, completion: nil)
-                    
                 }
             }
         }
     }
-    
-    
 }

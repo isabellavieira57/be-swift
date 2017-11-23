@@ -33,7 +33,4 @@ class Challenge {
         self.resource_link = resource_link
         self.exampleCode = exampleCode
     }
-    
-   
-    
 }

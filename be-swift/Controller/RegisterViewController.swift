@@ -10,15 +10,18 @@ import Foundation
 import UIKit
 import Firebase
 
-class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate  {
+class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UserHandler  {
 
     var countryList: Array<String>!
     var courseList: Array<String>!
+    var indicator = UIActivityIndicatorView()
     var registerView: RegisterView!
     var user = User()
+    var userDAO = UserDAO()
+    var success: Bool?
 
-    override func viewDidLoad()
-    {
+
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         print ("CONTROLLER - selector")
@@ -34,74 +37,65 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
         self.view.addSubview(registerView)
         
-        
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int
-    {
+    func activityIndicator() {
+        indicator = UIActivityIndicatorView()
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        indicator.center = self.view.center
+        DispatchQueue.main.async {
+            self.view.addSubview(self.indicator)
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
-    {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         var numberOfRows = 0
         
-        if pickerView == self.registerView.pickerCountry
-        {
+        if pickerView == self.registerView.pickerCountry {
             numberOfRows = self.countryList.count
         }
-        else if pickerView == self.registerView.pickerCourse
-        {
+        else if pickerView == self.registerView.pickerCourse {
             numberOfRows = self.courseList.count
         }
         return numberOfRows
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
-    {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var listItem = ""
         
-        if pickerView == self.registerView.pickerCountry
-        {
+        if pickerView == self.registerView.pickerCountry {
             listItem = self.countryList[row]
-        }
-        else if pickerView == self.registerView.pickerCourse
-        {
+        } else if pickerView == self.registerView.pickerCourse {
             listItem = self.courseList[row]
         }
         return listItem
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-    {
-        if pickerView == self.registerView.pickerCountry
-        {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == self.registerView.pickerCountry {
             self.registerView.countryText.text = self.countryList[row]
             self.registerView.countryText.endEditing(true)
-        }
-        else if pickerView == self.registerView.pickerCourse
-        {
+        } else if pickerView == self.registerView.pickerCourse {
             self.registerView.courseText.text = self.courseList[row]
             self.registerView.courseText.endEditing(true)
         }
     }
     
-    func isValidEmail(testStr:String) -> Bool
-    {
+    func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: testStr)
     }
     
-    
     // Botao de confirmar cadastro
     @objc func checkInfo() {
-        
         print ("ENTROU CHECK INFO")
-        
         let nameTxt = self.registerView.nameText.text
         let emailTxt = self.registerView.emailText.text?.lowercased()
         let passwordTxt = self.registerView.passwordText.text
@@ -125,52 +119,53 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         } else {
             //Firebase - create user
             print ("CONTROLLER - REGISTER")
-            user.register(email: emailTxt!, password: passwordTxt!)
+            userDAO.registerUser(handler: self, email: emailTxt!, password: passwordTxt!)
             
             // salva no banco os dados do formulario
             print ("CONTROLLER - SAVE DATABASE")
-            user.saveRegistration(name: nameTxt!, email: emailTxt!, password: passwordTxt!, country: countryTxt!, major: courseTxt!)
+            userDAO.saveRegistration(name: nameTxt!, email: emailTxt!, password: passwordTxt!, country: countryTxt!, major: courseTxt!)
+            if (self.success == true) {
+                print("You have successfully registered")
+               // showAlert(title: "Welcome!", message: "Your account was successfully created!")
+                let viewController = ViewController()
+                self.present(viewController, animated: true, completion: nil)
+                
+            } else if (success == false) {
+                print("registro falhooou")
+                let alert = UIAlertController(title: "Registration Failed!", message: "The email address is already in use by another account", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(defaultAction)
+                self.present(alert, animated: true, completion: nil)
+            }
             
-            showAlert(title: "Welcome!", message: "Your account was successfully created!")
-            openMainController()
+            //showAlert(title: "Welcome!", message: "Your account was successfully created!")
+            //openMainController()
         }
-        
-//            Auth.auth()?.createUser(withEmail: emailField.text!, password: passwordField.text!, completion: { (user, error) in
-//                if error == nil {
-//                    print("DAO - usuario criado")
-//                    PessoaDAO.sharedInstance.loadUsuario(email: self.emailField.text!, senha: self.senhaField.text!)
-//                    self.performSegue(withIdentifier: "cadastroBack", sender: sender)
-//                } else {
-//                    print(error?.localizedDescription ?? "DAO - erro no registro")
-//                    let alert = UIAlertController(title: "Email Inválido", message: "O email digitado já existe.", preferredStyle:.alert)
-//                    let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                    alert.addAction(ok)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//            })
-        
+
+    }
+    
+    func loginUser(success: Bool) {
+        self.success = success
+        indicator.stopAnimating()
+        indicator.hidesWhenStopped = true
     }
 
-    func openMainController()
-    {
+    func openMainController() {
         let controller = ViewController()
         present(controller, animated: true, completion: nil)
     }
 
-    func showAlert(title: String, message: String)
-    {
-        let alert = UIAlertController(title: "Ops!", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: title, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 
-    @objc func goBack(_ sender: Any)
-    {
+    @objc func goBack(_ sender: Any) {
         self.dismiss(animated: false, completion: nil)
     }
 
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
     }
-
 }

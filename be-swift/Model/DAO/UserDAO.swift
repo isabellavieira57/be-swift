@@ -18,17 +18,23 @@ class UserDAO {
     static let sharedInstance = UserDAO()
     
     // MARK: Init
-    private init(){}
+    init(){}
     
     //MARK: Methods
-    func loadUser(email: String, password: String) {
+    func loadUser(handler: UserHandler, email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            var success: Bool = true
             if (error == nil) {
                 print("You have successfully logged in")
+                success = true
+                print ("::loadUser - UserDAO - Sucesso:: \(success)")
             }
             else {
                 print("Login falhou")
+                success = false
+                print ("::loadUser - UserDAO - Falhou:: \(success)")
             }
+        handler.loginUser(success: success)
         }
     }
     
@@ -40,16 +46,18 @@ class UserDAO {
         return false
     }
     
-    
-    func registerUser(email: String, password: String) {
-        print ("USER DAO - REGISTER")
+    func registerUser(handler: UserHandler, email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
+            var success: Bool = true
             if error == nil {
                 print("DAO - usuario criado")
-                self.loadUser(email: email, password: password)
+                success = true
+                self.loadUser(handler: handler, email: email, password: password)
             } else {
                 print(error?.localizedDescription ?? "DAO - erro no registro")
+                success = false
             }
+            handler.loginUser(success: success)
         })
     }
     
@@ -59,25 +67,17 @@ class UserDAO {
     }
     
     func saveRegistration(name: String, email: String, password: String, country: String, major: String) {
-        
         // If AppDelegate doesn't lauch firebase configuration
         if (!AppDelegate.isAlreadyLaunchedOnce) {
             FirebaseApp.configure()
             AppDelegate.isAlreadyLaunchedOnce = true
         }
         
+        let emailUser = email.replacingOccurrences(of: ".", with: "_")
+        
         // salva nome em um nó separado
-        let ref = Database.database().reference().child("UsersData").child(email)
-        
-        var data = ["name": name]
+        let ref = Database.database().reference().child("UsersData").child(emailUser)
+        let data = ["name": name, "country": country, "major": major]
         ref.setValue(data)
-        
-        data = ["country": country]
-        ref.setValue(data)
-        
-        data = ["major": major]
-        ref.setValue(data)
-        
-        
     }
 }
