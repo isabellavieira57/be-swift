@@ -16,11 +16,11 @@ protocol UserHandler {
     func loginUser (success:Bool)
 }
 
-class LoginViewController: UIViewController, UserHandler {
+class LoginViewController: UIViewController, UserHandler, UITextFieldDelegate {
  
     var loginView: LoginView!
     var indicator = UIActivityIndicatorView()
-    var erroMessageLabel:      UILabel!
+    var erroMessageLabel: UILabel!
     var userDAO = UserDAO()
     var success: Bool?
 
@@ -29,6 +29,9 @@ class LoginViewController: UIViewController, UserHandler {
         
         loginView = LoginView(goBack: #selector(goBack), logIn: #selector(logIn))
         self.view.addSubview(loginView)
+        
+        self.loginView.emailText.delegate = self
+        self.loginView.passwordText.delegate = self
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
@@ -98,6 +101,11 @@ class LoginViewController: UIViewController, UserHandler {
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true
     }
     
     // Botao de esqueceu a senha
