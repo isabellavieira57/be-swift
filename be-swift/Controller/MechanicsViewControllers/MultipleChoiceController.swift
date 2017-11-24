@@ -24,8 +24,13 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var numberOfTries = 0
     
     let progressView = UIProgressView(progressViewStyle: .bar)
-    var time = 0.0
+    var time: Double = 0.0
     var timer = Timer()
+    
+    var numberOfStars: Int!
+    var timeSolved: Double!
+    var timeTo2Stars: Double! = nil
+    var timeTo3Stars: Double! = nil
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -45,6 +50,10 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         setRadioButtonController()
         
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
+        
+        //Set time required to get x stars
+        self.timeTo3Stars = self.challenge.estimatedTime
+        self.timeTo2Stars = timeTo3Stars*2
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -81,10 +90,10 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
             let alert = UIAlertController(title: "Ops!", message: "Select an option", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-            
         }else{
             timer.invalidate()
             print("TIME", time)
+            self.timeSolved = time
             time = 0.0
             
             multipleChoiceView.optionButton1.isUserInteractionEnabled = false
@@ -98,14 +107,23 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
                 print("CORRECT ANSWER")
                 
                 self.answerIsRight = true
+                
+                //Definir número de estrelas de acordo com o tempo
+                if timeSolved <= timeTo3Stars {
+                    self.numberOfStars = 3
+                } else if timeSolved <= timeTo2Stars && timeSolved > timeTo3Stars {
+                    self.numberOfStars = 2
+                } else {
+                    self.numberOfStars = 1
+                }
+                
                 showFeedback()
                 
             }else{
-
+                
                 self.answerIsRight = false
                 self.numberOfTries += 1
-//                timer.invalidate()
-
+                
                 if self.numberOfTries < 2{
                 //remove 'Check' button and add 'Try Again' button
                 self.selectedButton?.setBackgroundImage(UIImage(named: "wrongOption"), for: .selected)
@@ -114,6 +132,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
                     })
                     self.multipleChoiceView.setTryAgainButton(tryAgainAction: #selector(setNextTry))
                 }else{
+                    self.numberOfStars = 0
                     showFeedback()
                 }
             }
@@ -123,9 +142,8 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     func showFeedback(){
         self.numberOfTries = 0
         
-//        let testeController = ViewController()
         let feedbackController = MultipleChoiceFeedbackViewController()
-        feedbackController.getVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight)
+        feedbackController.getVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight, numberOfStars: self.numberOfStars, timeSolved: self.timeSolved)
         present(feedbackController, animated: false, completion: nil)
     }
     
@@ -151,8 +169,13 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         setRadioButtonController()
         
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
-//        self.time = 0.0
-//        startTime()
+    }
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func dismissButton(_ sender: Any){

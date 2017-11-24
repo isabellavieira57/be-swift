@@ -14,14 +14,14 @@ class Challenge {
     var resource_link: String
     var question: String
     var exampleCode: String
-    var estimatedTime: Int
+    var estimatedTime: Double
     var mechanics: String
     var options: NSArray
     var correctAnswer: NSArray = []
     var feedbackAnswer: String
     var tags: NSArray
     
-    init (question: String, estimatedTime: Int, mechanics: String, options: NSArray, correctAnswer: NSArray, feedbackAnswer: String, tags: NSArray, id: Int, resource_link: String, exampleCode: String) {
+    init (question: String, estimatedTime: Double, mechanics: String, options: NSArray, correctAnswer: NSArray, feedbackAnswer: String, tags: NSArray, id: Int, resource_link: String, exampleCode: String) {
         self.question = question
         self.estimatedTime = estimatedTime
         self.mechanics = mechanics

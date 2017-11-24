@@ -44,7 +44,7 @@ class LevelDAO {
             // Parse json data from database
             for item in dataDict {
                 let correct_answer = item.value.object(forKey: "correct_answer") as! NSArray
-                let estimated_time = item.value.object(forKey: "estimated_time") as! Int
+                let estimated_time = item.value.object(forKey: "estimated_time") as! Double
                 let feedback_answer = item.value.object(forKey: "feedback") as! String
                 let mechanics = item.value.object(forKey: "mechanics") as! String
                 let options = item.value.object(forKey: "options") as! NSArray

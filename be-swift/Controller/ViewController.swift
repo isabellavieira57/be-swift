@@ -27,7 +27,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.challengesView = CollectionChallengeView()
+        //TODO: Contabilizar total de estrelas por usuário e passar pelo parâmetro
+        self.challengesView = CollectionChallengeView(numberOfStarsTotal: setStarsNumber(numberOfStarsTotal: 6))
         self.view.addSubview(challengesView)
         self.view = self.challengesView
        
@@ -96,6 +97,17 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         DispatchQueue.main.async {
             challengesView.collectionChallenges1.reloadData()
         }
+    }
+    
+    func setStarsNumber(numberOfStarsTotal: Int) -> String {
+        var starString: String!
+        
+        if numberOfStarsTotal < 10 {
+            starString = "00" + String(numberOfStarsTotal)
+        } else {
+            starString = "0" + String(numberOfStarsTotal)
+        }
+        return starString
     }
     
     @objc func logOut()
