@@ -178,7 +178,7 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         let yScale = screenSize.height/heightiPhoneSE
 
         if textField.frame.origin.y + textField.frame.height + 20*yScale > 318*yScale {
-            self.registerView.frame.origin.y -= 90*yScale
+            self.registerView.frame.origin.y -= (self.registerView.pickerCountry.frame.height - self.registerView.signUpButton.frame.height - 16*yScale)
         }
     }
 
