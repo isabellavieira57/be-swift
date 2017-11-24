@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UserHandler  {
+class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UserHandler, UITextFieldDelegate  {
 
     var countryList: Array<String>!
     var courseList: Array<String>!
@@ -20,17 +20,24 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
     var userDAO = UserDAO()
     var success: Bool?
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print ("CONTROLLER - selector")
         registerView = RegisterView(goBack: #selector(goBack), signUp: #selector(checkInfo))
         
-        self.registerView.pickerCountry.delegate = self
-        self.registerView.pickerCourse.delegate = self
+        //Delegate and data source pickerViews
         self.registerView.pickerCountry.dataSource = self
         self.registerView.pickerCourse.dataSource = self
+        self.registerView.pickerCountry.delegate = self
+        self.registerView.pickerCourse.delegate = self
+        //Delegate textFields
+        self.registerView.nameText.delegate = self
+        self.registerView.emailText.delegate = self
+        self.registerView.passwordText.delegate = self
+        self.registerView.passwordConfirmationText.delegate = self
+        self.registerView.countryText.delegate = self
+        self.registerView.courseText.delegate = self
         
         countryList = ["Brazil", "United States of America", "Canada"]
         courseList = ["Business Administration","Computer Science", "Design", "Engineering", "Law"]
@@ -104,6 +111,7 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         let courseTxt = self.registerView.courseText.text
         
         print ("CONTROLLER - CHECKING DATA")
+        //Verificações para cadastro
         if nameTxt == "" || emailTxt == "" || passwordTxt == "" || passwordCheckTxt == "" || countryTxt == "" || courseTxt == "" {
             showAlert(title: "Ops!", message: "Please complete all text fields.")
             return
@@ -136,6 +144,7 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
             print("You have successfully registered")
             showAlert(title: "Welcome!", message: "Your account was successfully created!")
             
+            //Define novo rootViewController e redireciona ao controller dos challenges
             let viewController = ViewController()
             let delegate = UIApplication.shared.delegate as! AppDelegate
             let window = delegate.window
@@ -155,6 +164,26 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: title, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField){
+
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let yScale = screenSize.height/heightiPhoneSE
+
+        if textField.frame.origin.y + textField.frame.height + 20*yScale > 318*yScale {
+            self.registerView.frame.origin.y -= 90*yScale
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField){
+        self.registerView.frame.origin.y = 0
     }
 
     @objc func goBack(_ sender: Any) {
