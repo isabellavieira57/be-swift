@@ -41,7 +41,7 @@ class BlankFieldView: View {
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
         
         self.layer.addSublayer(rectangle)
-        self.addSubview(progressBar)
+//        self.addSubview(progressBar)
         self.addSubview(title)
         self.addSubview(dismissButton)
         self.addSubview(helpButton)

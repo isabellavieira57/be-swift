@@ -23,7 +23,7 @@ class CollectionChallengeView: View {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+        self.backgroundColor = UIColor(red:0.9, green:0.9, blue:0.9, alpha:1.0)
         
         setTopBarChallenges()
         setLevelLabel()
@@ -65,11 +65,11 @@ class CollectionChallengeView: View {
         
         let layoutCollection: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layoutCollection.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layoutCollection.itemSize = CGSize(width: 94*xScale, height: 110*yScale)
+        layoutCollection.itemSize = CGSize(width: 94*xScale, height: 107*yScale)
         layoutCollection.minimumInteritemSpacing = 0
         layoutCollection.minimumLineSpacing = 0
         
-        collectionChallenges1 = UICollectionView(frame: CGRect(x: 18*xScale, y: 131*yScale, width: 284*xScale, height: 475*yScale), collectionViewLayout: layoutCollection)
+        collectionChallenges1 = UICollectionView(frame: CGRect(x: 18*xScale, y: 131*yScale, width: 284*xScale, height: 428*yScale), collectionViewLayout: layoutCollection)
         collectionChallenges1.backgroundColor = UIColor.white
         collectionChallenges1.showsHorizontalScrollIndicator = false
         

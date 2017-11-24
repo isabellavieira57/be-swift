@@ -42,6 +42,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.sortView.sortTableView.dataSource = self
         self.sortView.sortTableView.delegate = self
         self.sortView.sortTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.sortView.sortTableView.rowHeight = self.sortView.tableRowHeight
         self.sortView.sortTableView.isEditing = true
         self.codeToSort = self.sortView.codeToSort
         
