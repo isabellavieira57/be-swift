@@ -24,6 +24,11 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     var time = 0.0
     var timer = Timer()
     
+    var numberOfStars: Int!
+    var timeSolved: Double!
+    var timeTo2Stars: Double! = nil
+    var timeTo3Stars: Double! = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +45,10 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tap)
         
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
+        
+        //Set time required to get x stars
+        self.timeTo3Stars = self.challenge.estimatedTime
+        self.timeTo2Stars = timeTo3Stars*2
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -68,7 +77,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         self.blankField.blankField.isUserInteractionEnabled = false
 
         if textFieldInput == nil{
-            let alert = UIAlertController(title: "Ops!", message: "complete the blank field", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Ops!", message: "Complete the blank field", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             self.blankField.blankField.isUserInteractionEnabled = true
@@ -76,6 +85,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
 
             timer.invalidate()
             print("TIME", time)
+            self.timeSolved = time
             time = 0.0
             
             self.userAnswer = textFieldInput
@@ -84,6 +94,16 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
                 print("CORRECT ANSWER")
                 
                 self.answerIsRight = true
+                
+                //Definir número de estrelas de acordo com o tempo
+                if timeSolved <= timeTo3Stars {
+                    self.numberOfStars = 3
+                } else if timeSolved <= timeTo2Stars && timeSolved > timeTo3Stars {
+                    self.numberOfStars = 2
+                } else {
+                    self.numberOfStars = 1
+                }
+                
                 showFeedback()
             }else{
                 print("WRONG ANSWER")
@@ -99,6 +119,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
                     self.blankField.setTryAgainButton(tryAgainAction: #selector(setNextTry))
                 
                 }else{
+                    self.numberOfStars = 0
                     showFeedback()
                 }
             }
@@ -109,7 +130,7 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         self.numberOfTries = 0
         
         let feedbackController = MultipleChoiceFeedbackViewController()
-        feedbackController.getVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight)
+        feedbackController.getVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight, numberOfStars: self.numberOfStars, timeSolved: self.timeSolved)
         present(feedbackController, animated: false, completion: nil)
     }
     

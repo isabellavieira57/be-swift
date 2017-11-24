@@ -24,6 +24,11 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var time = 0.0
     var timer = Timer()
     
+    var numberOfStars: Int!
+    var timeSolved: Double!
+    var timeTo2Stars: Double! = nil
+    var timeTo3Stars: Double! = nil
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         
@@ -42,11 +47,20 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.sortView.sortTableView.dataSource = self
         self.sortView.sortTableView.delegate = self
         self.sortView.sortTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        self.sortView.sortTableView.rowHeight = self.sortView.tableRowHeight
         self.sortView.sortTableView.isEditing = true
         self.codeToSort = self.sortView.codeToSort
         
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let yScale = screenSize.height/heightiPhoneSE
+        self.sortView.sortTableView.rowHeight = self.sortView.tableRowHeight*yScale
+
+        
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
+        
+        //Set time required to get x stars
+        self.timeTo3Stars = self.challenge.estimatedTime
+        self.timeTo2Stars = timeTo3Stars*2
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -103,6 +117,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         timer.invalidate()
         print("TIME", time)
+        self.timeSolved = time
         time = 0.0
         
         self.userAnswer = codeToSort
@@ -111,6 +126,16 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
             print("CORRECT ANSWER")
             
             self.answerIsRight = true
+            
+            //Definir número de estrelas de acordo com o tempo
+            if timeSolved <= timeTo3Stars {
+                self.numberOfStars = 3
+            } else if timeSolved <= timeTo2Stars && timeSolved > timeTo3Stars {
+                self.numberOfStars = 2
+            } else {
+                self.numberOfStars = 1
+            }
+            
             showFeedback()
             
         }else{
@@ -125,6 +150,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.sortView.setTryAgainButton(tryAgainAction: #selector(setNextTry))
                 
             }else{
+                self.numberOfStars = 0
                 showFeedback()
             }
         }
@@ -134,7 +160,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.numberOfTries = 0
         
         let feedbackController = SortFeedbackViewController()
-        feedbackController.getSortVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight)
+        feedbackController.getSortVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight, numberOfStars: self.numberOfStars, timeSolved: self.timeSolved)
         present(feedbackController, animated: false, completion: nil)
     }
     

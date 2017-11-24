@@ -20,6 +20,7 @@ class SortFeedbackView: FeedbackView
     var buttonCorrectAnswer: UIButton!
     var tableViewFrame: CGRect!
     var tableViewCode: Array<String>!
+    var sortView = SortView()
     
     override init(frame: CGRect)
     {
@@ -61,16 +62,15 @@ class SortFeedbackView: FeedbackView
         
         self.labelCorrectUserAnswer = UILabel(text: "You got it! Your answer is correct!", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:0.28, green:0.64, blue:0.31, alpha:1.0), frame: CGRect(x: self.userAnswerX, y: labelUserAnswerY, width: self.userAnswerWidth, height: self.userAnswerHeight))
         
-        self.labelCorrectUserAnswer = UILabel(text: "You got it! Your answer is correct!", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:0.28, green:0.64, blue:0.31, alpha:1.0), frame: CGRect(x: self.userAnswerX*xScale, y: labelUserAnswerY, width: self.userAnswerWidth*xScale, height: self.userAnswerHeight*yScale))
+        self.labelCorrectUserAnswer = UILabel(text: "You got it! Your answer is correct!", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:0.28, green:0.64, blue:0.31, alpha:1.0), frame: CGRect(x: self.userAnswerX, y: labelUserAnswerY, width: self.userAnswerWidth, height: self.userAnswerHeight))
 
         self.labelWrongUserAnswer = UILabel(text: "That's not it! Compare the answers with the buttons above.", font: self.userAnswerFont, fontSize: self.userAnswerFontSize, aligment: self.userAnswerAlignment, textColor: UIColor(red:1.58, green:0.21, blue:0.38, alpha:1.0), frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        self.labelWrongUserAnswer.frame = CGRect (x: self.userAnswerX*xScale, y: labelUserAnswerY, width: self.userAnswerWidth*xScale, height: self.userAnswerHeight*1.4*yScale)
+        self.labelWrongUserAnswer.frame = CGRect (x: self.userAnswerX*xScale, y: labelUserAnswerY*yScale, width: self.userAnswerWidth*xScale, height: self.userAnswerHeight*1.4*yScale)
         
         print("TESTE!!!")
         print(self.feedbackTableView.frame.origin.y)
         print(self.feedbackTableView.frame.height)
         print(self.feedbackTableView.frame.origin.y + self.feedbackTableView.frame.height)
-        print(labelUserAnswerY*yScale)
         
     }
     
@@ -88,7 +88,7 @@ class SortFeedbackView: FeedbackView
         
         let endOfMainView = self.view.question.frame.origin.y + self.view.question.frame.height + 10*yScale
         
-        self.feedbackTableView = UITableView(frame: CGRect(x: 5*xScale, y: endOfMainView, width: 310*xScale, height: 44 * CGFloat(numberOfLines) * yScale))
+        self.feedbackTableView = UITableView(frame: CGRect(x: 5*xScale, y: endOfMainView, width: 310*xScale, height: sortView.tableRowHeight * CGFloat(numberOfLines) * yScale))
         self.feedbackTableView.separatorStyle = .none
         self.feedbackTableView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
     }

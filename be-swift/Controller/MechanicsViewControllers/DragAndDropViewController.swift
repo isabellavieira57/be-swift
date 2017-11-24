@@ -28,6 +28,11 @@ class DragAndDropViewController: UIViewController {
     var time = 0.0
     var timer = Timer()
     
+    var numberOfStars: Int!
+    var timeSolved: Double!
+    var timeTo2Stars: Double! = nil
+    var timeTo3Stars: Double! = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,6 +60,10 @@ class DragAndDropViewController: UIViewController {
         }
         
         timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(startTime), userInfo: nil, repeats: true)
+        
+        //Set time required to get x stars
+        self.timeTo3Stars = self.challenge.estimatedTime
+        self.timeTo2Stars = timeTo3Stars*2
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -105,12 +114,23 @@ class DragAndDropViewController: UIViewController {
         
         timer.invalidate()
         print("TIME", time)
+        self.timeSolved = time
         time = 0.0
         
         if labelsInDrop.containsSameElements(as: correctAnswer){
             print("CORRECT ANSWER")
             self.answerIsRight = true
             print("LABELS ARRAY", labelsInDrop)
+            
+            //Definir número de estrelas de acordo com o tempo
+            if timeSolved <= timeTo3Stars {
+                self.numberOfStars = 3
+            } else if timeSolved <= timeTo2Stars && timeSolved > timeTo3Stars {
+                self.numberOfStars = 2
+            } else {
+                self.numberOfStars = 1
+            }
+            
             showFeedback()
         }else{
             print("WRONG ANSWER")
@@ -141,7 +161,7 @@ class DragAndDropViewController: UIViewController {
         let stringCorrectAnswer = correctAnswer.joined(separator: ",")
         
         let feedbackController = MultipleChoiceFeedbackViewController()
-        feedbackController.getVariables(challenge: self.challenge, userAnswer: stringUserAnswer, correctAnswer: stringCorrectAnswer, answerIsRight: self.answerIsRight)
+        feedbackController.getVariables(challenge: self.challenge, userAnswer: stringUserAnswer, correctAnswer: stringCorrectAnswer, answerIsRight: self.answerIsRight, numberOfStars: self.numberOfStars, timeSolved: self.timeSolved)
         present(feedbackController, animated: false, completion: nil)
     }
     

@@ -15,6 +15,7 @@ class CollectionChallengeView: View {
     var starLabel: UILabel!
     var xpLabel: UILabel!
     var logoutButton: UIButton!
+    var numberOfStarsTotal: String!
     
     let widhtiPhoneSE: CGFloat = 320
     let heightiPhoneSE: CGFloat = 568
@@ -22,8 +23,12 @@ class CollectionChallengeView: View {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         self.backgroundColor = UIColor(red:0.9, green:0.9, blue:0.9, alpha:1.0)
+    }
+    
+    convenience init(numberOfStarsTotal: String) {
+        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        self.numberOfStarsTotal = numberOfStarsTotal
         
         setTopBarChallenges()
         setLevelLabel()
@@ -40,7 +45,7 @@ class CollectionChallengeView: View {
         let starImage = UIImageView(frame: UIScreen.changeScale(vector: CGRect(x: 119, y: 28, width: 27, height: 26.03)))
         starImage.image = UIImage(named:"star")
         
-        self.starLabel = UILabel(text: "006", font: "SanFranciscoText-Regular", fontSize: 19, aligment: .center, textColor: UIColor(red:2.55, green:2.34, blue:0.37, alpha:1.0), frame: CGRect(x: 153, y: 33, width: 37, height: 20))
+        self.starLabel = UILabel(text: String(self.numberOfStarsTotal), font: "SanFranciscoText-Regular", fontSize: 19, aligment: .center, textColor: UIColor(red:2.55, green:2.34, blue:0.37, alpha:1.0), frame: CGRect(x: 153, y: 33, width: 37, height: 20))
         
         let xpImage = UIImageView(frame: UIScreen.changeScale(vector: CGRect(x: 230.29, y: 33, width: 27.62, height: 16)))
         xpImage.image = UIImage(named:"xp")
