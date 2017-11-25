@@ -32,7 +32,7 @@ class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     {
         super.viewDidLoad()
         
-        self.sortFeedView = SortFeedbackView(titleText: self.challengeSort.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeSort.question, options: self.userAnswer)
+        self.sortFeedView = SortFeedbackView(titleText: self.challengeSort.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeSort.question, options: self.userAnswer, starsEarned: self.numberOfStars, timeSolved: self.timeSolved)
         
         self.tableViewData = self.userAnswer
         
@@ -60,7 +60,7 @@ class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
         
         //Set labels and buttons
         addCompareAnswerButtons()
-        addFeedbackLabels()
+        addLabels()
         
         //Set continue button
         self.sortFeedView.setButton(continueButtonAction: #selector(continueButton(_:)))
@@ -111,12 +111,15 @@ class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
         }
     }
     
-    func addFeedbackLabels()
+    func addLabels()
     {
-        self.sortFeedView.setSortUserLabels()
+        self.sortFeedView.setUserLabelsAndIcons()
         
         if self.answerIsRight == true
         {
+            self.sortFeedView.addSubview(self.sortFeedView.starsIcon)
+            self.sortFeedView.addSubview(self.sortFeedView.timeIcon)
+            self.sortFeedView.addSubview(self.sortFeedView.timeLabel)
             self.sortFeedView.addSubview(self.sortFeedView.labelCorrectUserAnswer)
             
             self.sortFeedView.setLabelExplanation(labelText: self.challengeSort.feedbackAnswer, previousLabel: self.sortFeedView.labelCorrectUserAnswer)
