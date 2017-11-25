@@ -18,10 +18,17 @@ class TopView: UIView {
         super.init(frame: frame)
     }
     
-    convenience init (progressView: UIProgressView, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector){
+//    convenience init (progressView: UIProgressView, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector){
+    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector){
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
-        timeBar(progressView: progressView)
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let yScale = screenSize.height/heightiPhoneSE
+        
+        yPosition = 64*yScale
+        
+//        timeBar(progressView: progressView)
         setTopBar()
         setTitle(title: titleText)
         setdismissButton(dismissButtonAction: dismissButtonAction)
@@ -78,7 +85,7 @@ class TopView: UIView {
         
         let yPositionProgess = progressView.frame.origin.y
         let height = progressView.frame.height
-        yPosition = yPositionProgess + height
+//        yPosition = yPositionProgess + height
         
         self.addSubview(progressView)
     }

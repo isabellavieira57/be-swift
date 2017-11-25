@@ -39,7 +39,7 @@ class DragAndDropViewController: UIViewController {
         
         self.correctAnswer = self.challenge.correctAnswer as! [String]
         
-        topView = TopView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(DragAndDropViewController.dismissButton(_:)), helpButtonAction: #selector(DragAndDropViewController.helpButton(_:)))
+        topView = TopView(titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(DragAndDropViewController.dismissButton(_:)), helpButtonAction: #selector(DragAndDropViewController.helpButton(_:)))
         
 //        dragAndDrop = DragAndDropView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(DragAndDropViewController.dismissButton(_:)), helpButtonAction: #selector(DragAndDropViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! [String], checkButtonAction: #selector(DragAndDropViewController.checkButton(_:)))
         dragAndDrop = DragAndDropView(questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! [String], checkButtonAction: #selector(DragAndDropViewController.checkButton(_:)))

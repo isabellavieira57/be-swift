@@ -39,7 +39,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         self.correctAnswer = self.challenge.correctAnswer[0] as! String
         self.options = self.challenge.options as! Array<String>
         
-        topView = TopView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(MultipleChoiceController.dismissButton(_:)), helpButtonAction: #selector(MultipleChoiceController.helpButton(_:)))
+        topView = TopView(titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(MultipleChoiceController.dismissButton(_:)), helpButtonAction: #selector(MultipleChoiceController.helpButton(_:)))
         
         multipleChoiceView = MultipleChoiceView(checkButtonAction: #selector(checkAnswer), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.options, correctAnswer: self.correctAnswer)
         
