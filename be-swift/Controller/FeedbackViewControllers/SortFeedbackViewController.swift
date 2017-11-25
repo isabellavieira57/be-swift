@@ -16,6 +16,7 @@ class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     var answerIsRight: Bool!
     var challengeSort: Challenge!
     var tableViewData: Array<String>!
+    var topView = TopViewFeedback()
     var sortFeedView = SortFeedbackView()
     var scrollView: UIScrollView!
     let sortView = SortView()
@@ -26,7 +27,13 @@ class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     {
         super.viewDidLoad()
         
-        self.sortFeedView = SortFeedbackView(titleText: self.challengeSort.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeSort.question, options: self.userAnswer)
+//        self.sortFeedView = SortFeedbackView(titleText: self.challengeSort.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeSort.question, options: self.userAnswer)
+        
+        topView = TopViewFeedback(titleText: self.challengeSort.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton))
+        
+        let yPosition = topView.yPosition
+        
+        self.sortFeedView = SortFeedbackView(questionText: self.challengeSort.question, options: self.userAnswer)
         
         self.tableViewData = self.userAnswer
         
@@ -58,9 +65,10 @@ class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
         self.sortFeedView.frame = CGRect(x: 0, y: 0, width: self.sortFeedView.frame.width, height: sizeView)
 
         //Set scrollView
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: yPosition!, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: sizeView)
         self.scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+        self.view.addSubview(topView)
         self.view.addSubview(scrollView)
         scrollView.addSubview(self.sortFeedView)
     }

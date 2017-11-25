@@ -67,14 +67,14 @@ class View: UIView{
     
     //Pergunta da pagina
     func setQuestion(questionText: String) -> UILabel{
-        question = UILabel(text: questionText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24, y: 78, width: 273, height: 300))
+        question = UILabel(text: questionText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: 24, y: 10, width: 273, height: 300))
         let widhtiPhoneSE: CGFloat = 320
         let heightiPhoneSE: CGFloat = 568
         let screenSize = UIScreen.main.bounds
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         let height = heightForView(text: questionText, font: question.font, width: question.frame.width)
-        question.frame = CGRect(x: 24*xScale, y: 78*yScale, width: 273*xScale, height: height)
+        question.frame = CGRect(x: 24*xScale, y: 10*yScale, width: 273*xScale, height: height)
         
         return question
     }
@@ -88,11 +88,13 @@ class View: UIView{
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
+        let yQuestion = question.frame.origin.y
         let heightQuestion = question.frame.height
-        let exampleCode = UILabel(text: exampleCodeText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor.white, frame: CGRect(x: 24, y: heightQuestion, width: 273, height: 300))
+        let distance = yQuestion + heightQuestion
+        let exampleCode = UILabel(text: exampleCodeText, font: "SanFranciscoText-Medium", fontSize: 16, aligment: .left, textColor: UIColor.white, frame: CGRect(x: 24, y: distance, width: 273, height: 300))
         labelDidChange(exampleCode)
         let height = heightForView(text: exampleCodeText, font: exampleCode.font, width: exampleCode.frame.width)
-        exampleCode.frame = CGRect(x: 24*xScale, y: heightQuestion + 93*yScale, width: 273*xScale, height: height)
+        exampleCode.frame = CGRect(x: 24*xScale, y: distance + 20*yScale, width: 273*xScale, height: height)
         
         let yPosition = exampleCode.frame.minY
         let rectangleCode = CAShapeLayer()

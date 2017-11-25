@@ -34,18 +34,12 @@ class SortView: View
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
     }
     
-    convenience init (progressView: UIProgressView, frame: CGRect, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, checkButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>)
-    {
+        convenience init (titleText: String, checkButtonAction: Selector, questionText: String, exampleCodeText: String?, options: Array<String>, correctAnswer: Array<String>){
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
         self.codeToSort = options
         self.correctAnswer = correctAnswer
         
-        let rectangle = view.setTopBar()
-        let progressBar = view.timeBar(progressView: progressView)
-        let title = view.setTitle(title: titleText)
-        let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
-        let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
         let code = view.setExampleCode(exampleCodeText: exampleCodeText!, view: self)
         
@@ -54,11 +48,6 @@ class SortView: View
         let height = sizeView!
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
         
-        self.layer.addSublayer(rectangle)
-        self.addSubview(progressBar)
-        self.addSubview(title)
-        self.addSubview(dismissButton)
-        self.addSubview(helpButton)
         self.addSubview(question)
         self.addSubview(code)
     }
@@ -97,11 +86,11 @@ class SortView: View
         print("HEIGHT TABLEVIEW ",sortTableView.frame.height)
         
         if positionTableView < 516*yScale{
-            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 62*yScale)
+            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 140*yScale)
             sizeView = screenSize.height
         } else {
             checkButton.frame.origin = CGPoint(x: 16*xScale, y: positionTableView + 20*yScale)
-            sizeView = checkButton.frame.minY + 62*yScale
+            sizeView = checkButton.frame.minY + 140*yScale
         }
         checkButtonFrame = checkButton.frame
         self.addSubview(checkButton)

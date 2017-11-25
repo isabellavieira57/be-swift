@@ -13,6 +13,7 @@ import GameplayKit
 class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegate {
     
     var multipleChoiceView: MultipleChoiceView!
+    var topView: TopView!
     var radioButtonController: SSRadioButtonsController?
     var userAnswer = ""
     var answerIsRight: Bool!
@@ -33,12 +34,17 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         self.correctAnswer = self.challenge.correctAnswer[0] as! String
         self.options = self.challenge.options as! Array<String>
         
-        multipleChoiceView = MultipleChoiceView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), checkButtonAction: #selector(checkAnswer), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.options, correctAnswer: self.correctAnswer)
+        topView = TopView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(MultipleChoiceController.dismissButton(_:)), helpButtonAction: #selector(MultipleChoiceController.helpButton(_:)))
+        
+        multipleChoiceView = MultipleChoiceView(checkButtonAction: #selector(checkAnswer), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.options, correctAnswer: self.correctAnswer)
+        
+        let yPosition = topView.yPosition
         
         //Set scrollView
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: yPosition!, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: multipleChoiceView.frame.height)
         
+        self.view.addSubview(topView)
         self.view.addSubview(scrollView)
         scrollView.addSubview(multipleChoiceView)
 
@@ -156,6 +162,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     }
     
     @objc func dismissButton(_ sender: Any){
+        print(#function)
         self.dismiss(animated: true, completion: nil)
     }
     

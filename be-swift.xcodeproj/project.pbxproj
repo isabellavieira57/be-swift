@@ -41,6 +41,8 @@
 		49C4B4041F8EBD5100A84C69 /* DeviceTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B4031F8EBD5100A84C69 /* DeviceTypes.swift */; };
 		49C4B4061F8EC57100A84C69 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C4B4051F8EC57100A84C69 /* Button.swift */; };
 		49D8110D1FB1E2FE00E411DC /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D8110C1FB1E2FE00E411DC /* TextField.swift */; };
+		49EFD1CC1FC766DB0053AAAA /* TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EFD1CB1FC766DB0053AAAA /* TopView.swift */; };
+		49EFD1CE1FC8DE940053AAAA /* TopViewFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EFD1CD1FC8DE940053AAAA /* TopViewFeedback.swift */; };
 		49F8D6F81FA1267900E7CF9F /* BlankFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */; };
 		49F8D6FA1FA1278D00E7CF9F /* WebDocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */; };
 		4F75F8521F8AB491007BABC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F75F8511F8AB491007BABC9 /* AppDelegate.swift */; };
@@ -132,6 +134,8 @@
 		49C4B4031F8EBD5100A84C69 /* DeviceTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTypes.swift; sourceTree = "<group>"; };
 		49C4B4051F8EC57100A84C69 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		49D8110C1FB1E2FE00E411DC /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		49EFD1CB1FC766DB0053AAAA /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
+		49EFD1CD1FC8DE940053AAAA /* TopViewFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewFeedback.swift; sourceTree = "<group>"; };
 		49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankFieldViewController.swift; sourceTree = "<group>"; };
 		49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebDocumentationViewController.swift; sourceTree = "<group>"; };
 		4F75F84E1F8AB491007BABC9 /* be-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "be-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				037421781FB6268500F686C3 /* SortFeedbackView.swift */,
+				49EFD1CD1FC8DE940053AAAA /* TopViewFeedback.swift */,
 				0374217A1FB9E04F00F686C3 /* MultipleChoiceFeedbackView.swift */,
 				4F75F8AC1F8AB687007BABC9 /* FeedbackView.swift */,
 				0374217E1FB9E0DC00F686C3 /* BlankFieldFeedbackView.swift */,
@@ -373,6 +378,7 @@
 				497703541F8EAA8300102F08 /* Setup */,
 				4F75F8551F8AB491007BABC9 /* Main.storyboard */,
 				4F75F89C1F8AB5FF007BABC9 /* View.swift */,
+				49EFD1CB1FC766DB0053AAAA /* TopView.swift */,
 				4F75F89E1F8AB612007BABC9 /* MultipleChoiceView.swift */,
 				03A343221FA2433A007827D8 /* SSRadioButton.swift */,
 				4F75F8A01F8AB631007BABC9 /* DragAndDropView.swift */,
@@ -796,6 +802,7 @@
 				4F75F8991F8AB5D6007BABC9 /* UserController.swift in Sources */,
 				037421711FB61D4B00F686C3 /* SortFeedbackViewController.swift in Sources */,
 				4964A3D71FC5BED000C364C1 /* DragAndDropViewController.swift in Sources */,
+				49EFD1CC1FC766DB0053AAAA /* TopView.swift in Sources */,
 				4F75F88F1F8AB55C007BABC9 /* UserChallengeInfo.swift in Sources */,
 				4F75F8911F8AB58B007BABC9 /* Challenge.swift in Sources */,
 				497703561F8EAA9E00102F08 /* Label.swift in Sources */,
@@ -813,6 +820,7 @@
 				4FB8E9201FC50C7200B8303E /* LoginViewController.swift in Sources */,
 				4F75F8A31F8AB643007BABC9 /* BlankFieldView.swift in Sources */,
 				4F75F8AF1F8AB695007BABC9 /* CollectionChallengeView.swift in Sources */,
+				49EFD1CE1FC8DE940053AAAA /* TopViewFeedback.swift in Sources */,
 				037421771FB61D8900F686C3 /* MultipleChoiceFeedbackViewController.swift in Sources */,
 				4FB8E9221FC5D84900B8303E /* RegisterViewController.swift in Sources */,
 				4F75F89D1F8AB5FF007BABC9 /* View.swift in Sources */,

@@ -29,14 +29,9 @@ class DragAndDropView: View {
         super.init(frame: frame)
     }
     
-    convenience init (progressView: UIProgressView, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, options: [String], checkButtonAction: Selector){
+        convenience init (questionText: String, exampleCodeText: String?, options: [String], checkButtonAction: Selector){
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
-        let rectangle = view.setTopBar()
-        let progressBar = view.timeBar(progressView: progressView)
-        let title = view.setTitle(title: titleText)
-        let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
-        let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
         code = view.setExampleCode(exampleCodeText: exampleCodeText!, view: self)
         
@@ -46,11 +41,6 @@ class DragAndDropView: View {
         let height = sizeView!
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
         
-        self.layer.addSublayer(rectangle)
-        self.addSubview(progressBar)
-        self.addSubview(title)
-        self.addSubview(dismissButton)
-        self.addSubview(helpButton)
         self.addSubview(question)
         self.addSubview(code)
     }
@@ -125,7 +115,7 @@ class DragAndDropView: View {
 //            sizeView = screenSize.height
 //        } else {
             checkButton.frame.origin = CGPoint(x: 16*xScale, y: distance + 50*yScale)
-            sizeView = checkButton.frame.origin.y + 62*yScale
+            sizeView = checkButton.frame.origin.y + 140*yScale
 //        }
         checkButtonFrame = checkButton.frame
         self.addSubview(checkButton)
