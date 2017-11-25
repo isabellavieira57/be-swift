@@ -130,7 +130,7 @@ class RegisterView: UIView
         countryText.inputView = pickerCountry
         countryText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         
-        courseLabel = UILabel(text: "Course", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
+        courseLabel = UILabel(text: "Field of study", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
         courseLabel.frame.origin.y = countryText.frame.origin.y + countryText.frame.height + marginFromPreviousField
         
         courseText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
