@@ -13,6 +13,7 @@ import GameplayKit
 class MultipleChoiceFeedbackViewController: FeedbackViewController
 {
     var userAnswer: String!
+    var topView = TopViewFeedback()
     var correctAnswer: String!
     var answerIsRight: Bool!
     var challengeMultChoice: Challenge!
@@ -29,7 +30,13 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
     {
         super.viewDidLoad()
         
-        multChoiceFeedView = FeedbackView(titleText: self.challengeMultChoice.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeMultChoice.question, exampleCodeText: self.challengeMultChoice.exampleCode)
+//        multChoiceFeedView = FeedbackView(titleText: self.challengeMultChoice.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton), questionText: self.challengeMultChoice.question, exampleCodeText: self.challengeMultChoice.exampleCode)
+        
+        topView = TopViewFeedback(titleText: self.challengeMultChoice.tags[0] as! String, dismissButtonAction: #selector(dismissButton), helpButtonAction: #selector(helpButton))
+        
+        let yPosition = topView.yPosition
+        
+        multChoiceFeedView = FeedbackView(questionText: self.challengeMultChoice.question, exampleCodeText: self.challengeMultChoice.exampleCode)
         
         //self.view.addSubview(multChoiceFeedView)
         
@@ -46,9 +53,10 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         self.multChoiceFeedView.frame = CGRect(x: 0, y: 0, width: self.multChoiceFeedView.frame.width, height: sizeView)
         
         //Set scrollView
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: yPosition!, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: sizeView)
         self.scrollView.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
+        self.view.addSubview(topView)
         self.view.addSubview(scrollView)
         scrollView.addSubview(self.multChoiceFeedView)
         

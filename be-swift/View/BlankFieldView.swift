@@ -22,16 +22,10 @@ class BlankFieldView: View {
         super.init(frame: frame)
     }
     
-    convenience init (progressView: UIProgressView, titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, checkButtonAction: Selector, currentView: UIViewController){
+    convenience init (dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, checkButtonAction: Selector, currentView: UIViewController){
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         
-        let rectangle = view.setTopBar()
-        let progressBar = view.timeBar(progressView: progressView)
-        let title = view.setTitle(title: titleText)
-        let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
-        let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
-        print("FRAME 3 \(question.frame)")
         code = view.setExampleCode(exampleCodeText: exampleCodeText!, view: self)
         
         self.setBlankField()
@@ -40,11 +34,6 @@ class BlankFieldView: View {
         let height = sizeView!
         self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
         
-        self.layer.addSublayer(rectangle)
-//        self.addSubview(progressBar)
-        self.addSubview(title)
-        self.addSubview(dismissButton)
-        self.addSubview(helpButton)
         self.addSubview(question)
         self.addSubview(code)
     }
@@ -83,11 +72,11 @@ class BlankFieldView: View {
         let yScale = screenSize.height/heightiPhoneSE
         
         if yPostionBlankField < 568*yScale{
-            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 62*yScale)
+            checkButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 140*yScale)
             sizeView = screenSize.height
         } else {
             checkButton.frame.origin = CGPoint(x: 16*xScale, y: yPostionBlankField + 70*yScale)
-            sizeView = checkButton.frame.minY + 62*yScale
+            sizeView = checkButton.frame.minY + 140*yScale
         }
         checkButtonFrame = checkButton.frame
         self.addSubview(checkButton)
