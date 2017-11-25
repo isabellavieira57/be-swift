@@ -17,6 +17,11 @@ class FeedbackView: View {
     var labelExplanation: UILabel!
     var buttonContinue: UIButton!
     var code: UILabel!
+    var starsEarned: Int!
+    var timeSolved: Int!
+    var starsIcon: UIImageView!
+    var timeIcon: UIImageView!
+    var timeLabel: UILabel!
     
     var sizeView: CGFloat!
     
@@ -41,12 +46,15 @@ class FeedbackView: View {
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
         
     }
-
+  
 //    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?){
-    convenience init (questionText: String, exampleCodeText: String?){
+    convenience init (questionText: String, exampleCodeText: String?, starsEarned: Int, timeSolved: Double){
 //        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-
+        
+        self.starsEarned = starsEarned
+        self.timeSolved = Int(timeSolved)
+        
         //Set top bar and the challenge's question + code
 //        let rectangle = view.setTopBar()
 //        let title = view.setTitle(title: titleText)
@@ -54,7 +62,6 @@ class FeedbackView: View {
 //        let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
         self.code = view.setExampleCode(exampleCodeText: exampleCodeText!, view: self)
-        
         
         // O sizeView é usado para determinar o tamanho da view e da scrollView
 //        let height = sizeView!
@@ -66,6 +73,41 @@ class FeedbackView: View {
 //        self.addSubview(helpButton)
         self.addSubview(question)
         self.addSubview(code)
+        
+        setPerformanceIcons(previousElement: code)
+    }
+    
+    func setPerformanceIcons(previousElement: AnyObject)
+    {
+        let xScale = screenSize.width/widhtiPhoneSE
+        let yScale = screenSize.height/heightiPhoneSE
+        
+        let iconY = previousElement.frame.height + previousElement.frame.origin.y + 25*yScale
+//        let iconY = code.frame.height + code.frame.origin.y + 25*yScale
+        let iconHeight: CGFloat = 21
+        
+        self.starsIcon = UIImageView(frame: CGRect(x: screenSize.width/2 - 36*xScale, y: iconY, width: 72*xScale, height: iconHeight*yScale))
+        
+        var starsImage: String!
+        switch self.starsEarned {
+        case 1:
+            starsImage = "oneStarFb"
+        case 2:
+            starsImage = "twoStarFb"
+        case 3:
+            starsImage = "threeStarFb"
+        default:
+            starsImage = "noStarFb"
+        }
+        
+        self.starsIcon.image = UIImage(named: starsImage)
+        
+        self.timeIcon = UIImageView(frame: CGRect(x: 277*xScale, y: iconY, width: 21*xScale, height: iconHeight*yScale))
+        timeIcon.image = UIImage(named: "clockIcon")
+        
+        self.timeLabel = UILabel(text: String(timeSolved) + " s", font: userAnswerFont, fontSize: userAnswerFontSize, aligment: NSTextAlignment.right, textColor: UIColor(red:0.56, green:0.55, blue:0.55, alpha:1.0), frame: CGRect(x: 217, y: iconY/yScale, width: 54, height: iconHeight))
+        
+//        self.addSubview(starsIcon)
     }
     
     func setLabelUserAnswer(labelText: String)
@@ -73,17 +115,17 @@ class FeedbackView: View {
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        let endOfMainView = code.frame.height + code.frame.origin.y
+        let userLabelY = self.starsIcon.frame.height + self.starsIcon.frame.origin.y + 12*yScale
         
-        self.labelCorrectUserAnswer = UILabel(text: "You answered correctly: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:0.28, green:0.64, blue:0.31, alpha:1.0), frame: CGRect(x: userAnswerX, y: endOfMainView, width: userAnswerWidth, height: userAnswerHeight))
+        self.labelCorrectUserAnswer = UILabel(text: "You answered correctly: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:0.30, green:0.75, blue:0.34, alpha:1.0), frame: CGRect(x: userAnswerX, y: userLabelY/yScale, width: userAnswerWidth, height: userAnswerHeight))
         
         // The heightForView function resizes the label
         let heightCorrectAnswer = heightForView(text: self.labelCorrectUserAnswer.text!, font: labelCorrectUserAnswer.font, width: labelCorrectUserAnswer.frame.width)
-        self.labelCorrectUserAnswer.frame = CGRect(x: userAnswerX*xScale, y: endOfMainView + 20*yScale, width: userAnswerWidth*xScale, height: heightCorrectAnswer)
+        self.labelCorrectUserAnswer.frame = CGRect(x: userAnswerX*xScale, y: userLabelY, width: userAnswerWidth*xScale, height: heightCorrectAnswer)
         
-        self.labelWrongUserAnswer = UILabel(text: "Your answer: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:1.58, green:0.21, blue:0.38, alpha:1.0), frame: CGRect(x: userAnswerX, y: endOfMainView, width: userAnswerWidth, height: userAnswerHeight))
+        self.labelWrongUserAnswer = UILabel(text: "Your answer: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:0.92, green:0.13, blue:0.22, alpha:1.0), frame: CGRect(x: userAnswerX, y: userLabelY/yScale, width: userAnswerWidth, height: userAnswerHeight))
         let heightWrongAnswer = heightForView(text: labelWrongUserAnswer.text!, font: labelWrongUserAnswer.font, width: labelWrongUserAnswer.frame.width)
-        self.labelWrongUserAnswer.frame = CGRect(x: userAnswerX*xScale, y: endOfMainView + 20*yScale, width: userAnswerWidth*xScale, height: heightWrongAnswer)
+        self.labelWrongUserAnswer.frame = CGRect(x: userAnswerX*xScale, y: userLabelY, width: userAnswerWidth*xScale, height: heightWrongAnswer)
     }
     
     func setCorrectChallengeAnswer(labelText: String)

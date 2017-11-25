@@ -217,9 +217,9 @@
 			isa = PBXGroup;
 			children = (
 				03AD2B9B1FB255B600F58DEA /* FeedbackViewController.swift */,
-				037421701FB61D4B00F686C3 /* SortFeedbackViewController.swift */,
 				037421721FB61D5B00F686C3 /* BlankFieldFeedbackViewController.swift */,
 				037421761FB61D8900F686C3 /* MultipleChoiceFeedbackViewController.swift */,
+				037421701FB61D4B00F686C3 /* SortFeedbackViewController.swift */,
 			);
 			path = FeedbackViewControllers;
 			sourceTree = "<group>";
@@ -234,6 +234,19 @@
 				0374217E1FB9E0DC00F686C3 /* BlankFieldFeedbackView.swift */,
 			);
 			name = FeedbackViews;
+			sourceTree = "<group>";
+		};
+		0397454C1FC91D7E00BB9D2C /* MechanicViews */ = {
+			isa = PBXGroup;
+			children = (
+				4F75F8A21F8AB643007BABC9 /* BlankFieldView.swift */,
+				4F75F8A01F8AB631007BABC9 /* DragAndDropView.swift */,
+				4F75F8A41F8AB652007BABC9 /* FillTheGapView.swift */,
+				4F75F89E1F8AB612007BABC9 /* MultipleChoiceView.swift */,
+				4F75F8A61F8AB660007BABC9 /* SortView.swift */,
+				03A343221FA2433A007827D8 /* SSRadioButton.swift */,
+			);
+			name = MechanicViews;
 			sourceTree = "<group>";
 		};
 		492E75B71F9125EB00A4AD4F /* Resources */ = {
@@ -282,10 +295,11 @@
 		4F218DC91FC64A9D004BD658 /* MechanicsViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */,
+				4964A3D61FC5BECF00C364C1 /* DragAndDropViewController.swift */,
 				03ECA9261F9EBD8F00EF8E4B /* MultipleChoiceController.swift */,
 				03D9FCDA1F98FC61000512F5 /* SortViewController.swift */,
-				4964A3D61FC5BECF00C364C1 /* DragAndDropViewController.swift */,
-				49F8D6F71FA1267900E7CF9F /* BlankFieldViewController.swift */,
+				03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */,
 			);
 			path = MechanicsViewControllers;
 			sourceTree = "<group>";
@@ -372,10 +386,12 @@
 		4F75F8841F8AB4B4007BABC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4F75F89C1F8AB5FF007BABC9 /* View.swift */,
+				0397454C1FC91D7E00BB9D2C /* MechanicViews */,
 				0374217D1FB9E0AF00F686C3 /* FeedbackViews */,
-				4F819A6E1FA3A3CF00BD69E0 /* GoogleService-Info.plist */,
 				492E75B71F9125EB00A4AD4F /* Resources */,
 				497703541F8EAA8300102F08 /* Setup */,
+        
 				4F75F8551F8AB491007BABC9 /* Main.storyboard */,
 				4F75F89C1F8AB5FF007BABC9 /* View.swift */,
 				49EFD1CB1FC766DB0053AAAA /* TopView.swift */,
@@ -385,10 +401,13 @@
 				4F75F8A21F8AB643007BABC9 /* BlankFieldView.swift */,
 				4F75F8A41F8AB652007BABC9 /* FillTheGapView.swift */,
 				4F75F8A61F8AB660007BABC9 /* SortView.swift */,
+
 				4F75F8A81F8AB66C007BABC9 /* LoginView.swift */,
 				4F75F8AA1F8AB67A007BABC9 /* RegisterView.swift */,
 				4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */,
 				03C0AD081FB2011800AF0A36 /* CollectionChallengesCell.swift */,
+				4F819A6E1FA3A3CF00BD69E0 /* GoogleService-Info.plist */,
+				4F75F8551F8AB491007BABC9 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -401,10 +420,9 @@
 				03AD2B9D1FB32D1300F58DEA /* ViewController.swift */,
 				4F75F8981F8AB5D6007BABC9 /* UserController.swift */,
 				49F8D6F91FA1278D00E7CF9F /* WebDocumentationViewController.swift */,
-				03ECA9241F9EBD2D00EF8E4B /* SSRadioButtonsController.swift */,
+				4FB8E9231FC5E5F600B8303E /* WelcomeViewController.swift */,
 				4FB8E91F1FC50C7200B8303E /* LoginViewController.swift */,
 				4FB8E9211FC5D84900B8303E /* RegisterViewController.swift */,
-				4FB8E9231FC5E5F600B8303E /* WelcomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

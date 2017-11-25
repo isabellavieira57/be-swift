@@ -36,13 +36,13 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         
         let yPosition = topView.yPosition
         
-        multChoiceFeedView = FeedbackView(questionText: self.challengeMultChoice.question, exampleCodeText: self.challengeMultChoice.exampleCode)
+        multChoiceFeedView = FeedbackView(questionText: self.challengeMultChoice.question, exampleCodeText: self.challengeMultChoice.exampleCode, starsEarned: self.numberOfStars, timeSolved: self.timeSolved)
         
         //self.view.addSubview(multChoiceFeedView)
         
         //Set feedback view labels
         self.multChoiceFeedView.setLabelUserAnswer(labelText: self.userAnswer)
-        setLabels()
+        setLabelsAndIcons()
         self.multChoiceFeedView.addSubview(self.multChoiceFeedView.labelExplanation)
         
         //Set continue button
@@ -70,14 +70,17 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
 //        showFeedbackAlert(starsEarned: self.numberOfStars)
 //    }
     
-    func setLabels()
+    func setLabelsAndIcons()
     {
+        self.multChoiceFeedView.addSubview(self.multChoiceFeedView.starsIcon)
         self.multChoiceFeedView.setLabelUserAnswer(labelText: self.userAnswer)
         self.multChoiceFeedView.setCorrectChallengeAnswer(labelText: self.correctAnswer)
         
         if answerIsRight == true
         {
             //add label when the user's answer is correct
+            self.multChoiceFeedView.addSubview(self.multChoiceFeedView.timeLabel)
+            self.multChoiceFeedView.addSubview(self.multChoiceFeedView.timeIcon)
             self.multChoiceFeedView.addSubview(self.multChoiceFeedView.labelCorrectUserAnswer)
             
             //set the explanation label's parameters
