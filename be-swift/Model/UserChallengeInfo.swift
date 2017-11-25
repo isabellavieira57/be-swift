@@ -12,9 +12,9 @@ class UserChallengeInfo {
     
     //var xpChallenge: Int
     var starChallenge: Int
-    var timeToAnswerChallenge: String
+    var timeToAnswerChallenge: Double
     
-    init (xpChallenge: Int, starChallenge: Int, timeToAnswerChallenge: String) {
+    init (xpChallenge: Int, starChallenge: Int, timeToAnswerChallenge: Double) {
         //self.xpChallenge = xpChallenge
         self.starChallenge = starChallenge
         self.timeToAnswerChallenge = timeToAnswerChallenge

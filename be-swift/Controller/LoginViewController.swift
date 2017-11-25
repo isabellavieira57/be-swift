@@ -16,11 +16,11 @@ protocol UserHandler {
     func loginUser (success:Bool)
 }
 
-class LoginViewController: UIViewController, UserHandler {
+class LoginViewController: UIViewController, UserHandler, UITextFieldDelegate {
  
     var loginView: LoginView!
     var indicator = UIActivityIndicatorView()
-    var erroMessageLabel:      UILabel!
+    var erroMessageLabel: UILabel!
     var userDAO = UserDAO()
     var success: Bool?
 
@@ -29,6 +29,9 @@ class LoginViewController: UIViewController, UserHandler {
         
         loginView = LoginView(goBack: #selector(goBack), logIn: #selector(logIn))
         self.view.addSubview(loginView)
+        
+        self.loginView.emailText.delegate = self
+        self.loginView.passwordText.delegate = self
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
@@ -64,18 +67,6 @@ class LoginViewController: UIViewController, UserHandler {
             print (">>>>>>>>>sucess loginuser: \(self.success)")
             print ("email: \(self.loginView.emailText.text)")
             print ("senha: \(self.loginView.passwordText.text!)")
-            
-            if (self.success == true) {
-                print("You have successfully logged in")
-                let viewController = ViewController()
-                self.present(viewController, animated: true, completion: nil)
-            } else if (success == false) {
-                print("Login falhooou")
-                let alert = UIAlertController(title: "Login Failed!", message: "Please, check your username and password", preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alert.addAction(defaultAction)
-                self.present(alert, animated: true, completion: nil)
-            }
         }
     }
     
@@ -85,6 +76,23 @@ class LoginViewController: UIViewController, UserHandler {
         indicator.stopAnimating()
         indicator.hidesWhenStopped = true
         print ("sucess loginuser HANDLER CASSE: \(self.success)")
+        
+        if (self.success == true) {
+            print("LOGIN CONTROLLER - You have successfully logged in")
+            
+            let viewController = ViewController()
+            let delegate = UIApplication.shared.delegate as! AppDelegate
+            let window = delegate.window
+            window?.rootViewController = viewController
+            self.present(viewController, animated: true, completion: nil)
+            
+        } else if (success == false) {
+            print("Login falhooou")
+            let alert = UIAlertController(title: "Login Failed!", message: "Please, check your username and password", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(defaultAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     @objc func goBack() {
@@ -93,6 +101,11 @@ class LoginViewController: UIViewController, UserHandler {
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        textField.resignFirstResponder()
+        return true
     }
     
     // Botao de esqueceu a senha

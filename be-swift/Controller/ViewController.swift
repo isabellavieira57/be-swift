@@ -27,7 +27,8 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.challengesView = CollectionChallengeView()
+        //TODO: Contabilizar total de estrelas por usuário e passar pelo parâmetro
+        self.challengesView = CollectionChallengeView(numberOfStarsTotal: setStarsNumber(numberOfStarsTotal: 6))
         self.view.addSubview(challengesView)
         self.view = self.challengesView
        
@@ -41,7 +42,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.challengesView.collectionChallenges1.dataSource = self
         self.challengesView.collectionChallenges1.delegate = self
         self.challengesView.collectionChallenges1.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
-   
+        
 //        notification.localNotification(title: "Be Swift", body: "It's time to practice!")
     }
     
@@ -96,6 +97,24 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         DispatchQueue.main.async {
             challengesView.collectionChallenges1.reloadData()
         }
+    }
+    
+    func setStarsNumber(numberOfStarsTotal: Int) -> String {
+        var starString: String!
+        
+        if numberOfStarsTotal < 10 {
+            starString = "00" + String(numberOfStarsTotal)
+        } else {
+            starString = "0" + String(numberOfStarsTotal)
+        }
+        return starString
+    }
+    
+    @objc func logOut()
+    {
+        User.sharedInstance.logout()
+        let controller = WelcomeViewController()
+        present(controller, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

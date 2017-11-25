@@ -7,6 +7,7 @@
 //
 import Foundation
 import UIKit
+import GameplayKit
 
 class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, UITableViewDataSource
 {
@@ -22,6 +23,11 @@ class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
     let sortView = SortView()
     var viewFeedback = FeedbackView()
     var sizeView: CGFloat!
+    
+    var arrayUserSuccess: Array<String>!
+    var arrayUserFailTitle: Array<String>!
+    var numberOfStars: Int!
+    var timeSolved: Double!
     
     override func viewDidLoad()
     {
@@ -49,10 +55,15 @@ class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
         //Set tableView
         self.sortFeedView.setTableView()
         self.sortFeedView.addSubview(self.sortFeedView.feedbackTableView)
-        
+
         self.sortFeedView.feedbackTableView.dataSource = self
         self.sortFeedView.feedbackTableView.delegate = self
         self.sortFeedView.feedbackTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let yScale = screenSize.height/heightiPhoneSE
+        self.sortFeedView.feedbackTableView.rowHeight = sortView.tableRowHeight*yScale
         
         //Set labels and buttons
         addCompareAnswerButtons()
@@ -71,7 +82,17 @@ class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
         self.view.addSubview(topView)
         self.view.addSubview(scrollView)
         scrollView.addSubview(self.sortFeedView)
+        
+        //Array de notificações de feedback para o usuário
+        self.arrayUserSuccess = ["Yes, you got it!", "You are amazing!", "Nice!", "Congratulations!", "You are going to rule the world!", "Way to go!", "Awesome"]
+        self.arrayUserFailTitle = ["Oh no!", "Almost there!", "Keep trying!", "Don't give up!", "Try again! I believe in you!", "Try again! You can do it!"]
     }
+    
+//    // Descomentar para feedback alerts aparecerem
+//    override func viewDidAppear(_ animated: Bool) {
+//        showFeedbackAlert(starsEarned: self.numberOfStars)
+//    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -118,12 +139,16 @@ class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
         self.sortFeedView.addSubview(self.sortFeedView.labelExplanation)
     }
     
-    func getSortVariables(challenge: Challenge, userAnswer: Array<String>, correctAnswer: Array<String>, answerIsRight: Bool)
+    func getSortVariables(challenge: Challenge, userAnswer: Array<String>, correctAnswer: Array<String>, answerIsRight: Bool, numberOfStars: Int, timeSolved: Double)
     {
         self.challengeSort = challenge
         self.userAnswer = userAnswer
         self.correctAnswer = correctAnswer
         self.answerIsRight = answerIsRight
+        self.numberOfStars = numberOfStars
+        self.answerIsRight = answerIsRight
+        self.numberOfStars = numberOfStars
+        self.timeSolved = timeSolved
     }
     
     @objc func dismissButton(_ sender: Any){
@@ -156,5 +181,34 @@ class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
         self.sortFeedView.buttonCorrectAnswer.setBackgroundImage(UIImage(named: "correctAnswerBold"), for: .normal)
         self.tableViewData = self.correctAnswer
         self.sortFeedView.feedbackTableView.reloadData()
+    }
+    
+    func showFeedbackAlert(starsEarned: Int) {
+        var title: String!
+        var message:String!
+        var timeToPrint = Int(timeSolved)
+        
+        switch starsEarned {
+        case 3:
+            title = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.arrayUserSuccess)[0] as! String
+            message = "WOW, you answered in \(timeToPrint) seconds! You got 3 stars!\nKeep it up 😄"
+        case 2:
+            title = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.arrayUserSuccess)[0] as! String
+            message = "You answered in \(timeToPrint) seconds!\n You got 2 stars, there's still room for improvement 😉"
+        case 1:
+            title = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.arrayUserSuccess)[0] as! String
+            message = "You answered in \(timeToPrint) seconds, so you got 1 star!\nLet's work on your speed to achieve greater results 😊"
+        case 0:
+            title = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.arrayUserFailTitle)[0] as! String
+            message = "You didn't get it this time 😕\nCheck out the explanation, study a bit more and try again!"
+        default:
+            title = "Ops!"
+            message = "Sorry, we got an error. My bad! Please try again."
+        }
+    
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        self.present(alert, animated: true, completion: nil)
     }
 }
