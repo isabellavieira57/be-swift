@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		036125FC1FC9359500ABF29D /* TopViewRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036125FB1FC9359500ABF29D /* TopViewRegister.swift */; };
 		037421711FB61D4B00F686C3 /* SortFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037421701FB61D4B00F686C3 /* SortFeedbackViewController.swift */; };
 		037421731FB61D5B00F686C3 /* BlankFieldFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037421721FB61D5B00F686C3 /* BlankFieldFeedbackViewController.swift */; };
 		037421771FB61D8900F686C3 /* MultipleChoiceFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037421761FB61D8900F686C3 /* MultipleChoiceFeedbackViewController.swift */; };
@@ -98,6 +99,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		036125FB1FC9359500ABF29D /* TopViewRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewRegister.swift; sourceTree = "<group>"; };
 		037421701FB61D4B00F686C3 /* SortFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFeedbackViewController.swift; sourceTree = "<group>"; };
 		037421721FB61D5B00F686C3 /* BlankFieldFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankFieldFeedbackViewController.swift; sourceTree = "<group>"; };
 		037421761FB61D8900F686C3 /* MultipleChoiceFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceFeedbackViewController.swift; sourceTree = "<group>"; };
@@ -239,12 +241,6 @@
 		0397454C1FC91D7E00BB9D2C /* MechanicViews */ = {
 			isa = PBXGroup;
 			children = (
-				4F75F8A21F8AB643007BABC9 /* BlankFieldView.swift */,
-				4F75F8A01F8AB631007BABC9 /* DragAndDropView.swift */,
-				4F75F8A41F8AB652007BABC9 /* FillTheGapView.swift */,
-				4F75F89E1F8AB612007BABC9 /* MultipleChoiceView.swift */,
-				4F75F8A61F8AB660007BABC9 /* SortView.swift */,
-				03A343221FA2433A007827D8 /* SSRadioButton.swift */,
 			);
 			name = MechanicViews;
 			sourceTree = "<group>";
@@ -386,13 +382,10 @@
 		4F75F8841F8AB4B4007BABC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4F75F89C1F8AB5FF007BABC9 /* View.swift */,
 				0397454C1FC91D7E00BB9D2C /* MechanicViews */,
 				0374217D1FB9E0AF00F686C3 /* FeedbackViews */,
 				492E75B71F9125EB00A4AD4F /* Resources */,
 				497703541F8EAA8300102F08 /* Setup */,
-        
-				4F75F8551F8AB491007BABC9 /* Main.storyboard */,
 				4F75F89C1F8AB5FF007BABC9 /* View.swift */,
 				49EFD1CB1FC766DB0053AAAA /* TopView.swift */,
 				4F75F89E1F8AB612007BABC9 /* MultipleChoiceView.swift */,
@@ -401,13 +394,13 @@
 				4F75F8A21F8AB643007BABC9 /* BlankFieldView.swift */,
 				4F75F8A41F8AB652007BABC9 /* FillTheGapView.swift */,
 				4F75F8A61F8AB660007BABC9 /* SortView.swift */,
-
 				4F75F8A81F8AB66C007BABC9 /* LoginView.swift */,
 				4F75F8AA1F8AB67A007BABC9 /* RegisterView.swift */,
 				4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */,
 				03C0AD081FB2011800AF0A36 /* CollectionChallengesCell.swift */,
 				4F819A6E1FA3A3CF00BD69E0 /* GoogleService-Info.plist */,
 				4F75F8551F8AB491007BABC9 /* Main.storyboard */,
+				036125FB1FC9359500ABF29D /* TopViewRegister.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -799,6 +792,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				036125FC1FC9359500ABF29D /* TopViewRegister.swift in Sources */,
 				49F8D6FA1FA1278D00E7CF9F /* WebDocumentationViewController.swift in Sources */,
 				4F75F85A1F8AB492007BABC9 /* be_swift.xcdatamodeld in Sources */,
 				4F75F8A11F8AB631007BABC9 /* DragAndDropView.swift in Sources */,

@@ -40,7 +40,8 @@ class LoginView: UIView
         let textFont = "SanFranciscoText-Medium"
         let textSize: CGFloat = 16
         let labelTextSize: CGFloat = 14
-        let textFieldFrame = CGRect(x: 24, y: 98, width: 272, height: 39)
+//        let textFieldFrame = CGRect(x: 24, y: 98, width: 272, height: 39)
+        let textFieldFrame = CGRect(x: 20, y: 85, width: 280, height: 39)
         let labelTextColor = UIColor(red:0.6, green:0.6, blue:0.6, alpha:1.0)
         let labelFrame  = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.origin.y, width: 272, height: 20)
         let marginFromDescription: CGFloat = 2*yScale
