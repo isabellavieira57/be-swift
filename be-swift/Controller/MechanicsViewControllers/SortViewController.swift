@@ -35,7 +35,7 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.correctAnswer = self.challenge.correctAnswer as! Array<String>
         
-        topView = TopView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(MultipleChoiceController.dismissButton(_:)), helpButtonAction: #selector(MultipleChoiceController.helpButton(_:)))
+        topView = TopView(titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(MultipleChoiceController.dismissButton(_:)), helpButtonAction: #selector(MultipleChoiceController.helpButton(_:)))
         
         sortView = SortView(titleText: self.challenge.tags[0] as! String, checkButtonAction: #selector(checkAnswer), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.correctAnswer)
         
