@@ -14,6 +14,7 @@ class RegisterView: UIView
     var emailText: UITextField!
     var passwordText: UITextField!
     var passwordConfirmationText: UITextField!
+    var continentText: UITextField!
     var countryText: UITextField!
     var courseText: UITextField!
     var signUpButton: UIButton!
@@ -22,9 +23,11 @@ class RegisterView: UIView
     var emailLabel: UILabel!
     var passwordLabel: UILabel!
     var passwordConfirmLabel: UILabel!
+    var continentLabel: UILabel!
     var countryLabel: UILabel!
     var courseLabel: UILabel!
     
+    let pickerContinent = UIPickerView()
     let pickerCountry = UIPickerView()
     let pickerCourse = UIPickerView()
     
@@ -34,11 +37,10 @@ class RegisterView: UIView
         self.backgroundColor = UIColor.white
     }
     
-    convenience init (goBack: Selector, signUp: Selector)
+    convenience init (signUp: Selector)
     {
-        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*1.16))
         
-        setTopBar(goBackAction: goBack)
         setTextFields()
         setRegisterButton(signUpAction: signUp)
     }
@@ -49,7 +51,8 @@ class RegisterView: UIView
         let screenSize = UIScreen.main.bounds
         let yScale = screenSize.height/heightiPhoneSE
         
-        let textFieldFrame = CGRect(x: 24, y: 75, width: 272, height: 39)
+//        let textFieldFrame = CGRect(x: 10, y: 75, width: 272, height: 39)
+        let textFieldFrame = CGRect(x: 20, y: 20, width: 280, height: 39)
         let font = "SanFranciscoText-Medium"
         let textFontSize: CGFloat = 16
         let labelFontSize: CGFloat = 14
@@ -57,7 +60,8 @@ class RegisterView: UIView
 //        let labelTextColor = UIColor(red:0.73, green:0.73, blue:0.73, alpha:1.0)
         let labelTextColor = UIColor(red:0.6, green:0.6, blue:0.6, alpha:1.0)
         let labelFrame  = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.origin.y, width: 272, height: 20)
-        let marginFromPreviousField: CGFloat = 8*yScale
+        let marginFromPreviousField: CGFloat = 12*yScale
+//        let marginFromPreviousField: CGFloat = 8*yScale
         let marginFromDescription: CGFloat = 2*yScale
         
         nameLabel = UILabel(text: "Name", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
@@ -105,8 +109,18 @@ class RegisterView: UIView
         passwordConfirmationText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         passwordConfirmationText.isSecureTextEntry = true
         
+        continentLabel = UILabel(text: "Region", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
+        continentLabel.frame.origin.y = passwordConfirmationText.frame.origin.y + passwordConfirmationText.frame.height + marginFromPreviousField
+        
+        continentText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
+        continentText.frame.origin.y = continentLabel.frame.origin.y + continentLabel.frame.height + marginFromDescription
+        continentText.borderStyle = .none
+        continentText.layer.cornerRadius = 5
+        continentText.inputView = pickerContinent
+        continentText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
+        
         countryLabel = UILabel(text: "Country", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
-        countryLabel.frame.origin.y = passwordConfirmationText.frame.origin.y + passwordConfirmationText.frame.height + marginFromPreviousField
+        countryLabel.frame.origin.y = continentText.frame.origin.y + continentText.frame.height + marginFromPreviousField
         
         countryText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
         countryText.frame.origin.y = countryLabel.frame.origin.y + countryLabel.frame.height + marginFromDescription
@@ -135,6 +149,8 @@ class RegisterView: UIView
         self.addSubview(passwordText)
         self.addSubview(passwordConfirmLabel)
         self.addSubview(passwordConfirmationText)
+        self.addSubview(continentLabel)
+        self.addSubview(continentText)
         self.addSubview(countryLabel)
         self.addSubview(countryText)
         self.addSubview(courseLabel)
@@ -143,27 +159,33 @@ class RegisterView: UIView
     
     func setRegisterButton(signUpAction: Selector)
     {
-        signUpButton = UIButton(image: "signUp", frame: CGRect(x: 16, y: 506, width: 288, height: 46), target: self)
+        let heightiPhoneSE: CGFloat = 568
+        let screenSize = UIScreen.main.bounds
+        let yScale = screenSize.height/heightiPhoneSE
+        
+        let buttonY = self.courseText.frame.origin.y/yScale + self.courseText.frame.height/yScale + 20
+        
+        signUpButton = UIButton(image: "signUp", frame: CGRect(x: 16, y: buttonY, width: 288, height: 46), target: self)
         signUpButton.addTarget(target, action: signUpAction, for: .touchUpInside)
         
         self.addSubview(signUpButton)
     }
     
-    func setTopBar(goBackAction: Selector)
-    {
-        let rectangle = CAShapeLayer()
-        rectangle.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 320, height: 64))).cgPath
-        rectangle.fillColor = UIColor(red:0.31, green:0.49, blue:0.95, alpha:1.0).cgColor
-        
-        let title = UILabel(text: "Sign up", font: "SanFranciscoText-Semibold", fontSize: 18, aligment: .center, textColor: UIColor.white, frame: CGRect(x: 0, y: 31, width: 320, height: 20))
-        
-        let backButton = UIButton(image: "backButton", frame: CGRect(x: 12, y: 27, width: 14.29, height: 24), target: self)
-        backButton.addTarget(target, action: goBackAction, for: .touchUpInside)
-        
-        self.layer.addSublayer(rectangle)
-        self.addSubview(title)
-        self.addSubview(backButton)
-    }
+//    func setTopBar(goBackAction: Selector)
+//    {
+//        let rectangle = CAShapeLayer()
+//        rectangle.path = UIBezierPath(rect: UIScreen.changeScale(vector: CGRect(x: 0, y: 0, width: 320, height: 64))).cgPath
+//        rectangle.fillColor = UIColor(red:0.31, green:0.49, blue:0.95, alpha:1.0).cgColor
+//
+//        let title = UILabel(text: "Sign up", font: "SanFranciscoText-Semibold", fontSize: 18, aligment: .center, textColor: UIColor.white, frame: CGRect(x: 0, y: 31, width: 320, height: 20))
+//
+//        let backButton = UIButton(image: "backButton", frame: CGRect(x: 12, y: 27, width: 14.29, height: 24), target: self)
+//        backButton.addTarget(target, action: goBackAction, for: .touchUpInside)
+//
+//        self.layer.addSublayer(rectangle)
+//        self.addSubview(title)
+//        self.addSubview(backButton)
+//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

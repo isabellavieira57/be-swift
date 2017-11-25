@@ -12,6 +12,9 @@ import Firebase
 
 class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UserHandler, UITextFieldDelegate  {
 
+    var topView: TopViewRegister!
+    var scrollView: UIScrollView!
+    var continentList: Array<String>!
     var countryList: Array<String>!
     var courseList: Array<String>!
     var indicator = UIActivityIndicatorView()
@@ -23,12 +26,25 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.white
+        
         print ("CONTROLLER - selector")
-        registerView = RegisterView(goBack: #selector(goBack), signUp: #selector(checkInfo))
+        
+        topView = TopViewRegister(goBackAction: #selector(RegisterViewController.goBack(_:)))
+        self.view.addSubview(topView)
+        
+        registerView = RegisterView(signUp: #selector(checkInfo))
+        
+        let yPosition = topView.yPosition
+        
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: yPosition!, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: registerView.frame.height)
         
         //Delegate and data source pickerViews
+        self.registerView.pickerContinent.dataSource = self
         self.registerView.pickerCountry.dataSource = self
         self.registerView.pickerCourse.dataSource = self
+        self.registerView.pickerContinent.delegate = self
         self.registerView.pickerCountry.delegate = self
         self.registerView.pickerCourse.delegate = self
         //Delegate textFields
@@ -36,13 +52,18 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         self.registerView.emailText.delegate = self
         self.registerView.passwordText.delegate = self
         self.registerView.passwordConfirmationText.delegate = self
+        self.registerView.continentText.delegate = self
         self.registerView.countryText.delegate = self
         self.registerView.courseText.delegate = self
         
+        continentList = [""]
         countryList = ["Brazil", "United States of America", "Canada"]
         courseList = ["Business Administration","Computer Science", "Design", "Engineering", "Law"]
         
-        self.view.addSubview(registerView)
+        self.view.addSubview(topView)
+        self.view.addSubview(scrollView)
+        scrollView.addSubview(registerView)
+//        self.view.addSubview(registerView)
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tap)
@@ -66,9 +87,10 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
         if pickerView == self.registerView.pickerCountry {
             numberOfRows = self.countryList.count
-        }
-        else if pickerView == self.registerView.pickerCourse {
+        } else if pickerView == self.registerView.pickerCourse {
             numberOfRows = self.courseList.count
+        } else if pickerView == self.registerView.pickerContinent {
+            numberOfRows = self.continentList.count
         }
         return numberOfRows
     }
@@ -80,6 +102,8 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
             listItem = self.countryList[row]
         } else if pickerView == self.registerView.pickerCourse {
             listItem = self.courseList[row]
+        } else if pickerView == self.registerView.pickerContinent {
+            listItem = self.continentList[row]
         }
         return listItem
     }
@@ -91,6 +115,9 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         } else if pickerView == self.registerView.pickerCourse {
             self.registerView.courseText.text = self.courseList[row]
             self.registerView.courseText.endEditing(true)
+        } else if pickerView == self.registerView.pickerContinent {
+            self.registerView.continentText.text = self.continentList[row]
+            self.registerView.continentText.endEditing(true)
         }
     }
     
