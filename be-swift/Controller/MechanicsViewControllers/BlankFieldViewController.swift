@@ -12,6 +12,7 @@ import UIKit
 class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     
     var blankField: BlankFieldView!
+    var topView: TopView!
     var scrollView: UIScrollView!
     var challenge: Challenge!
     var answerIsRight: Bool!
@@ -34,10 +35,17 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         
         self.correctAnswer = self.challenge.correctAnswer[0] as! String
         
-        blankField = BlankFieldView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(BlankFieldViewController.dismissButton(_:)), helpButtonAction: #selector(BlankFieldViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, checkButtonAction:#selector(BlankFieldViewController.checkButton(_:)), currentView: self)
+        topView = TopView(titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(BlankFieldViewController.dismissButton(_:)), helpButtonAction: #selector(BlankFieldViewController.helpButton(_:)))
+        self.view.addSubview(topView)
         
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        blankField = BlankFieldView(dismissButtonAction: #selector(BlankFieldViewController.dismissButton(_:)), helpButtonAction: #selector(BlankFieldViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, checkButtonAction:#selector(BlankFieldViewController.checkButton(_:)), currentView: self)
+        
+        let yPosition = topView.yPosition
+        
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: yPosition!, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: blankField.frame.height)
+        
+        self.view.addSubview(topView)
         self.view.addSubview(scrollView)
         scrollView.addSubview(blankField)
         

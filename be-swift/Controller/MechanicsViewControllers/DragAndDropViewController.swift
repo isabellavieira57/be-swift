@@ -12,6 +12,7 @@ import UIKit
 class DragAndDropViewController: UIViewController {
     
     var dragAndDrop: DragAndDropView!
+    var topView: TopView!
     var scrollView: UIScrollView!
     var challenge: Challenge!
     var answerIsRight: Bool!
@@ -38,15 +39,23 @@ class DragAndDropViewController: UIViewController {
         
         self.correctAnswer = self.challenge.correctAnswer as! [String]
         
-        dragAndDrop = DragAndDropView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(DragAndDropViewController.dismissButton(_:)), helpButtonAction: #selector(DragAndDropViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! [String], checkButtonAction: #selector(DragAndDropViewController.checkButton(_:)))
+        topView = TopView(titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(DragAndDropViewController.dismissButton(_:)), helpButtonAction: #selector(DragAndDropViewController.helpButton(_:)))
+        
+//        dragAndDrop = DragAndDropView(progressView: progressView, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(DragAndDropViewController.dismissButton(_:)), helpButtonAction: #selector(DragAndDropViewController.helpButton(_:)), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! [String], checkButtonAction: #selector(DragAndDropViewController.checkButton(_:)))
+        dragAndDrop = DragAndDropView(questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! [String], checkButtonAction: #selector(DragAndDropViewController.checkButton(_:)))
         
         drop = dragAndDrop.drop
         labels = dragAndDrop.titles
+        
+        let yPosition = topView.yPosition
 
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: yPosition!, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: dragAndDrop.frame.height)
+        
         self.view.addSubview(scrollView)
         scrollView.addSubview(dragAndDrop)
+        self.view.addSubview(topView)
+
         
         positions = [CGPoint]()
         panGestures = [UIPanGestureRecognizer]()
@@ -64,6 +73,7 @@ class DragAndDropViewController: UIViewController {
         //Set time required to get x stars
         self.timeTo3Stars = self.challenge.estimatedTime
         self.timeTo2Stars = timeTo3Stars*2
+
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -101,6 +111,7 @@ class DragAndDropViewController: UIViewController {
     }
     
     @objc func dismissButton(_ sender: Any){
+        print("DISMISS")
         self.dismiss(animated: true, completion: nil)
     }
     

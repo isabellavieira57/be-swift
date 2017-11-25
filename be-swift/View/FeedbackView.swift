@@ -46,9 +46,9 @@ class FeedbackView: View {
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
         
     }
-
-    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?, starsEarned: Int, timeSolved: Double)
-    {
+  
+//    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, exampleCodeText: String?){
+    convenience init (questionText: String, exampleCodeText: String?, starsEarned: Int, timeSolved: Double){
 //        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 2000))
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         
@@ -56,10 +56,10 @@ class FeedbackView: View {
         self.timeSolved = Int(timeSolved)
         
         //Set top bar and the challenge's question + code
-        let rectangle = view.setTopBar()
-        let title = view.setTitle(title: titleText)
-        let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
-        let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
+//        let rectangle = view.setTopBar()
+//        let title = view.setTitle(title: titleText)
+//        let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
+//        let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
         self.code = view.setExampleCode(exampleCodeText: exampleCodeText!, view: self)
         
@@ -67,10 +67,10 @@ class FeedbackView: View {
 //        let height = sizeView!
 //        self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
 
-        self.layer.addSublayer(rectangle)
-        self.addSubview(title)
-        self.addSubview(dismissButton)
-        self.addSubview(helpButton)
+//        self.layer.addSublayer(rectangle)
+//        self.addSubview(title)
+//        self.addSubview(dismissButton)
+//        self.addSubview(helpButton)
         self.addSubview(question)
         self.addSubview(code)
         
@@ -140,17 +140,16 @@ class FeedbackView: View {
         self.labelCorrectAnswer.frame = CGRect(x: userAnswerX*xScale, y: yPosition + 10*yScale, width: userAnswerWidth*xScale, height: height)
     }
     
-    func setLabelExplanation(labelText: String, previousLabel: UILabel)
-    {
+    func setLabelExplanation(labelText: String, previousLabel: UILabel){
         
         let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
         let explanationLabelY = previousLabel.frame.origin.y + previousLabel.frame.height
         
-        self.labelExplanation = UILabel(text: "Explanation: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: userAnswerX,y: explanationLabelY, width: userAnswerWidth, height: 120))
+        labelExplanation = UILabel(text: "Explanation: " + labelText, font: userAnswerFont, fontSize: userAnswerFontSize, aligment: userAnswerAlignment, textColor: UIColor(red:0.21, green:0.23, blue:0.47, alpha:1.0), frame: CGRect(x: userAnswerX,y: explanationLabelY, width: userAnswerWidth, height: 120))
         let height = heightForView(text: labelText, font: labelExplanation.font, width: labelExplanation.frame.width)
-        self.labelExplanation.frame = CGRect(x: userAnswerX*xScale, y: explanationLabelY + 10*yScale, width: userAnswerWidth*xScale, height: height)
+        labelExplanation.frame = CGRect(x: labelExplanation.frame.origin.x, y: explanationLabelY + 10*yScale, width: labelExplanation.frame.width, height: height + 50*yScale)
     }
     
     func setButton(continueButtonAction: Selector) {
@@ -166,12 +165,12 @@ class FeedbackView: View {
         let distance = yPostionLastLabel + heightLastLabel
         
         if distance < 510*yScale{
-            buttonContinue.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 62*yScale)
+            buttonContinue.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 140*yScale)
             self.sizeView = screenSize.height
 
         } else {
             buttonContinue.frame.origin = CGPoint(x: 16*xScale, y: distance + 70*yScale)
-            self.sizeView = buttonContinue.frame.minY + 62*yScale
+            self.sizeView = buttonContinue.frame.minY + 140*yScale
         }
         print("HAAAA")
         print("SIZE VIEW: ", sizeView)
@@ -183,18 +182,17 @@ class FeedbackView: View {
 //        let height = sizeView!
 //        self.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: height)
 //    }
-
-    override func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat
-    {
-        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
-        label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.byWordWrapping
-        label.font = font
-        label.text = text
-        label.sizeToFit()
-        
-        return label.frame.height
-    }
+    
+//    func heightForView(text:String, font:UIFont, width:CGFloat) -> CGFloat{
+//        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+//        label.numberOfLines = 0
+//        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+//        label.font = font
+//        label.text = text
+//        label.sizeToFit()
+//
+//        return label.frame.height
+//    }
     
     required init?(coder aDecoder: NSCoder)
     {

@@ -28,28 +28,27 @@ class SortFeedbackView: FeedbackView
         
         self.backgroundColor = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.0)
     }
-    
-    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, options: Array<String>, starsEarned: Int, timeSolved: Double)
-    {
+//    convenience init (titleText: String, dismissButtonAction: Selector, helpButtonAction: Selector, questionText: String, options: Array<String>){
+    convenience init (questionText: String, options: Array<String>, starsEarned: Int, timeSolved: Double){
         self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         
         self.tableViewCode = options
         self.starsEarned = starsEarned
         self.timeSolved = Int(timeSolved)
         
-        let rectangle = view.setTopBar()
-        let title = view.setTitle(title: titleText)
-        let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
-        let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
+//        let rectangle = view.setTopBar()
+//        let title = view.setTitle(title: titleText)
+//        let dismissButton = view.setdismissButton(dismissButtonAction: dismissButtonAction)
+//        let helpButton = view.setHelpButton(helpButtonAction: helpButtonAction)
         let question = view.setQuestion(questionText: questionText)
         
         //        let height = sizeView!
         //        self.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: height)
         
-        self.layer.addSublayer(rectangle)
-        self.addSubview(title)
-        self.addSubview(dismissButton)
-        self.addSubview(helpButton)
+//        self.layer.addSublayer(rectangle)
+//        self.addSubview(title)
+//        self.addSubview(dismissButton)
+//        self.addSubview(helpButton)
         self.addSubview(question)
     }
     

@@ -12,6 +12,7 @@ import GameplayKit
 class SortViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var sortView: SortView!
+    var topView: TopView!
     var codeToSort: Array<String> = []
     var userAnswer: Array<String>!
     var answerIsRight: Bool!
@@ -34,12 +35,17 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         self.correctAnswer = self.challenge.correctAnswer as! Array<String>
         
-        sortView = SortView(progressView: progressView, frame: CGRect.zero, titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(SortViewController.dismissButton(_:)), helpButtonAction: #selector(SortViewController.helpButton(_:)), checkButtonAction: #selector(checkAnswer), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.correctAnswer)
+        topView = TopView(titleText: self.challenge.tags[0] as! String, dismissButtonAction: #selector(MultipleChoiceController.dismissButton(_:)), helpButtonAction: #selector(MultipleChoiceController.helpButton(_:)))
+        
+        sortView = SortView(titleText: self.challenge.tags[0] as! String, checkButtonAction: #selector(checkAnswer), questionText: self.challenge.question, exampleCodeText: self.challenge.exampleCode, options: self.challenge.options as! Array<String>, correctAnswer: self.correctAnswer)
+        
+        let yPosition = topView.yPosition
         
         //Set scrollView
-        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: yPosition!, width: self.view.frame.size.width, height: self.view.frame.size.height))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: sortView.frame.height)
         
+        self.view.addSubview(topView)
         self.view.addSubview(scrollView)
         scrollView.addSubview(sortView)
         
