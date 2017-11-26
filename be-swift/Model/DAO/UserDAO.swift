@@ -18,7 +18,10 @@ class UserDAO {
     static let sharedInstance = UserDAO()
     
     // MARK: Init
-    init(){}
+    // MARK: Initializer
+    init (){
+        self.ref = Database.database().reference()
+    }
     
     //MARK: Methods
     func loadUser(handler: UserHandler, email: String, password: String) {
@@ -80,4 +83,69 @@ class UserDAO {
         let data = ["name": name, "country": country, "major": major]
         ref.setValue(data)
     }
+    
+    func saveChallengeData (email: String, challenge_id: Int, stars: Int, time: Double) {
+        
+        print ("ENTROU NO SAVE CHALLENGS DATA")
+        // If AppDelegate doesn't lauch firebase configuration
+        if (!AppDelegate.isAlreadyLaunchedOnce) {
+            FirebaseApp.configure()
+            AppDelegate.isAlreadyLaunchedOnce = true
+        }
+        
+        let challengeID = String(challenge_id)
+        let emailUser = email.replacingOccurrences(of: ".", with: "_")
+        let ref = Database.database().reference().child("UsersData").child(emailUser).child("Challenges").child(challengeID)
+        let data = ["timeToAnswer": String(describing: time), "stars": String(describing: stars)]
+        ref.setValue(data)
+    }
+    
+    // MARK: Methods
+    func getChallengeInfoByUser (handler: LevelHandler, email:String) {
+        
+        var userChallengesInfo: [UserChallengeInfo] = []
+        
+        // If AppDelegate doesn't lauch firebase configuration
+        if (!AppDelegate.isAlreadyLaunchedOnce) {
+            FirebaseApp.configure()
+            AppDelegate.isAlreadyLaunchedOnce = true
+        }
+       
+        let emailUser = email.replacingOccurrences(of: ".", with: "_")
+        
+        print ("Email user: ", emailUser)
+        // Initialize in the level node in firebase database
+        //self.ref = self.ref.child("UsersData").child(emailUser).child("Challenge")
+        self.ref = self.ref.child("UsersData").child(emailUser)
+        
+        // Observe database and retrieve data
+        refHandle = self.ref.observe(DataEventType.value, with: { (snapshot) in
+            //let dataDict = snapshot.value as! [String: AnyObject]
+            let dataDict = snapshot.value as! [String: AnyObject]
+            //let dataDict = snapshot.value
+            print (">>>> DATA DICT: ", dataDict)
+        
+            // Parse json data from database
+            for item in dataDict {
+                //let id = item.value["1"] as NSArray
+                print ("ITEM: \(item)")
+                //let id = item["id"] as! String
+//                let stars = item["stars"] as! String
+//                let timeToAnswer = item["timeToAnswer"] as! String
+//
+//
+//                // Create a challenge object
+//                let userChallengeInfo = UserChallengeInfo(idChallenge: id, starChallenge: stars, timeToAnswerChallenge: timeToAnswer)
+//
+//                // List of all challenges from a specific level
+//                userChallengesInfo.append(userChallengeInfo)
+            }
+//
+//
+//            // Handler for asynchronous call in LevelController
+//            handler.getUserChallengeInfo(userChallengeInfo: userChallengesInfo)
+        })
+    }
+    
+    
 }

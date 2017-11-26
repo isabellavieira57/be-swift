@@ -12,12 +12,13 @@ import FirebaseDatabase
 
 protocol LevelHandler {
     func getLevelData (level: Level, challengesView: CollectionChallengeView)
+    func getUserChallengeInfo(userChallengeInfo: [UserChallengeInfo])
 }
 
 class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, LevelHandler {
     
     var challengesView: CollectionChallengeView!
-    var arrayChallengeInfo = [UserChallengeInfo]()
+    var userChallengeInfo = [UserChallengeInfo]()
     var arrayChallenges = [Challenge]()
     var user: User!
     var cellMenu: [UICollectionViewCell] = []
@@ -52,6 +53,12 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = challengesView.collectionChallenges1.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CollectionChallengesCell
+        
+        let userID : String = (Auth.auth().currentUser?.email)!
+        print ("userID: ", userID)
+
+        let userDAO = UserDAO()
+        userDAO.getChallengeInfoByUser(handler: self, email: userID as String!)
         
         if !self.challengeData.isEmpty {
             let challenge = self.challengeData[indexPath.row]
@@ -96,6 +103,15 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.challengeData = level.challenge.sorted(by: { $0.id < $1.id})
         DispatchQueue.main.async {
             challengesView.collectionChallenges1.reloadData()
+        }
+    }
+    
+    func getUserChallengeInfo(userChallengeInfo: [UserChallengeInfo]) {
+        self.userChallengeInfo = userChallengeInfo
+        DispatchQueue.main.async {
+            self.challengesView.collectionChallenges1.reloadData()
+            print (" >>> DADOS DOS CHALLENGES POR USUARIO: ", self.userChallengeInfo)
+
         }
     }
     

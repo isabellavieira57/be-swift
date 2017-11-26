@@ -24,6 +24,8 @@ class DragAndDropViewController: UIViewController {
     var drop: UIImageView!
     var positions: [CGPoint]!
     var labelsInDrop = [String]()
+    var userDAO: UserDAO!
+
     
     let progressView = UIProgressView(progressViewStyle: .bar)
     var time = 0.0
@@ -173,6 +175,20 @@ class DragAndDropViewController: UIViewController {
         
         let feedbackController = MultipleChoiceFeedbackViewController()
         feedbackController.getVariables(challenge: self.challenge, userAnswer: stringUserAnswer, correctAnswer: stringCorrectAnswer, answerIsRight: self.answerIsRight, numberOfStars: self.numberOfStars, timeSolved: self.timeSolved)
+        
+        print (">> SORT FEEDBACK VIEW\n")
+        print (">> Usuario: \(String(describing: User.sharedInstance.email))")
+        print (">> challenge ID: \(self.challenge.id)")
+        print (">> stars: \(self.numberOfStars)")
+        print (">> timeSolved: \(self.timeSolved)")
+        
+//        if (User.sharedInstance.email != nil) && (self.numberOfStars != nil) && (self.timeSolved != nil) {
+//            userDAO.saveChallengeData(email: String(describing: User.sharedInstance.email), challenge_id: self.challenge.id, stars: self.numberOfStars, time: Int(self.timeSolved))
+//            print ("Salvou no banco")
+//        } else {
+//            print ("Nao salvou no banco")
+//        }
+        
         present(feedbackController, animated: false, completion: nil)
     }
     

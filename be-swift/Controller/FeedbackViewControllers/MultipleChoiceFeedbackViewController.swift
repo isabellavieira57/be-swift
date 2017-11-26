@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import GameplayKit
+import Firebase
 
 class MultipleChoiceFeedbackViewController: FeedbackViewController
 {
@@ -20,6 +21,10 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
     var multChoiceFeedView = FeedbackView()
     var scrollView: UIScrollView!
     var sizeView: CGFloat!
+    var userDAO = UserDAO()
+    var user: User!
+
+
     
     var arrayUserSuccess: Array<String>!
     var arrayUserFailTitle: Array<String>!
@@ -63,6 +68,18 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         //Array de notificações de feedback para o usuário
         self.arrayUserSuccess = ["Yes, you got it!", "You are amazing!", "Nice!", "Congratulations!", "You are going to rule the world!", "Way to go!", "Awesome"]
         self.arrayUserFailTitle = ["Oh no!", "Almost there!", "Keep trying!", "Don't give up!", "Try again! I believe in you!", "Try again! You can do it!"]
+        
+        print (">>>>>> MULTIPLE CHOICE FEEDBACK VIEW\n")
+        print (">> Usuario: \(User.sharedInstance.email!)")
+        print (">> challenge ID: \(self.challengeMultChoice.id)")
+        print (">> stars: \(self.numberOfStars!)")
+        print (">> timeSolved: \(self.timeSolved!)")
+        
+        let userID : String = (Auth.auth().currentUser?.email)!
+        print ("userID: ", userID)
+        
+         userDAO.saveChallengeData(email: userID, challenge_id: self.challengeMultChoice.id, stars: self.numberOfStars!, time: self.timeSolved!)
+        
     }
     
 //    // Descomentar para feedback alerts aparecerem
@@ -127,6 +144,7 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         self.answerIsRight = answerIsRight
         self.numberOfStars = numberOfStars
         self.timeSolved = timeSolved
+    
     }
     
     @objc func dismissButton(_ sender: Any)

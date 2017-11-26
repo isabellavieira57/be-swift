@@ -20,6 +20,8 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
     var correctAnswer: String!
     var numberOfTries = 0
     var textFieldInput: String!
+    var userDAO: UserDAO!
+
     
     let progressView = UIProgressView(progressViewStyle: .bar)
     var time = 0.0
@@ -139,6 +141,20 @@ class BlankFieldViewController: UIViewController, UITextFieldDelegate {
         
         let feedbackController = MultipleChoiceFeedbackViewController()
         feedbackController.getVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight, numberOfStars: self.numberOfStars, timeSolved: self.timeSolved)
+        
+//        print (">> SORT FEEDBACK VIEW\n")
+//        print (">> Usuario: \(String(describing: User.sharedInstance.email))")
+//        print (">> challenge ID: \(self.challenge.id)")
+//        print (">> stars: \(self.numberOfStars)")
+//        print (">> timeSolved: \(self.timeSolved)")
+//        
+//        if (User.sharedInstance.email != nil) && (self.numberOfStars != nil) && (self.timeSolved != nil) {
+//            userDAO.saveChallengeData(email: String(describing: User.sharedInstance.email), challenge_id: self.challenge.id, stars: self.numberOfStars, time: self.timeSolved)
+//            print ("Salvou no banco")
+//        } else {
+//            print ("Nao salvou no banco")
+//        }
+        
         present(feedbackController, animated: false, completion: nil)
     }
     

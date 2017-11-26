@@ -11,13 +11,16 @@ import Foundation
 class UserChallengeInfo {
     
     //var xpChallenge: Int
-    var starChallenge: Int
-    var timeToAnswerChallenge: Double
+    var starChallenge: String
+    var timeToAnswerChallenge: String
+    var idChallenge: String
     
-    init (xpChallenge: Int, starChallenge: Int, timeToAnswerChallenge: Double) {
+    init (idChallenge: String, starChallenge: String, timeToAnswerChallenge: String) {
         //self.xpChallenge = xpChallenge
+        self.idChallenge = idChallenge
         self.starChallenge = starChallenge
         self.timeToAnswerChallenge = timeToAnswerChallenge
+        
     }
     
 }

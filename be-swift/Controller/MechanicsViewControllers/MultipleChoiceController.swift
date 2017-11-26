@@ -23,6 +23,9 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
     var correctAnswer: String!
     var options: Array<String>!
     var numberOfTries = 0
+    var userDAO: UserDAO!
+
+
     
     let progressView = UIProgressView(progressViewStyle: .bar)
     var time: Double = 0.0
@@ -150,6 +153,7 @@ class MultipleChoiceController: UIViewController, SSRadioButtonControllerDelegat
         
         let feedbackController = MultipleChoiceFeedbackViewController()
         feedbackController.getVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight, numberOfStars: self.numberOfStars, timeSolved: self.timeSolved)
+    
         present(feedbackController, animated: false, completion: nil)
     }
     
