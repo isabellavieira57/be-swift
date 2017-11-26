@@ -10,12 +10,17 @@ import UIKit
 import CoreData
 import Firebase
 import UserNotifications
+import GameplayKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     static var isAlreadyLaunchedOnce = false // Used to avoid 2 FIRApp configure
+    
+    let messages = ["It's time to practice! 💁‍♀️✍️", "Way to go!", "It never gets easier, you just get better!", "Don't stop learning!", "You can learn something new every day!", "Learning is a gift!"]
+
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -48,8 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let center = UNUserNotificationCenter.current()
             center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
                 LocalNotificationCenter.stopAllLocalNotifications()
-                LocalNotificationCenter.localNotification("Be Swift ⭐️!", body: "It's time to practice! 💁‍♀️✍️")
+                //let messageBody = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.messages)[0] as! String
+                let messageBody = Int(arc4random() % UInt32(self.messages.count))
+                LocalNotificationCenter.localNotification("Be Swift ⭐️!", body: self.messages[messageBody])
             }
+            
         }
         return true
     }

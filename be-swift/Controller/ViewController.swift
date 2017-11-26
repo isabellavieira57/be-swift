@@ -43,10 +43,15 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         self.challengesView.collectionChallenges1.dataSource = self
         self.challengesView.collectionChallenges1.delegate = self
         self.challengesView.collectionChallenges1.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
+        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
         //challengesView.collectionChallenges1.reloadData()
+        DispatchQueue.main.async {
+            self.challengesView.collectionChallenges1.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
