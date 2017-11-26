@@ -69,14 +69,14 @@ class MultipleChoiceFeedbackViewController: FeedbackViewController
         self.arrayUserSuccess = ["Yes, you got it!", "You are amazing!", "Nice!", "Congratulations!", "You are going to rule the world!", "Way to go!", "Awesome"]
         self.arrayUserFailTitle = ["Oh no!", "Almost there!", "Keep trying!", "Don't give up!", "Try again! I believe in you!", "Try again! You can do it!"]
         
-        print (">>>>>> MULTIPLE CHOICE FEEDBACK VIEW\n")
-        print (">> Usuario: \(User.sharedInstance.email!)")
-        print (">> challenge ID: \(self.challengeMultChoice.id)")
-        print (">> stars: \(self.numberOfStars!)")
-        print (">> timeSolved: \(self.timeSolved!)")
+//        print (">>>>>> MULTIPLE CHOICE FEEDBACK VIEW\n")
+//        print (">> Usuario: \(User.sharedInstance.email!)")
+//        print (">> challenge ID: \(self.challengeMultChoice.id)")
+//        print (">> stars: \(self.numberOfStars!)")
+//        print (">> timeSolved: \(self.timeSolved!)")
         
         let userID : String = (Auth.auth().currentUser?.email)!
-        print ("userID: ", userID)
+//        print ("userID: ", userID)
         
          userDAO.saveChallengeData(email: userID, challenge_id: self.challengeMultChoice.id, stars: self.numberOfStars!, time: self.timeSolved!)
         

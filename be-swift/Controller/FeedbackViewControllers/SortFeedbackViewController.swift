@@ -94,7 +94,7 @@ class SortFeedbackViewController: FeedbackViewController, UITableViewDelegate, U
         self.arrayUserFailTitle = ["Oh no!", "Almost there!", "Keep trying!", "Don't give up!", "Try again! I believe in you!", "Try again! You can do it!"]
         
         let userID : String = (Auth.auth().currentUser?.email)!
-        print ("userID: ", userID)
+       // print ("userID: ", userID)
         
         userDAO.saveChallengeData(email: userID, challenge_id: self.challengeSort.id, stars: self.numberOfStars!, time: self.timeSolved!)
         

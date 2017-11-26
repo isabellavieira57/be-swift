@@ -18,33 +18,39 @@ protocol LevelHandler {
 class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, LevelHandler {
     
     var challengesView: CollectionChallengeView!
-    var userChallengeInfo = [UserChallengeInfo]()
+    var userChallengeInfo: [UserChallengeInfo] = []
     var arrayChallenges = [Challenge]()
     var user: User!
     var cellMenu: [UICollectionViewCell] = []
     var challengeData: [Challenge] = []
-//    var notification: LocalNotificationCenter!
+    var totalStarsUser: Int! = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //TODO: Contabilizar total de estrelas por usuário e passar pelo parâmetro
-        self.challengesView = CollectionChallengeView(numberOfStarsTotal: setStarsNumber(numberOfStarsTotal: 6))
+        let userID : String = (Auth.auth().currentUser?.email)!
+        let userDAO = UserDAO()
+        userDAO.getChallengeInfoByUser(handler: self, email: userID as String!)
+        
+        self.challengesView = CollectionChallengeView(numberOfStarsTotal: setStarsNumber(numberOfStarsTotal: self.totalStarsUser!))
         self.view.addSubview(challengesView)
         self.view = self.challengesView
        
-        print ("GET CHALLENGE")
         let levelDAO = LevelDAO()
         
-        //getChallengesByLevel results are in the handler getLevelData
         levelDAO.getChallengesByLevel(handler: self, level: "level-1", challengesView: challengesView)
-        
         
         self.challengesView.collectionChallenges1.dataSource = self
         self.challengesView.collectionChallenges1.delegate = self
         self.challengesView.collectionChallenges1.register(CollectionChallengesCell.self, forCellWithReuseIdentifier: "cell")
-        
-//        notification.localNotification(title: "Be Swift", body: "It's time to practice!")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //challengesView.collectionChallenges1.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //challengesView.collectionChallenges1.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -52,26 +58,28 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = challengesView.collectionChallenges1.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CollectionChallengesCell
         
-        let userID : String = (Auth.auth().currentUser?.email)!
-        print ("userID: ", userID)
-
-        let userDAO = UserDAO()
-        userDAO.getChallengeInfoByUser(handler: self, email: userID as String!)
-        
-        if !self.challengeData.isEmpty {
+        if (!self.challengeData.isEmpty) && (userChallengeInfo.count != 0) {
             let challenge = self.challengeData[indexPath.row]
-            var stars = 0
+            let object = self.userChallengeInfo.filter({Int($0.idChallenge) == challenge.id}).first
             let isLocked = false
             
-            cell.configureCell(numberOfStars: stars, isLocked: isLocked, iconNumber: challenge.id)
-            self.cellMenu.append(cell)
+            if (object != nil) {
+                cell.configureCell(numberOfStars: Int((object?.starChallenge)!)!, isLocked: isLocked, iconNumber: challenge.id)
+                self.totalStarsUser = self.totalStarsUser! + Int((object?.starChallenge)!)!
+                print ("TOTAL STARS: \(self.totalStarsUser)")
+                self.cellMenu.append(cell)
+            } else {
+                cell.configureCell(numberOfStars: 0, isLocked: isLocked, iconNumber: challenge.id)
+                self.cellMenu.append(cell)
+            }
             return cell
         } else {
             print ("IS EMPTY")
         }
-        return cell
+       return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -107,17 +115,14 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func getUserChallengeInfo(userChallengeInfo: [UserChallengeInfo]) {
-        self.userChallengeInfo = userChallengeInfo
+        self.userChallengeInfo = userChallengeInfo.sorted(by: {$0.idChallenge < $1.idChallenge})
         DispatchQueue.main.async {
             self.challengesView.collectionChallenges1.reloadData()
-            print (" >>> DADOS DOS CHALLENGES POR USUARIO: ", self.userChallengeInfo)
-
         }
     }
     
     func setStarsNumber(numberOfStarsTotal: Int) -> String {
         var starString: String!
-        
         if numberOfStarsTotal < 10 {
             starString = "00" + String(numberOfStarsTotal)
         } else {
@@ -126,8 +131,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         return starString
     }
     
-    @objc func logOut()
-    {
+    @objc func logOut() {
         User.sharedInstance.logout()
         let controller = WelcomeViewController()
         present(controller, animated: true, completion: nil)
