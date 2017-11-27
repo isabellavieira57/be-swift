@@ -96,7 +96,7 @@ class UserDAO {
         let challengeID = String(challenge_id)
         let emailUser = email.replacingOccurrences(of: ".", with: "_")
         let ref = Database.database().reference().child("UsersData").child(emailUser).child("Challenges").child(challengeID)
-        let data = ["timeToAnswer": String(describing: time), "stars": String(describing: stars)]
+        let data = ["id ": challenge_id ,"timeToAnswer": String(describing: time), "stars": String(describing: stars)] as [String : Any]
         ref.setValue(data)
     }
     
@@ -121,26 +121,28 @@ class UserDAO {
         // Observe database and retrieve data
         refHandle = self.ref.observe(DataEventType.value, with: { (snapshot) in
             //let dataDict = snapshot.value as! [String: AnyObject]
-            let dataDict = snapshot.value as! [String: AnyObject]
-            //let dataDict = snapshot.value
-            //print (">>>> DATA DICT: ", dataDict)
-        
-            // Parse json data from database
-            for item in dataDict {
-                //let id = item.value["1"] as NSArray
-//                print ("ITEM: \(item.key)")
-//                print ("ITEM: \(item.value.object(forKey: "stars"))")
-//                print ("ITEM: \(item.value.object(forKey: "timeToAnswer"))")
-                  let id = item.key as! String
-                  let stars = item.value.object(forKey: "stars") as! String
-                  let timeToAnswer = item.value.object(forKey: "timeToAnswer") as! String
+            if snapshot.exists() {
+                let dataDict = snapshot.value as! [String: AnyObject]
+                //let dataDict = snapshot.value
+                print (">>>> DATA DICT: ", dataDict)
+            
+                // Parse json data from database
+                for item in dataDict {
+                    //let id = item.value["1"] as NSArray
+    //                print ("ITEM: \(item.key)")
+    //                print ("ITEM: \(item.value.object(forKey: "stars"))")
+    //                print ("ITEM: \(item.value.object(forKey: "timeToAnswer"))")
+                      let id = item.key as! String
+                      let stars = item.value.object(forKey: "stars") as! String
+                      let timeToAnswer = item.value.object(forKey: "timeToAnswer") as! String
 
 
-                // Create a userChallengeInfo object
-                let userChallengeInfo = UserChallengeInfo(idChallenge: id, starChallenge: stars, timeToAnswerChallenge: timeToAnswer)
+                    // Create a userChallengeInfo object
+                    let userChallengeInfo = UserChallengeInfo(idChallenge: id, starChallenge: stars, timeToAnswerChallenge: timeToAnswer)
 
-                // List of all info of a user
-                userChallengesInfo.append(userChallengeInfo)
+                    // List of all info of a user
+                    userChallengesInfo.append(userChallengeInfo)
+                }
             }
             // Handler for asynchronous call in LevelController
             handler.getUserChallengeInfo(userChallengeInfo: userChallengesInfo)

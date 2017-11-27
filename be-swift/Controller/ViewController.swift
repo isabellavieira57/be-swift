@@ -65,12 +65,12 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = challengesView.collectionChallenges1.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CollectionChallengesCell
+         let isLocked = false
         
         if (!self.challengeData.isEmpty) && (userChallengeInfo.count != 0) {
             let challenge = self.challengeData[indexPath.row]
             let object = self.userChallengeInfo.filter({Int($0.idChallenge) == challenge.id}).first
-            let isLocked = false
-            
+        
             if (object != nil) {
                 cell.configureCell(numberOfStars: Int((object?.starChallenge)!)!, isLocked: isLocked, iconNumber: challenge.id)
                 self.totalStarsUser = self.totalStarsUser! + Int((object?.starChallenge)!)!
@@ -81,6 +81,9 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 self.cellMenu.append(cell)
             }
             return cell
+        } else if (userChallengeInfo.count == 0)  {
+             let challenge = self.challengeData[indexPath.row]
+            cell.configureCell(numberOfStars: 0, isLocked: isLocked, iconNumber: challenge.id)
         } else {
             print ("IS EMPTY")
         }
@@ -114,6 +117,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     // This function gets the return of the Firebase asynchronous call and call the respective view
     func getLevelData(level: Level,  challengesView: CollectionChallengeView) {
         self.challengeData = level.challenge.sorted(by: { $0.id < $1.id})
+        print ("CHALLENGE DATA: \(self.challengeData)")
         DispatchQueue.main.async {
             challengesView.collectionChallenges1.reloadData()
         }
