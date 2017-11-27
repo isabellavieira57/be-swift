@@ -28,7 +28,12 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print ("VIEW CONTROLLLER")
+        
         let userID : String = (Auth.auth().currentUser?.email)!
+        let uid : String = (Auth.auth().currentUser?.uid)!
+        
+        print ("UID: \(uid)")
         let userDAO = UserDAO()
         userDAO.getChallengeInfoByUser(handler: self, email: userID as String!)
         
@@ -38,6 +43,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
        
         let levelDAO = LevelDAO()
         
+        print ("GET CHALLENGES BY LEVEL - VIEW CONTROLLER")
         levelDAO.getChallengesByLevel(handler: self, level: "level-1", challengesView: challengesView)
         
         self.challengesView.collectionChallenges1.dataSource = self
@@ -67,13 +73,15 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         let cell = challengesView.collectionChallenges1.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! CollectionChallengesCell
          let isLocked = false
         
-        if (!self.challengeData.isEmpty) && (userChallengeInfo.count != 0) {
+        print (">> USER CHALLENGE INFO: \(userChallengeInfo)")
+        
+        if (!self.challengeData.isEmpty) && (self.userChallengeInfo.count != 0) {
             let challenge = self.challengeData[indexPath.row]
             let object = self.userChallengeInfo.filter({Int($0.idChallenge) == challenge.id}).first
         
             if (object != nil) {
-                cell.configureCell(numberOfStars: Int((object?.starChallenge)!)!, isLocked: isLocked, iconNumber: challenge.id)
-                self.totalStarsUser = self.totalStarsUser! + Int((object?.starChallenge)!)!
+                cell.configureCell(numberOfStars: (object?.starChallenge)!, isLocked: isLocked, iconNumber: challenge.id)
+                self.totalStarsUser = self.totalStarsUser! + (object?.starChallenge)!
                 print ("TOTAL STARS: \(self.totalStarsUser)")
                 self.cellMenu.append(cell)
             } else {
@@ -81,7 +89,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 self.cellMenu.append(cell)
             }
             return cell
-        } else if (userChallengeInfo.count == 0)  {
+        } else if (self.userChallengeInfo.count == 0)  {
              let challenge = self.challengeData[indexPath.row]
             cell.configureCell(numberOfStars: 0, isLocked: isLocked, iconNumber: challenge.id)
         } else {
@@ -124,6 +132,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func getUserChallengeInfo(userChallengeInfo: [UserChallengeInfo]) {
+        print("GET USER CHALLENGE INFO")
         self.userChallengeInfo = userChallengeInfo.sorted(by: {$0.idChallenge < $1.idChallenge})
         DispatchQueue.main.async {
             self.challengesView.collectionChallenges1.reloadData()

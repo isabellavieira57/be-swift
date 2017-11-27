@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AppDelegate.isAlreadyLaunchedOnce = true
             print ("APP DELEGATE LAUNCHED")
         }
-        registerForPushNotifications()
+       // registerForPushNotifications()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window!.rootViewController = getInitialController()
@@ -43,43 +43,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } */
         
         // Checking if it's the first time the user lauch the app
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        if launchedBefore  {
-            print("Not first launch.")
-        } else {
-            print("First launch, setting UserDefault.")
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
-            
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-                LocalNotificationCenter.stopAllLocalNotifications()
-                //let messageBody = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.messages)[0] as! String
-                let messageBody = Int(arc4random() % UInt32(self.messages.count))
-                LocalNotificationCenter.localNotification("Be Swift ⭐️!", body: self.messages[messageBody])
-            }
-            
-        }
+//        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+//        if launchedBefore  {
+//            print("Not first launch.")
+//        } else {
+//            print("First launch, setting UserDefault.")
+//            UserDefaults.standard.set(true, forKey: "launchedBefore")
+//
+//            let center = UNUserNotificationCenter.current()
+//            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+//                LocalNotificationCenter.stopAllLocalNotifications()
+//                //let messageBody = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.messages)[0] as! String
+//                let messageBody = Int(arc4random() % UInt32(self.messages.count))
+//                LocalNotificationCenter.localNotification("Be Swift ⭐️!", body: self.messages[messageBody])
+//            }
+//
+//        }
         return true
     }
     
-    func getNotificationSettings() {
-        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
-            print("Notification settings: \(settings)")
-            guard settings.authorizationStatus == .authorized else { return }
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-    }
-
-    func registerForPushNotifications() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
-            (granted, error) in
-            print("Permission granted: \(granted)")
-            guard granted else { return }
-             DispatchQueue.main.async {
-                self.getNotificationSettings()
-            }
-        }
-    }
+//    func getNotificationSettings() {
+//        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+//            print("Notification settings: \(settings)")
+//            guard settings.authorizationStatus == .authorized else { return }
+//            DispatchQueue.main.async {
+//                UIApplication.shared.registerForRemoteNotifications()
+//            }
+//        }
+//    }
+//
+//    func registerForPushNotifications() {
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+//            (granted, error) in
+//            print("Permission granted: \(granted)")
+//            guard granted else { return }
+//             DispatchQueue.main.async {
+//                self.getNotificationSettings()
+//            }
+//        }
+//    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

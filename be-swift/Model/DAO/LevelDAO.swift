@@ -26,6 +26,8 @@ class LevelDAO {
     // MARK: Methods
     func getChallengesByLevel (handler: LevelHandler, level: String,  challengesView: CollectionChallengeView) {
         
+        print ("GET CHALLENGES BY LEVEL - LEVELDAO")
+        
         var challenges: [Challenge] = []
         
         // If AppDelegate doesn't lauch firebase configuration
@@ -33,13 +35,20 @@ class LevelDAO {
             FirebaseApp.configure()
             AppDelegate.isAlreadyLaunchedOnce = true
         }
+        
+        print ("level: \(level)")
     
         // Initialize in the level node in firebase database
         self.ref = self.ref.child(level)
         
+        
         // Observe database and retrieve data
         refHandle = self.ref.observe(DataEventType.value, with: { (snapshot) in
+            print ("DATADICT \(snapshot)")
+
             let dataDict = snapshot.value as! [String: AnyObject]
+            
+            print ("oi")
             
             // Parse json data from database
             for item in dataDict {
@@ -54,6 +63,7 @@ class LevelDAO {
                 let resource_link = item.value.object(forKey: "resource_link") as! String
                 let example_code = item.value.object(forKey: "example_code") as! String
                 
+                print (">> ID CHALLENGE - LEVEL DAO: \(id)")
                 // Create a challenge object
                 let challenge = Challenge(question: question, estimatedTime: estimated_time, mechanics: mechanics, options:options, correctAnswer: correct_answer, feedbackAnswer:feedback_answer, tags: tags, id:id, resource_link:resource_link, exampleCode: example_code)
 
@@ -64,6 +74,8 @@ class LevelDAO {
             let level = Level (star: 3, level: "Level1", xp: 10, challenge: challenges)
 
             // Handler for asynchronous call in LevelController
+            print (">> COLOCA NO HANDLER - LEVEL DAO")
+
             handler.getLevelData(level: level,  challengesView: challengesView)
         })
     }
