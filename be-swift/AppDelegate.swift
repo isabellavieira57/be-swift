@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     static var isAlreadyLaunchedOnce = false // Used to avoid 2 FIRApp configure
     
-    let messages = ["It's time to practice! 💁‍♀️✍️", "Way to go!", "It never gets easier, you just get better!", "Don't stop learning!", "You can learn something new every day!", "Learning is a gift!"]
+    let messages = ["It's time to practice! 💁‍♀️✍️", "Way to go!", "It never gets easier, you just get better!", "Don't stop learning!", "You can learn something new every day!", "Learning is a gift!", "Learning a programming language requires a little practice!"]
 
     
     
@@ -49,15 +49,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             print("First launch, setting UserDefault.")
             UserDefaults.standard.set(true, forKey: "launchedBefore")
-
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-                LocalNotificationCenter.stopAllLocalNotifications()
-                //let messageBody = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.messages)[0] as! String
-                let messageBody = Int(arc4random() % UInt32(self.messages.count))
-                LocalNotificationCenter.localNotification("Be Swift ⭐️!", body: self.messages[messageBody])
-            }
-
+        }
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            LocalNotificationCenter.stopAllLocalNotifications()
+            //let messageBody = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.messages)[0] as! String
+            let messageBody = Int(arc4random() % UInt32(self.messages.count))
+            print ("messaage body: \(self.messages[messageBody])")
+            LocalNotificationCenter.localNotification("Be Swift ⭐️!", body: self.messages[messageBody])
         }
         return true
     }
