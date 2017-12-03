@@ -10,12 +10,17 @@ import UIKit
 import CoreData
 import Firebase
 import UserNotifications
+import GameplayKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     static var isAlreadyLaunchedOnce = false // Used to avoid 2 FIRApp configure
+    
+    let messages = ["It's time to practice! 💁‍♀️✍️", "Way to go!", "It never gets easier, you just get better!", "Don't stop learning!", "You can learn something new every day!", "Learning is a gift!", "Learning a programming language requires a little practice!"]
+
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -44,12 +49,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             print("First launch, setting UserDefault.")
             UserDefaults.standard.set(true, forKey: "launchedBefore")
-            
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-                LocalNotificationCenter.stopAllLocalNotifications()
-                LocalNotificationCenter.localNotification("Be Swift ⭐️!", body: "It's time to practice! 💁‍♀️✍️")
-            }
+        }
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            LocalNotificationCenter.stopAllLocalNotifications()
+            //let messageBody = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: self.messages)[0] as! String
+            let messageBody = Int(arc4random() % UInt32(self.messages.count))
+            print ("messaage body: \(self.messages[messageBody])")
+            LocalNotificationCenter.localNotification("Be Swift ⭐️!", body: self.messages[messageBody])
         }
         return true
     }
@@ -58,7 +65,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
             print("Notification settings: \(settings)")
             guard settings.authorizationStatus == .authorized else { return }
-            UIApplication.shared.registerForRemoteNotifications()
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
         }
     }
 

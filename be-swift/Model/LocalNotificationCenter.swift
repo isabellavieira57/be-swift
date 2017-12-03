@@ -8,7 +8,9 @@
 import UIKit
 import UserNotifications
 
+
 class LocalNotificationCenter {
+    
     
     // Create Local Notification
     static func localNotification(_ title : String, body : String) {
@@ -17,7 +19,7 @@ class LocalNotificationCenter {
         content.body = body
         
         // Notificacao setada de 5 em 5 min
-        let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 300.0, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 303000.0, repeats: true)
         let request = UNNotificationRequest.init(identifier: "FiveSecond", content: content, trigger: trigger)
         
         // Schedule the notification.

@@ -20,15 +20,18 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var scrollView: UIScrollView!
     var numberOfTries = 0
     var correctAnswer: Array<String>!
-    
+    var userDAO: UserDAO!
+
     let progressView = UIProgressView(progressViewStyle: .bar)
     var time = 0.0
     var timer = Timer()
     
     var numberOfStars: Int!
     var timeSolved: Double!
-    var timeTo2Stars: Double! = nil
-    var timeTo3Stars: Double! = nil
+    //var timeTo2Stars: Double! = nil
+    var timeTo2Stars: Double!
+    //var timeTo3Stars: Double! = nil
+    var timeTo3Stars: Double!
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -167,6 +170,20 @@ class SortViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let feedbackController = SortFeedbackViewController()
         feedbackController.getSortVariables(challenge: self.challenge, userAnswer: self.userAnswer, correctAnswer: self.correctAnswer, answerIsRight: self.answerIsRight, numberOfStars: self.numberOfStars, timeSolved: self.timeSolved)
+        
+//        print (">> SORT FEEDBACK VIEW\n")
+//        print (">> Usuario: \(String(describing: User.sharedInstance.email))")
+//        print (">> challenge ID: \(self.challenge.id)")
+//        print (">> stars: \(self.numberOfStars)")
+//        print (">> timeSolved: \(self.timeSolved)")
+        
+//        if (User.sharedInstance.email != nil) && (self.numberOfStars != nil) && (self.timeSolved != nil) {
+//            userDAO.saveChallengeData(email: String(describing: User.sharedInstance.email), challenge_id: self.challenge.id, stars: self.numberOfStars, time: Int(self.timeSolved))
+//            print ("Salvou no banco")
+//        } else {
+//            print ("Nao salvou no banco")
+//        }
+        
         present(feedbackController, animated: false, completion: nil)
     }
     
