@@ -112,8 +112,8 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         
         print ("CONTROLLER - CHECKING DATA")
         //Verificações para cadastro
-        if nameTxt == "" || emailTxt == "" || passwordTxt == "" || passwordCheckTxt == "" || countryTxt == "" || courseTxt == "" {
-            showAlert(title: "Ops!", message: "Please complete all text fields.")
+        if nameTxt == "" || emailTxt == "" || passwordTxt == "" || passwordCheckTxt == "" {
+            showAlert(title: "Ops!", message: "Please inform your e-mail and choose a password.")
             return
         } else if (passwordTxt?.count)! < 6 {
             showAlert(title: "Ops!", message: "Your password should be at least 6 characters long.")
