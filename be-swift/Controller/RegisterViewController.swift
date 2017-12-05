@@ -294,8 +294,9 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
         let yScale = screenSize.height/heightiPhoneSE
         
         if textField.frame.origin.y + textField.frame.height + 20*yScale > 318*yScale {
-            self.registerView.frame.origin.y -= (self.registerView.pickerCountry.frame.height - self.registerView.signUpButton.frame.height - 16*yScale)
+            self.registerView.frame.origin.y -= (self.registerView.pickerCountry.frame.height - self.registerView.signUpButton.frame.height - 20*yScale)
         }
+        
         self.selectedTextField = textField
         
         //se usuário mudar sua opção de continente, habilitar edição do textField de país
