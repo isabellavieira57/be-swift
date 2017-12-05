@@ -253,8 +253,8 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     func loginUser(success: Bool) {
         self.success = success
-        indicator.stopAnimating()
-        indicator.hidesWhenStopped = true
+//        indicator.stopAnimating()
+//        indicator.hidesWhenStopped = true
         
         if (self.success == true) {
             print("You have successfully registered")
@@ -265,7 +265,6 @@ class RegisterViewController: UIViewController, UIPickerViewDataSource, UIPicker
             let delegate = UIApplication.shared.delegate as! AppDelegate
             let window = delegate.window
             window?.rootViewController = viewController
-            self.present(viewController, animated: true, completion: nil)
             
         } else if (success == false) {
             print("registro falhooou")
