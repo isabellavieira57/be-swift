@@ -37,7 +37,7 @@ class UserDAO {
                 success = false
                 print ("::loadUser - UserDAO - Falhou:: \(success)")
             }
-        handler.loginUser(success: success)
+            handler.loginUser(success: success)
         }
     }
     
@@ -56,11 +56,14 @@ class UserDAO {
                 print("DAO - usuario criado")
                 success = true
                 self.loadUser(handler: handler, email: email, password: password)
-            } else {
+            } else if error != nil{
                 print(error?.localizedDescription ?? "DAO - erro no registro")
                 success = false
             }
-            handler.loginUser(success: success)
+//            else{
+//                handler.loginUser(success: success)
+//            }
+            
         })
     }
     
