@@ -57,19 +57,11 @@ class RegisterView: UIView
         let labelFontSize: CGFloat = 14
         let labelAlignment = NSTextAlignment.left
         let labelTextColor = UIColor(red:0.6, green:0.6, blue:0.6, alpha:1.0)
-        let labelFrame  = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.origin.y, width: 272, height: 22)
+        let labelFrame  = CGRect(x: textFieldFrame.origin.x, y: textFieldFrame.origin.y, width: 272, height: 20)
         let marginFromPreviousField: CGFloat = 12*yScale
         let marginFromDescription: CGFloat = 2*yScale
         
-        let labelFont:UIFont? = UIFont(name: font, size: labelFontSize)
-        let fontSuper:UIFont? = UIFont(name: font, size: labelFontSize)
-        
         nameLabel = UILabel(text: "Name", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
-        
-        //Superscripted *
-        let attStringName:NSMutableAttributedString = NSMutableAttributedString(string: "Name*", attributes: [.font:labelFont!])
-        attStringName.setAttributes([.font:fontSuper!,.baselineOffset:5], range: NSRange(location:4,length:1))
-        nameLabel.attributedText = attStringName
         
         nameText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
         nameText.frame.origin.y = nameLabel.frame.origin.y + nameLabel.frame.height + marginFromDescription
@@ -80,11 +72,6 @@ class RegisterView: UIView
         
         emailLabel = UILabel(text: "E-mail", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
         emailLabel.frame.origin.y = nameText.frame.origin.y + nameText.frame.height + marginFromPreviousField
-        
-        //Superscripted *
-        let attStringEmail:NSMutableAttributedString = NSMutableAttributedString(string: "E-mail*", attributes: [.font:labelFont!])
-        attStringEmail.setAttributes([.font:fontSuper!,.baselineOffset:5], range: NSRange(location:6,length:1))
-        emailLabel.attributedText = attStringEmail
         
         emailText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
         emailText.frame.origin.y = emailLabel.frame.origin.y + emailLabel.frame.height + marginFromDescription
@@ -98,11 +85,6 @@ class RegisterView: UIView
         passwordLabel = UILabel(text: "Password", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
         passwordLabel.frame.origin.y = emailText.frame.origin.y + emailText.frame.height + marginFromPreviousField
         
-        //Superscripted *
-        let attStringPw:NSMutableAttributedString = NSMutableAttributedString(string: "Password*", attributes: [.font:labelFont!])
-        attStringPw.setAttributes([.font:fontSuper!,.baselineOffset:5], range: NSRange(location:8,length:1))
-        passwordLabel.attributedText = attStringPw
-        
         passwordText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
         passwordText.frame.origin.y = passwordLabel.frame.origin.y + passwordLabel.frame.height + marginFromDescription
 //        passwordText.placeholder = "Password"
@@ -114,11 +96,6 @@ class RegisterView: UIView
         
         passwordConfirmLabel = UILabel(text: "Confirm your password", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
         passwordConfirmLabel.frame.origin.y = passwordText.frame.origin.y + passwordText.frame.height + marginFromPreviousField
-        
-        //Superscripted *
-        let attStringPwCheck:NSMutableAttributedString = NSMutableAttributedString(string: "Confirm your password*", attributes: [.font:labelFont!])
-        attStringPwCheck.setAttributes([.font:fontSuper!,.baselineOffset:5], range: NSRange(location:21,length:1))
-        passwordConfirmLabel.attributedText = attStringPwCheck
         
         passwordConfirmationText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
         passwordConfirmationText.frame.origin.y = passwordConfirmLabel.frame.origin.y + passwordConfirmLabel.frame.height + marginFromDescription
