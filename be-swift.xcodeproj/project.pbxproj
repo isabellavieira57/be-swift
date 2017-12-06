@@ -239,6 +239,13 @@
 		0397454C1FC91D7E00BB9D2C /* MechanicViews */ = {
 			isa = PBXGroup;
 			children = (
+				4F75F89C1F8AB5FF007BABC9 /* View.swift */,
+				4F75F89E1F8AB612007BABC9 /* MultipleChoiceView.swift */,
+				03A343221FA2433A007827D8 /* SSRadioButton.swift */,
+				4F75F8A01F8AB631007BABC9 /* DragAndDropView.swift */,
+				4F75F8A21F8AB643007BABC9 /* BlankFieldView.swift */,
+				4F75F8A41F8AB652007BABC9 /* FillTheGapView.swift */,
+				4F75F8A61F8AB660007BABC9 /* SortView.swift */,
 			);
 			name = MechanicViews;
 			sourceTree = "<group>";
@@ -328,9 +335,9 @@
 				4F75F8851F8AB4BC007BABC9 /* Controller */,
 				4F75F8841F8AB4B4007BABC9 /* View */,
 				4F75F85D1F8AB492007BABC9 /* LaunchScreen.storyboard */,
-				4F75F8511F8AB491007BABC9 /* AppDelegate.swift */,
 				4F75F8601F8AB492007BABC9 /* Info.plist */,
 				4F75F8581F8AB492007BABC9 /* be_swift.xcdatamodeld */,
+				4F75F8511F8AB491007BABC9 /* AppDelegate.swift */,
 				4F819A6F1FA3A49200BD69E0 /* GoogleService-Info.plist */,
 			);
 			path = "be-swift";
@@ -384,14 +391,7 @@
 				0374217D1FB9E0AF00F686C3 /* FeedbackViews */,
 				492E75B71F9125EB00A4AD4F /* Resources */,
 				497703541F8EAA8300102F08 /* Setup */,
-				4F75F89C1F8AB5FF007BABC9 /* View.swift */,
 				49EFD1CB1FC766DB0053AAAA /* TopView.swift */,
-				4F75F89E1F8AB612007BABC9 /* MultipleChoiceView.swift */,
-				03A343221FA2433A007827D8 /* SSRadioButton.swift */,
-				4F75F8A01F8AB631007BABC9 /* DragAndDropView.swift */,
-				4F75F8A21F8AB643007BABC9 /* BlankFieldView.swift */,
-				4F75F8A41F8AB652007BABC9 /* FillTheGapView.swift */,
-				4F75F8A61F8AB660007BABC9 /* SortView.swift */,
 				4F75F8A81F8AB66C007BABC9 /* LoginView.swift */,
 				4F75F8AA1F8AB67A007BABC9 /* RegisterView.swift */,
 				4F75F8AE1F8AB695007BABC9 /* CollectionChallengeView.swift */,
