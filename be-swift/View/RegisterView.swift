@@ -14,22 +14,22 @@ class RegisterView: UIView
     var emailText: UITextField!
     var passwordText: UITextField!
     var passwordConfirmationText: UITextField!
-    var continentText: UITextField!
-    var countryText: UITextField!
-    var courseText: UITextField!
+//    var continentText: UITextField!
+//    var countryText: UITextField!
+//    var courseText: UITextField!
     var signUpButton: UIButton!
     
     var nameLabel: UILabel!
     var emailLabel: UILabel!
     var passwordLabel: UILabel!
     var passwordConfirmLabel: UILabel!
-    var continentLabel: UILabel!
-    var countryLabel: UILabel!
-    var courseLabel: UILabel!
+//    var continentLabel: UILabel!
+//    var countryLabel: UILabel!
+//    var courseLabel: UILabel!
     
-    let pickerContinent = UIPickerView()
-    let pickerCountry = UIPickerView()
-    let pickerCourse = UIPickerView()
+//    let pickerContinent = UIPickerView()
+//    let pickerCountry = UIPickerView()
+//    let pickerCourse = UIPickerView()
     
     override init(frame: CGRect)
     {
@@ -39,7 +39,8 @@ class RegisterView: UIView
     
     convenience init (signUp: Selector)
     {
-        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*1.16))
+//        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*1.16))
+        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         
         setTextFields()
         setRegisterButton(signUpAction: signUp)
@@ -106,37 +107,37 @@ class RegisterView: UIView
         passwordConfirmationText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         passwordConfirmationText.isSecureTextEntry = true
         
-        continentLabel = UILabel(text: "Region", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
-        continentLabel.frame.origin.y = passwordConfirmationText.frame.origin.y + passwordConfirmationText.frame.height + marginFromPreviousField
-        
-        continentText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
-        continentText.frame.origin.y = continentLabel.frame.origin.y + continentLabel.frame.height + marginFromDescription
-        continentText.borderStyle = .none
-        continentText.layer.cornerRadius = 5
-        continentText.inputView = pickerContinent
-        continentText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
-        
-        countryLabel = UILabel(text: "Country", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
-        countryLabel.frame.origin.y = continentText.frame.origin.y + continentText.frame.height + marginFromPreviousField
-        
-        countryText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
-        countryText.frame.origin.y = countryLabel.frame.origin.y + countryLabel.frame.height + marginFromDescription
-//        countryText.placeholder = "Country"
-        countryText.borderStyle = .none
-        countryText.layer.cornerRadius = 5
-        countryText.inputView = pickerCountry
-        countryText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
-        
-        courseLabel = UILabel(text: "Field of study", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
-        courseLabel.frame.origin.y = countryText.frame.origin.y + countryText.frame.height + marginFromPreviousField
-        
-        courseText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
-        courseText.frame.origin.y = courseLabel.frame.origin.y + courseLabel.frame.height + marginFromDescription
-//        courseText.placeholder = "Course"
-        courseText.borderStyle = .none
-        courseText.layer.cornerRadius = 5
-        courseText.inputView = pickerCourse
-        courseText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
+//        continentLabel = UILabel(text: "Region", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
+//        continentLabel.frame.origin.y = passwordConfirmationText.frame.origin.y + passwordConfirmationText.frame.height + marginFromPreviousField
+//
+//        continentText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
+//        continentText.frame.origin.y = continentLabel.frame.origin.y + continentLabel.frame.height + marginFromDescription
+//        continentText.borderStyle = .none
+//        continentText.layer.cornerRadius = 5
+//        continentText.inputView = pickerContinent
+//        continentText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
+//
+//        countryLabel = UILabel(text: "Country", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
+//        countryLabel.frame.origin.y = continentText.frame.origin.y + continentText.frame.height + marginFromPreviousField
+//
+//        countryText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
+//        countryText.frame.origin.y = countryLabel.frame.origin.y + countryLabel.frame.height + marginFromDescription
+////        countryText.placeholder = "Country"
+//        countryText.borderStyle = .none
+//        countryText.layer.cornerRadius = 5
+//        countryText.inputView = pickerCountry
+//        countryText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
+//
+//        courseLabel = UILabel(text: "Field of study", font: font, fontSize: labelFontSize, aligment: labelAlignment, textColor: labelTextColor, frame: labelFrame)
+//        courseLabel.frame.origin.y = countryText.frame.origin.y + countryText.frame.height + marginFromPreviousField
+//
+//        courseText = UITextField(frame: textFieldFrame, font: font, fontSize: textFontSize)
+//        courseText.frame.origin.y = courseLabel.frame.origin.y + courseLabel.frame.height + marginFromDescription
+////        courseText.placeholder = "Course"
+//        courseText.borderStyle = .none
+//        courseText.layer.cornerRadius = 5
+//        courseText.inputView = pickerCourse
+//        courseText.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         
         self.addSubview(nameLabel)
         self.addSubview(nameText)
@@ -146,23 +147,26 @@ class RegisterView: UIView
         self.addSubview(passwordText)
         self.addSubview(passwordConfirmLabel)
         self.addSubview(passwordConfirmationText)
-        self.addSubview(continentLabel)
-        self.addSubview(continentText)
-        self.addSubview(countryLabel)
-        self.addSubview(countryText)
-        self.addSubview(courseLabel)
-        self.addSubview(courseText)
+//        self.addSubview(continentLabel)
+//        self.addSubview(continentText)
+//        self.addSubview(countryLabel)
+//        self.addSubview(countryText)
+//        self.addSubview(courseLabel)
+//        self.addSubview(courseText)
     }
     
     func setRegisterButton(signUpAction: Selector)
     {
+        let widhtiPhoneSE: CGFloat = 320
         let heightiPhoneSE: CGFloat = 568
         let screenSize = UIScreen.main.bounds
+        let xScale = screenSize.width/widhtiPhoneSE
         let yScale = screenSize.height/heightiPhoneSE
         
-        let buttonY = self.courseText.frame.origin.y/yScale + self.courseText.frame.height/yScale + 20
+//        let buttonY = self.courseText.frame.origin.y/yScale + self.courseText.frame.height/yScale + 20
         
-        signUpButton = UIButton(image: "signUp", frame: CGRect(x: 16, y: buttonY, width: 288, height: 46), target: self)
+        signUpButton = UIButton(image: "signUp", frame: CGRect(x: 16, y: 0, width: 288, height: 46), target: self)
+        signUpButton.frame.origin = CGPoint(x: 16*xScale, y: screenSize.height - 140*yScale)
         signUpButton.addTarget(target, action: signUpAction, for: .touchUpInside)
         
         self.addSubview(signUpButton)

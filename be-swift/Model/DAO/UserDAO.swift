@@ -72,7 +72,8 @@ class UserDAO {
         print("DAO - Logged out")
     }
     
-    func saveRegistration(name: String, email: String, password: String, country: String, major: String) {
+        func saveRegistration(name: String, email: String, password: String) {
+//    func saveRegistration(name: String, email: String, password: String, country: String, major: String) {
         // If AppDelegate doesn't lauch firebase configuration
         if (!AppDelegate.isAlreadyLaunchedOnce) {
             FirebaseApp.configure()
@@ -83,7 +84,8 @@ class UserDAO {
         
         // salva nome em um nó separado
         let ref = Database.database().reference().child("UsersData").child(emailUser)
-        let data = ["name": name, "country": country, "major": major]
+//        let data = ["name": name, "country": country, "major": major]
+        let data = ["name": name]
         ref.setValue(data)
     }
     
